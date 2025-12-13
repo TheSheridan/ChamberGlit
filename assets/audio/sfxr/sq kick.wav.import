@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bwjoygbpdp2m4"
+path="res://.godot/imported/sq kick.wav-e93d9fc697046b2befa4283f554fb208.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfxr/sq kick.wav"
+dest_files=["res://.godot/imported/sq kick.wav-e93d9fc697046b2befa4283f554fb208.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
