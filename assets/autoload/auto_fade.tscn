@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4uadobc2g8lr"]
+
+[ext_resource type="Script" uid="uid://drunmgb7x0qi2" path="res://assets/autoload/auto_fade.gd" id="1_6s77m"]
+
+[node name="auto_fade" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6s77m")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

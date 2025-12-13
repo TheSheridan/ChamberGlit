@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhoypglutbnqh"]
+
+[ext_resource type="AudioStream" uid="uid://oaqg5xy5rloi" path="res://assets/audio/sfx_roll.ogg" id="1_lg2cl"]
+[ext_resource type="AudioStream" uid="uid://cichyrq8npmyp" path="res://assets/audio/sfx_flipt.ogg" id="2_8kebc"]
+[ext_resource type="AudioStream" uid="uid://d4kp4yyv4xu4d" path="res://assets/audio/sfx_type.tres" id="3_multy"]
+[ext_resource type="AudioStream" uid="uid://d3c6ahupvvjob" path="res://assets/audio/sfx_select.wav" id="4_qanh5"]
+[ext_resource type="AudioStream" uid="uid://bpcpx5ul86oim" path="res://assets/audio/sfx_noise1.ogg" id="5_yrwnp"]
+
+[node name="sfx" type="Node"]
+
+[node name="roll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_lg2cl")
+
+[node name="flip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8kebc")
+
+[node name="type" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_multy")
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qanh5")
+
+[node name="noise1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yrwnp")

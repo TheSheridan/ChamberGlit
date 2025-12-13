@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b1sh8xtudta8u"]
+
+[ext_resource type="FontFile" uid="uid://lf1jgyimfhn8" path="res://assets/fonts/MYRIADPRO-BOLD.OTF" id="1_cmwwf"]
+[ext_resource type="FontFile" uid="uid://bhi651uoyf82w" path="res://assets/fonts/MYRIADPRO-BOLDIT.OTF" id="2_spt51"]
+[ext_resource type="FontFile" uid="uid://dksb1faqxenwn" path="res://assets/fonts/MYRIADPRO-SEMIBOLDIT.OTF" id="3_s5r82"]
+[ext_resource type="FontFile" uid="uid://ck1l6ikisu81p" path="res://assets/fonts/MiriamLibre-Regular.otf" id="4_uwbd1"]
+[ext_resource type="FontFile" uid="uid://rm3fe2mxn72c" path="res://assets/fonts/MYRIADPRO-REGULAR.OTF" id="5_07ibn"]
+
+[resource]
+default_font = ExtResource("5_07ibn")
+default_font_size = 20
+RichTextLabel/fonts/bold_font = ExtResource("1_cmwwf")
+RichTextLabel/fonts/bold_italics_font = ExtResource("2_spt51")
+RichTextLabel/fonts/italics_font = ExtResource("3_s5r82")
+RichTextLabel/fonts/mono_font = ExtResource("4_uwbd1")
+RichTextLabel/fonts/normal_font = ExtResource("5_07ibn")

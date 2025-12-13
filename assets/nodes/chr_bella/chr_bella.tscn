@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3lhf4oj51vy6"]
+
+[ext_resource type="Script" uid="uid://vqevqq6025eh" path="res://assets/nodes/chr_bella/chr_bella.gd" id="1_hubry"]
+[ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="2_1iqlj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1ewf"]
+
+[node name="chr_bella" type="CharacterBody2D"]
+script = ExtResource("1_hubry")
+
+[node name="col" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h1ewf")
+
+[node name="spr" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.602234, 0.76302, 0.914063, 1)
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("2_1iqlj")
+animation = &"idle_down"
+
+[node name="cam" type="Camera2D" parent="."]
+
+[node name="ray" type="RayCast2D" parent="."]

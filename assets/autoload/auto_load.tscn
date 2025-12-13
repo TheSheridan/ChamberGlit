@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://qf0w5gi3nviv"]
+
+[ext_resource type="Script" uid="uid://b2bxise6gbgpm" path="res://assets/autoload/auto_load.gd" id="1_bvgo2"]
+[ext_resource type="Texture2D" uid="uid://5x5dt2va0hlb" path="res://assets/images/loading.png" id="2_ta5jb"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="3_y6m48"]
+
+[node name="auto_load" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvgo2")
+
+[node name="cont_margin" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="cont_ratio" type="AspectRatioContainer" parent="cont_margin"]
+layout_mode = 2
+
+[node name="spr" type="Sprite2D" parent="cont_margin/cont_ratio"]
+texture_filter = 1
+texture = ExtResource("2_ta5jb")
+
+[node name="spr_shadow" type="Sprite2D" parent="cont_margin/cont_ratio"]
+modulate = Color(0, 0, 0, 0.498039)
+position = Vector2(0, 2)
+texture = ExtResource("3_y6m48")
