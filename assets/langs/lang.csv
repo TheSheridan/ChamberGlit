@@ -1,0 +1,14 @@
+,en,es
+MainMenu_NewGame,New game,Nueva partida
+MainMenu_LoadGame,Load game,Cargar partida
+MainMenu_Settings,Settings,Ajustes
+MainMenu_Extras,Extras,Extras
+MainMenu_Quit,Quit,Salir
+MainMenu_NewGame_Info,Start a new game.,Comenzar una nueva partida.
+MainMenu_LoadGame_Info,Load a saved game.,Continuar una partida guardada.
+MainMenu_Settings_Info,Adjust the game’s settings.,Configurar los ajustes del juego.
+MainMenu_Extras_Info,"Go to the extras screen, including the soundtrack and credits.","Ver pantalla de extras, incluyendo la banda sonora y créditos."
+MainMenu_Quit_Info,Exit to the system.,Salir al sistema.
+Prompt_Accept,Accept,Aceptar
+Prompt_Cancel,Cancel,Cancelar
+Prompt_Select,Select,Seleccionar
