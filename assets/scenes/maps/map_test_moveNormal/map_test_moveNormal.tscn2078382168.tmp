@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d7ktp0qvlvuu"]
+
+[ext_resource type="Script" uid="uid://qpr8671oqvr7" path="res://assets/scenes/maps/map_test_moveNormal/map_test_move_normal.gd" id="1_qecdi"]
+[ext_resource type="PackedScene" uid="uid://1cbjyd4xki4m" path="res://assets/nodes/node_moveArrow/node_moveArrow.tscn" id="2_bbgt4"]
+
+[node name="map_test_moveNormal" type="Node2D"]
+script = ExtResource("1_qecdi")
+
+[node name="node_moveArrow" parent="." instance=ExtResource("2_bbgt4")]
+
+[node name="camera2d" type="Camera2D" parent="."]

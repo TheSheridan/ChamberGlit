@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://c82vg1qjkqdfi"]
+
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="1_nybys"]
+
+[sub_resource type="Curve" id="Curve_1b17x"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.135922, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_8u85f"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ptc" type="Node2D" parent="."]
+
+[node name="n1" type="CPUParticles2D" parent="ptc"]
+amount = 64
+texture = ExtResource("1_nybys")
+gravity = Vector2(0, -480)
+initial_velocity_max = 400.0
+radial_accel_min = 87.5
+radial_accel_max = 87.5
+scale_amount_curve = SubResource("Curve_1b17x")
+color_ramp = SubResource("Gradient_8u85f")
+
+[node name="n2" type="CPUParticles2D" parent="ptc"]
+modulate = Color(1, 1, 1, 0.301961)
+scale = Vector2(2, 2)
+amount = 64
+texture = ExtResource("1_nybys")
+gravity = Vector2(0, -480)
+initial_velocity_max = 400.0
+radial_accel_min = 87.5
+radial_accel_max = 87.5
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_1b17x")
+color_ramp = SubResource("Gradient_8u85f")
+
+[node name="n3" type="CPUParticles2D" parent="ptc"]
+modulate = Color(1, 1, 1, 0.301961)
+scale = Vector2(2, 2)
+amount = 64
+texture = ExtResource("1_nybys")
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, -480)
+initial_velocity_max = 400.0
+radial_accel_min = 87.5
+radial_accel_max = 87.5
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_1b17x")
+color = Color(0.396078, 0.486275, 0.568627, 1)
+color_ramp = SubResource("Gradient_8u85f")
+
+[node name="n4" type="CPUParticles2D" parent="ptc"]
+modulate = Color(1, 1, 1, 0.301961)
+scale = Vector2(2, 2)
+amount = 64
+texture = ExtResource("1_nybys")
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, -480)
+initial_velocity_max = 400.0
+radial_accel_min = 87.5
+radial_accel_max = 87.5
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_1b17x")
+color = Color(0.545098, 0.447059, 0.439216, 1)
+color_ramp = SubResource("Gradient_8u85f")

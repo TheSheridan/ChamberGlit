@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8fnejm1momfi"]
+
+[ext_resource type="Script" uid="uid://csy16uot6ctxe" path="res://assets/scenes/scn_menu_settings/scn_menu_settings.gd" id="1_hy55a"]
+
+[node name="scn_menu_settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hy55a")
+
+[node name="vFlowContainer" type="VFlowContainer" parent="."]
+layout_mode = 2
+offset_right = 87.0
+offset_bottom = 40.0
+
+[node name="label" type="Label" parent="vFlowContainer"]
+layout_mode = 2
+text = "BGM Volume"
+
+[node name="hSlider" type="HSlider" parent="vFlowContainer"]
+layout_mode = 2
+tick_count = 1
+
+[node name="checkButton" type="CheckButton" parent="vFlowContainer"]
+layout_mode = 2
+
+[node name="cont_margin" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="cont_ratio" type="AspectRatioContainer" parent="cont_margin"]
+layout_mode = 2
+
+[node name="vFlowContainer_2" type="VFlowContainer" parent="cont_margin/cont_ratio"]
+layout_mode = 2
+alignment = 2
+
+[node name="label" type="RichTextLabel" parent="cont_margin/cont_ratio"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true

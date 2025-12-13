@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3 uid="uid://rs5xqwmgy2xe"]
+
+[ext_resource type="Script" uid="uid://0wivucuvtin3" path="res://assets/scenes/scn_menu_jukebox/scn_menu_jukebox.gd" id="1_nf3hl"]
+[ext_resource type="Theme" uid="uid://blr41jq603y74" path="res://assets/nodes/themes/theme_menuButtons.tres" id="2_ldavt"]
+[ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="8_i8lmp"]
+
+[node name="scn_menu_jukebox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nf3hl")
+
+[node name="cont_margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cont_ratio" type="AspectRatioContainer" parent="cont_margin"]
+layout_mode = 2
+ratio = 0.2
+alignment_horizontal = 0
+alignment_vertical = 0
+
+[node name="cursor" type="Sprite2D" parent="cont_margin/cont_ratio"]
+texture_filter = 1
+position = Vector2(-32, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("8_i8lmp")
+centered = false
+
+[node name="vsplit" type="HSplitContainer" parent="cont_margin/cont_ratio"]
+layout_mode = 2
+
+[node name="vbox_buttons" type="VBoxContainer" parent="cont_margin/cont_ratio/vsplit"]
+custom_minimum_size = Vector2(320, 320)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_ldavt")
+
+[node name="button" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_2" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_3" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_4" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_5" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_6" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_7" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_8" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_9" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="button_10" type="Button" parent="cont_margin/cont_ratio/vsplit/vbox_buttons"]
+layout_mode = 2
+text = "01. Bisel"
+
+[node name="vsplit_txt" type="HSplitContainer" parent="cont_margin/cont_ratio/vsplit"]
+layout_mode = 2
+
+[node name="cont_flow" type="FlowContainer" parent="cont_margin/cont_ratio/vsplit/vsplit_txt"]
+layout_mode = 2
+vertical = true
+
+[node name="label" type="RichTextLabel" parent="cont_margin/cont_ratio/vsplit/vsplit_txt/cont_flow"]
+custom_minimum_size = Vector2(300, 480)
+layout_mode = 2
+bbcode_enabled = true
+text = "wwwewf"
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+pitch_scale = 0.85

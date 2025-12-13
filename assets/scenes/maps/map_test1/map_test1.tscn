@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://biuxoeixmug05"]
+
+[ext_resource type="Script" uid="uid://cm84rojkn0725" path="res://assets/scenes/maps/map_test1/map_test1.gd" id="1_4q1rw"]
+[ext_resource type="PackedScene" uid="uid://vmk0pk16cqxh" path="res://assets/nodes/chr_bell/chr_bell.tscn" id="1_di3lu"]
+[ext_resource type="PackedScene" uid="uid://bgugidt2t1sl0" path="res://assets/scenes/maps/map_test1/chr_bulletEmitter/chr_bulletEmitter.tscn" id="3_5jvoa"]
+
+[node name="map_test1" type="Node2D"]
+script = ExtResource("1_4q1rw")
+
+[node name="chr_bell" parent="." groups=["players"] instance=ExtResource("1_di3lu")]
+position = Vector2(422, 180)
+
+[node name="chr_bulletEmitter" parent="." instance=ExtResource("3_5jvoa")]
+position = Vector2(213, -82)

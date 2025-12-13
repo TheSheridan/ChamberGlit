@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://daam4wde7n1cd"]
+
+[ext_resource type="Script" uid="uid://bcswfd67b1hib" path="res://assets/scenes/battles/btl_test_1/btl_test_1.gd" id="1_ff8f6"]
+[ext_resource type="Texture2D" uid="uid://dvmjy8bvvmgd6" path="res://assets/images/logo_cg.png" id="2_1ajyj"]
+[ext_resource type="AudioStream" uid="uid://buuqf47c6eyqg" path="res://assets/audio/bgm_fancybattle.ogg" id="2_guia2"]
+[ext_resource type="FontFile" uid="uid://dh4cbm4v84cq0" path="res://assets/fonts/Milonga-Regular.ttf" id="2_xjlua"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ff8f6"]
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_guia2"]
+noise = SubResource("FastNoiseLite_ff8f6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_guia2"]
+albedo_color = Color(0.581943, 0.650496, 0.700521, 1)
+metallic = 1.0
+metallic_texture = SubResource("NoiseTexture2D_guia2")
+
+[node name="btl_test_1" type="Node3D"]
+script = ExtResource("1_ff8f6")
+
+[node name="csg_sphere_3d" type="CSGSphere3D" parent="."]
+flip_faces = true
+radius = 2.0
+radial_segments = 50
+rings = 10
+material = SubResource("StandardMaterial3D_guia2")
+
+[node name="sprite_3d" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = ExtResource("2_1ajyj")
+
+[node name="omni_light_3d" type="OmniLight3D" parent="sprite_3d"]
+distance_fade_enabled = true
+omni_range = 0.5
+omni_attenuation = -5.79
+
+[node name="directional_light_3d" type="DirectionalLight3D" parent="."]
+
+[node name="camera_3d" type="Camera3D" parent="."]
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="color_rect" type="ColorRect" parent="ui"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.458824)
+
+[node name="rich_text_label" type="RichTextLabel" parent="ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -430.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_xjlua")
+bbcode_enabled = true
+fit_content = true
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_guia2")
+volume_db = -50.0
+autoplay = true

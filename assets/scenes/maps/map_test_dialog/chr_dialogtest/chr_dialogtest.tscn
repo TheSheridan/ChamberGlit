@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl3qsa3w8gd28"]
+
+[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="1_vd7n8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8x0ju"]
+radius = 10.8167
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vwbf"]
+size = Vector2(40, 40)
+
+[node name="chr_dialogtest" type="CharacterBody2D"]
+
+[node name="collisionShape2d" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8x0ju")
+
+[node name="sprite2d" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_vd7n8")
+
+[node name="area2d" type="Area2D" parent="."]
+
+[node name="collisionShape2d" type="CollisionShape2D" parent="area2d"]
+shape = SubResource("RectangleShape2D_3vwbf")

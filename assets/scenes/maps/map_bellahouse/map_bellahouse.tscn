@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=4 uid="uid://g4evptr6xe1p"]
+
+[ext_resource type="Script" uid="uid://b53vguhdglmsx" path="res://assets/scenes/maps/map_bellahouse/map_bellahouse.gd" id="1_m44wj"]
+[ext_resource type="Texture2D" uid="uid://buv7ddaasvlg" path="res://assets/images/tilesets/tile_bellahouse.png" id="2_00iki"]
+[ext_resource type="Texture2D" uid="uid://dqmnnrf4xhvo3" path="res://assets/images/sprites/tv.png" id="2_q626l"]
+[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_t367i"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_00iki"]
+texture = ExtResource("2_00iki")
+0:0/0 = 0
+0:1/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:2/next_alternative_id = 3
+2:2/0 = 0
+1:2/0 = 0
+0:2/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+4:0/0 = 0
+4:1/0 = 0
+4:2/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+5:2/0 = 0
+6:0/0 = 0
+6:1/0 = 0
+6:2/0 = 0
+7:0/0 = 0
+7:1/0 = 0
+7:2/0 = 0
+8:0/0 = 0
+8:1/0 = 0
+8:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_im5ea"]
+sources/0 = SubResource("TileSetAtlasSource_00iki")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q626l"]
+size = Vector2(192, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t367i"]
+size = Vector2(322, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00iki"]
+size = Vector2(66, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijw8m"]
+size = Vector2(112, 114)
+
+[node name="map_bellahouse" type="Node2D"]
+script = ExtResource("1_m44wj")
+
+[node name="bg" type="Polygon2D" parent="."]
+position = Vector2(21, -11)
+color = Color(0.332204, 0.325989, 0.382813, 1)
+polygon = PackedVector2Array(555, 11, -21, 11, -21, 523, 555, 523)
+uv = PackedVector2Array(256, 0, -24, 0, -24, 264, 256, 264)
+
+[node name="tile_map_layer" type="TileMapLayer" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAHAA4AAAABAAIAAAAIAA0AAAAFAAIAAAAIAA4AAAABAAIAAAAJAA0AAAAHAAIAAAAJAA4AAAABAAIAAAAKAA0AAAAHAAIAAAAKAA4AAAABAAIAAAANAA0AAAACAAEAAAALAA4AAAABAAIAAAAMAA4AAAABAAIAAAANAA4AAAACAAIAAAAHAAgAAAABAAAAAAAHAAkAAAABAAEAAAAHAAoAAAABAAEAAAAIAAgAAAABAAAAAAAIAAkAAAABAAEAAAAIAAoAAAABAAEAAAAJAAgAAAABAAAAAAAJAAkAAAABAAEAAAAJAAoAAAABAAEAAAAKAAgAAAABAAAAAAAKAAkAAAABAAEAAAAKAAoAAAABAAEAAAALAAgAAAABAAAAAAALAAkAAAABAAEAAAALAAoAAAABAAEAAAAMAAgAAAABAAAAAAAMAAkAAAABAAEAAAAMAAoAAAABAAEAAAANAAgAAAACAAAAAAANAAkAAAACAAEAAAANAAoAAAACAAEAAAAIAAsAAAAFAAAAAAAIAAwAAAAFAAEAAAAJAAsAAAAHAAAAAAAJAAwAAAAHAAEAAAAKAAsAAAAHAAAAAAAKAAwAAAAHAAEAAAANAAsAAAACAAEAAAANAAwAAAACAAEAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAEAAAAEAAoAAAAAAAEAAAAEAAsAAAAAAAEAAAAEAAwAAAAAAAEAAAAEAA0AAAAAAAEAAAAEAA4AAAAAAAIAAAAFAAgAAAABAAAAAAAFAA4AAAABAAIAAAAGAAgAAAABAAAAAAAGAAkAAAABAAEAAAAGAAoAAAABAAEAAAAGAA4AAAABAAIAAAALAAsAAAAIAAAAAAALAAwAAAAIAAEAAAALAA0AAAAIAAIAAAAGAAsAAAADAAAAAAAGAAwAAAADAAEAAAAGAA0AAAADAAIAAAAHAAsAAAAEAAAAAAAHAAwAAAAEAAEAAAAHAA0AAAAEAAIAAAAFAAkAAAABAAEAAAAFAAoAAAABAAEAAAAFAAsAAAABAAEAAAAFAAwAAAABAAEAAAAFAA0AAAABAAEAAAAMAAsAAAABAAEAAAAMAAwAAAABAAEAAAAMAA0AAAABAAEAAAA=")
+tile_set = SubResource("TileSet_im5ea")
+
+[node name="borders" type="StaticBody2D" parent="."]
+
+[node name="collision_polygon_2d" type="CollisionPolygon2D" parent="borders"]
+polygon = PackedVector2Array(576, 0, 576, 512, 0, 512, 0, 0, 576, 0, 576, -16, -16, -16, -16, 528, 592, 528, 592, -8, 576, -16)
+
+[node name="prop_bed" type="CharacterBody2D" parent="."]
+position = Vector2(224, 384)
+
+[node name="polygon_2d" type="Polygon2D" parent="prop_bed"]
+visible = false
+position = Vector2(-40, -8)
+color = Color(0.41828, 0.841146, 0.067905, 1)
+polygon = PackedVector2Array(-32, -16, 240, -16, 240, 72, -32, 72)
+
+[node name="label" type="Label" parent="prop_bed"]
+offset_right = 42.0
+offset_bottom = 20.0
+text = "CAMA"
+
+[node name="collision" type="CollisionShape2D" parent="prop_bed"]
+position = Vector2(64, 16)
+shape = SubResource("RectangleShape2D_q626l")
+
+[node name="area_dialog" type="Area2D" parent="prop_bed"]
+
+[node name="collision" type="CollisionShape2D" parent="prop_bed/area_dialog"]
+position = Vector2(63, 15)
+shape = SubResource("RectangleShape2D_t367i")
+
+[node name="prop_pc" type="CharacterBody2D" parent="."]
+position = Vector2(264, 80)
+
+[node name="sprite_2d" type="Sprite2D" parent="prop_pc"]
+texture_filter = 1
+position = Vector2(24, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("2_q626l")
+
+[node name="polygon_2d" type="Polygon2D" parent="prop_pc"]
+visible = false
+position = Vector2(24, 0)
+color = Color(0.809896, 0.0696004, 0.289376, 1)
+polygon = PackedVector2Array(-32, -16, 32, -16, 32, 48, -32, 48)
+
+[node name="label" type="Label" parent="prop_pc"]
+visible = false
+offset_right = 40.0
+offset_bottom = 20.0
+text = "PC"
+
+[node name="collision" type="CollisionShape2D" parent="prop_pc"]
+position = Vector2(23, 15)
+shape = SubResource("RectangleShape2D_00iki")
+
+[node name="area_pc" type="Area2D" parent="prop_pc"]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="prop_pc/area_pc"]
+position = Vector2(24, 23)
+shape = SubResource("RectangleShape2D_ijw8m")
+
+[node name="chr_bella" parent="." groups=["player"] instance=ExtResource("2_t367i")]
+position = Vector2(296, 257)
+
+[connection signal="body_entered" from="prop_bed/area_dialog" to="." method="_on_area_dialog_body_entered"]
+[connection signal="body_entered" from="prop_pc/area_pc" to="." method="_on_area_pc_body_entered"]
