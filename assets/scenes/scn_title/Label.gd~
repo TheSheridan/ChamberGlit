@@ -1,0 +1,39 @@
+#+==================================================+#
+# xXLeandro12
+#+==================================================+#
+extends Label
+
+var time=0
+
+func _ready():
+	position=Vector2(40,20)
+
+func _process(delta):
+	time+=1
+
+	text="- ChamberGlit -"+str(time)
+
+	if time==1:   Anim_FadeIn()
+	if time==140: Anim_FadeOut()
+
+func Anim_FadeIn():
+	var tw =create_tween()
+	var tw2=create_tween()
+
+	tw.set_ease(Tween.EASE_OUT)
+	tw.set_trans(Tween.TRANS_SINE)
+	tw.tween_property(self,"position",Vector2(20,20),1)
+
+	tw2.tween_property(self,"modulate",Color(1,1,1),0.5)
+func Anim_FadeOut():
+	var tw= create_tween()
+	var tw2=create_tween()
+
+	tw.set_ease(Tween.EASE_IN)
+	tw.set_trans(Tween.TRANS_SINE)
+	tw.tween_property(self,"position",Vector2(0,20),1)
+	
+	tw2.set_ease(Tween.EASE_IN)
+	tw2.set_trans(Tween.TRANS_SINE)
+	tw2.tween_property(self,"modulate",Color(1,1,1,0),1)
+

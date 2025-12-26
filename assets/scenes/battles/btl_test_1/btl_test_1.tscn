@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bcswfd67b1hib" path="res://assets/scenes/battles/btl_test_1/btl_test_1.gd" id="1_ff8f6"]
 [ext_resource type="Texture2D" uid="uid://dvmjy8bvvmgd6" path="res://assets/images/logo_cg.png" id="2_1ajyj"]
-[ext_resource type="AudioStream" uid="uid://buuqf47c6eyqg" path="res://assets/audio/bgm_fancybattle.ogg" id="2_guia2"]
+[ext_resource type="AudioStream" uid="uid://dhh0xmyph4vge" path="res://assets/audio/bgm_fancybattle.ogg" id="2_guia2"]
 [ext_resource type="FontFile" uid="uid://dh4cbm4v84cq0" path="res://assets/fonts/Milonga-Regular.ttf" id="2_xjlua"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ff8f6"]

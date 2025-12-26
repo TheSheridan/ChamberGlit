@@ -1,0 +1,92 @@
+extends "res://internal/autoload/Lang.gd"
+
+var txtTitle_finalposY=140
+var timer=0;var timerFinal=64
+ #Input related
+var bgsCount=0
+var bgsTimer=0
+var bgsTimerLimit=50
+
+var PrSt_TwOff=false
+
+func _ready():
+	$fade.visible=true;$fade.color=Color(1,1,1,1)
+	$PressStart.position.y=340
+	$PressStart/txtPressStart.text=Lang_Title_PressStart	
+	$Title/txtTitle/txtZoom.text=$Title/txtTitle.text
+
+	Anim_FadeIn()
+	Anim_txtTitle()
+
+func _process(delta):
+#	$debug.text=str(timer)
+	timer+=1;if timer==timerFinal+1:timer=0
+	if timer==timerFinal/2&&PrSt_TwOff==false:Anim_TitleBump()
+
+	if Input.is_action_pressed("ui_accept")&&bgsCount==0:
+		$bgs.playing=true;bgsCount=1
+		PrSt_TwOff=true
+		Anim_FadeOut()
+		Anim_PrsStExpand()
+	if bgsCount==1&&bgsTimer<=bgsTimerLimit:
+		bgsTimer+=1
+		if bgsTimer>=bgsTimerLimit:
+			get_tree().change_scene_to_file("res://internal/scenes/map/debugRoom_jan19-2023/scn.tscn")
+
+# . + . + . + . + . + . + . + . + . + . + . + . + . + . + . + . + . + . + . + . 
+
+func Anim_FadeIn():
+	create_tween().tween_property($fade,"color",Color($fade.color.r,$fade.color.g,$fade.color.b,0),0.5)
+func Anim_FadeOut():
+	create_tween().tween_property($fade,"color",Color($fade.color.r,$fade.color.g,$fade.color.b,1),0.5)
+
+func Anim_txtTitle():
+	var a=create_tween()
+	a.set_ease(Tween.EASE_OUT)
+	a.set_trans(Tween.TRANS_CUBIC)
+	a.tween_property($Title/txtTitle,"position",Vector2($Title/txtTitle.position.x,txtTitle_finalposY),0.5)
+
+func Anim_TitleBump():
+	var a=create_tween()
+	a.set_trans(Tween.TRANS_SINE)
+	a.set_ease(Tween.EASE_IN)
+	a.tween_property($Title/txtTitle,"scale",Vector2(1.1,1.1),0.05)
+	a.set_ease(Tween.EASE_OUT)
+	a.tween_property($Title/txtTitle,"scale",Vector2(1,1),0.5)
+	#txtZoom
+	var r=$Title/txtTitle/txtZoom
+	var vr=0;if vr<=1:vr+=1
+	if vr==1:
+		r.scale=Vector2(1,1)
+		r.modulate.a=0.2
+		
+		r.position=Vector2(0,0)
+
+	var b=create_tween()
+	b.set_ease(Tween.EASE_OUT)
+	b.set_trans(Tween.TRANS_CUBIC)
+	b.tween_property(r,"scale",Vector2(2,2),1)
+
+	var c=create_tween()
+	c.set_ease(Tween.EASE_OUT)
+	c.set_trans(Tween.TRANS_CUBIC)
+	c.tween_property(r,"position",Vector2(0,-100),1)
+	
+	create_tween().tween_property(r,"modulate",Color(\
+	r.modulate.r,r.modulate.g,r.modulate.b,0),\
+	1)
+
+func Anim_PrsStExpand():
+	# PressStart text
+	create_tween().tween_property($PressStart,"modulate",Color($PressStart.modulate.r,$PressStart.modulate.g,$PressStart.modulate.b,0),0.25)
+	# Title
+	var a=create_tween()
+	a.set_ease(Tween.EASE_IN_OUT)
+	a.set_trans(Tween.TRANS_CUBIC)
+	a.tween_property($Title,"scale",Vector2(2,2),0.8)
+	
+	var b=create_tween();b.set_ease(Tween.EASE_IN_OUT);b.set_trans(Tween.TRANS_CUBIC)
+	b.tween_property($Title,"position",Vector2($Title.position.x-100,$Title.position.y-100),0.5)
+
+	#Fade out the music
+	create_tween().tween_property($bgm,"volume_db",-100,2)

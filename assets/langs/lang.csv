@@ -12,3 +12,61 @@ MainMenu_Quit_Info,Exit to the system.,Salir al sistema.
 Prompt_Accept,Accept,Aceptar
 Prompt_Cancel,Cancel,Cancelar
 Prompt_Select,Select,Seleccionar
+,,
+,,
+,,
+,,
+,,
+lang_TestText,"This is a Test Text. \nThe line should to show in the selected language. \n\nWhen are called, these lines are converted to [i]strings[/i]. That allow to use BBCode tags too.","Este es un Texto de Prueba. \nEsta línea debe de estarse mostrando en el idioma seleccionado. \n\nCuando son llamadas, estas líneas son convertidas a [i]strings[/i]. Ello permite usar etiquetas BBCode también."
+Logo,AlgoRythm presents,AlgoRythm presenta
+,,
+Title_PressStart,\n[center][wave amp=10 freq=2]Press the [img=32x32]res://assets/images/buttons/key_z.png[/img] button and start rolling![/wave],\n[center][wave amp=10 freq=2]¡Pulsa la tecla [img=32x32]res://assets/images/buttons/key_z.png[/img] y a rodar![/wave]
+,,
+Title2_GameByDev,[center][font_size=20]a game by [img=32x32]res://assets/images/logo_arWhite.png[/img] algorythm,[center][font_size=20]un juego de [img=32x32]res://assets/images/logo_arWhite.png[/img] algorythm
+Title2_PressStart_Any,"[center]Press any key, button or screen","[center]Pulsa cualquier botón, tecla o pantalla"
+Title2_PressStart_Key,[center]Press any key,[center]Pulsa cualquier tecla
+Title2_PressStart_Button,[center]Press any button,[center]Pulsa cualquier botón
+Title2_PressStart_Mouse,[center]Press any button,[center]Pulsa cualquier botón
+Title2_PressStart_Touch,[center]Touch the screen,[center]Toca la pantalla
+MainMenu_BorderUp,[wave amp=2]Main Menu,[wave amp=2]Menú principal
+MainMenu_Options,[font_size=25]New game \n[font_size=5]\n[font_size=25]Settings \n[font_size=5]\n[font_size=25]Go back to the Title\n[font_size=5]\n[font_size=25]Exit game,[font_size=25]Nueva partida \n[font_size=5]\n[font_size=25]Ajustes \n[font_size=5]\n[font_size=25]Volver al título\n[font_size=5]\n[font_size=25]Salir del juego
+MainMenu_Sel1,Start a new adventure in [b]ChamberGlit[/b].,Empezar una nueva aventura en [b]ChamberGlit[/b].
+MainMenu_Sel2,For customize [b]ChamberGlit[/b] as you like.,Para personalizar [b]ChamberGlit[/b] a tu gusto.
+MainMenu_Sel3,Here you can get back to the Title Screen. It isn’t a cute one?,"Aquí puedes volver a la escena de título. ¿A que es bonita, eh?"
+MainMenu_Sel4,Here you can exit the game. I recommend it if you feel strained.,"Aquí saldrás del juego. Si estás cansado, recomiendo tomar un descanso."
+MainMenu_bPrompt,[img width=26]res://assets/images/buttons/key_z.png[/img]Accept   [img width=26]res://assets/images/buttons/key_x.png[/img] Back to Title,[img width=26]res://assets/images/buttons/key_z.png[/img]Aceptar  [img width=26]res://assets/images/buttons/key_x.png[/img] Volver al título
+MainMenu_bPrompt0,[img width=26]res://assets/images/buttons/key_z.png[/img]Accept   [img width=26]res://assets/images/buttons/key_z.png[/img][img width=26]res://assets/images/buttons/key_x.png[/img] Back to Title,[img width=26]res://assets/images/buttons/key_z.png[/img]Aceptar  [img width=26]res://assets/images/buttons/key_z.png[/img][img width=26]res://assets/images/buttons/key_x.png[/img] Volver al título
+MainMenuOptions_BorderUp,[font_size=10][color=gray]Main Menu[/color][b]/[/b][font_size=14]Settings,[font_size=10][color=gray]Menú principal[/color][b]/[/b][font_size=14]Opciones
+MainMenu_Sel_NwG,New game,Nueva partida
+MainMenu_Sel_Cnt,Continue,Continuar
+MainMenu_Sel_Stt,Settings,Ajustes
+MainMenu_Sel_Quit,Quit to ,Salir a 
+MainMenu_Sel_Quit_Browser,the browser,el navegador
+,,
+MainMenu_ScreenInfo_MoveCursor,Move the cursor,Mover cursor
+MainMenu_ScreenInfo_Accept,Accept,Aceptar
+MainMenu_ScreenInfo_Cancel,Cancel,Cancelar
+MainMenu_ScreenInfo_Back,Go back,Atrás
+,,
+MainMenu_EsI_NwG,Start a new adventure in the vast world of ChamberGlit!,¡Comienza una nueva aventura en el vasto mundo de ChamberGlit!
+MainMenu_EsI_Cnt,Continue a previously saved game,Continúa una partida previamente guardada
+MainMenu_EsI_Stg,Adjust the options as you like in the Settings,Elige las preferencias a tu gusto en los Ajustes
+MainMenu_EsI_Quit,Close the game and leave it for another time,Cerrar el juego y dejarlo para otra ocasión
+,,
+Gameplay_bPrompt_Interact,Interact,Interactuar
+Gameplay_bPrompt_Talk,Talk,Hablar
+Gameplay_bPrompt_Check,Check,Comprobar
+Gameplay_bPrompt_Grab,Grab,Llevar
+Gameplay_bPrompt_Accel,Accelerate,Acelerar
+Gameplay_bPrompt_Jump,Jump,Saltar
+,,
+TitleInfo_n0,Gently starting in -1,Empezando gentilmente en -1
+TitleInfo_n1,Take care of that wrecked body,Cuida de ese cuerpo arruinado
+TitleInfo_n2,Avoiding extermination,Evadiendo exterminios
+TitleInfo_n3,Cindy my deary beloved,Cindy mi dulce querida
+TitleInfo_n4,The legacy of the Will’s Portd,El legado del Will’s Portd
+TitleInfo_n5,Takin’ the moonlight by the tail,La luz de luna por la espalda
+TitleInfo_n6,Richer in floats,Rico en flotes
+TitleInfo_n7,Connecting the strings,Conectando los hilos
+TitleInfo_n8,More circles than ouendan-san,Con más círculos que ouendan-san
+TitleInfo_n9,Synchrony of the Nerxa,Sincronía de la Nerxa

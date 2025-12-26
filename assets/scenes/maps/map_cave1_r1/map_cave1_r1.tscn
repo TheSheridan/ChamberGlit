@@ -16,6 +16,7 @@ sources/0 = SubResource("TileSetAtlasSource_wy1ja")
 
 [node name="map_cave_1_r_1" type="Node2D"]
 script = ExtResource("1_ejj1c")
+metadata/_edit_group_ = true
 
 [node name="tile_map_layer" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)
@@ -23,4 +24,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAADAAAAAAAAAAEAAAACAAAAAAAAAAIAAAACAAA
 tile_set = SubResource("TileSet_tfk1i")
 
 [node name="chr_bella" parent="." instance=ExtResource("3_ou48s")]
-position = Vector2(316, 223)
+position = Vector2(359, 248)
+cam_lerpDuration = 0.3
+cam_magnitude = 5.0

@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4uadobc2g8lr"]
+[gd_scene load_steps=3 format=3 uid="uid://b4uadobc2g8lr"]
 
 [ext_resource type="Script" uid="uid://drunmgb7x0qi2" path="res://assets/autoload/auto_fade.gd" id="1_6s77m"]
+[ext_resource type="PackedScene" uid="uid://dbi1joygsrbqp" path="res://assets/autoload/n_animLoading/n_animLoading.tscn" id="2_dh2sw"]
 
 [node name="auto_fade" type="Control"]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,3 +17,6 @@ script = ExtResource("1_6s77m")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="n_animLoading" parent="." instance=ExtResource("2_dh2sw")]
+layout_mode = 0

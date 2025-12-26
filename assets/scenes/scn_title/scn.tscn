@@ -1,0 +1,160 @@
+[gd_scene load_steps=13 format=3 uid="uid://h1055b2gfvaf"]
+
+[ext_resource type="Script" uid="uid://bgoeq78wyut78" path="res://assets/scenes/scn_title/scn.gd" id="1_x0t66"]
+[ext_resource type="FontFile" uid="uid://ddxl7ysr8qscc" path="res://assets/fonts/nokiafc22.ttf" id="2_tyus1"]
+[ext_resource type="AudioStream" uid="uid://cguybwek01iiu" path="res://assets/audio/bgm_demotitle.ogg" id="3_phuyr"]
+[ext_resource type="Texture2D" uid="uid://cdcrhkdbxelnl" path="res://assets/images/particle2.png" id="4_0geax"]
+[ext_resource type="Texture2D" uid="uid://bhqj2cnjl8iq" path="res://assets/images/particle.png" id="4_lw0tg"]
+[ext_resource type="FontFile" uid="uid://xqh0k3ermhs4" path="res://assets/fonts/pixChicago.ttf" id="5_l224r"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="6_r7i6i"]
+[ext_resource type="AudioStream" uid="uid://dxnnfbpapk4ge" path="res://assets/audio/bgs_pressStart.ogg" id="8_o6hho"]
+
+[sub_resource type="Curve" id="Curve_nlsb3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0740741, 1), 0.0, 0.0, 0, 0, Vector2(0.796296, 0.662252), -1.48155, -1.48155, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_glc87"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m0qih"]
+gradient = SubResource("Gradient_glc87")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tea75"]
+gradient = SubResource("Gradient_glc87")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="scn_title" type="Node2D"]
+script = ExtResource("1_x0t66")
+
+[node name="-+-1" type="Node" parent="."]
+
+[node name="bg" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="bg_particles1" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.121569)
+position = Vector2(320, 240)
+amount = 128
+texture = ExtResource("4_0geax")
+emission_shape = 3
+emission_rect_extents = Vector2(640, 480)
+gravity = Vector2(0, 0)
+radial_accel_min = 6.35
+radial_accel_max = 38.09
+tangential_accel_min = 38.1
+tangential_accel_max = 38.1
+scale_amount_curve = SubResource("Curve_nlsb3")
+
+[node name="bg_particles2" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.0823529)
+position = Vector2(320, 240)
+amount = 1024
+texture = ExtResource("4_lw0tg")
+emission_shape = 3
+emission_rect_extents = Vector2(640, 480)
+direction = Vector2(1, 1)
+gravity = Vector2(0, 0)
+orbit_velocity_min = -0.02
+orbit_velocity_max = 0.02
+radial_accel_min = 2.0
+radial_accel_max = 4.0
+tangential_accel_min = 38.1
+tangential_accel_max = 38.1
+damping_min = 14.29
+damping_max = 14.29
+scale_amount_curve = SubResource("Curve_nlsb3")
+
+[node name="-+-2" type="Node" parent="."]
+
+[node name="Title" type="Node2D" parent="."]
+position = Vector2(0, -50)
+
+[node name="txtTitle" type="RichTextLabel" parent="Title"]
+offset_top = -1.0
+offset_right = 640.0
+offset_bottom = 479.0
+pivot_offset = Vector2(320, 0)
+theme_override_fonts/normal_font = ExtResource("2_tyus1")
+bbcode_enabled = true
+text = "
+
+
+[center][font_size=55][color=a2da14]ChamberGlit
+[font_size=20][color=cadet_blue][tornado radius=1 freq=7][color=dark_slate_gray]-[/color] P R O T O T Y P E   I [color=dark_slate_gray]-[/color]"
+
+[node name="glowTitle" type="Sprite2D" parent="Title/txtTitle"]
+modulate = Color(1, 1, 1, 0.105882)
+texture_filter = 2
+position = Vector2(320.5, -730.312)
+scale = Vector2(21.0312, 6.40625)
+texture = ExtResource("6_r7i6i")
+offset = Vector2(0, 130)
+
+[node name="txtZoom" type="RichTextLabel" parent="Title/txtTitle"]
+modulate = Color(1, 1, 1, 0.286275)
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+pivot_offset = Vector2(320, 0)
+theme_override_fonts/normal_font = ExtResource("2_tyus1")
+bbcode_enabled = true
+text = "
+
+
+[center][font_size=55][color=a2da14][wave amp=2 freq=2]ChamberGlit[/wave]
+[font_size=20][color=cadet_blue][tornado radius=1 freq=7][fade start=0 length=2] -[/fade] D E M O [fade start=7 length=10]-[/fade]"
+
+[node name="PressStart" type="Node2D" parent="."]
+
+[node name="glowPressStart" type="Sprite2D" parent="PressStart"]
+modulate = Color(1, 1, 1, 0.105882)
+texture_filter = 2
+position = Vector2(311, -15)
+scale = Vector2(20.4375, 1.9375)
+texture = ExtResource("6_r7i6i")
+offset = Vector2(0, 32)
+
+[node name="txtPressStart" type="RichTextLabel" parent="PressStart"]
+offset_right = 640.0
+offset_bottom = 478.0
+theme_override_fonts/normal_font = ExtResource("5_l224r")
+bbcode_enabled = true
+text = "[center] Pulsa START"
+
+[node name="-+-3" type="Node" parent="."]
+
+[node name="grad_up" type="Sprite2D" parent="."]
+scale = Vector2(10, 2)
+texture = SubResource("GradientTexture2D_m0qih")
+centered = false
+
+[node name="grad_down" type="Sprite2D" parent="."]
+position = Vector2(0, 352)
+scale = Vector2(10, 2)
+texture = SubResource("GradientTexture2D_tea75")
+centered = false
+
+[node name="fade" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_phuyr")
+volume_db = 10.0
+pitch_scale = 1.1
+autoplay = true
+bus = &"bgm"
+
+[node name="bgs" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_o6hho")
+pitch_scale = 1.23
+
+[node name="debug" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

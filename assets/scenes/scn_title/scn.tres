@@ -1,0 +1,10 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bagw2hv2ctk4v"]
+
+[resource]
+code = "shader_type canvas_item;
+
+
+"
+graph_offset = Vector2(61.7473, 140.12)
+mode = 1
+flags/light_only = false

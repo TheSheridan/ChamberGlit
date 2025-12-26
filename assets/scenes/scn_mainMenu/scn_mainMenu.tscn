@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dvbg728gj1xqg"]
+[gd_scene load_steps=18 format=3 uid="uid://58noo07fw80x"]
 
 [ext_resource type="Script" uid="uid://45qnxkclqqqg" path="res://assets/scenes/scn_mainMenu/scn_mainMenu.gd" id="1_rlk4o"]
 [ext_resource type="Theme" uid="uid://blr41jq603y74" path="res://assets/nodes/themes/theme_menuButtons.tres" id="2_po6s2"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cnkc78a7jwlti" path="res://assets/images/symbol_exit.png" id="5_vkwa2"]
 [ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="6_u4jfo"]
 [ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="9_cljyd"]
-[ext_resource type="AudioStream" uid="uid://chysq0nlp6p1p" path="res://assets/audio/bgm_biselbrillante.ogg" id="11_nn010"]
+[ext_resource type="AudioStream" uid="uid://n3si12o62c1m" path="res://assets/audio/bgm_biselbrillante.ogg" id="11_nn010"]
 [ext_resource type="Texture2D" uid="uid://dpls4abfcjx6y" path="res://assets/images/banner.png" id="11_yemyb"]
 
 [sub_resource type="Curve" id="Curve_wbnvi"]
@@ -122,7 +122,7 @@ one_shot = true
 
 [node name="label_shadow" type="RichTextLabel" parent="cont_margin/cont_ratio/vbox_prompt/label_desc"]
 custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
+layout_mode = 0
 offset_top = 36.0
 offset_right = 96.0
 offset_bottom = 68.0
@@ -246,4 +246,4 @@ centered = false
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_nn010")
-pitch_scale = 0.9
+pitch_scale = 0.85

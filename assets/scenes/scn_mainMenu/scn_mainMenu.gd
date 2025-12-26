@@ -40,7 +40,9 @@ enum menu {NEW_GAME, LOAD_GAME, SETTINGS, EXTRAS, QUIT}
 # Resources
 @onready var _sgt = get_node('/root/auto_singleton')
 @onready var _fade = get_node('/root/auto_fade')
+@onready var _load = get_node('/root/auto_load')
 
+# TODO: Get rid of this crap
 @onready var cont_margin = $cont_margin
 @onready var cont_ratio = $cont_margin/cont_ratio
 @onready var vbox_buttons = $cont_margin/cont_ratio/vbox_buttons
@@ -143,7 +145,7 @@ func _ready():
   RenderingServer.set_default_clear_color(Color(0.1416015625, 0.14938354492188, 0.15625))
 
   # Decoration
-  ptc.scale = Vector2(2, 2)
+  ptc.scale = Vector2(4, 4)
   ptc.z_index = -5
 
   grad.z_index = -4
@@ -311,6 +313,8 @@ func _process(_delta):
 
         #print("For now NEW GAME doesn't do much other than fade the screen to black.\n"
         #+ "I'm gonna add more to this in the future.")
+
+        _load.changeScene("res://assets/scenes/maps/map_cave1_r1/map_cave1_r1.tscn")
           
         _sgt.music_play(bgm, _sgt._ease.IN, 0.25)
 
@@ -336,10 +340,18 @@ func _process(_delta):
   
   # Thingy :)
   var thingy_shake = 1
-  var window_pos2 = Vector2(
-    window_pos.x - _sgt.window_size.x,
-    window_pos.y - _sgt.window_size.y
+  # var window_pos2 = Vector2(
+  #   window_pos.x - _sgt.window_size.x,
+  #   window_pos.y - _sgt.window_size.y
+  # )
+
+  ptc.position = lerp(
+    ptc.position,
+    Vector2(-80, -80) \
+    + (get_local_mouse_position() / Vector2(8, 4)),
+    0.8
   )
+  print(ptc.position)
 
   #print("window_pos2 is " + str(window_pos))
 

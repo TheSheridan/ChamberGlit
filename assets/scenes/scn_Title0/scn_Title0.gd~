@@ -1,0 +1,52 @@
+extends Node2D
+
+# Initial
+@export var TxtGlit_limits=4
+@export var font_GameByDev:Font
+var prevBGMvol
+var prevTxtGlitPos
+
+func _ready():
+	RenderingServer.set_default_clear_color(Color.BLACK)
+
+	$bgm.playing=true
+	prevBGMvol=AudioServer.get_bus_volume_db(1)
+	AudioServer.set_bus_volume_db(1, -6)
+
+	$txt.size.x=ProjectSettings.get_setting('display/window/size/viewport_width')
+	$txt.text=tr("Title2_GameByDev")
+	$txt.visible_characters=0
+	$txt.normal_font=load(str(font_GameByDev))
+
+	$txt/txt_glit.size=$txt.size
+	prevTxtGlitPos=$txt/txt_glit.position
+
+	$txt/glowLine.size=$txt.size
+	$txt/glowLine.modulate=Color($txt/glowLine.modulate,0)
+
+	# Custom functions
+func exitingToOtherScene():
+	var a=create_tween().tween_property($bgm,'volume_db',-50,0.5)
+	if a.finished:AudioServer.set_bus_volume_db(
+		1,
+		prevBGMvol
+	)
+
+# Main
+func _process(delta):
+	# Typewriter effect
+	if $txt.visible_characters!=$txt.get_total_character_count(): $txt.visible_characters+=1
+	if $txt/txt_glit.visible_characters!=$txt.get_total_character_count(): $txt/txt_glit.visible_characters+=1
+	$txt/txt_glit.text=$txt.text
+	# Text glit
+	var glitRng=RandomNumberGenerator.new()
+	$txt/txt_glit.position=Vector2(prevTxtGlitPos.x+glitRng.randf_range(-2,2), prevTxtGlitPos.y+glitRng.randf_range(-2,2))
+
+	var a=create_tween()
+	a.tween_property($txt/glowLine,'modulate',Color($txt/glowLine.modulate,0.5),0.3)
+	a.tween_property($txt/glowLine,'modulate',Color($txt/glowLine.modulate,0.2),0.2)
+
+	# $txt.position movement
+	create_tween().set_ease(Tween.EASE_OUT).tween_property($txt,'position:y',
+		(ProjectSettings.get_setting('display/window/size/viewport_height')/2)-(ProjectSettings.get_setting('display/window/size/viewport_height')/20),
+		0.5)

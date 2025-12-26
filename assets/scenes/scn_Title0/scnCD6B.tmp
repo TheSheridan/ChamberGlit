@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=3 uid="uid://dtjlm5bgbl5gt"]
+
+[ext_resource type="Script" path="res://internal/scenes/scn_Title0/scn_Title0.gd" id="1_ryp47"]
+[ext_resource type="AudioStream" uid="uid://bcqgt6t51h8ji" path="res://assets/audio/bgm_chamber.ogg" id="2_wqu07"]
+[ext_resource type="Texture2D" uid="uid://dpls4abfcjx6y" path="res://assets/images/banner.png" id="4_5b3vf"]
+[ext_resource type="FontFile" uid="uid://8prlkr643yjh" path="res://assets/fonts/Arvin Bold.ttf" id="4_huxso"]
+[ext_resource type="FontFile" uid="uid://dyou6f4jcjgp8" path="res://assets/fonts/vcr.ttf" id="5_drpt4"]
+
+[sub_resource type="Gradient" id="Gradient_bkb21"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u476r"]
+gradient = SubResource("Gradient_bkb21")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_1fm70"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8rk41"]
+gradient = SubResource("Gradient_1fm70")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_bsned"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_enmae"]
+gradient = SubResource("Gradient_bsned")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_dj2fn"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ra7y0"]
+gradient = SubResource("Gradient_dj2fn")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[node name="scn_Title0" type="Node2D"]
+script = ExtResource("1_ryp47")
+TxtGlit_limits = null
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wqu07")
+bus = &"bgm"
+
+[node name="txt" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("4_huxso")
+bbcode_enabled = true
+text = "Pu"
+
+[node name="txt_glit" type="RichTextLabel" parent="txt"]
+self_modulate = Color(1, 1, 1, 0.521569)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("4_huxso")
+bbcode_enabled = true
+text = "Pu"
+
+[node name="glowLine" type="MarginContainer" parent="txt"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="up" type="Sprite2D" parent="txt/glowLine"]
+scale = Vector2(9.9375, 0.25)
+texture = SubResource("GradientTexture2D_u476r")
+centered = false
+
+[node name="down" type="Sprite2D" parent="txt/glowLine"]
+position = Vector2(0, 16)
+scale = Vector2(9.9375, 0.25)
+texture = SubResource("GradientTexture2D_8rk41")
+centered = false
+
+[node name="logo" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="spr" type="Sprite2D" parent="logo"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_5b3vf")
+
+[node name="spr_glit" type="Sprite2D" parent="logo"]
+visible = false
+modulate = Color(1, 1, 1, 0.333333)
+scale = Vector2(2, 2)
+texture = ExtResource("4_5b3vf")
+
+[node name="spr_glit2" type="Sprite2D" parent="logo"]
+visible = false
+modulate = Color(1, 1, 1, 0.235294)
+scale = Vector2(2, 2)
+texture = ExtResource("4_5b3vf")
+
+[node name="spr_expand" type="Sprite2D" parent="logo"]
+modulate = Color(1, 1, 1, 0.615686)
+z_index = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_5b3vf")
+
+[node name="pStart" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="txt" type="RichTextLabel" parent="pStart"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_drpt4")
+bbcode_enabled = true
+text = "[center]Press any button for start"
+
+[node name="grd1" type="Sprite2D" parent="."]
+scale = Vector2(0.0234375, 1)
+texture = SubResource("GradientTexture2D_enmae")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 60)
+
+[node name="grd2" type="Sprite2D" parent="."]
+scale = Vector2(0.0234375, 1)
+texture = SubResource("GradientTexture2D_ra7y0")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 60)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0

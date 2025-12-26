@@ -35,6 +35,8 @@ var settings_sfxVolume = 0
 var settings_language_useOSLanguage: bool = false
 var settings_language = "es" # DEBUG, the English language should be the default one
 
+var fade_time = setting_fadeTime
+
 func settings_set():
   var config = ConfigFile.new()
 

@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://pfvuqjxlt3p7"]
+
+[ext_resource type="Script" uid="uid://55nn5hb7lcsi" path="res://assets/scenes/scn_logo1/script.gd" id="1_cvx3t"]
+[ext_resource type="AudioStream" uid="uid://bfk5oai0pcx78" path="res://assets/audio/bgm_logo0.ogg" id="2_8oxkj"]
+[ext_resource type="Texture2D" uid="uid://cvhct6133jv7t" path="res://assets/images/logo_arWhite.png" id="3_clqsx"]
+[ext_resource type="FontFile" uid="uid://8prlkr643yjh" path="res://assets/fonts/Arvin Bold.ttf" id="4_qv3ix"]
+[ext_resource type="FontFile" uid="uid://bmrtnrotw8487" path="res://assets/fonts/amiga4ever pro2.ttf" id="5_e7hpq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8bdv"]
+
+[sub_resource type="Gradient" id="Gradient_42dgo"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.203125, 0.0983887, 0.167122, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2w1g5"]
+gradient = SubResource("Gradient_42dgo")
+width = 1
+height = 1
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_clovm"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bmux5"]
+gradient = SubResource("Gradient_clovm")
+width = 640
+height = 32
+
+[node name="scn_logo0" type="Node2D"]
+script = ExtResource("1_cvx3t")
+
+[node name="cam" type="Camera2D" parent="."]
+material = SubResource("ShaderMaterial_f8bdv")
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8oxkj")
+pitch_scale = 1.02
+bus = &"bgm"
+
+[node name="bg" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_2w1g5")
+
+[node name="logo" type="Sprite2D" parent="."]
+texture = ExtResource("3_clqsx")
+
+[node name="borderUp" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_bmux5")
+centered = false
+
+[node name="borderDown" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_bmux5")
+centered = false
+
+[node name="subtitle" type="MarginContainer" parent="."]
+offset_right = 537.0
+offset_bottom = 40.0
+
+[node name="txt" type="RichTextLabel" parent="subtitle"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_qv3ix")
+theme_override_fonts/bold_font = ExtResource("5_e7hpq")
+bbcode_enabled = true
+text = "[center][b]@4lg0rythm[/b] presenta"

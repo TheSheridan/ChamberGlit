@@ -2,10 +2,13 @@ extends Node2D
 
 @onready var _sgt = get_node("/root/auto_singleton")
 @onready var _fade = get_node("/root/auto_fade")
+@onready var _load = get_node("/root/auto_load")
 
 func _ready() -> void:
   _fade._out.emit()
   RenderingServer.set_default_clear_color(Color.BLACK)
+  
+  $bgm.volume_db = 5
 
   $spr_logo.modulate = Color($spr_logo.modulate, 0)
   $spr_logo.position = _sgt.window_size / 2
@@ -17,11 +20,12 @@ func _ready() -> void:
   .tween_property($spr_logo, "modulate",
     Color($spr_logo.modulate, 1), 0.5)
   
-  $bgm.play()
-  await get_tree().create_timer(1.1).timeout
+  $bgm.play(0)
+  await get_tree().create_timer(1.0).timeout
+  create_tween().tween_property($bgm, 'volume_db', -50, _sgt.fade_time * 26)
   
   _fade._in.emit()
 
-  await get_tree().create_timer(_sgt.setting_fadeTime).timeout
+  #await get_tree().create_timer(_sgt.fade_time * 2).timeout
 
-  get_tree().change_scene_to_file("res://assets/scenes/scn_mainMenu/scn_mainMenu.tscn")
+  _load.changeScene("res://assets/scenes/scn_Title0/scn_Title0.tscn")

@@ -1,0 +1,245 @@
+[gd_scene load_steps=22 format=3 uid="uid://dtjlm5bgbl5gt"]
+
+[ext_resource type="Script" uid="uid://c6m52imdxan6n" path="res://assets/scenes/scn_Title0/scn_Title0.gd" id="1_r4ddh"]
+[ext_resource type="AudioStream" uid="uid://bgvw0dumtqru3" path="res://assets/audio/bgm_chamber.mp3" id="2_r4ddh"]
+[ext_resource type="Texture2D" uid="uid://bhqj2cnjl8iq" path="res://assets/images/particle.png" id="3_eq083"]
+[ext_resource type="Texture2D" uid="uid://dpls4abfcjx6y" path="res://assets/images/banner.png" id="4_5b3vf"]
+[ext_resource type="FontFile" uid="uid://8prlkr643yjh" path="res://assets/fonts/Arvin Bold.ttf" id="4_huxso"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="6_jrcyk"]
+[ext_resource type="FontFile" uid="uid://do6qxjb6uyrwm" path="res://assets/fonts/RG2014F.ttf" id="7_v6gtb"]
+[ext_resource type="FontFile" uid="uid://lewm3uq6qnb6" path="res://assets/fonts/RG2014D.ttf" id="8_1adre"]
+[ext_resource type="FontFile" uid="uid://bmrtnrotw8487" path="res://assets/fonts/amiga4ever pro2.ttf" id="9_0b148"]
+
+[sub_resource type="Curve" id="Curve_r4ddh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.06150794, 1), 0.0, 0.0, 0, 0, Vector2(0.68849206, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_4m3uk"]
+colors = PackedColorArray(1, 1, 1, 1, 0.588542, 0.807129, 1, 1)
+
+[sub_resource type="Curve" id="Curve_qf5ua"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.116505, 0.821012), 3.04591, 3.04591, 0, 0, Vector2(0.18932, 1), -0.246633, -0.246633, 0, 0, Vector2(0.975728, 0), -3.45018, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_xqtxd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.116505, 0.712062), 3.33447, 3.33447, 0, 0, Vector2(0.262136, 0.976654), 0.458032, 0.458032, 0, 0, Vector2(0.820388, 0.758755), -0.366426, -0.366426, 0, 0, Vector2(0.936893, 0.525292), -3.20623, -3.20623, 0, 0, Vector2(1, 0), -3.48677, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Gradient" id="Gradient_bkb21"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u476r"]
+gradient = SubResource("Gradient_bkb21")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_1fm70"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8rk41"]
+gradient = SubResource("Gradient_1fm70")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_bsned"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_enmae"]
+gradient = SubResource("Gradient_bsned")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_dj2fn"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ra7y0"]
+gradient = SubResource("Gradient_dj2fn")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[node name="scn_Title0" type="Node2D"]
+script = ExtResource("1_r4ddh")
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r4ddh")
+pitch_scale = 0.96
+bus = &"bgm"
+
+[node name="cam" type="Camera2D" parent="."]
+ignore_rotation = false
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="particles" type="Node2D" parent="."]
+
+[node name="n1" type="CPUParticles2D" parent="particles"]
+modulate = Color(1, 1, 1, 0.360784)
+position = Vector2(-51, 7)
+amount = 64
+texture = ExtResource("3_eq083")
+lifetime = 10.0
+gravity = Vector2(0, 45)
+angular_velocity_max = 50.0
+orbit_velocity_min = 0.05
+orbit_velocity_max = 0.2
+tangential_accel_max = 50.0
+scale_amount_min = 0.3
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_r4ddh")
+color = Color(1, 1, 1, 0.654902)
+color_ramp = SubResource("Gradient_4m3uk")
+
+[node name="n3" type="CPUParticles2D" parent="particles"]
+visible = false
+modulate = Color(1, 1, 1, 0.360784)
+texture_filter = 2
+position = Vector2(-51, 7)
+scale = Vector2(2, 2)
+amount = 256
+texture = ExtResource("6_jrcyk")
+lifetime = 20.0
+gravity = Vector2(0, 90)
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.4
+linear_accel_min = -30.91
+radial_accel_min = 17.86
+radial_accel_max = 17.86
+scale_amount_min = 2.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_qf5ua")
+color = Color(0.886275, 1, 0.72549, 0.231373)
+color_ramp = SubResource("Gradient_4m3uk")
+
+[node name="n2" type="CPUParticles2D" parent="particles"]
+visible = false
+modulate = Color(1, 1, 1, 0.0941176)
+position = Vector2(662, 766)
+amount = 512
+texture = ExtResource("6_jrcyk")
+lifetime = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(1200, 1200)
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.01
+orbit_velocity_max = 0.05
+scale_amount_min = 0.1
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_xqtxd")
+color = Color(0.694118, 0.698039, 0.698039, 0.376471)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="txt" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("4_huxso")
+bbcode_enabled = true
+text = "Pu"
+
+[node name="txt_glit" type="RichTextLabel" parent="txt"]
+self_modulate = Color(1, 1, 1, 0.521569)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("4_huxso")
+bbcode_enabled = true
+text = "Pu"
+
+[node name="glowLine" type="MarginContainer" parent="txt"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="up" type="Sprite2D" parent="txt/glowLine"]
+scale = Vector2(9.9375, 0.25)
+texture = SubResource("GradientTexture2D_u476r")
+centered = false
+
+[node name="down" type="Sprite2D" parent="txt/glowLine"]
+position = Vector2(0, 16)
+scale = Vector2(9.9375, 0.25)
+texture = SubResource("GradientTexture2D_8rk41")
+centered = false
+
+[node name="logo" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="spr" type="Sprite2D" parent="logo"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_5b3vf")
+
+[node name="spr_glit" type="Sprite2D" parent="logo"]
+modulate = Color(1, 1, 1, 0.333333)
+scale = Vector2(2, 2)
+texture = ExtResource("4_5b3vf")
+
+[node name="spr_glit2" type="Sprite2D" parent="logo"]
+modulate = Color(1, 1, 1, 0.235294)
+scale = Vector2(2, 2)
+texture = ExtResource("4_5b3vf")
+
+[node name="spr_expand" type="Sprite2D" parent="logo"]
+modulate = Color(1, 1, 1, 0.0509804)
+self_modulate = Color(1, 1, 1, 0.294118)
+z_index = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_5b3vf")
+
+[node name="glow" type="Sprite2D" parent="logo"]
+modulate = Color(1, 1, 1, 0.235294)
+texture_filter = 2
+position = Vector2(5.62502, 3.18751)
+scale = Vector2(36.2734, 11.9883)
+texture = ExtResource("6_jrcyk")
+
+[node name="pStart" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="txt" type="RichTextLabel" parent="pStart"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("7_v6gtb")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Press any button for start"
+
+[node name="txt_glit" type="RichTextLabel" parent="pStart"]
+visible = false
+modulate = Color(1, 1, 1, 0.443137)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("7_v6gtb")
+bbcode_enabled = true
+text = "[center]Press any button for start"
+
+[node name="crMsg" type="MarginContainer" parent="."]
+editor_description = "Copyright message"
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="txt" type="RichTextLabel" parent="crMsg"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_1adre")
+theme_override_fonts/bold_font = ExtResource("9_0b148")
+bbcode_enabled = true
+text = "[font_size=18][center]©[font_size=21]2026 [img=20x20]res://assets/images/logo_arWhite.png[/img][font_size=12d] [font_size=14][b]4lg0rythm"
+
+[node name="grd1" type="Sprite2D" parent="."]
+scale = Vector2(0.0234375, 1)
+texture = SubResource("GradientTexture2D_enmae")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 60)
+
+[node name="grd2" type="Sprite2D" parent="."]
+scale = Vector2(0.0234375, 1)
+texture = SubResource("GradientTexture2D_ra7y0")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 60)
+
+[node name="label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0

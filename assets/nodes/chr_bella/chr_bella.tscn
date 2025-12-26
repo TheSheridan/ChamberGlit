@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3lhf4oj51vy6"]
+[gd_scene load_steps=5 format=3 uid="uid://c3lhf4oj51vy6"]
 
 [ext_resource type="Script" uid="uid://vqevqq6025eh" path="res://assets/nodes/chr_bella/chr_bella.gd" id="1_hubry"]
 [ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="2_1iqlj"]
+[ext_resource type="PackedScene" uid="uid://b53u7eiq17gl" path="res://assets/scenes/debug_DialogTest/dialog.tscn" id="3_1iqlj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1ewf"]
 
 [node name="chr_bella" type="CharacterBody2D"]
+position = Vector2(1, 0)
 script = ExtResource("1_hubry")
+cam_lerpDuration = 0.8
 
 [node name="col" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_h1ewf")
@@ -21,3 +24,8 @@ animation = &"idle_down"
 [node name="cam" type="Camera2D" parent="."]
 
 [node name="ray" type="RayCast2D" parent="."]
+
+[node name="dialog" parent="." instance=ExtResource("3_1iqlj")]
+speed = null
+dialog = null
+fadeTime = null

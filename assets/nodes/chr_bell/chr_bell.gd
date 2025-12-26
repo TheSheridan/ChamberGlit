@@ -68,6 +68,11 @@ func _process(_delta)->void:
         axis_y_temp = ray.target_position.y
 
     #print("axis_x_temp: " + str(axis_x_temp) + ", axis_y_temp: " + str(axis_y_temp))
+    
+    if Input.is_action_pressed('cg_cancel'):
+      speed = sprintSpeed
+    if Input.is_action_just_released('cg_cancel'):
+      speed = initialSpeed
 
 func _physics_process(_delta):
     getFacing()

@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://b53u7eiq17gl"]
+
+[ext_resource type="Script" uid="uid://b76uy4yu7w2kl" path="res://assets/scenes/debug_DialogTest/dialog.gd" id="1_b5hgf"]
+[ext_resource type="FontFile" uid="uid://dkekq802vmfgk" path="res://assets/fonts/Ubuntu-Regular.ttf" id="2_i7jno"]
+[ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="2_qnigw"]
+
+[node name="dialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b5hgf")
+speed = null
+dialog = null
+fadeTime = null
+orientation = null
+orientation_multiplier = null
+
+[node name="text" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 160.0
+
+[node name="txt" type="RichTextLabel" parent="text"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 570.0
+offset_bottom = 130.0
+theme_override_fonts/normal_font = ExtResource("2_i7jno")
+bbcode_enabled = true
+
+[node name="ind" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 580.0
+offset_top = 140.0
+offset_right = 620.0
+offset_bottom = 180.0
+
+[node name="nextInd" type="Sprite2D" parent="ind"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_qnigw")
+
+[node name="button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "activar"
+
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]

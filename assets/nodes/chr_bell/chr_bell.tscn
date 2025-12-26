@@ -7,6 +7,8 @@
 
 [node name="chr_bell" type="CharacterBody2D"]
 script = ExtResource("1_fs8p7")
+initialSpeed = 1000
+sprintSpeed = 9001
 
 [node name="col" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_h1ewf")

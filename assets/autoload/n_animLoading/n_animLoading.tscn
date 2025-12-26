@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbi1joygsrbqp"]
+
+[ext_resource type="Script" uid="uid://bjt1aytcsmloj" path="res://assets/autoload/n_animLoading/n_animLoading.gd" id="1_8sgaa"]
+[ext_resource type="Texture2D" uid="uid://5x5dt2va0hlb" path="res://assets/images/loading.png" id="2_axiqm"]
+
+[node name="n_animLoading" type="Control"]
+top_level = true
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8sgaa")
+
+[node name="cont" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+
+[node name="spr" type="Sprite2D" parent="cont"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_axiqm")
+
+[node name="bg" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)

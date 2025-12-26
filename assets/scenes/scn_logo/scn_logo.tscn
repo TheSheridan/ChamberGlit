@@ -1,8 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://hdvf8c4nneqt"]
+[gd_scene load_steps=14 format=3 uid="uid://hdvf8c4nneqt"]
 
 [ext_resource type="Script" uid="uid://danbo6t6hrr85" path="res://assets/scenes/scn_logo/scn_logo.gd" id="1_oe8u2"]
 [ext_resource type="Texture2D" uid="uid://cvhct6133jv7t" path="res://assets/images/logo_arWhite.png" id="2_tcghc"]
-[ext_resource type="AudioStream" uid="uid://qxmy3j7irtm8" path="res://assets/audio/bgs_pressStart.ogg" id="3_oe8u2"]
+[ext_resource type="AudioStream" uid="uid://b6nwe6klkrlfu" path="res://assets/audio/sfx_slowmo.mp3" id="3_tfxbk"]
+[ext_resource type="AudioStream" uid="uid://cvnjn5ax681so" path="res://assets/audio/sfx_vineboom.mp3" id="4_nrcar"]
+[ext_resource type="FontFile" uid="uid://do6qxjb6uyrwm" path="res://assets/fonts/RG2014F.ttf" id="4_tcghc"]
+[ext_resource type="AudioStream" uid="uid://b1vj7nqbxbrf5" path="res://assets/audio/sfx_bruh.mp3" id="5_0w51j"]
+[ext_resource type="AudioStream" uid="uid://8l67uio0dmmn" path="res://assets/audio/sfxr/powerUp.wav" id="6_tfxbk"]
+[ext_resource type="AudioStream" uid="uid://ci124td2wf0gq" path="res://assets/audio/sfx_wrong0.ogg" id="7_nrcar"]
+[ext_resource type="AudioStream" uid="uid://dutnibpi4thhl" path="res://assets/audio/sfx_trumpet.mp3" id="8_kvkon"]
+[ext_resource type="AudioStream" uid="uid://x5s1206m05tq" path="res://assets/audio/sfx_bamboo.mp3" id="9_nrcar"]
+[ext_resource type="AudioStream" uid="uid://b2fqbgglwsm3i" path="res://assets/audio/sfx_anvil.mp3" id="10_0w51j"]
+[ext_resource type="AudioStream" uid="uid://v6plhxcnq0rd" path="res://assets/audio/sfx_slap.mp3" id="11_kvkon"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oe8u2"]
+streams_count = 9
+stream_0/stream = ExtResource("3_tfxbk")
+stream_1/stream = ExtResource("4_nrcar")
+stream_2/stream = ExtResource("5_0w51j")
+stream_3/stream = ExtResource("6_tfxbk")
+stream_4/stream = ExtResource("7_nrcar")
+stream_5/stream = ExtResource("8_kvkon")
+stream_6/stream = ExtResource("9_nrcar")
+stream_6/weight = 10.346
+stream_7/stream = ExtResource("10_0w51j")
+stream_8/stream = ExtResource("11_kvkon")
 
 [node name="scn_logo" type="Node2D"]
 script = ExtResource("1_oe8u2")
@@ -14,8 +36,10 @@ scale = Vector2(16, 16)
 texture = ExtResource("2_tcghc")
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_oe8u2")
-bus = &"bgm"
+stream = SubResource("AudioStreamRandomizer_oe8u2")
+autoplay = true
+bus = &"sfx"
+playback_type = 2
 
 [node name="cont_ratio" type="AspectRatioContainer" parent="."]
 offset_right = 637.0
@@ -29,7 +53,8 @@ custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_tcghc")
 bbcode_enabled = true
-text = "[font_size=20]4lg0rythm presents"
+text = "[font_size=20]4lg0rythm presenta"
 horizontal_alignment = 1
 vertical_alignment = 2
