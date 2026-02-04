@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="2_qnigw"]
 
 [node name="dialog" type="Control"]
+z_index = 4
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,11 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b5hgf")
-speed = null
-dialog = null
-fadeTime = null
-orientation = null
-orientation_multiplier = null
+is_usable = true
 
 [node name="text" type="Panel" parent="."]
 layout_mode = 0
@@ -26,6 +23,7 @@ offset_right = 600.0
 offset_bottom = 160.0
 
 [node name="txt" type="RichTextLabel" parent="text"]
+z_index = 4
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0

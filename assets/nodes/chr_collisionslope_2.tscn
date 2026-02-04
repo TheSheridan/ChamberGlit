@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqpckxcjtvag3"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_c7wan"]
+custom_solver_bias = 1.0
+points = PackedVector2Array(0, 16, -16, 0, 0, 0)
+
+[node name="chr_collisionblock" type="CharacterBody2D"]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+position = Vector2(8, -8)
+shape = SubResource("ConvexPolygonShape2D_c7wan")

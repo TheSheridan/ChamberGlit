@@ -40,9 +40,6 @@ project/assembly_name="ChamberGlit (alpha 0.04)"
 [editor]
 
 movie_writer/movie_file="C:/Archivos de Leo/Juegos/Game engines/Godot/Proyectos/ChamberGlit (alpha 0.04)/video.avi"
-naming/node_name_num_separator=2
-naming/node_name_casing=2
-naming/scene_name_casing=0
 
 [gui]
 
@@ -108,3 +105,4 @@ locale/translations=PackedStringArray("res://assets/langs/lang.en.translation", 
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

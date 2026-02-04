@@ -1,12 +1,7 @@
 ## Initial code
 extends Control
 
-signal fade_in
-signal fade_out
-
-@export var usable: bool = false
-
-@export var speed = 0.2 # The speed for showing text
+## The text array.
 @export var dialog = [
 	"Acabas de empezar una aventura mágica, envolvente, "
   + "\n[font_size=25]de esas que no se [shake]ven[/shake] en los videojuegos de [rainbow]ahora.",
@@ -15,10 +10,15 @@ signal fade_out
 
 	"Singao."
 ]
-# The text array.
-@export var fadeTime: float = 0.1
+var dialog_index = 0
+## The speed for showing text.
+@export var speed: float = 0.2
+@export var fade_time: float = 0.1
 
-@export_enum("Top", "Center", "Down") var orientation: int
+@onready var char_count: int = $text/txt.get_total_character_count()
+var duration: float = char_count * speed
+
+@export_enum("Top", "Center", "Down") var orientation: int = 1
 @export var orientation_multiplier: float = 20
 var orientation_move: float
 enum orientation_enum {
@@ -27,8 +27,11 @@ enum orientation_enum {
   DOWN
 }
 
-var dialogIndex = 0
-var finished = false
+@export var is_usable: bool = false
+var dialog_finished: bool = false
+
+signal fade_in
+signal fade_out
 
 @onready var _fade = get_node('/root/auto_fade')
 
@@ -48,69 +51,85 @@ func _ready() -> void:
   
   _fade._out.emit()
 
-  fade_in.connect(In.bind())
-  fade_out.connect(Anim_Exit.bind())
+  fade_in.connect(start.bind())
+  fade_out.connect(anim_exit.bind())
 
-func _process(_delta) -> void:
-  $ind.visible = finished
 
-  if usable:
+func _physics_process(_delta) -> void:
+  show_indicator()
+
+  if is_usable:
     if Input.is_action_just_pressed("cg_accept"):
-      LoadDialog()
+      load_dialog()
+
+func show_indicator():
+  if dialog_finished:
+    $ind.visible = true
+  else:
+    $ind.visible = false
 
 var tween_dialog: Tween
-func LoadDialog():
+func load_dialog():
   tween_dialog = create_tween()
 
-  if dialogIndex < dialog.size():
-    finished = false
-    $text/txt.text = dialog[dialogIndex]
+  if dialog_index < dialog.size():
+    $ind.visible = false
+    $text/txt.text = dialog[dialog_index]
     $text/txt.visible_characters = 0
+
+    tween_dialog = create_tween()
     tween_dialog.tween_property(
-      $text/txt, "visible_characters",
-      $text/txt.get_total_character_count(), speed)
+      $text/txt, "visible_characters", char_count, duration)
+    tween_dialog.finished.connect(_on_tweenDialog_finished.bind())
+
+    dialog_index += 1
+
+    if Input.is_action_just_pressed("cg_accept"):
+      $text/txt.visible_characters = char_count
+    return
   else:
-    if Anim_Exit() != 1:
-      Anim_Exit()
-      dialogIndex = -1
-    else:
-      queue_free()
-      
-  dialogIndex += 1
-  
-  tween_dialog.finished.connect(LoadDialog_exit.bind())
+    #if anim_exit() != 1:
+    anim_exit()
+    dialog_index = -1
+
+    return
     
-func LoadDialog_exit():
-  tween_dialog.kill()
+func _on_tweenDialog_finished():
+  dialog_finished = true
+  tween_dialog = null
 
-func In():
-  Anim_Enter()
-  LoadDialog()
 
-func Anim_Enter():
+func start():
+  anim_enter()
+  load_dialog()
+
+
+func anim_enter():
   #Fade in
   create_tween().set_ease(Tween.EASE_OUT) \
   .set_trans(Tween.TRANS_CUBIC) \
-  .tween_property(self, "modulate", Color(modulate, 1), fadeTime * 2)
+  .tween_property(self, "modulate", Color(modulate, 1), fade_time * 2)
 
   #Position
   create_tween().set_ease(Tween.EASE_OUT)\
   .set_trans(Tween.TRANS_CUBIC). \
-  tween_property(self, "position:y", position.y + orientation_move, fadeTime)
+  tween_property(self, "position:y", position.y + orientation_move, fade_time)
   
   return 1
 
-func Anim_Exit():
+func anim_exit():
   #Fade out
   create_tween().set_ease(Tween.EASE_OUT) \
   .set_trans(Tween.TRANS_CUBIC) \
-  .tween_property(self, "modulate", Color(modulate, 0), fadeTime * 2)
+  .tween_property(self, "modulate", Color(modulate, 0), fade_time * 2)
 
   #Position
   var tween = create_tween().set_ease(Tween.EASE_IN_OUT) \
   .set_trans(Tween.TRANS_CUBIC)
   tween.tween_property(
-    self, "position:y", position.y - orientation_move, fadeTime)
+    self, "position:y", position.y - orientation_move, fade_time)
+
+  return 1
 
 
 func _on_button_pressed() -> void:

@@ -1,5 +1,6 @@
 extends Node
 
+
 # Common
 enum _ease {IN, OUT}
 
@@ -7,6 +8,9 @@ var window_size = Vector2(
   ProjectSettings.get_setting('display/window/size/viewport_width'),
   ProjectSettings.get_setting('display/window/size/viewport_height'),
 )
+
+var window_position = DisplayServer.window_get_size()
+
 
 func music_play(node, fade, time):
   match fade:
@@ -23,7 +27,7 @@ func sfx_play(sfx):
   _sfx.play()
 
 # Button prompts
-func getButtonPrompt(key: String):
+func get_button_prompt(key: String):
   return "res://assets/images/buttonprompts/" + str(key) + "_Key_Dark.png"
 
 # Settings
@@ -37,15 +41,7 @@ var settings_language = "es" # DEBUG, the English language should be the default
 
 var fade_time = setting_fadeTime
 
-func settings_set():
-  var config = ConfigFile.new()
-
-  config.set_value("General", "BGM Volume", settings_bgmVolume)
-  config.set_value("General", "SFX Volume", settings_sfxVolume)
-
-  config.save("res://settings.ini")
-
-func settings_get():
+func get_setting():
   var config = ConfigFile.new()
 
   var err = config.load("res://settings.ini")
@@ -54,3 +50,11 @@ func settings_get():
   for player in config.get_sections():
     settings_bgmVolume = config.get_value("General", "BGM Volume")
     settings_sfxVolume = config.get_value("General", "SFX Volume")
+
+func set_setting():
+  var config = ConfigFile.new()
+
+  config.set_value("General", "BGM Volume", settings_bgmVolume)
+  config.set_value("General", "SFX Volume", settings_sfxVolume)
+
+  config.save("res://settings.ini")

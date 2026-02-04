@@ -16,33 +16,33 @@ albedo_color = Color(0.581943, 0.650496, 0.700521, 1)
 metallic = 1.0
 metallic_texture = SubResource("NoiseTexture2D_guia2")
 
-[node name="btl_test_1" type="Node3D"]
+[node name="BattleTest1" type="Node3D"]
 script = ExtResource("1_ff8f6")
 
-[node name="csg_sphere_3d" type="CSGSphere3D" parent="."]
+[node name="BG" type="CSGSphere3D" parent="."]
 flip_faces = true
 radius = 2.0
 radial_segments = 50
 rings = 10
 material = SubResource("StandardMaterial3D_guia2")
 
-[node name="sprite_3d" type="Sprite3D" parent="."]
+[node name="Sprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 billboard = 1
 shaded = true
 texture_filter = 0
 texture = ExtResource("2_1ajyj")
 
-[node name="omni_light_3d" type="OmniLight3D" parent="sprite_3d"]
+[node name="Light" type="OmniLight3D" parent="Sprite"]
 distance_fade_enabled = true
 omni_range = 0.5
 omni_attenuation = -5.79
 
-[node name="directional_light_3d" type="DirectionalLight3D" parent="."]
+[node name="Light" type="DirectionalLight3D" parent="."]
 
-[node name="camera_3d" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="."]
 
-[node name="ui" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,13 +50,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="color_rect" type="ColorRect" parent="ui"]
+[node name="Color" type="ColorRect" parent="UI"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0, 0, 0.458824)
 
-[node name="rich_text_label" type="RichTextLabel" parent="ui"]
+[node name="Text" type="RichTextLabel" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,7 +68,7 @@ theme_override_fonts/normal_font = ExtResource("2_xjlua")
 bbcode_enabled = true
 fit_content = true
 
-[node name="bgm" type="AudioStreamPlayer" parent="."]
+[node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_guia2")
 volume_db = -50.0
 autoplay = true

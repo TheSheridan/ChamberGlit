@@ -35,12 +35,12 @@ gradient = SubResource("Gradient_wnsyq")
 width = 640
 fill_to = Vector2(0, 1)
 
-[node name="scn" type="Control"]
+[node name="MainMenuScene" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rlk4o")
 
-[node name="cont_margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -50,77 +50,77 @@ offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="cont_ratio" type="AspectRatioContainer" parent="cont_margin"]
+[node name="Ratio" type="AspectRatioContainer" parent="Margin"]
 layout_mode = 2
 ratio = 0.2
 alignment_horizontal = 0
 alignment_vertical = 0
 
-[node name="vbox_buttons" type="VBoxContainer" parent="cont_margin/cont_ratio"]
+[node name="ButtonVBox" type="VBoxContainer" parent="Margin/Ratio"]
 z_index = -1
 layout_mode = 2
 theme = ExtResource("2_po6s2")
 
-[node name="b_newGame" type="Button" parent="cont_margin/cont_ratio/vbox_buttons"]
+[node name="NewGameButton" type="Button" parent="Margin/Ratio/ButtonVBox"]
 layout_mode = 2
 text = "Nueva partida"
 icon = ExtResource("3_bwhsg")
 alignment = 0
 
-[node name="timer" type="Timer" parent="cont_margin/cont_ratio/vbox_buttons/b_newGame"]
+[node name="Timer" type="Timer" parent="Margin/Ratio/ButtonVBox/NewGameButton"]
 one_shot = true
 
-[node name="b_loadGame" type="Button" parent="cont_margin/cont_ratio/vbox_buttons"]
+[node name="LoadGameButton" type="Button" parent="Margin/Ratio/ButtonVBox"]
 layout_mode = 2
 text = "Cargar partida"
 icon = ExtResource("4_a3sin")
 alignment = 0
 
-[node name="timer" type="Timer" parent="cont_margin/cont_ratio/vbox_buttons/b_loadGame"]
+[node name="Timer" type="Timer" parent="Margin/Ratio/ButtonVBox/LoadGameButton"]
 one_shot = true
 
-[node name="b_settings" type="Button" parent="cont_margin/cont_ratio/vbox_buttons"]
+[node name="SettingsButton" type="Button" parent="Margin/Ratio/ButtonVBox"]
 layout_mode = 2
 text = "Ajustes"
 icon = ExtResource("4_wq2ba")
 alignment = 0
 
-[node name="timer" type="Timer" parent="cont_margin/cont_ratio/vbox_buttons/b_settings"]
+[node name="Timer" type="Timer" parent="Margin/Ratio/ButtonVBox/SettingsButton"]
 one_shot = true
 
-[node name="b_extras" type="Button" parent="cont_margin/cont_ratio/vbox_buttons"]
+[node name="ExtrasButton" type="Button" parent="Margin/Ratio/ButtonVBox"]
 layout_mode = 2
 text = "Extras"
 icon = ExtResource("6_u4jfo")
 alignment = 0
 
-[node name="timer" type="Timer" parent="cont_margin/cont_ratio/vbox_buttons/b_extras"]
+[node name="Timer" type="Timer" parent="Margin/Ratio/ButtonVBox/ExtrasButton"]
 one_shot = true
 
-[node name="b_quit" type="Button" parent="cont_margin/cont_ratio/vbox_buttons"]
+[node name="QuitButton" type="Button" parent="Margin/Ratio/ButtonVBox"]
 layout_mode = 2
 text = "Salir"
 icon = ExtResource("5_vkwa2")
 alignment = 0
 
-[node name="timer" type="Timer" parent="cont_margin/cont_ratio/vbox_buttons/b_quit"]
+[node name="Timer" type="Timer" parent="Margin/Ratio/ButtonVBox/QuitButton"]
 one_shot = true
 
-[node name="vbox_prompt" type="VBoxContainer" parent="cont_margin/cont_ratio"]
+[node name="PromptVBox" type="VBoxContainer" parent="Margin/Ratio"]
 layout_mode = 2
 alignment = 2
 
-[node name="label_desc" type="RichTextLabel" parent="cont_margin/cont_ratio/vbox_prompt"]
+[node name="DescriptionText" type="RichTextLabel" parent="Margin/Ratio/PromptVBox"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 8
 bbcode_enabled = true
 text = "Hey"
 
-[node name="timer" type="Timer" parent="cont_margin/cont_ratio/vbox_prompt/label_desc"]
+[node name="Timer" type="Timer" parent="Margin/Ratio/PromptVBox/DescriptionText"]
 one_shot = true
 
-[node name="label_shadow" type="RichTextLabel" parent="cont_margin/cont_ratio/vbox_prompt/label_desc"]
+[node name="ShadowText" type="RichTextLabel" parent="Margin/Ratio/PromptVBox/DescriptionText"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 0
 offset_top = 36.0
@@ -130,16 +130,16 @@ size_flags_vertical = 8
 bbcode_enabled = true
 text = "Hey"
 
-[node name="timer" type="Timer" parent="cont_margin/cont_ratio/vbox_prompt/label_desc/label_shadow"]
+[node name="Timer" type="Timer" parent="Margin/Ratio/PromptVBox/DescriptionText/ShadowText"]
 one_shot = true
 
-[node name="label" type="RichTextLabel" parent="cont_margin/cont_ratio/vbox_prompt"]
+[node name="OtherText" type="RichTextLabel" parent="Margin/Ratio/PromptVBox"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 8
 bbcode_enabled = true
 
-[node name="colorRect" type="ColorRect" parent="cont_margin/cont_ratio/vbox_prompt/label"]
+[node name="ColorRect" type="ColorRect" parent="Margin/Ratio/PromptVBox/OtherText"]
 modulate = Color(1, 1, 1, 0.2)
 z_index = -1
 layout_mode = 0
@@ -147,31 +147,31 @@ offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
 
-[node name="cursor" type="Sprite2D" parent="cont_margin/cont_ratio"]
+[node name="Cursor" type="Sprite2D" parent="Margin/Ratio"]
 texture_filter = 1
 position = Vector2(-32, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("3_1e0vo")
 centered = false
 
-[node name="glow" type="Sprite2D" parent="cont_margin/cont_ratio/cursor"]
+[node name="Glow" type="Sprite2D" parent="Margin/Ratio/Cursor"]
 modulate = Color(1, 1, 1, 0.164706)
 z_index = -1
 position = Vector2(5, 8)
 texture = ExtResource("9_cljyd")
 
-[node name="banner" type="Sprite2D" parent="cont_margin/cont_ratio"]
+[node name="Banner" type="Sprite2D" parent="Margin/Ratio"]
 texture = ExtResource("11_yemyb")
 centered = false
 
-[node name="banner_glit" type="Sprite2D" parent="cont_margin/cont_ratio"]
+[node name="BannerShake" type="Sprite2D" parent="Margin/Ratio"]
 modulate = Color(1, 1, 1, 0.2)
 texture = ExtResource("11_yemyb")
 
-[node name="ptc" type="Node2D" parent="."]
+[node name="Particles" type="Node2D" parent="."]
 z_index = -1
 
-[node name="n1" type="CPUParticles2D" parent="ptc"]
+[node name="Snow1" type="CPUParticles2D" parent="Particles"]
 amount = 64
 texture = ExtResource("9_cljyd")
 gravity = Vector2(0, -480)
@@ -181,7 +181,7 @@ radial_accel_max = 87.5
 scale_amount_curve = SubResource("Curve_wbnvi")
 color_ramp = SubResource("Gradient_1yplv")
 
-[node name="n2" type="CPUParticles2D" parent="ptc"]
+[node name="Snow2" type="CPUParticles2D" parent="Particles"]
 modulate = Color(1, 1, 1, 0.301961)
 scale = Vector2(2, 2)
 amount = 64
@@ -195,7 +195,7 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_wbnvi")
 color_ramp = SubResource("Gradient_1yplv")
 
-[node name="n3" type="CPUParticles2D" parent="ptc"]
+[node name="Snow3" type="CPUParticles2D" parent="Particles"]
 modulate = Color(1, 1, 1, 0.301961)
 scale = Vector2(2, 2)
 amount = 64
@@ -212,7 +212,7 @@ scale_amount_curve = SubResource("Curve_wbnvi")
 color = Color(0.396078, 0.486275, 0.568627, 1)
 color_ramp = SubResource("Gradient_1yplv")
 
-[node name="n4" type="CPUParticles2D" parent="ptc"]
+[node name="Snow4" type="CPUParticles2D" parent="Particles"]
 modulate = Color(1, 1, 1, 0.301961)
 scale = Vector2(2, 2)
 amount = 64
@@ -229,21 +229,19 @@ scale_amount_curve = SubResource("Curve_wbnvi")
 color = Color(0.545098, 0.447059, 0.439216, 1)
 color_ramp = SubResource("Gradient_1yplv")
 
-[node name="grad" type="Node2D" parent="."]
+[node name="Grad" type="Node2D" parent="."]
 
-[node name="up" type="Sprite2D" parent="grad"]
+[node name="Up" type="Sprite2D" parent="Grad"]
 texture = SubResource("GradientTexture2D_8bwa1")
 centered = false
 
-[node name="down" type="Sprite2D" parent="grad"]
+[node name="Down" type="Sprite2D" parent="Grad"]
 position = Vector2(0, 416)
 texture = SubResource("GradientTexture2D_5cbf0")
 centered = false
 
-[node name="timer_input" type="Timer" parent="."]
+[node name="TimerInput" type="Timer" parent="."]
 
-[node name="timer_input2" type="Timer" parent="."]
-
-[node name="bgm" type="AudioStreamPlayer" parent="."]
+[node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_nn010")
 pitch_scale = 0.85

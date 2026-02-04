@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7bon41ggjlh5"]
+
+[ext_resource type="Script" uid="uid://bcr46eqmps2j3" path="res://assets/scenes/maps/map_cave1_outside/map_cave_1_outside.gd" id="1_54myv"]
+[ext_resource type="PackedScene" uid="uid://b35o8ctju0mcq" path="res://assets/nodes/vfx_snowing/vfx_snowing.tscn" id="2_4j21h"]
+[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="3_dlasx"]
+[ext_resource type="PackedScene" uid="uid://dpx5rrkjybjtr" path="res://assets/nodes/chr_bullet/chr_bullet.tscn" id="4_dlasx"]
+
+[node name="map_cave1_outside" type="Node2D"]
+script = ExtResource("1_54myv")
+
+[node name="color_rect" type="ColorRect" parent="."]
+z_index = 10
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0.9529412, 1, 0.03529412)
+
+[node name="vfx_snowing" parent="." instance=ExtResource("2_4j21h")]
+z_index = 20
+position = Vector2(-308, -239)
+
+[node name="chr_bella" parent="." instance=ExtResource("3_dlasx")]
+
+[node name="chr_bullet" parent="." instance=ExtResource("4_dlasx")]
+position = Vector2(405, -47)
