@@ -4,21 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://5x5dt2va0hlb" path="res://assets/images/loading.png" id="2_axiqm"]
 
 [node name="n_animLoading" type="Control"]
+visible = false
 top_level = true
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_8sgaa")
 
-[node name="cont" type="AspectRatioContainer" parent="."]
+[node name="Margin" type="AspectRatioContainer" parent="."]
 layout_mode = 1
 
-[node name="spr" type="Sprite2D" parent="cont"]
+[node name="Sprite" type="Sprite2D" parent="Margin"]
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_axiqm")
 
-[node name="bg" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 40.0

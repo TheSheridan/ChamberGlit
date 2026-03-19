@@ -193,7 +193,7 @@ func _process(delta):
 		
 	if press_start_timer == 20:
 		$Camera2D.zoom = Vector2(1,1)
-		_load.changeScene("res://assets/scenes/scn_mainMenu/scn_mainMenu.tscn")
+		_load.change_scene("res://assets/scenes/scn_mainMenu/scn_mainMenu.tscn")
 
 
 func _physics_process(delta):

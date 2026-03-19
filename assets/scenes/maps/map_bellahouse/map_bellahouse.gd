@@ -16,7 +16,7 @@ func _ready() -> void:
 	_fade._out.emit()
 
 func _process(_delta) -> void:
-	if is_player_interactable and Input.is_action_just_pressed('cg_accept'):
+	if is_player_interactable and Input.is_action_just_pressed('ui_accept'):
 		if last_npc == $PropBed:
 			dialog.dialog = ["Es tu cama."]
 			dialog.fade_in.emit()

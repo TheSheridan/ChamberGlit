@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhoypglutbnqh"]
+[gd_scene format=3 uid="uid://dhoypglutbnqh"]
 
 [ext_resource type="AudioStream" uid="uid://d3r2r28kjsit0" path="res://assets/audio/sfx_roll.ogg" id="1_lg2cl"]
 [ext_resource type="AudioStream" uid="uid://c1612pfdpfo6j" path="res://assets/audio/sfx_flipt.ogg" id="2_8kebc"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dehsw3aa8fajk" path="res://assets/audio/sfx_type_2.mp3" id="5_1hymc"]
 [ext_resource type="AudioStream" uid="uid://c23wty2nhph6o" path="res://assets/audio/sfx_noise1.ogg" id="5_yrwnp"]
 [ext_resource type="AudioStream" uid="uid://c21mj1paibl17" path="res://assets/audio/sfx_type_3.mp3" id="6_1ejq6"]
+[ext_resource type="AudioStream" uid="uid://v6plhxcnq0rd" path="res://assets/audio/sfx_slap.mp3" id="9_xo32x"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pcxsy"]
 streams_count = 4
@@ -16,19 +17,22 @@ stream_1/stream = ExtResource("4_xo32x")
 stream_2/stream = ExtResource("5_1hymc")
 stream_3/stream = ExtResource("6_1ejq6")
 
-[node name="sfx" type="Node"]
+[node name="sfx" type="Node" unique_id=1834564622]
 
-[node name="roll" type="AudioStreamPlayer" parent="."]
+[node name="roll" type="AudioStreamPlayer" parent="." unique_id=106525388]
 stream = ExtResource("1_lg2cl")
 
-[node name="flip" type="AudioStreamPlayer" parent="."]
+[node name="flip" type="AudioStreamPlayer" parent="." unique_id=1832053120]
 stream = ExtResource("2_8kebc")
 
-[node name="type" type="AudioStreamPlayer" parent="."]
+[node name="type" type="AudioStreamPlayer" parent="." unique_id=1063128500]
 stream = SubResource("AudioStreamRandomizer_pcxsy")
 
-[node name="select" type="AudioStreamPlayer" parent="."]
+[node name="select" type="AudioStreamPlayer" parent="." unique_id=1465987348]
 stream = ExtResource("4_qanh5")
 
-[node name="noise1" type="AudioStreamPlayer" parent="."]
+[node name="noise1" type="AudioStreamPlayer" parent="." unique_id=1166801541]
 stream = ExtResource("5_yrwnp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=395464269]
+stream = ExtResource("9_xo32x")

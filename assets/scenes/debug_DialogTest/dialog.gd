@@ -59,7 +59,7 @@ func _physics_process(_delta) -> void:
   show_indicator()
 
   if is_usable:
-    if Input.is_action_just_pressed("cg_accept"):
+    if Input.is_action_just_pressed("ui_accept"):
       load_dialog()
 
 func show_indicator():
@@ -84,7 +84,7 @@ func load_dialog():
 
     dialog_index += 1
 
-    if Input.is_action_just_pressed("cg_accept"):
+    if Input.is_action_just_pressed("ui_accept"):
       $text/txt.visible_characters = char_count
     return
   else:

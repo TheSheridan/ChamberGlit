@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dfclku4khjwmq"]
+[gd_resource type="AudioBusLayout" format=3 uid="uid://dfclku4khjwmq"]
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
 resource_name = "Delay"
@@ -24,7 +24,7 @@ bus/2/name = &"sfx"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = -0.583786
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectDelay_j3pel")
 bus/2/effect/0/enabled = true

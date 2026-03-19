@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl4dib035f1y8"]
+
+[ext_resource type="Script" uid="uid://cn5ntomsg4qik" path="res://assets/scenes/maps/map_manager/map_manager.gd" id="1_hsj20"]
+[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_2hpik"]
+
+[node name="MapManager" type="Node"]
+editor_description = "TODO: Complete this crap."
+script = ExtResource("1_hsj20")
+
+[node name="CharacterBella" parent="." instance=ExtResource("2_2hpik")]
+position = Vector2(160, 368)
+camera_zoom = 2.0
+camera_magnitude = 500.0
+sprite_int_speed = 500.0
+acceleration = 50.0
+deceleration = 20000.0
+normal_speed = 400.0
+max_speed = 700.0

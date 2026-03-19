@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://3ew4cx4pmycy"]
+
+[ext_resource type="Script" uid="uid://dde230mu8twe8" path="res://assets/nodes/chr_npc/CharacterNPC.gd" id="1_6et8t"]
+[ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="2_b6iu8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ns2cl"]
+size = Vector2(30, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6et8t"]
+radius = 35.128338
+
+[node name="CharacterNpc" type="CharacterBody2D" unique_id=1401426213]
+editor_description = "Don't forget to add the "
+script = ExtResource("1_6et8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=842352446]
+texture = ExtResource("2_b6iu8")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1650389970]
+shape = SubResource("RectangleShape2D_ns2cl")
+
+[node name="Area" type="Area2D" parent="." unique_id=838821222]
+
+[node name="Collision" type="CollisionShape2D" parent="Area" unique_id=849281777]
+shape = SubResource("CircleShape2D_6et8t")

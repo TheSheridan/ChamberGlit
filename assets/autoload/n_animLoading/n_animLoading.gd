@@ -1,5 +1,6 @@
 extends Control
 
+
 @export_enum("Night", "Light") var spriteColor: int = 1
 @export_enum("Night", "Light") var bgColor:     int = 0
 
@@ -16,57 +17,57 @@ var sprite_light = load("res://assets/images/loading_white.png")
 signal fade_in
 signal fade_out
 
-func _ready() -> void:
-  modulate = Color(modulate, 0)
-  
-  fade_in.connect(anim_fadeIn.bind())
-  fade_out.connect(anim_fadeOut.bind())
 
+func _ready() -> void:
+	modulate = Color(modulate, 0)
+	
+	fade_in.connect(anim_fadeIn.bind())
+	fade_out.connect(anim_fadeOut.bind())
 
 func _process(_delta: float) -> void:
-  match spriteColor:
-    0: $cont/spr.texture = sprite_night
-    1: $cont/spr.texture = sprite_light
-    
-  match bgColor:
-    0: $bg.color = Color.BLACK
-    1: $bg.color = Color.WHITE
+	match spriteColor:
+		0: $Margin/Sprite.texture = sprite_night
+		1: $Margin/Sprite.texture = sprite_light
+		
+	match bgColor:
+		0: $BG.color = Color.BLACK
+		1: $BG.color = Color.WHITE
 
-  $cont/spr.offset = $cont.size / 2
-  $cont/spr.rotation_degrees += 1
-    
-  $bg.size = _sgt.window_size
-    
-  if customPosition == false:
-    $cont/spr.position = _sgt.window_size \
-   - ($cont/spr.texture.get_size() * 2)
-  else: pass
+	$Margin/Sprite.offset = $Margin.size / 2
+	$Margin/Sprite.rotation_degrees += 1
+		
+	$BG.size = _sgt.window_size
+		
+	if customPosition == false:
+		$Margin/Sprite.position = _sgt.window_size \
+		- ($Margin/Sprite.texture.get_size() * 2)
+	else: pass
 
 
 func anim_fadeIn():
-  create_tween().tween_property(
-    self, "modulate",
-    Color(modulate, 1),
-    _sgt.fade_time
-  )
+	create_tween().tween_property(
+		self, "modulate",
+		Color(modulate, 1),
+		_sgt.fade_time
+	)
 
 func anim_fadeOut():
-    create_tween().tween_property(
-        self, "modulate",
-        Color(modulate, 0),
-        _sgt.fade_time * 2
-    )
+		create_tween().tween_property(
+				self, "modulate",
+				Color(modulate, 0),
+				_sgt.fade_time * 2
+		)
 
 func anim_fadeIn_bg():
-  create_tween().tween_property(
-    $bg, "modulate",
-    Color($bg.modulate, 1),
-    _sgt.fade_time
-  )
+	create_tween().tween_property(
+		$BG, "modulate",
+		Color($BG.modulate, 1),
+		_sgt.fade_time
+	)
 
 func anim_fadeOut_bg():
-  create_tween().tween_property(
-    $bg, "modulate",
-    Color($bg.modulate, 0),
-    _sgt.fade_time
-  )
+	create_tween().tween_property(
+		$BG, "modulate",
+		Color($BG.modulate, 0),
+		_sgt.fade_time
+	)

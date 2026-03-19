@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://x2ma2o7q1h2g"]
+
+[ext_resource type="Script" uid="uid://begxrcihyjss3" path="res://assets/scenes/debug_scene_selector/DebugSceneSelector.gd" id="1_f0bme"]
+[ext_resource type="AudioStream" uid="uid://ce7csfqk6mdyb" path="res://assets/audio/bgm_grevi_i.wav" id="2_nn75h"]
+[ext_resource type="Theme" uid="uid://blr41jq603y74" path="res://assets/nodes/themes/theme_menuButtons.tres" id="3_o6aiy"]
+[ext_resource type="FontFile" uid="uid://ddxl7ysr8qscc" path="res://assets/fonts/nokiafc22.ttf" id="5_f0bme"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="5_h8bio"]
+
+[sub_resource type="Curve" id="Curve_htjfq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.135922, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_f0bme"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DebugSceneSelector" type="Control" unique_id=804710663]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f0bme")
+
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1817865659]
+stream = ExtResource("2_nn75h")
+pitch_scale = 0.8
+autoplay = true
+bus = &"sfx"
+
+[node name="Particles" type="Node2D" parent="." unique_id=1564067183]
+z_index = -1
+
+[node name="Snow1" type="CPUParticles2D" parent="Particles" unique_id=1603304943]
+amount = 64
+texture = ExtResource("5_h8bio")
+gravity = Vector2(0, -480)
+initial_velocity_max = 400.0
+radial_accel_min = 87.5
+radial_accel_max = 87.5
+scale_amount_curve = SubResource("Curve_htjfq")
+color_ramp = SubResource("Gradient_f0bme")
+
+[node name="Snow2" type="CPUParticles2D" parent="Particles" unique_id=1060270893]
+modulate = Color(1, 1, 1, 0.301961)
+scale = Vector2(2, 2)
+amount = 64
+texture = ExtResource("5_h8bio")
+gravity = Vector2(0, -480)
+initial_velocity_max = 400.0
+radial_accel_min = 87.5
+radial_accel_max = 87.5
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_htjfq")
+color_ramp = SubResource("Gradient_f0bme")
+
+[node name="Snow3" type="CPUParticles2D" parent="Particles" unique_id=1612488641]
+modulate = Color(1, 1, 1, 0.301961)
+scale = Vector2(2, 2)
+amount = 64
+texture = ExtResource("5_h8bio")
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, -480)
+initial_velocity_max = 400.0
+radial_accel_min = 87.5
+radial_accel_max = 87.5
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_htjfq")
+color = Color(0.396078, 0.486275, 0.568627, 1)
+color_ramp = SubResource("Gradient_f0bme")
+
+[node name="Snow4" type="CPUParticles2D" parent="Particles" unique_id=1763965849]
+modulate = Color(1, 1, 1, 0.301961)
+scale = Vector2(2, 2)
+amount = 64
+texture = ExtResource("5_h8bio")
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, -480)
+initial_velocity_max = 400.0
+radial_accel_min = 87.5
+radial_accel_max = 87.5
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_htjfq")
+color = Color(0.545098, 0.447059, 0.439216, 1)
+color_ramp = SubResource("Gradient_f0bme")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1303036261]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ratio" type="AspectRatioContainer" parent="Margin" unique_id=2030863498]
+layout_mode = 2
+ratio = 0.2
+alignment_horizontal = 0
+alignment_vertical = 0
+
+[node name="ButtonVBox" type="VBoxContainer" parent="Margin/Ratio" unique_id=172219641]
+z_index = -1
+layout_mode = 2
+size_flags_stretch_ratio = 6.25
+theme = ExtResource("3_o6aiy")
+
+[node name="Label" type="Label" parent="." unique_id=1386826627]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 441.0
+offset_right = 354.0
+offset_bottom = 490.0
+scale = Vector2(1.528, 1)
+theme_override_fonts/font = ExtResource("5_f0bme")
+theme_override_font_sizes/font_size = 20
+text = "WELCOME TO THE DEBUG ROOM"

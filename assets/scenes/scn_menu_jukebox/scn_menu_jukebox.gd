@@ -30,7 +30,7 @@ func _ready():
 	cont_ratio.size = _sgt.window_size
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed('cg_accept'):
+	if Input.is_action_just_pressed('ui_accept'):
 		print("Accept pressed.")
 		
 		match track_actual:

@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://dfjcmyj4pa08c"]
+
+[ext_resource type="Script" uid="uid://bvlalm6w1hui6" path="res://assets/scenes/maps/map_cave1_all/map_cave_1_all.gd" id="1_c7rph"]
+[ext_resource type="PackedScene" uid="uid://m2mqg4lbrufk" path="res://assets/scenes/maps/map_cave1_r1/map_cave1_r1.tscn" id="1_w2pe3"]
+[ext_resource type="PackedScene" uid="uid://c6304yy2i2c86" path="res://assets/scenes/maps/map_cave1_r2/map_cave1_r2.tscn" id="2_c7rph"]
+[ext_resource type="PackedScene" uid="uid://gldfgy6co3qo" path="res://assets/scenes/maps/map_cave1_r3/map_cave1_r3.tscn" id="3_lgact"]
+[ext_resource type="PackedScene" uid="uid://bgfvvdgcsonac" path="res://assets/scenes/maps/map_cave1_r4/map_cave1_r4.tscn" id="4_j7nwu"]
+[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="6_lgact"]
+[ext_resource type="AudioStream" uid="uid://dsyn56ecn220n" path="res://assets/audio/bgm_crypt.ogg" id="7_j7nwu"]
+[ext_resource type="Script" uid="uid://b3xn1v2mxawyv" path="res://assets/scenes/maps/map_cave1_all/npc_test.gd" id="8_6dwa8"]
+[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="9_jmph7"]
+[ext_resource type="PackedScene" uid="uid://3ew4cx4pmycy" path="res://assets/nodes/chr_npc/CharacterNPC.tscn" id="10_imbe8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7nwu"]
+size = Vector2(48, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dwa8"]
+size = Vector2(32, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgact"]
+size = Vector2(96, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmph7"]
+size = Vector2(30, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_imbe8"]
+radius = 35.128338
+
+[node name="MapCave1All" type="Node2D" unique_id=866708146]
+editor_description = "¡Vamoooooooooooooo! ¡Por fin acabé la textbox!"
+script = ExtResource("1_c7rph")
+
+[node name="Maps" type="Node2D" parent="." unique_id=1176475494]
+z_index = -1
+
+[node name="MapFirstCaveR1" parent="Maps" unique_id=748747906 instance=ExtResource("1_w2pe3")]
+position = Vector2(176, 112)
+
+[node name="Warp" type="Area2D" parent="Maps/MapFirstCaveR1" unique_id=2046028630]
+position = Vector2(208, -1872)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR1/Warp" unique_id=430927577]
+position = Vector2(24, 64)
+shape = SubResource("RectangleShape2D_j7nwu")
+
+[node name="MapFirstCaveR2" parent="Maps" unique_id=185513174 instance=ExtResource("2_c7rph")]
+position = Vector2(3936, -1600)
+
+[node name="WarpL" type="Area2D" parent="Maps/MapFirstCaveR2" unique_id=1326893606]
+position = Vector2(32, 128)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR2/WarpL" unique_id=966221139]
+position = Vector2(16, 64)
+shape = SubResource("RectangleShape2D_6dwa8")
+
+[node name="WarpR" type="Area2D" parent="Maps/MapFirstCaveR2" unique_id=1985542281]
+position = Vector2(2168, 720)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR2/WarpR" unique_id=425307194]
+position = Vector2(14, 62)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="MapFirstCaveR3" parent="Maps" unique_id=1910013520 instance=ExtResource("3_lgact")]
+position = Vector2(9056, -1664)
+
+[node name="WarpL" type="Area2D" parent="Maps/MapFirstCaveR3" unique_id=562224270]
+position = Vector2(34, 130)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR3/WarpL" unique_id=1694434867]
+position = Vector2(14, 62)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="WarpR" type="Area2D" parent="Maps/MapFirstCaveR3" unique_id=614405888]
+position = Vector2(2944, 688)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR3/WarpR" unique_id=793598506]
+position = Vector2(64, 32)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="MapFirstCaveR4" parent="Maps" unique_id=1715363333 instance=ExtResource("4_j7nwu")]
+position = Vector2(14288, -1168)
+
+[node name="Warp" type="Area2D" parent="Maps/MapFirstCaveR4" unique_id=1842536281]
+position = Vector2(14400, -758)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR4/Warp" unique_id=1900792930]
+position = Vector2(-14240, 1142)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="CharacterBella" parent="." unique_id=77062715 groups=["player"] instance=ExtResource("6_lgact")]
+position = Vector2(343, 220)
+deceleration = 15000.0
+normal_speed = 180.0
+max_speed = 300.0
+
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1982600007]
+stream = ExtResource("7_j7nwu")
+
+[node name="Timer" type="Timer" parent="." unique_id=249440503]
+
+[node name="NPCTest" type="CharacterBody2D" parent="." unique_id=879998284]
+position = Vector2(273, 220)
+script = ExtResource("8_6dwa8")
+
+[node name="Collision" type="CollisionShape2D" parent="NPCTest" unique_id=1938762785]
+shape = SubResource("RectangleShape2D_jmph7")
+
+[node name="Area" type="Area2D" parent="NPCTest" unique_id=2107547294]
+
+[node name="Collision" type="CollisionShape2D" parent="NPCTest/Area" unique_id=1904192145]
+shape = SubResource("CircleShape2D_imbe8")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCTest" unique_id=1616973862]
+texture = ExtResource("9_jmph7")
+
+[node name="NPCTest2" type="CharacterBody2D" parent="." unique_id=880769502]
+position = Vector2(338, 66)
+script = ExtResource("8_6dwa8")
+metadata/_edit_group_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="NPCTest2" unique_id=146645861]
+shape = SubResource("RectangleShape2D_jmph7")
+
+[node name="Area" type="Area2D" parent="NPCTest2" unique_id=1629815700]
+
+[node name="Collision" type="CollisionShape2D" parent="NPCTest2/Area" unique_id=520303938]
+shape = SubResource("CircleShape2D_imbe8")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCTest2" unique_id=1274790547]
+texture = ExtResource("9_jmph7")
+
+[node name="CharacterNpc" parent="." unique_id=1401426213 instance=ExtResource("10_imbe8")]
+position = Vector2(419, 162)
+text_to_send = null
+
+[connection signal="body_entered" from="Maps/MapFirstCaveR1/Warp" to="." method="_on_warp_body_entered"]
+[connection signal="body_entered" from="Maps/MapFirstCaveR2/WarpL" to="." method="_on_warp_l_body_entered"]
+[connection signal="start_now" from="NPCTest" to="CharacterBella" method="npc_start_now"]
+[connection signal="body_entered" from="NPCTest/Area" to="NPCTest" method="_on_area_body_entered"]
+[connection signal="body_exited" from="NPCTest/Area" to="NPCTest" method="_on_area_body_exited"]
+[connection signal="start_now" from="NPCTest2" to="CharacterBella" method="npc_start_now"]
+[connection signal="body_entered" from="NPCTest2/Area" to="NPCTest2" method="_on_area_body_entered"]
+[connection signal="body_exited" from="NPCTest2/Area" to="NPCTest2" method="_on_area_body_exited"]

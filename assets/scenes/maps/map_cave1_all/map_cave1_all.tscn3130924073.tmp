@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfjcmyj4pa08c"]
+
+[ext_resource type="Script" uid="uid://bvlalm6w1hui6" path="res://assets/scenes/maps/map_cave1_all/map_cave_1_all.gd" id="1_c7rph"]
+[ext_resource type="PackedScene" uid="uid://m2mqg4lbrufk" path="res://assets/scenes/maps/map_cave1_r1/map_cave1_r1.tscn" id="1_w2pe3"]
+[ext_resource type="PackedScene" uid="uid://c6304yy2i2c86" path="res://assets/scenes/maps/map_cave1_r2/map_cave1_r2.tscn" id="2_c7rph"]
+[ext_resource type="PackedScene" uid="uid://gldfgy6co3qo" path="res://assets/scenes/maps/map_cave1_r3/map_cave1_r3.tscn" id="3_lgact"]
+[ext_resource type="PackedScene" uid="uid://bgfvvdgcsonac" path="res://assets/scenes/maps/map_cave1_r4/map_cave1_r4.tscn" id="4_j7nwu"]
+[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="6_lgact"]
+[ext_resource type="AudioStream" uid="uid://dsyn56ecn220n" path="res://assets/audio/bgm_crypt.ogg" id="7_j7nwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7nwu"]
+size = Vector2(48, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dwa8"]
+size = Vector2(32, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgact"]
+size = Vector2(96, 32)
+
+[node name="MapCave1All" type="Node2D"]
+script = ExtResource("1_c7rph")
+
+[node name="Maps" type="Node2D" parent="."]
+
+[node name="MapFirstCaveR1" parent="Maps" instance=ExtResource("1_w2pe3")]
+position = Vector2(176, 112)
+
+[node name="Warp" type="Area2D" parent="Maps/MapFirstCaveR1"]
+position = Vector2(208, -1872)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR1/Warp"]
+position = Vector2(24, 64)
+shape = SubResource("RectangleShape2D_j7nwu")
+
+[node name="MapFirstCaveR2" parent="Maps" instance=ExtResource("2_c7rph")]
+position = Vector2(3936, -1600)
+
+[node name="WarpL" type="Area2D" parent="Maps/MapFirstCaveR2"]
+position = Vector2(32, 128)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR2/WarpL"]
+position = Vector2(16, 64)
+shape = SubResource("RectangleShape2D_6dwa8")
+
+[node name="WarpR" type="Area2D" parent="Maps/MapFirstCaveR2"]
+position = Vector2(2168, 720)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR2/WarpR"]
+position = Vector2(14, 62)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="MapFirstCaveR3" parent="Maps" instance=ExtResource("3_lgact")]
+position = Vector2(9056, -1664)
+
+[node name="WarpL" type="Area2D" parent="Maps/MapFirstCaveR3"]
+position = Vector2(34, 130)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR3/WarpL"]
+position = Vector2(14, 62)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="WarpR" type="Area2D" parent="Maps/MapFirstCaveR3"]
+position = Vector2(2944, 688)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR3/WarpR"]
+position = Vector2(64, 32)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="MapFirstCaveR4" parent="Maps" instance=ExtResource("4_j7nwu")]
+position = Vector2(14288, -1168)
+
+[node name="Warp" type="Area2D" parent="Maps/MapFirstCaveR4"]
+position = Vector2(14400, -758)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR4/Warp"]
+position = Vector2(-14240, 1142)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="CharacterBella" parent="." instance=ExtResource("6_lgact")]
+position = Vector2(320, 241)
+deceleration = 15000.0
+normal_speed = 180.0
+max_speed = 300.0
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j7nwu")
+autoplay = true
+
+[connection signal="body_entered" from="Maps/MapFirstCaveR1/Warp" to="." method="_on_warp_body_entered"]
+[connection signal="body_entered" from="Maps/MapFirstCaveR2/WarpL" to="." method="_on_warp_l_body_entered"]

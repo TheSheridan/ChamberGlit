@@ -12,21 +12,21 @@ var mainMenu_bPromptFadeTime = 0.125
 
 # Change scene (custom, using threads)
 var thread: Thread
-func changeScene(path: String):
+func change_scene(path: String):
   if is_instance_valid(thread) and thread.is_started():
     thread.wait_to_finish()
   
   if gnrl_showAnim: get_node('/root/animLoading').anim_fadeIn()
 
   thread = Thread.new()
-  thread.start(changeSceneThreaded_1.bind(path))
+  thread.start(change_scene_threaded_1.bind(path))
 
-func changeSceneThreaded_1(path: String):
+func change_scene_threaded_1(path: String):
   var tex = load(path)
-  ChangeSceneThreaded_2.call_deferred()
+  change_scene_threaded_2.call_deferred()
   return tex
 
-func ChangeSceneThreaded_2():
+func change_scene_threaded_2():
   var tex = thread.wait_to_finish()
         
   if gnrl_showAnim: get_node('/root/animLoading').anim_fadeOut()

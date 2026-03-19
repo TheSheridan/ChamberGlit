@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://hdvf8c4nneqt"]
+[gd_scene format=3 uid="uid://hdvf8c4nneqt"]
 
 [ext_resource type="Script" uid="uid://danbo6t6hrr85" path="res://assets/scenes/scn_logo/scn_logo.gd" id="1_oe8u2"]
 [ext_resource type="Texture2D" uid="uid://cvhct6133jv7t" path="res://assets/images/logo_arWhite.png" id="2_tcghc"]
@@ -26,29 +26,42 @@ stream_6/weight = 10.346
 stream_7/stream = ExtResource("10_0w51j")
 stream_8/stream = ExtResource("11_kvkon")
 
-[node name="LogoScene" type="Node2D"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n1uuo"]
+frequency = 0.003
+fractal_octaves = 2
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 28.548
+domain_warp_frequency = -0.043
+domain_warp_fractal_octaves = 1
+domain_warp_fractal_lacunarity = 5.938
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kvkon"]
+noise = SubResource("FastNoiseLite_n1uuo")
+
+[node name="LogoScene" type="Node2D" unique_id=2044173022]
 script = ExtResource("1_oe8u2")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1874899781]
 texture_filter = 1
 position = Vector2(0, 1)
 scale = Vector2(16, 16)
 texture = ExtResource("2_tcghc")
 
-[node name="Audio" type="AudioStreamPlayer" parent="."]
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=351681754]
 stream = SubResource("AudioStreamRandomizer_oe8u2")
 autoplay = true
 bus = &"sfx"
 playback_type = 2
 
-[node name="Container" type="AspectRatioContainer" parent="."]
+[node name="Container" type="AspectRatioContainer" parent="." unique_id=1983154884]
 offset_right = 637.0
 offset_bottom = 479.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 ratio = 2.0
 
-[node name="Text" type="RichTextLabel" parent="Container"]
+[node name="Text" type="RichTextLabel" parent="Container" unique_id=760610066]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -58,3 +71,9 @@ bbcode_enabled = true
 text = "[font_size=20]4lg0rythm presenta"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="BG" type="Sprite2D" parent="." unique_id=774178655]
+modulate = Color(1, 1, 1, 0.05882353)
+scale = Vector2(2, 2)
+texture = SubResource("NoiseTexture2D_kvkon")
+centered = false

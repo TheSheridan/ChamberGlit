@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://dfjcmyj4pa08c"]
+
+[ext_resource type="Script" uid="uid://bvlalm6w1hui6" path="res://assets/scenes/maps/map_cave1_all/map_cave_1_all.gd" id="1_c7rph"]
+[ext_resource type="PackedScene" uid="uid://m2mqg4lbrufk" path="res://assets/scenes/maps/map_cave1_r1/map_cave1_r1.tscn" id="1_w2pe3"]
+[ext_resource type="PackedScene" uid="uid://c6304yy2i2c86" path="res://assets/scenes/maps/map_cave1_r2/map_cave1_r2.tscn" id="2_c7rph"]
+[ext_resource type="PackedScene" uid="uid://gldfgy6co3qo" path="res://assets/scenes/maps/map_cave1_r3/map_cave1_r3.tscn" id="3_lgact"]
+[ext_resource type="PackedScene" uid="uid://bgfvvdgcsonac" path="res://assets/scenes/maps/map_cave1_r4/map_cave1_r4.tscn" id="4_j7nwu"]
+[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="6_lgact"]
+[ext_resource type="AudioStream" uid="uid://dsyn56ecn220n" path="res://assets/audio/bgm_crypt.ogg" id="7_j7nwu"]
+[ext_resource type="Script" uid="uid://b3xn1v2mxawyv" path="res://assets/scenes/maps/map_cave1_all/npc_test.gd" id="8_6dwa8"]
+[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="9_jmph7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7nwu"]
+size = Vector2(48, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dwa8"]
+size = Vector2(32, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imbe8"]
+size = Vector2(40, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vscyh"]
+size = Vector2(34, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgact"]
+size = Vector2(96, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mblch"]
+size = Vector2(240, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmph7"]
+size = Vector2(30, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_imbe8"]
+radius = 35.128338
+
+[node name="MapCave1All" type="Node2D" unique_id=866708146]
+editor_description = "¡Vamoooooooooooooo! ¡Por fin acabé la textbox!"
+script = ExtResource("1_c7rph")
+metadata/_edit_horizontal_guides_ = [-872.0]
+
+[node name="CharacterBella" parent="." unique_id=77062715 groups=["player"] instance=ExtResource("6_lgact")]
+position = Vector2(14664, -1992)
+deceleration = 15000.0
+normal_speed = 180.0
+max_speed = 300.0
+
+[node name="Maps" type="Node2D" parent="." unique_id=1176475494]
+z_index = -1
+
+[node name="MapFirstCaveR1" parent="Maps" unique_id=748747906 instance=ExtResource("1_w2pe3")]
+position = Vector2(176, 112)
+
+[node name="Warp" type="Area2D" parent="Maps/MapFirstCaveR1" unique_id=2046028630]
+position = Vector2(208, -1872)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR1/Warp" unique_id=430927577]
+position = Vector2(24, 64)
+shape = SubResource("RectangleShape2D_j7nwu")
+
+[node name="MapFirstCaveR2" parent="Maps" unique_id=185513174 instance=ExtResource("2_c7rph")]
+position = Vector2(3936, -1600)
+
+[node name="WarpL" type="Area2D" parent="Maps/MapFirstCaveR2" unique_id=1326893606]
+position = Vector2(32, 128)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR2/WarpL" unique_id=966221139]
+position = Vector2(16, 64)
+shape = SubResource("RectangleShape2D_6dwa8")
+
+[node name="WarpR" type="Area2D" parent="Maps/MapFirstCaveR2" unique_id=1985542281]
+position = Vector2(1656, 720)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR2/WarpR" unique_id=425307194]
+position = Vector2(20, 84)
+shape = SubResource("RectangleShape2D_imbe8")
+
+[node name="MapFirstCaveR3" parent="Maps" unique_id=1910013520 instance=ExtResource("3_lgact")]
+position = Vector2(9056, -1664)
+
+[node name="R3WarpL" type="Area2D" parent="Maps/MapFirstCaveR3" unique_id=562224270]
+position = Vector2(64, 128)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR3/R3WarpL" unique_id=1694434867]
+position = Vector2(15, 79)
+shape = SubResource("RectangleShape2D_vscyh")
+
+[node name="R3WarpR" type="Area2D" parent="Maps/MapFirstCaveR3" unique_id=614405888]
+position = Vector2(3200, 704)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR3/R3WarpR" unique_id=793598506]
+position = Vector2(64, 32)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="MapFirstCaveR4" parent="Maps" unique_id=1715363333 instance=ExtResource("4_j7nwu")]
+position = Vector2(14288, -1168)
+
+[node name="R4Warp" type="Area2D" parent="Maps/MapFirstCaveR4" unique_id=1842536281]
+position = Vector2(14352, -760)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR4/R4Warp" unique_id=1900792930]
+position = Vector2(-14224, 1142)
+shape = SubResource("RectangleShape2D_lgact")
+
+[node name="BellaHouseWarp" type="Area2D" parent="Maps/MapFirstCaveR4" unique_id=1968112148]
+position = Vector2(256, -968)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maps/MapFirstCaveR4/BellaHouseWarp" unique_id=659713950]
+position = Vector2(120, -8)
+shape = SubResource("RectangleShape2D_mblch")
+
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1982600007]
+stream = ExtResource("7_j7nwu")
+pitch_scale = 1.45
+autoplay = true
+
+[node name="Timer" type="Timer" parent="." unique_id=249440503]
+
+[node name="-NPCs-" type="Node" parent="." unique_id=168618074]
+
+[node name="Chest" type="CharacterBody2D" parent="." unique_id=879998284]
+position = Vector2(-749, -747)
+script = ExtResource("8_6dwa8")
+text_to_send = ["El cofre está vacío. Hasta la madera está desgastada..."]
+
+[node name="Collision" type="CollisionShape2D" parent="Chest" unique_id=1938762785]
+shape = SubResource("RectangleShape2D_jmph7")
+
+[node name="Area" type="Area2D" parent="Chest" unique_id=2107547294]
+
+[node name="Collision" type="CollisionShape2D" parent="Chest/Area" unique_id=1904192145]
+shape = SubResource("CircleShape2D_imbe8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chest" unique_id=1616973862]
+texture = ExtResource("9_jmph7")
+
+[node name="Letter" type="CharacterBody2D" parent="." unique_id=880769502]
+position = Vector2(4256, -1768)
+script = ExtResource("8_6dwa8")
+text_to_send = ["\"[i]Quizá, en el próximo ciclo podamos tener una segunda oportunidad.[/i]\"", "\"[i]Con que alguien se interese en nuestra causa bastará.[/i]\""]
+
+[node name="Collision" type="CollisionShape2D" parent="Letter" unique_id=146645861]
+shape = SubResource("RectangleShape2D_jmph7")
+
+[node name="Area" type="Area2D" parent="Letter" unique_id=1629815700]
+
+[node name="Collision" type="CollisionShape2D" parent="Letter/Area" unique_id=520303938]
+shape = SubResource("CircleShape2D_imbe8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Letter" unique_id=1274790547]
+texture = ExtResource("9_jmph7")
+
+[node name="Letter2" type="CharacterBody2D" parent="." unique_id=1198123512]
+position = Vector2(5088, -984)
+script = ExtResource("8_6dwa8")
+text_to_send = ["\"[i]Que los ágiles vayan y contengan el orbe.[/i]\"", "Sientes que has oído esa frase en algún otro lado."]
+
+[node name="Collision" type="CollisionShape2D" parent="Letter2" unique_id=503337403]
+shape = SubResource("RectangleShape2D_jmph7")
+
+[node name="Area" type="Area2D" parent="Letter2" unique_id=1241931861]
+
+[node name="Collision" type="CollisionShape2D" parent="Letter2/Area" unique_id=1214681121]
+shape = SubResource("CircleShape2D_imbe8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Letter2" unique_id=2138320825]
+texture = ExtResource("9_jmph7")
+
+[connection signal="body_entered" from="Maps/MapFirstCaveR1/Warp" to="." method="_on_warp_body_entered"]
+[connection signal="body_entered" from="Maps/MapFirstCaveR2/WarpL" to="." method="_on_warp_l_body_entered"]
+[connection signal="body_entered" from="Maps/MapFirstCaveR2/WarpR" to="." method="_on_warp_r_body_entered"]
+[connection signal="body_entered" from="Maps/MapFirstCaveR3/R3WarpL" to="." method="_on_r_3_warp_l_body_entered"]
+[connection signal="body_entered" from="Maps/MapFirstCaveR3/R3WarpR" to="." method="_on_r_3_warp_r_body_entered"]
+[connection signal="body_entered" from="Maps/MapFirstCaveR4/R4Warp" to="." method="_on_r_4_warp_body_entered"]
+[connection signal="body_entered" from="Maps/MapFirstCaveR4/BellaHouseWarp" to="." method="_on_bella_house_warp_body_entered"]
+[connection signal="entered_area" from="Chest" to="CharacterBella" method="entered_area"]
+[connection signal="exited_area" from="Chest" to="CharacterBella" method="exited_area"]
+[connection signal="start_now" from="Chest" to="CharacterBella" method="npc_start_now"]
+[connection signal="body_entered" from="Chest/Area" to="Chest" method="_on_area_body_entered"]
+[connection signal="body_exited" from="Chest/Area" to="Chest" method="_on_area_body_exited"]
+[connection signal="entered_area" from="Letter" to="CharacterBella" method="entered_area"]
+[connection signal="exited_area" from="Letter" to="CharacterBella" method="exited_area"]
+[connection signal="start_now" from="Letter" to="CharacterBella" method="npc_start_now"]
+[connection signal="body_entered" from="Letter/Area" to="Letter" method="_on_area_body_entered"]
+[connection signal="body_exited" from="Letter/Area" to="Letter" method="_on_area_body_exited"]
+[connection signal="entered_area" from="Letter2" to="CharacterBella" method="entered_area"]
+[connection signal="exited_area" from="Letter2" to="CharacterBella" method="exited_area"]
+[connection signal="start_now" from="Letter2" to="CharacterBella" method="npc_start_now"]
+[connection signal="body_entered" from="Letter2/Area" to="Letter2" method="_on_area_body_entered"]
+[connection signal="body_exited" from="Letter2/Area" to="Letter2" method="_on_area_body_exited"]

@@ -1,10 +1,9 @@
-
 # CODE REFACTORED!!!
 extends Control
 
 
 # Variables
-@export var scene_to_change = "res://assets/scenes/maps/map_cave1_r1/map_cave1_r1.tscn"
+@export_file("*.tscn") var scene_to_change: String = "res://assets/scenes/maps/map_cave1_r1/map_cave1_r1.tscn"
 
 var margin_size = 40
 var menu_actual_option = 0
@@ -19,7 +18,7 @@ var anim_flip_switch: bool = false
 
 # Timer variables for Input.action_pressed()
 var timer_count = 0
-var timer_count_limit = 40
+var timer_count_limit = 80
 var timer_2_count = 0
 var timer_2_count_limit = 5
 
@@ -263,7 +262,7 @@ func _process(_delta):
 	or Input.is_action_just_pressed('ui_down'):
 		anim_buttonFlip()
 	
-	if Input.is_action_just_pressed('cg_accept') and !is_menu_selected:
+	if Input.is_action_just_pressed('ui_accept') and !is_menu_selected:
 		if menu_actual_option >= menu.NEW_GAME && menu_actual_option < menu.QUIT:
 			_sgt.sfx_play("select")
 		
@@ -272,7 +271,15 @@ func _process(_delta):
 				anim_buttonSlide(new_game_button, new_game_button_timer)
 				_fade._in.emit()
 				is_menu_selected = true
-				_load.changeScene(scene_to_change)
+				
+				$SceneChangeTimer.start(0.25)
+				await $SceneChangeTimer.timeout
+				
+				_fade._in.emit()
+				$SceneChangeTimer.start(_fade.fade_time)
+				await $SceneChangeTimer.timeout
+				
+				_load.change_scene(scene_to_change)
 				_sgt.music_play($Audio, _sgt._ease.IN, 0.25)
 
 			menu.LOAD_GAME:

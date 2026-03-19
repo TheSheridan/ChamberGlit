@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3k777cl63mdj"]
+[gd_scene format=3 uid="uid://b3k777cl63mdj"]
 
 [ext_resource type="Script" uid="uid://bpwo87832u8xf" path="res://assets/scenes/scn_logo_lite/scn_logo_lite.gd" id="1_7fbxw"]
 [ext_resource type="Texture2D" uid="uid://dqe5quklighda" path="res://assets/images/logo_arBlack.png" id="2_r0usd"]
@@ -18,29 +18,30 @@ domain_warp_fractal_lacunarity = 5.938
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ys6d5"]
 noise = SubResource("FastNoiseLite_n1uuo")
 
-[node name="scn_logo_lite" type="Node2D"]
+[node name="scn_logo_lite" type="Node2D" unique_id=2069765550]
 script = ExtResource("1_7fbxw")
+theme = null
 
-[node name="bg" type="Sprite2D" parent="."]
+[node name="bg" type="Sprite2D" parent="." unique_id=486936068]
 modulate = Color(1, 1, 1, 0.121569)
 texture = SubResource("NoiseTexture2D_ys6d5")
 centered = false
 
-[node name="cont" type="AspectRatioContainer" parent="."]
+[node name="cont" type="AspectRatioContainer" parent="." unique_id=993443139]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="spr" type="Sprite2D" parent="cont"]
+[node name="spr" type="Sprite2D" parent="cont" unique_id=1020570383]
 texture_filter = 1
 scale = Vector2(16, 16)
 texture = ExtResource("2_r0usd")
 
-[node name="bgs" type="AudioStreamPlayer" parent="."]
+[node name="bgs" type="AudioStreamPlayer" parent="." unique_id=1625890144]
 stream = ExtResource("4_gg3ca")
 pitch_scale = 1.1
 bus = &"bgm"
 
-[node name="txt" type="RichTextLabel" parent="."]
+[node name="txt" type="RichTextLabel" parent="." unique_id=883413797]
 custom_minimum_size = Vector2(0, 40)
 offset_right = 222.0
 offset_bottom = 118.0

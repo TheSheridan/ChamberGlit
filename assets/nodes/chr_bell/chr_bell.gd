@@ -1,44 +1,86 @@
+# Refactored!
+## Same script as chr_bell.gd but friction is disabled.
 extends CharacterBody2D
 
 
-var speed: float
-var directed_velocity: float
+## Sets the _camera_ zoom (default 1).
+@export var camera_zoom = 1.0
 
-# get_facing()
+@export var camera_lerp_duration: float = 0.3
+@export var camera_magnitude: float = 3
+
+## Sets how large is the $Raycast.
+@export var ray_size = 50
+## Strength of the $Raycast movement.
+@export var ray_strength = 0.5
+
+## Sets how much the _camera_ pans when looking to sides.
+@export var look_beyond_power = 200
+## Time taken while looking to sides.
+@export var look_beyond_time = 0.3
+## Checks if looking to sides takes a single press.
+@export var looked_beyond_once: bool = false
+
+## Initial movement speed.
+@export var initial_speed: float = 600
+## sprite_int movement speed.
+@export var sprite_int_speed: float = 1000
+## Friction strength.
+@export_range(0.0, 1.0) var friction = 0.8
+## Acceleration strength.
+@export_range(0.0, 1.0) var acceleration = 0.8
+
+@export var tile_map: TileMapLayer
+
+
+@onready var _sgt = get_node('/root/auto_singleton')
+@onready var _fade = get_node('/root/auto_fade')
+@onready var _load = get_node('/root/auto_load')
+
+@onready var text = $Control/Margin/Text
+
+var speed: float = initial_speed
+var directed_velocity = Vector2.ZERO
+var direction = Vector2.ZERO
+
+var sprite_speed: float
+
+var camera_weight: float = 0.0
+
+var tween1: Tween
+var tween2: Tween
+
+var tween_a: Tween
+var tween_b: Tween
+
 var axis_x_temp: float
 var axis_y_temp: float
 
-@export var cam_zoom = 0.8 ## Sets the $Cameraera zoom (default 1).
-var is_cam_zoom_on: bool = true
+var position_previous: Vector2
 
-@export var ray_size = 50 ## Sets how large is the $Raycast.
-@export var ray_strength = 0.5 ## Strength of the $Raycast movement.
-
-@export var look_beyond_power = 200 ## Sets how much the $Cameraera pans when looking to sides.
-@export var look_beyond_time = 0.3 ## Time taken while looking to sides.
-@export var looked_beyond_once: bool = false ## Checks if looking to sides takes a single press.
-
-@export var initial_speed = 600 ## Initial movement speed.
-@export var sprint_speed = 1000 ## sprint movement speed.
-@export_range(0.0, 1.0) var friction = 0.2 ## Friction strength.
-@export_range(0.0, 1.0) var acceleration = 0.1 ## Acceleration strength.
+var is_camera_zoom_on = true
+var get_input_temp_position: Vector2 = Vector2(0, 0)
 
 
-func _get_ready():
-	#Default animation
+# Main
+func _ready():
+	# Default animation
 	$Sprite.animation = "idle_down"
 	$Sprite.play()
 	
+	speed = initial_speed
 
 func _process(_delta) -> void:
-	if is_cam_zoom_on:
-		$Camera.zoom = Vector2(cam_zoom, cam_zoom)
+	#PromptManager
+	$Control.size = _sgt.window_size
+	$Control/Margin.size = $Control.size
+	$Control.position = -_sgt.window_size / 2
+	text.text = "Hi."
 
-	if get_input().x == 0:
-		directed_velocity = (velocity.y * get_input().y)
-	if get_input().y == 0:
-		directed_velocity = (velocity.x * get_input().x)
+	if is_camera_zoom_on:
+		$Camera.zoom = Vector2(camera_zoom, camera_zoom)
 	
+	# looked_beyond
 	if Input.is_action_just_pressed("ui_select"):
 		match looked_beyond_once:
 			false: looked_beyond_once = true
@@ -46,7 +88,7 @@ func _process(_delta) -> void:
 
 	match looked_beyond_once:
 		false: look_beyond()
-		true: look_beyondOnce()
+		true: look_beyond_once()
 		_: pass
 	
 	# get_facing()
@@ -54,48 +96,60 @@ func _process(_delta) -> void:
 		axis_x_temp = $Ray.target_position.x
 	if $Ray.target_position.y != 0:
 		axis_y_temp = $Ray.target_position.y
-
-	#print("axis_x_temp: " + str(axis_x_temp) + ", axis_y_temp: " + str(axis_y_temp))
+		
+	if Input.is_action_pressed('ui_cancel'):
+		speed = sprite_int_speed
+	if Input.is_action_just_released('ui_cancel'):
+		speed = initial_speed
 	
-	if Input.is_action_pressed('cg_cancel'):
-		speed = sprint_speed
-	if Input.is_action_just_released('cg_cancel'):
-		speed = initial_speed
-
-
-func _physics_process(_delta):
-	get_facing()
-	$Camera.offset = lerp($Camera.offset, velocity / 64, 0.1)
-
-	# sprint
-	if Input.is_action_pressed("ui_cancel"):
-		speed = sprint_speed
+	if get_input() != Vector2.ZERO:
+		lerp_camera_left()
 	else:
-		speed = initial_speed
+		lerp_camera_right()	
+
+	get_input_temp_position = get_input()
+	position_previous = position
+
+func _physics_process(delta) -> void:
+	var input = get_input()
+	directed_velocity = Vector2.ZERO
+
+	get_facing()
+
+	$Camera.offset = lerp($Camera.offset, velocity / 16, 0.5)
+	$Camera.position = lerp($Camera.position, get_input() * camera_magnitude, camera_weight)
+
+	# get_input()
+	if input.length() > 0:
+		directed_velocity = input.normalized() * speed
+
+	if $Ray.is_colliding():
+		print($Ray.get_collider())
+
+	# if input.x == 0:
+	# 	directed_velocity = (velocity.y * get_input().y)
+
+	# if input.y == 0:
+	# 	directed_velocity = (velocity.x * get_input().x)
 
 	# Handle acceleration
-	var direction = get_input()
-	if direction.length() > 0:
-		velocity = lerp(
-			velocity,
-			direction.normalized() * speed,
-			acceleration
-		)
-	else:
-		velocity = lerp(
-			velocity,
-			Vector2.ZERO,
-			friction
-		)
+	velocity += (get_input() * speed) * delta
+	
 	move_and_slide()
 
 	# Animation speed
 	$Sprite.speed_scale = lerp(
 		$Sprite.speed_scale,
-		directed_velocity / (speed / 8),
+		sprite_speed / (speed / 8),
 		acceleration
 	)
 
+	# Stairs BS
+	# if "stair" in get_tile_name():
+	# 	if direction.x > 0:
+	# 		velocity.x += speed / 2
+	# 	elif direction.x < 0:
+	# 		velocity.y -= speed / 2
 
 func get_input():
 	var input = Vector2()
@@ -111,6 +165,7 @@ func get_input():
 
 	return input
 
+# IDEA: Add Input.is_action_just_released()
 func get_facing():
 	if Input.is_action_just_pressed("ui_left"):
 		$Sprite.play("walk_left")
@@ -125,126 +180,159 @@ func get_facing():
 		$Sprite.play("walk_down")
 	
 	# Axis
-	var axis_x = Input.get_axis("ui_left", "ui_right")
-	var axis_y = Input.get_axis("ui_up", "ui_down")
+	var axis_x: float = Input.get_axis("ui_left", "ui_right")
+	var axis_y: float = Input.get_axis("ui_up", "ui_down")
 
 	# Up/Down
 	if Input.is_action_pressed("ui_left") \
 	or Input.is_action_pressed("ui_right"):
-		$Ray.target_position.x = lerp(
-			$Ray.target_position.x,
-			axis_x * ray_size,
-			ray_strength
-		)
+		$Ray.target_position.x = axis_x * ray_size
 
 	if Input.is_action_just_released("ui_left") \
 	or Input.is_action_just_released("ui_right"):
-		$Ray.target_position.x = lerp(
-			$Ray.target_position.x,
-			axis_x_temp,
-			ray_strength
-		)
+		$Ray.target_position.x = axis_x_temp
 
-	# Left/Right
 	if Input.is_action_pressed("ui_up") \
 	or Input.is_action_pressed("ui_down"):
-		$Ray.target_position.y = lerp(
-			$Ray.target_position.y,
-			axis_y * ray_size,
-			ray_strength
-		)
+		$Ray.target_position.y = axis_y * ray_size
 
 	if Input.is_action_just_released("ui_up") \
 	or Input.is_action_just_released("ui_down"):
-		$Ray.target_position.y = lerp(
-			$Ray.target_position.y,
-			axis_y_temp,
-			ray_strength
-		)
+		$Ray.target_position.y = axis_y_temp
 
-
-func look_beyond():
-	var tween_a = create_tween().set_ease(Tween.EASE_OUT) \
+func look_beyond(): # Inspired by MGS3 :3
+	# If a single tween doesn't work,
+	# bloat with this all the functions below.
+	tween_a = create_tween().set_ease(Tween.EASE_OUT) \
 		.set_trans(Tween.TRANS_CUBIC)
-	var tween_b = create_tween().set_ease(Tween.EASE_OUT) \
+	tween_b = create_tween().set_ease(Tween.EASE_OUT) \
 		.set_trans(Tween.TRANS_CUBIC)
 
 	# Left
-	if Input.is_action_pressed("cg_look_left"):  
-		tween_a.tween_property($Camera, "offset:x", Vector2.LEFT.x * look_beyond_power, look_beyond_time)
+	if Input.is_action_pressed("cg_look_left"): # Pressed
+		tween_a.tween_property($Camera, "offset:x",
+			Vector2.LEFT.x * look_beyond_power, look_beyond_time)
 
-	if Input.is_action_just_released("cg_look_left"):
+	if Input.is_action_just_released("cg_look_left"): # Released
 		tween_a.tween_property($Camera, "offset:x", Vector2.ZERO.x, look_beyond_time)
 
 	# Right
-	if Input.is_action_pressed("cg_look_right"):  
-		tween_a.tween_property($Camera, "offset:x", Vector2.RIGHT.x * look_beyond_power, look_beyond_time)
+	if Input.is_action_pressed("cg_look_right"): # Pressed
+		tween_a.tween_property($Camera, "offset:x",
+			Vector2.RIGHT.x * look_beyond_power, look_beyond_time)
 
-	if Input.is_action_just_released("cg_look_right"):
+	if Input.is_action_just_released("cg_look_right"): # Released
 		tween_a.tween_property($Camera, "offset:x", Vector2.ZERO.x, look_beyond_time)
 
 	# Up
-	if Input.is_action_pressed("cg_look_up"):  
-		tween_b.tween_property($Camera, "offset:y", Vector2.UP.y * look_beyond_power, look_beyond_time)
+	if Input.is_action_pressed("cg_look_up"): # Pressed
+		tween_b.tween_property($Camera, "offset:y",
+			Vector2.UP.y * look_beyond_power, look_beyond_time)
 
-	if Input.is_action_just_released("cg_look_up"):
+	if Input.is_action_just_released("cg_look_up"): # Released
 		tween_b.tween_property($Camera, "offset:y", Vector2.ZERO.y, look_beyond_time)
 	
 	# Down
-	if Input.is_action_pressed("cg_look_down"):  
-		tween_b.tween_property($Camera, "offset:y", Vector2.DOWN.y * look_beyond_power, look_beyond_time)
+	if Input.is_action_pressed("cg_look_down"): # Pressed
+		tween_b.tween_property($Camera, "offset:y",
+			Vector2.DOWN.y * look_beyond_power, look_beyond_time)
 
-	if Input.is_action_just_released("cg_look_down"):
+	if Input.is_action_just_released("cg_look_down"): # Released
 		tween_b.tween_property($Camera, "offset:y", Vector2.ZERO.y, look_beyond_time)
+	
+	tween_a.finished.connect(_if_lookBeyond_finished.bind())
+	tween_b.finished.connect(_if_lookBeyond_finished.bind())
 
+func _if_lookBeyond_finished():
+	if tween_a and is_instance_valid(tween_a):
+		tween_a.kill()
 
-# TODO: Find a way to get rid of this crap.
-func look_beyondOnce():
-	var tween_a = create_tween().set_ease(Tween.EASE_OUT) \
+	if tween_b and is_instance_valid(tween_b):
+		tween_b.kill()
+
+# [v] Ditto as look_beyond() but just pressed a single time
+func look_beyond_once():
+	tween_a = create_tween().set_ease(Tween.EASE_IN_OUT) \
 		.set_trans(Tween.TRANS_CUBIC)
-	var tween_b = create_tween().set_ease(Tween.EASE_OUT) \
+
+	tween_b = create_tween().set_ease(Tween.EASE_IN_OUT) \
 		.set_trans(Tween.TRANS_CUBIC)
 
 	# Left
-	if Input.is_action_just_pressed("cg_look_left"):  
+	if Input.is_action_just_pressed("cg_look_left"): # Pressed
 		tween_a.tween_property($Camera, "offset:x", Vector2.LEFT.x * look_beyond_power, look_beyond_time)
 
-	if Input.is_action_just_released("cg_look_left"):
+	if Input.is_action_just_released("cg_look_left"): # Released
 		tween_a.tween_property($Camera, "offset:x", Vector2.ZERO.x, look_beyond_time)
 
 	# Right
-	if Input.is_action_just_pressed("cg_look_right"):  
+	if Input.is_action_just_pressed("cg_look_right"): # Pressed
 		tween_a.tween_property($Camera, "offset:x", Vector2.RIGHT.x * look_beyond_power, look_beyond_time)
 
-	if Input.is_action_just_released("cg_look_right"):
+	if Input.is_action_just_released("cg_look_right"): # Released
 		tween_a.tween_property($Camera, "offset:x", Vector2.ZERO.x, look_beyond_time)
 
 	# Up
-	if Input.is_action_just_pressed("cg_look_up"):  
+	if Input.is_action_just_pressed("cg_look_up"): # Pressed
 		tween_b.tween_property($Camera, "offset:y", Vector2.UP.y * look_beyond_power, look_beyond_time)
 
-	if Input.is_action_just_released("cg_look_up"):
+	if Input.is_action_just_released("cg_look_up"): # Released
 		tween_b.tween_property($Camera, "offset:y", Vector2.ZERO.y, look_beyond_time)
 	
 	# Down
-	if Input.is_action_just_pressed("cg_look_down"):  
+	if Input.is_action_just_pressed("cg_look_down"): # Pressed
 		tween_b.tween_property($Camera, "offset:y", Vector2.DOWN.y * look_beyond_power, look_beyond_time)
 
-	if Input.is_action_just_released("cg_look_down"):
+	if Input.is_action_just_released("cg_look_down"): # Released
 		tween_b.tween_property($Camera, "offset:y", Vector2.ZERO.y, look_beyond_time)
+		
+	tween_a.finished.connect(_if_lookBeyond_finished.bind())
+	tween_b.finished.connect(_if_lookBeyond_finished.bind())
 
-func change_zoom(
-	zoom: float,
-	time: float,
-	tween_ease: Tween.EaseType,
-	tween_trans: Tween.TransitionType):
+# TODO: Fix this crap.
+func lerp_camera_left():
+	if not tween1 and is_instance_valid(tween1):
+		tween1.kill()
+	
+	tween1 = create_tween()
+	tween1.set_ease(Tween.EASE_IN)
+	tween1.set_trans(Tween.TRANS_CUBIC)
 
-	is_cam_zoom_on = false
+	tween1.tween_property(self, 'camera_weight', 1.0, camera_lerp_duration)
 
-	var tw = create_tween().set_ease(tween_ease) \
-			.set_trans(tween_trans) \
-			.tween_property($Camera, "zoom", Vector2(zoom, zoom), time)
+	tween1.finished.connect(_on_tween1_finished.bind(), CONNECT_ONE_SHOT)
 
-	await tw.finished
-	cam_zoom = zoom
-	is_cam_zoom_on = true
+func _on_tween1_finished():
+	if tween1 and tween1.is_connected("finished", _on_tween1_finished.bind()):
+		tween1.finished.disconnect(_on_tween1_finished)
+
+func lerp_camera_right():
+	if not tween2 and is_instance_valid(tween2):
+		tween2.kill()
+  
+	tween2 = create_tween()
+	tween2.set_ease(Tween.EASE_OUT)
+	tween2.set_trans(Tween.TRANS_CUBIC)
+
+	tween2.tween_property(self, 'camera_weight', 0.0, camera_lerp_duration)
+
+	tween2.finished.connect(_on_tween2_finished.bind(), CONNECT_ONE_SHOT)
+  
+func _on_tween2_finished():
+	if tween2 and tween2.is_connected("finished", _on_tween2_finished.bind()):
+		tween2.finished.disconnect(_on_tween2_finished)
+
+# Tilemap
+func get_tile_name():
+	var search_position = global_position
+	var player_offset = Vector2(0, 10)
+	search_position += player_offset
+	
+	var tile_pos = tile_map.local_to_map(search_position)
+	var tile_data = tile_map.get_cell_tile_data(tile_pos)
+
+	if tile_data:
+		var tile_name = tile_data.get_custom_data("tile_name")
+		return tile_name
+	else:
+		return ""

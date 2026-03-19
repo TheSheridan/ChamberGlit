@@ -15,13 +15,13 @@ func _process(_delta) -> void:
   - Vector2(80, 60)
   
   #print("\n"
-    #+ "===========================================\n"
-    #+ "Fade position: " + str(_fade.position) + '\n'
-    #+ "MC position: " + str($chr_bell.position) + '\n'
-    #+ "===========================================\n"
-    #+ "\n\n"
+	#+ "===========================================\n"
+	#+ "Fade position: " + str(_fade.position) + '\n'
+	#+ "MC position: " + str($chr_bell.position) + '\n'
+	#+ "===========================================\n"
+	#+ "\n\n"
   #)
 
 func fade_in():
   var tween = create_tween()
-  tween.tween_property(self, 'modulate', Color(modulate, 1))
+  #tween.tween_property(self, 'modulate', Color(modulate, 1))
