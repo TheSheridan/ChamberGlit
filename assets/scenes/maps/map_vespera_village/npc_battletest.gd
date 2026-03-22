@@ -56,6 +56,14 @@ func _on_area_body_exited(body: Node2D) -> void:
 	
 func after_textbox():
 	if can_battle:
-		_sgt.quick_prev(_sgt.scene_vespera_village, $"../CharacterBella".position)
+		var bella = get_parent().get_node("CharacterBella")
+		
+		bella.fade_color = Color.WHITE
+		bella._fade_in.emit()
+		
+		var timer = get_tree().create_timer(bella.fade_duration)
+		await timer.timeout
+		
+		_sgt.quick_prev(_sgt.scene_vespera_village, bella.position)
 		_sgt.flag_use_prev_position_in_scene = true
 		_load.change_scene(_sgt.battle_test1)

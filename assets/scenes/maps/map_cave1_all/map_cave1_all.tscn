@@ -116,7 +116,8 @@ shape = SubResource("RectangleShape2D_mblch")
 
 [node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1982600007]
 stream = ExtResource("7_j7nwu")
-pitch_scale = 1.45
+volume_db = -1.0
+pitch_scale = 1.18
 autoplay = true
 
 [node name="Timer" type="Timer" parent="." unique_id=249440503]

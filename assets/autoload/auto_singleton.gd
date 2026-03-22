@@ -29,6 +29,52 @@ func sfx_play(sfx):
 func get_button_prompt(key: String):
 	return "res://assets/images/buttonprompts/" + str(key) + "_Key_Dark.png"
 
+
+# Gameplay
+# - Bella stats
+var bella_stats: Dictionary = {
+	"hp"  : 20,
+	"hp_max"  : 20,
+
+	"pp"  : 40,
+	"pp_max"  : 40,
+
+	"level"  : 1,
+	"exp": 0,
+	
+	"strength" : 7,
+	"defense" : 5,
+	"agility" : 10,
+	"wisdom" : 8,
+	"power" : 9,
+}
+		
+func fairmath(value: float, change: float):
+	return round(value - (value * (change / 100)))
+
+func set_bella_stats():
+	bella_stats.level = 1
+	
+	bella_stats.max_hp = 20
+	bella_stats.max_mp = 40
+	
+	bella_stats.hp = bella_stats.max_hp
+	bella_stats.mp = bella_stats.max_mp
+	
+	bella_stats.strength = 7
+	bella_stats.defense = 5
+	bella_stats.agility = 10
+	bella_stats.wisdom = 6
+	bella_stats.power = 8
+	
+	
+	
+
+func _ready():
+	pass
+	#set_bella_stats()
+
+
 # Settings
 # - General
 var setting_fadeTime = 0.25
@@ -60,21 +106,25 @@ func set_setting():
 
 
 # Flags
-var flag_prev_scene: String
-var flag_prev_position: Vector2
+@export var flag_prev_scene: String
+@export var flag_prev_position: Vector2
 
 func quick_prev(scene: String, pos: Vector2):
 	flag_prev_scene = scene
 	flag_prev_position = pos
 	
+	flag_use_prev_position_in_scene = true
+	
 var flag_use_prev_position_in_scene: bool = false	
 	
 var flag_bella_house_appear_in_bed: bool = false
+var flag_position_helper_to_use: String = ""
 
 
 # Scene paths
-var scene_intro_cave: String = "res://assets/scenes/maps/map_cave1_all/map_cave1_all.tscn"
-var scene_bella_house: String = "res://assets/scenes/maps/map_bellahouse2/map_bellahouse_2.tscn"
-var scene_vespera_village: String = "res://assets/scenes/maps/map_vespera_village/map_vespera_village.tscn"
+var scene_intro_cave = "res://assets/scenes/maps/map_cave1_all/map_cave1_all.tscn"
+var scene_bella_house = "res://assets/scenes/maps/map_bellahouse2/map_bellahouse_2.tscn"
+var scene_vespera_village = "res://assets/scenes/maps/map_vespera_village/map_vespera_village.tscn"
+var scene_outside_vespera = "res://assets/scenes/maps/map_outside_vespera/map_outside_vespera.tscn"
 
 var battle_test1: String = "res://assets/scenes/battles/btl_test_1/btl_test_1.tscn"

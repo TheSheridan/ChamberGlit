@@ -85,6 +85,7 @@ signal fade_finished
 
 var fade_tween: Tween
 @export var fade_duration: float = 0.125
+@export var fade_color: Color = Color.BLACK
 
 
 # Main
@@ -104,6 +105,8 @@ func _ready():
 	
 	_fade_in.connect(fade_in.bind())
 	_fade_out.connect(fade_out.bind())
+	
+	_fade.hide()
 
 
 func _process(_delta) -> void:
@@ -159,6 +162,8 @@ func _process(_delta) -> void:
 	$Textbox.position = -(_sgt.window_size / 2) + $Camera.offset
 	
 	#$Textbox.position = position + $Camera.offset
+	
+	$ColorRect.color = fade_color
 
 func _physics_process(delta) -> void:
 	var input = get_input()
@@ -417,9 +422,12 @@ func fade_out():
 	fade_tween = create_tween()
 	fade_tween.tween_property($ColorRect, "modulate:a", 0, fade_duration)
 	
-	$ColorRect/Timer.start(fade_duration)
+	$ColorRect/Timer.start(fade_duration / 2)
+	await $ColorRect/Timer.timeout
+
+	stand_still = false
+	$ColorRect/Timer.start(fade_duration / 2)
 	await $ColorRect/Timer.timeout
 	
 	fade_finished.emit()
-	stand_still = false
 	print("Done!")

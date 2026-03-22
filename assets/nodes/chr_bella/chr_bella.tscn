@@ -46,6 +46,7 @@ target_position = Vector2(0, 25)
 
 [node name="Textbox" type="Control" parent="." unique_id=1357501630]
 editor_description = "DON'T EDIT THE TEXTBOX TEXT MANUALLY!!! It crashes Godot."
+visible = false
 z_index = 5
 layout_mode = 3
 anchors_preset = 15

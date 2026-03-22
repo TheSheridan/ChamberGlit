@@ -8,8 +8,11 @@
 [ext_resource type="AudioStream" uid="uid://i18mjtxykcdn" path="res://assets/audio/bgm_village.ogg" id="6_dxwdu"]
 [ext_resource type="Script" uid="uid://ckfm14eh2w3te" path="res://assets/scenes/maps/map_vespera_village/npc_battletest.gd" id="7_jfmu0"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7805"]
+size = Vector2(32, 24)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxwdu"]
-size = Vector2(32, 32)
+size = Vector2(512, 448)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfmu0"]
 size = Vector2(30, 30)
@@ -27,8 +30,23 @@ metadata/_edit_horizontal_guides_ = [768.0, -696.0, -872.0, 360.0, -2512.0, -656
 position = Vector2(272, 192)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Warps/BellaHouseWarp" unique_id=2064710909]
-position = Vector2(16, 16)
+position = Vector2(16, 12)
+shape = SubResource("RectangleShape2D_l7805")
+
+[node name="OutsideVesperaWarp" type="Area2D" parent="Warps" unique_id=1322724382]
+position = Vector2(-1088, -1920)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Warps/OutsideVesperaWarp" unique_id=1548670876]
+position = Vector2(256, 224)
 shape = SubResource("RectangleShape2D_dxwdu")
+
+[node name="PositionHelpers" type="Node" parent="." unique_id=1398961015]
+
+[node name="BellaHouse" type="Marker2D" parent="PositionHelpers" unique_id=979157575]
+position = Vector2(288, 248)
+
+[node name="VillageExit" type="Marker2D" parent="PositionHelpers" unique_id=748265273]
+position = Vector2(-832, -1437)
 
 [node name="Main" type="TileMapLayer" parent="." unique_id=1704168173]
 texture_filter = 1
@@ -41,7 +59,7 @@ pitch_scale = 1.05
 autoplay = true
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_mq1wm")]
-position = Vector2(8, 304)
+position = Vector2(-832, -1437)
 deceleration = 15000.0
 normal_speed = 180.0
 max_speed = 300.0
@@ -126,23 +144,24 @@ shape = SubResource("CircleShape2D_l7805")
 [node name="Sprite2D" type="Sprite2D" parent="NPC5" unique_id=1626219654]
 texture = ExtResource("5_dxwdu")
 
-[node name="NPC6" type="CharacterBody2D" parent="." unique_id=1477377941]
+[node name="NPCBattle" type="CharacterBody2D" parent="." unique_id=1477377941]
 position = Vector2(-704, -1152)
 script = ExtResource("7_jfmu0")
 text_to_send = ["Empezando batalla en 3... 2... 1..."]
 
-[node name="Collision" type="CollisionShape2D" parent="NPC6" unique_id=637601173]
+[node name="Collision" type="CollisionShape2D" parent="NPCBattle" unique_id=637601173]
 shape = SubResource("RectangleShape2D_jfmu0")
 
-[node name="Area" type="Area2D" parent="NPC6" unique_id=1457287515]
+[node name="Area" type="Area2D" parent="NPCBattle" unique_id=1457287515]
 
-[node name="Collision" type="CollisionShape2D" parent="NPC6/Area" unique_id=973714211]
+[node name="Collision" type="CollisionShape2D" parent="NPCBattle/Area" unique_id=973714211]
 shape = SubResource("CircleShape2D_l7805")
 
-[node name="Sprite2D" type="Sprite2D" parent="NPC6" unique_id=1183889546]
+[node name="Sprite2D" type="Sprite2D" parent="NPCBattle" unique_id=1183889546]
 texture = ExtResource("5_dxwdu")
 
 [connection signal="body_entered" from="Warps/BellaHouseWarp" to="." method="_on_bella_house_warp_body_entered"]
+[connection signal="body_entered" from="Warps/OutsideVesperaWarp" to="." method="_on_outside_vespera_warp_body_entered"]
 [connection signal="fade_finished" from="CharacterBella" to="." method="_on_character_bella_fade_finished"]
 [connection signal="body_entered" from="NPC/Area" to="NPC" method="_on_area_body_entered"]
 [connection signal="body_exited" from="NPC/Area" to="NPC" method="_on_area_body_exited"]
@@ -154,5 +173,5 @@ texture = ExtResource("5_dxwdu")
 [connection signal="body_exited" from="NPC4/Area" to="NPC4" method="_on_area_body_exited"]
 [connection signal="body_entered" from="NPC5/Area" to="NPC5" method="_on_area_body_entered"]
 [connection signal="body_exited" from="NPC5/Area" to="NPC5" method="_on_area_body_exited"]
-[connection signal="body_entered" from="NPC6/Area" to="NPC6" method="_on_area_body_entered"]
-[connection signal="body_exited" from="NPC6/Area" to="NPC6" method="_on_area_body_exited"]
+[connection signal="body_entered" from="NPCBattle/Area" to="NPCBattle" method="_on_area_body_entered"]
+[connection signal="body_exited" from="NPCBattle/Area" to="NPCBattle" method="_on_area_body_exited"]

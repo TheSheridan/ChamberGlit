@@ -17,9 +17,16 @@ func _ready():
 	
 	$CharacterBella._fade_out.emit()
 	
-	if _sgt.flag_use_prev_position_in_scene:
+	if _sgt.flag_use_prev_position_in_scene \
+	and _sgt.flag_prev_scene == _sgt.scene_vespera_village:
 		$CharacterBella.position = _sgt.flag_prev_position
 		_sgt.flag_use_prev_position_in_scene = false
+		
+	match _sgt.flag_position_helper_to_use:
+		"BellaHouse":
+			$CharacterBella.position = $PositionHelpers/BellaHouse.position
+		"TownExit":
+			$CharacterBella.position = $PositionHelpers/TownExit.position
 		
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed('ui_select'):
@@ -45,3 +52,16 @@ func _on_bella_house_warp_body_entered(body: Node2D) -> void:
 func _on_character_bella_fade_finished() -> void:
 	pass
 		
+
+
+func _on_outside_vespera_warp_body_entered(body: Node2D) -> void:
+	_sgt.flag_position_helper_to_use = ""
+	_sgt.quick_prev(_sgt.scene_vespera_village, $CharacterBella.position + Vector2(0, 40))
+	
+	create_tween().tween_property($CharacterBella, "camera_zoom", 1, $CharacterBella.fade_duration)
+	$CharacterBella._fade_in.emit()
+	
+	var timer = get_tree().create_timer($CharacterBella.fade_duration)
+	await timer.timeout
+	
+	_load.change_scene(_sgt.scene_outside_vespera)
