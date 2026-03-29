@@ -17,9 +17,11 @@ func _ready():
 	
 	$CharacterBella._fade_out.emit()
 	
-	if _sgt.flag_use_prev_position_in_scene \
-	and _sgt.flag_prev_scene == _sgt.scene_vespera_village:
-		$CharacterBella.position = _sgt.flag_prev_position
+	if _sgt.flag_use_prev_position_in_scene:
+		if _sgt.flag_prev_scene == _sgt.scene_vespera_village \
+		and _sgt.flag_scene_changed_after_battle:
+			$CharacterBella.position = _sgt.flag_prev_position
+		
 		_sgt.flag_use_prev_position_in_scene = false
 		
 	match _sgt.flag_position_helper_to_use:
@@ -27,6 +29,12 @@ func _ready():
 			$CharacterBella.position = $PositionHelpers/BellaHouse.position
 		"TownExit":
 			$CharacterBella.position = $PositionHelpers/TownExit.position
+		"NPCBattle":
+			$CharacterBella.position = $PositionHelpers/NPCBattle.position
+		" ":
+			pass
+		"":
+			pass
 		
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed('ui_select'):
@@ -52,8 +60,6 @@ func _on_bella_house_warp_body_entered(body: Node2D) -> void:
 func _on_character_bella_fade_finished() -> void:
 	pass
 		
-
-
 func _on_outside_vespera_warp_body_entered(body: Node2D) -> void:
 	_sgt.flag_position_helper_to_use = ""
 	_sgt.quick_prev(_sgt.scene_vespera_village, $CharacterBella.position + Vector2(0, 40))

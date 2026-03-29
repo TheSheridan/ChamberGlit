@@ -8,7 +8,7 @@ extends CharacterBody2D
 	"Test text.",
 ]
 
-@onready var bella = get_parent().get_node("CharacterBella")
+@onready var bella = $"../CharacterBella"
 
 var can_talk: bool = false
 var can_battle: bool = false
@@ -17,12 +17,7 @@ signal entered_area
 signal exited_area
 signal start_now
 
-
 func _ready():
-	print("This scene path: " + str(get_node(".").get_path()))
-	
-	var bella = get_node("../CharacterBella")
-	
 	entered_area.connect(bella.entered_area.bind())
 	exited_area.connect(bella.exited_area.bind())
 	start_now.connect(bella.npc_start_now.bind())
@@ -30,8 +25,6 @@ func _ready():
 	bella.let_stuff_after_textbox.connect(after_textbox.bind())
 
 func _process(_delta) -> void:
-	print("Can battle? " + str(can_battle))
-	
 	if can_talk:
 		bella.text_to_send = text_to_send
 		
@@ -56,7 +49,7 @@ func _on_area_body_exited(body: Node2D) -> void:
 	
 func after_textbox():
 	if can_battle:
-		var bella = get_parent().get_node("CharacterBella")
+		_sgt.flag_position_helper_to_use = ""
 		
 		bella.fade_color = Color.WHITE
 		bella._fade_in.emit()
@@ -66,4 +59,6 @@ func after_textbox():
 		
 		_sgt.quick_prev(_sgt.scene_vespera_village, bella.position)
 		_sgt.flag_use_prev_position_in_scene = true
+		_sgt.flag_position_helper_to_use = " "
+		
 		_load.change_scene(_sgt.battle_test1)

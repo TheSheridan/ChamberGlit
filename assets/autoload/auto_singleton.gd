@@ -118,7 +118,9 @@ func quick_prev(scene: String, pos: Vector2):
 var flag_use_prev_position_in_scene: bool = false	
 	
 var flag_bella_house_appear_in_bed: bool = false
-var flag_position_helper_to_use: String = ""
+var flag_position_helper_to_use: String = " "
+
+var flag_scene_changed_after_battle: bool = false
 
 
 # Scene paths

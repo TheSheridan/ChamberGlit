@@ -45,6 +45,9 @@ shape = SubResource("RectangleShape2D_dxwdu")
 [node name="BellaHouse" type="Marker2D" parent="PositionHelpers" unique_id=979157575]
 position = Vector2(288, 248)
 
+[node name="NPCBattle" type="Marker2D" parent="PositionHelpers" unique_id=612401626]
+position = Vector2(-704, -1104)
+
 [node name="VillageExit" type="Marker2D" parent="PositionHelpers" unique_id=748265273]
 position = Vector2(-832, -1437)
 
@@ -61,8 +64,8 @@ autoplay = true
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_mq1wm")]
 position = Vector2(-832, -1437)
 deceleration = 15000.0
-normal_speed = 170.0
-max_speed = 280.0
+normal_speed = 180.0
+max_speed = 300.0
 
 [node name="NPC" type="CharacterBody2D" parent="." unique_id=452241111]
 position = Vector2(1120, -232)

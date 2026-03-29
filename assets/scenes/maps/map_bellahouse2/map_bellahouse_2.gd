@@ -10,6 +10,7 @@ func _ready() -> void:
 	
 	if _sgt.flag_bella_house_appear_in_bed:
 		$CharacterBella.position = Vector2(320, 240)
+		_sgt.flag_bella_house_appear_in_bed = false
 	else:
 		$CharacterBella.position = Vector2(928, 384)
 

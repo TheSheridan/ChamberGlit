@@ -19,8 +19,7 @@ func _on_vespera_warp_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		_sgt.quick_prev(_sgt.scene_outside_vespera, $CharacterBella.position + Vector2(0, -40))
 		
-		create_tween().tween_property(
-				$CharacterBella, "camera_zoom", 2, $CharacterBella.fade_duration)
+		create_tween().tween_property($CharacterBella, "camera_zoom", 2, $CharacterBella.fade_duration)
 		$CharacterBella._fade_in.emit()
 		
 		var timer = get_tree().create_timer($CharacterBella.fade_duration)
