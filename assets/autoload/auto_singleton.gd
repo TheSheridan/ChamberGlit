@@ -108,12 +108,17 @@ func set_setting():
 # Flags
 @export var flag_prev_scene: String
 @export var flag_prev_position: Vector2
+@export var flag_helper: String
 
 func quick_prev(scene: String, pos: Vector2):
 	flag_prev_scene = scene
 	flag_prev_position = pos
 	
 	flag_use_prev_position_in_scene = true
+	
+func quick_scene(scene: String, helper: String):
+	pass
+	
 	
 var flag_use_prev_position_in_scene: bool = false	
 	
@@ -128,5 +133,7 @@ var scene_intro_cave = "res://assets/scenes/maps/map_cave1_all/map_cave1_all.tsc
 var scene_bella_house = "res://assets/scenes/maps/map_bellahouse2/map_bellahouse_2.tscn"
 var scene_vespera_village = "res://assets/scenes/maps/map_vespera_village/map_vespera_village.tscn"
 var scene_outside_vespera = "res://assets/scenes/maps/map_outside_vespera/map_outside_vespera.tscn"
+
+var scene_cave_2 = "res://assets/scenes/maps/map_cave2/map_cave2.tscn"
 
 var battle_test1: String = "res://assets/scenes/battles/btl_test_1/btl_test_1.tscn"

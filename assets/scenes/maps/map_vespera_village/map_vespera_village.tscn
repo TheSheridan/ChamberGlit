@@ -59,12 +59,13 @@ pitch_scale = 1.05
 autoplay = true
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_mq1wm")]
-position = Vector2(-832, -1437)
+position = Vector2(-520, -1360)
 deceleration = 15000.0
 normal_speed = 170.0
 max_speed = 280.0
 
 [node name="NPC" type="CharacterBody2D" parent="." unique_id=452241111]
+editor_description = "1120, -232"
 position = Vector2(1120, -232)
 script = ExtResource("4_lse63")
 text_to_send = ["\"A veces, hablarle a los animales salvajes les agrada y hace que pierdan el interés en luchar.\"", "...o eso habría dicho si esto no fuera una versión alpha del juego.", "Por cierto, soy el NPC no. 1."]
@@ -79,6 +80,8 @@ shape = SubResource("CircleShape2D_l7805")
 
 [node name="Sprite2D" type="Sprite2D" parent="NPC" unique_id=1994326388]
 texture = ExtResource("5_dxwdu")
+
+[node name="Timer" type="Timer" parent="NPC" unique_id=1732050890]
 
 [node name="NPC2" type="CharacterBody2D" parent="." unique_id=2086496931]
 position = Vector2(2504, -936)
@@ -96,6 +99,8 @@ shape = SubResource("CircleShape2D_l7805")
 [node name="Sprite2D" type="Sprite2D" parent="NPC2" unique_id=473505865]
 texture = ExtResource("5_dxwdu")
 
+[node name="Timer" type="Timer" parent="NPC2" unique_id=222911374]
+
 [node name="NPC3" type="CharacterBody2D" parent="." unique_id=1885532017]
 position = Vector2(2592, -272)
 script = ExtResource("4_lse63")
@@ -111,6 +116,8 @@ shape = SubResource("CircleShape2D_l7805")
 
 [node name="Sprite2D" type="Sprite2D" parent="NPC3" unique_id=1771527196]
 texture = ExtResource("5_dxwdu")
+
+[node name="Timer" type="Timer" parent="NPC3" unique_id=444076910]
 
 [node name="NPC4" type="CharacterBody2D" parent="." unique_id=1355095441]
 position = Vector2(1768, 416)
@@ -128,6 +135,8 @@ shape = SubResource("CircleShape2D_l7805")
 [node name="Sprite2D" type="Sprite2D" parent="NPC4" unique_id=1511120409]
 texture = ExtResource("5_dxwdu")
 
+[node name="Timer" type="Timer" parent="NPC4" unique_id=1777594110]
+
 [node name="NPC5" type="CharacterBody2D" parent="." unique_id=639881970]
 position = Vector2(1008, 1328)
 script = ExtResource("4_lse63")
@@ -143,6 +152,8 @@ shape = SubResource("CircleShape2D_l7805")
 
 [node name="Sprite2D" type="Sprite2D" parent="NPC5" unique_id=1626219654]
 texture = ExtResource("5_dxwdu")
+
+[node name="Timer" type="Timer" parent="NPC5" unique_id=770701436]
 
 [node name="NPCBattle" type="CharacterBody2D" parent="." unique_id=1477377941]
 position = Vector2(-704, -1152)

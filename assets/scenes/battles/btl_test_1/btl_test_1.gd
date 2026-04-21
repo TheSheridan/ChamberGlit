@@ -120,7 +120,10 @@ func _ready() -> void:
 	_fade._out.emit()
 	
 	#print("fairmath: " + str(_sgt.fairmath(20, 5)))
-
+	
+	if $"../auto_fade/Timer".timeout:
+		$BGM.play()
+	
 	$BGM.volume_db = -25
 	if custom_volume_db != 0:
 		create_tween().tween_property($BGM, 'volume_db', custom_volume_db, 0.5)
@@ -251,6 +254,8 @@ func after_battle():
 	_fade.color = Color.BLACK
 	_fade.fade_time = 0.5
 	_fade._in.emit()
+	
+	$BGMFightOver.stop()
 	
 	$Timer.start(0.5)
 	await $Timer.timeout
@@ -386,12 +391,17 @@ func lost_the_battle():
 func won_the_battle():
 	win_anim_lock = true
 	textbox.text = ""
+	
+	
+	$BGMFightOver.play()
+	create_tween().tween_property($BGMFightOver, 'volume_db', 1, 0.5)
 	anim_enemy_defeated()
 	create_tween().tween_property($UI/VBoxContainer, "modulate:a", 0, 0.5)
 	create_tween().set_ease(Tween.EASE_IN_OUT) \
 			.set_trans(Tween.TRANS_CUBIC) \
 			.tween_property($Camera, "position", Vector3(0, 0.4, 1), 1)
 	await $BattleTimer.timeout
+	
 	win_anim_lock = false
 	win_switch = true
 	bella_stats.exp += enemy_stats.give_exp

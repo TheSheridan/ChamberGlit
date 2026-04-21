@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dd451ykq1mhig"]
+
+[ext_resource type="AudioStream" uid="uid://b4knyk4e5lta1" path="res://assets/audio/sfxr/selecty.wav" id="1_5sx15"]
+[ext_resource type="AudioStream" uid="uid://bpi2qkuhi07wo" path="res://assets/audio/sfx_type_1.mp3" id="2_yb4k5"]
+[ext_resource type="AudioStream" uid="uid://bckmhr56yb2j" path="res://assets/audio/sfxr/piu.wav" id="3_4e6t5"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_5sx15")
+stream_1/stream = ExtResource("2_yb4k5")
+stream_1/weight = 0.9
+stream_2/stream = ExtResource("3_4e6t5")
+stream_2/weight = 0.8

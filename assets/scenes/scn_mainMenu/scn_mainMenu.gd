@@ -1,4 +1,8 @@
 # CODE REFACTORED!!!
+
+# GOAL
+# Fix cursor position
+
 extends Control
 
 
@@ -65,7 +69,9 @@ var anim_cursor_fade_time = 0.125
 func _ready():
 	RenderingServer.set_default_clear_color(Color(0.1416015625, 0.14938354492188, 0.15625))
 	_fade._out.emit()
-  
+	
+	$Camera2D.position = _sgt.window_size / 2
+	  
 	# DEBUG
 	TranslationServer.set_locale("es")
 
@@ -91,6 +97,10 @@ func _ready():
 	quit_button.mouse_entered.connect(Callable(self, "b_mouse_entered_quit"))
 
 	button_vbox.mouse_entered.connect(Callable(self, "b_mouse_entered_quit"))
+	
+	var lambda = func() -> void:
+		print("Hello world")
+	new_game_button.pressed.connect(lambda)
   
 	# Margin size
 	$Margin.offset_left += margin_size
@@ -127,7 +137,7 @@ func _ready():
 	$Grad/Up.texture.width = _sgt.window_size.x
 	$Grad/Down.texture.width = _sgt.window_size.x
 
-	# banner
+	# Banner
 	banner.position = Vector2(_sgt.window_size.x - banner.texture.get_width() - 90, 5)
 	banner_shake.position = banner.position + Vector2(
 		banner_shake.texture.get_width(),
@@ -211,9 +221,10 @@ func _process(_delta):
 
 			create_tween().set_ease(Tween.EASE_IN_OUT) \
 					.set_trans(Tween.TRANS_QUAD) \
-					.tween_property(description_text, "position", description_text.position + Vector2(
-						button_offset_x, button_offset_x),
-					button_time / 2)
+					.tween_property(
+						description_text, "position",
+						description_text.position + Vector2(button_offset_x, button_offset_x),
+						button_time / 2)
 
 			create_tween().set_ease(Tween.EASE_OUT) \
 				.tween_property(description_text, "modulate", Color(description_text.modulate, 0), button_time / 3)
@@ -292,6 +303,11 @@ func _process(_delta):
 				anim_buttonSlide(extras_button, extras_button_timer)
 
 			menu.QUIT:
+				create_tween() \
+						.set_ease(Tween.EASE_OUT) \
+						.set_trans(Tween.TRANS_CUBIC) \
+						.tween_property($Camera2D, 'zoom', Vector2(2, 2), 1)
+				
 				_sgt.music_play($Audio, _sgt._ease.IN, 0.25)
 				_sgt.sfx_play("roll") # Too large for close the game's window on time?
 				anim_buttonSlide(quit_button, quit_button_timer)

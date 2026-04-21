@@ -143,7 +143,7 @@ texture = ExtResource("9_jmph7")
 [node name="Letter" type="CharacterBody2D" parent="." unique_id=880769502]
 position = Vector2(4256, -1768)
 script = ExtResource("8_6dwa8")
-text_to_send = ["\"[i]Quizá, en el próximo ciclo podamos tener una segunda oportunidad.[/i]\"", "\"[i]Con que alguien se interese en nuestra causa bastará.[/i]\""]
+text_to_send = ["Es un gran letrero en la pared. Hay unos textos escritos en ella:", "\"[i]Quizás, en el próximo ciclo podamos tener una segunda oportunidad.[/i]\"", "\"[i]Con que alguien se interese en nuestra causa bastará.[/i]\""]
 
 [node name="Collision" type="CollisionShape2D" parent="Letter" unique_id=146645861]
 shape = SubResource("RectangleShape2D_jmph7")
@@ -159,7 +159,7 @@ texture = ExtResource("9_jmph7")
 [node name="Letter2" type="CharacterBody2D" parent="." unique_id=1198123512]
 position = Vector2(5088, -984)
 script = ExtResource("8_6dwa8")
-text_to_send = ["\"[i]Que los ágiles vayan y contengan el orbe.[/i]\"", "Sientes que has oído esa frase en algún otro lado."]
+text_to_send = ["Aquí hay otro letrero.", "\"[i]Que los ágiles vayan y contengan el orbe.[/i]\"", "Sientes que has oído esa frase en algún otro lado."]
 
 [node name="Collision" type="CollisionShape2D" parent="Letter2" unique_id=503337403]
 shape = SubResource("RectangleShape2D_jmph7")

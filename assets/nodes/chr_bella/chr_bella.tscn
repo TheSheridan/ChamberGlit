@@ -4,20 +4,11 @@
 [ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="2_1iqlj"]
 [ext_resource type="Shape2D" uid="uid://n8b4n1r7ox0s" path="res://assets/nodes/chr_bella/collision_shape.res" id="2_lyk7a"]
 [ext_resource type="Texture2D" uid="uid://7kdhwpxvakid" path="res://assets/images/gui/gui_textbox.png" id="3_1iqlj"]
+[ext_resource type="AudioStream" uid="uid://b8ai8ae3gijm6" path="res://assets/audio/sfxr/tree kick-2.wav" id="4_bry7v"]
 [ext_resource type="Script" uid="uid://cq2ufre2bsamw" path="res://assets/nodes/chr_bella/textbox.gd" id="4_u8ldg"]
 [ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="6_nd36p"]
-[ext_resource type="AudioStream" uid="uid://bckmhr56yb2j" path="res://assets/audio/sfxr/piu.wav" id="6_pplrl"]
-[ext_resource type="AudioStream" uid="uid://b4knyk4e5lta1" path="res://assets/audio/sfxr/selecty.wav" id="7_nd36p"]
-[ext_resource type="AudioStream" uid="uid://bpi2qkuhi07wo" path="res://assets/audio/sfx_type_1.mp3" id="8_vo6q7"]
+[ext_resource type="AudioStream" uid="uid://dd451ykq1mhig" path="res://assets/audio/talk_sounds.tres" id="8_vo6q7"]
 [ext_resource type="Texture2D" uid="uid://bmh0aa6vpspnl" path="res://assets/images/face.png" id="10_2ud4e"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nd36p"]
-streams_count = 3
-stream_0/stream = ExtResource("7_nd36p")
-stream_1/stream = ExtResource("8_vo6q7")
-stream_1/weight = 0.9
-stream_2/stream = ExtResource("6_pplrl")
-stream_2/weight = 0.8
 
 [node name="CharacterBella" type="CharacterBody2D" unique_id=1789104968]
 script = ExtResource("1_hubry")
@@ -44,9 +35,16 @@ target_position = Vector2(0, 25)
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=45888202]
 
+[node name="WalkSound" type="AudioStreamPlayer2D" parent="." unique_id=1537514777]
+stream = ExtResource("4_bry7v")
+max_distance = 831.0
+attenuation = 1.9318731
+bus = &"sfx"
+
+[node name="Timer" type="Timer" parent="WalkSound" unique_id=1333128067]
+
 [node name="Textbox" type="Control" parent="." unique_id=1357501630]
 editor_description = "DON'T EDIT THE TEXTBOX TEXT MANUALLY!!! It crashes Godot."
-visible = false
 z_index = 5
 layout_mode = 3
 anchors_preset = 15
@@ -128,8 +126,9 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_nd36p")
 
 [node name="LetterSound" type="AudioStreamPlayer" parent="Textbox" unique_id=278389856]
-stream = SubResource("AudioStreamRandomizer_nd36p")
-bus = &"sfx"
+stream = ExtResource("8_vo6q7")
+pitch_scale = 0.41
+bus = &"bgm"
 
 [node name="Timer" type="Timer" parent="Textbox" unique_id=2094042896]
 

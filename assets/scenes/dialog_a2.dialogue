@@ -1,0 +1,28 @@
+~ start
+Alguien: Este será el diálogo más básico.
+Una vez que termine, ¿recordarás a su mensajero?
+
+- Sin dudas => yes
+- Lo pensaré => kinda
+- No lo haré... => no
+
+~ yes
+Oh, me hace muy feliz que lo haga ^^
+...Pero lamentablemente debo de irme.
+=> end
+
+~ kinda
+Je, espero que lo hagas.
+
+Me tengo que ir, cariño.
+=> end
+
+~ no
+Vale. No te olvidaré por mi parte.
+Me tendré que ir en unos momentos, así que...
+Adiós.
+(Te ha mandado un beso desde la distancia.)
+
+~ end
+Adiós...
+(Te ha mandado un beso desde la distancia.)

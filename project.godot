@@ -34,6 +34,11 @@ auto_paths="*res://assets/autoload/auto_paths.gd"
 sfx="*res://assets/autoload/sfx.tscn"
 auto_load="*res://assets/autoload/auto_load.gd"
 auto_fade="*uid://b4uadobc2g8lr"
+DialogueManager="*uid://c3rodes2l3gxb"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://assets/scenes/debug_dialogManagerTest/anotherBalloon/balloon.tscn"
 
 [display]
 
@@ -49,9 +54,13 @@ project/assembly_name="ChamberGlit (alpha 0.04)"
 
 movie_writer/movie_file="C:/Archivos de Leo/Juegos/Game engines/Godot/Proyectos/ChamberGlit (alpha 0.04)/video.avi"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
 [gui]
 
-theme/custom_font="uid://dkekq802vmfgk"
+theme/custom_font="uid://dh4cbm4v84cq0"
 
 [importer_defaults]
 
@@ -113,6 +122,7 @@ locale/translation_remaps={
 "res://assets/langs/lang.csv": PackedStringArray("res://assets/langs/lang.en.translation:en", "res://assets/langs/lang.es.translation:en")
 }
 locale/translations=PackedStringArray("res://assets/langs/lang.en.translation", "res://assets/langs/lang.es.translation")
+locale/translations_pot_files=PackedStringArray("res://assets/scenes/dialog_a2.dialogue")
 
 [rendering]
 

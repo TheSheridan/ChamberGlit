@@ -67,6 +67,8 @@ var is_camera_zoom_on = true
 var get_input_temp_position: Vector2 = Vector2(0, 0)
 
 # Textbox
+@export var textbox_scale: float = 0.5
+
 signal open_textbox
 signal close_textbox
 signal let_stuff_after_textbox
@@ -108,12 +110,12 @@ func _ready():
 	
 	_fade.hide()
 
-
+var walk_sound_bool: bool = true
 func _process(_delta) -> void:
 	if is_camera_zoom_on:
 		$Camera.zoom = Vector2(camera_zoom, camera_zoom)
 		# TODO: Figure out a way to match the ratio
-		$Textbox.scale = Vector2(0.5, 0.5)
+		$Textbox.scale = Vector2(textbox_scale, textbox_scale)
 	
 	# looked_beyond
 	# if Input.is_action_just_pressed("ui_select"):
@@ -146,6 +148,16 @@ func _process(_delta) -> void:
 	elif direction_input.x > 0 or direction_input.y > 0:
 		#print("Calling lerp_camera_right()")
 		lerp_camera_right()
+		
+	#while direction_input != Vector2.ZERO:
+		#if walk_sound_bool:
+			#$WalkSound.play()
+		#
+		#walk_sound_bool = false
+		#$WalkSound/Timer.start(0.5)
+		#print($WalkSound/Timer.time_left)
+		#await $WalkSound/Timer.timeout
+		#walk_sound_bool = true
 		
 	get_input_temp_position = get_input()
 	position_previous = position

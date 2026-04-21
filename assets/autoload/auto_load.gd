@@ -2,6 +2,7 @@ extends Control
 
 
 @onready var _fade = get_node('/root/auto_fade')
+@onready var _sgt = get_node('/root/auto_singleton')
 
 # -+ Main variables +-
 @export var can_show_anim: bool = true
@@ -13,7 +14,9 @@ var fade_time_prompt = 0.125
 
 # Change scene (custom, using threads)
 var thread: Thread
-func change_scene(path: String):
+func change_scene(path: String, helper: String = ""):
+	_sgt.flag_helper = helper
+	
 	if is_instance_valid(thread) and thread.is_started():
 		thread.wait_to_finish()
   
