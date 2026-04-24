@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bf86kxlo15rot"]
+
+[ext_resource type="PackedScene" uid="uid://cuoqd1q24meyq" path="res://assets/scenes/debug_dialogManagerTest/chr_bella_debug_dialogue/chr_bella.tscn" id="1_56xtp"]
+[ext_resource type="Script" uid="uid://g1q3ax7p320n" path="res://assets/scenes/debug_dialogManagerTest/chest.gd" id="2_lbnwq"]
+[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="3_4jl42"]
+[ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="3_oy02t"]
+[ext_resource type="Resource" uid="uid://bht4l5yow3d4w" path="res://assets/scenes/dialog_a2.dialogue" id="4_sq8i4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oy02t"]
+size = Vector2(30, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sq8i4"]
+radius = 35.128338
+
+[node name="B" type="Node2D" unique_id=1514058068]
+
+[node name="CharacterBella" parent="." unique_id=1789104968 instance=ExtResource("1_56xtp")]
+position = Vector2(448, 280)
+
+[node name="Chest" type="CharacterBody2D" parent="." unique_id=1321306931]
+position = Vector2(632, 296)
+script = ExtResource("2_lbnwq")
+
+[node name="Collision" type="CollisionShape2D" parent="Chest" unique_id=1810089080]
+shape = SubResource("RectangleShape2D_oy02t")
+
+[node name="Actionable2D" type="Area2D" parent="Chest" unique_id=1501589812]
+script = ExtResource("3_oy02t")
+dialogue_resource = ExtResource("4_sq8i4")
+dialogue_cue = "start"
+metadata/_custom_type_script = "uid://cqcur1rm7433g"
+
+[node name="Collision" type="CollisionShape2D" parent="Chest/Actionable2D" unique_id=1851144164]
+shape = SubResource("CircleShape2D_sq8i4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chest" unique_id=1856292917]
+texture = ExtResource("3_4jl42")

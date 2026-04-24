@@ -1,6 +1,9 @@
 extends Node2D
 
 
+@onready var bella = $CharacterBella
+@onready var balloon = $CharacterBella/ExampleBalloon
+
 @onready var _fade = get_node('/root/auto_fade')
 @onready var _sgt = get_node('/root/auto_singleton')
 @onready var _load = get_node('/root/auto_load')
@@ -25,13 +28,31 @@ var locations: Array = [
 
 
 func _ready():
-	$CharacterBella._fade_out.emit()
+	bella._fade_out.emit()
 	
 	if appear_normally:
-		$CharacterBella.position = Vector2(336, 216)
+		bella.position = Vector2(336, 216)
 	
-func _process(delta: float) -> void:
-	_fade.position = $CharacterBella.position - _sgt.window_size / 2
+func _process(_delta: float) -> void:
+	_sgt.handle_dialog(bella, balloon)
+	_fade.position = bella.position - _sgt.window_size / 2
+	
+	match _sgt.flag_cave1_bridge:
+		false:
+			$BridgeBlock.show()
+		true:
+			$BridgeBlock.hide()
+			$BridgeBlock.position.y = -1332.0
+	
+#func handle_dialog():
+	#if not balloon.after_closing:
+		#if Input.is_action_just_pressed("ui_accept"):
+			#if not balloon.is_running_dialog:
+				#bella.npc_start_now()
+				#bella.stand_still = true
+	#else:
+		#bella.stand_still = false
+		#balloon.after_closing = false
 
 
 func pause_music():
@@ -43,13 +64,13 @@ func resume_music():
 	pause_music_tween.tween_property($Audio, "volume_db", 0, pause_music_time)
 
 func warp(warp_position: Vector2):
-	$CharacterBella._fade_in.emit()
+	bella._fade_in.emit()
 	$Timer.start(_fade.fade_time)
 	await $Timer.timeout
 	
-	$CharacterBella.position = warp_position
+	bella.position = warp_position
 	
-	$CharacterBella._fade_out.emit()
+	bella._fade_out.emit()
 	$Timer.start(_fade.fade_time)
 	await $Timer.timeout
 
@@ -78,10 +99,10 @@ func _on_r_4_warp_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):
 		warp(locations[5])
 
-func _on_npc_test_exited_area() -> void:
-	pass # Replace with function body.
-
 func _on_bella_house_warp_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):
 		_sgt.flag_bella_house_appear_in_bed = true
 		_load.change_scene(_sgt.scene_bella_house)
+
+func _on_chest_start_now() -> void:
+	balloon.dialogue_resource = $Chest.text_to_send

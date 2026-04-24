@@ -12,7 +12,7 @@ func _ready():
 	$CharacterBella.camera_zoom = 1
 	$CharacterBella.textbox_scale = 1
 	
-	print("Position helper:" + str(_sgt.flag_helper))
+	#print("Position helper:" + str(_sgt.flag_helper))
 	
 	check_bella_position()
 

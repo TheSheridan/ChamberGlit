@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bmln3rv0ltw4f"]
+
+[ext_resource type="Script" uid="uid://8r868mxiiuw" path="res://assets/scenes/!_debug/map_template/map_template.gd" id="1_2q5fx"]
+[ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="1_a0fhs"]
+
+[node name="TemplateMap" type="Node2D" unique_id=1568421946]
+script = ExtResource("1_2q5fx")
+
+[node name="Warps" type="Node" parent="." unique_id=1251966895]
+
+[node name="PositionHelpers" type="Node" parent="." unique_id=109908304]
+
+[node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("1_a0fhs")]
+position = Vector2(200, 96)
+deceleration = 12000.0
+normal_speed = 200.0
+max_speed = 400.0

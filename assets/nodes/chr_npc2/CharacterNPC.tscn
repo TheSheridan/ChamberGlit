@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c4n222408aweu"]
+
+[ext_resource type="Script" uid="uid://bx3ltdtqt12p3" path="res://assets/nodes/chr_npc2/character_npc.gd" id="1_ibori"]
+[ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="4_dtur0"]
+[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="6_5nm04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7enxj"]
+size = Vector2(30, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wuf6"]
+radius = 35.128338
+
+[node name="CharacterNpc" type="CharacterBody2D" unique_id=1334509439]
+script = ExtResource("1_ibori")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=652340293]
+shape = SubResource("RectangleShape2D_7enxj")
+
+[node name="Actionable2D" type="Area2D" parent="." unique_id=1096269929]
+script = ExtResource("4_dtur0")
+metadata/_custom_type_script = "uid://cqcur1rm7433g"
+
+[node name="Collision" type="CollisionShape2D" parent="Actionable2D" unique_id=1690090556]
+shape = SubResource("CircleShape2D_2wuf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=866746727]
+texture = ExtResource("6_5nm04")
+
+[connection signal="body_entered" from="Actionable2D" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="Actionable2D" to="." method="_on_area_body_exited"]
+[connection signal="dialogue_ended" from="Actionable2D" to="." method="_on_actionable_2d_dialogue_ended"]

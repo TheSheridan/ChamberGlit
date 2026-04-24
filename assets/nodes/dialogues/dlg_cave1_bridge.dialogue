@@ -1,0 +1,18 @@
+~ start
+if not auto_singleton.flag_cave1_bridge:
+	Es un interruptor, pero te preguntas qué accionará.
+	Tal vez sirva para levantar el puente. ¿Quieres usarlo?
+	- Venga, que se tumbe => yes
+	- Lo dejaré como está => no
+else:
+	El puente ya cayó. No veo razón en levantarlo de nuevo.
+	# ...¿o sí?
+	=> END
+
+~ yes
+(insertar sfx de puente levadizo cayendo)
+set auto_singleton.flag_cave1_bridge = true
+El puente levadizo bajó.
+
+~ no
+=> END

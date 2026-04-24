@@ -1,0 +1,44 @@
+~ start
+[color=green]Ruth[/color]: ...Oh, buenos días, Bella. Siento que no podré salir ahora, tengo que hacer varias cosas en la aldea primero.
+- ¿Qué hay de nuevo? => wassup
+- ¿Qué tipo de cosas? => things
+- Vale => END
+
+~ choices2
+[color=green]Ruth[/color]: ¿Querías decirme algo más?
+- ¿Qué hay de nuevo? => wassup
+- ¿Qué tipo de cosas? => things
+- Vale => END
+
+~ wassup
+[color=green]Ruth[/color]: Mmm, adivinaré. Vas a ir a las montañas otra vez, ¿no?
+[color=green]Ruth[/color]: Ten cuidado, ya sabes lo peligrosos que están los animales salvajes.
+[color=green]Ruth[/color]: Cuando acabes, reúnete con nosotros. Yo y [color=yellow]Sigi[/color] te esperaremos aquí.
+=> choices2
+
+~ things
+[color=green]Ruth[/color]: Quiero conseguir comida. También necesito hablar con el Jerarca sobre mis padres.
+[color=green]Ruth[/color]: No he tenido descanso desde que cayeron enfermos...
+
+if not auto_singleton.flag_vespera_accept_to_search_herbs:
+	=> herbs
+else:
+	=> choices2
+
+~ herbs
+# Desvanecer música aquí
+[color=green]Ruth[/color]: ...¿puedo pedirte algo?
+[color=green]Ruth[/color]: ¿Podrías buscarme unas hierbas medicinales, en las montañas?
+- Vale => herbs_accept
+- Paso => herbs_deny
+=> choices2
+
+~ herbs_accept
+[color=green]Ruth[/color]: ¡Genial! Están más allá del puente, a las afueras de la aldea.
+[color=green]Ruth[/color]: Esperaré hasta que llegues.
+set auto_singleton.flag_vespera_accept_to_search_herbs = true
+=> END
+
+~ herbs_deny
+[color=green]Ruth[/color]: Entiendo...
+=> choices2

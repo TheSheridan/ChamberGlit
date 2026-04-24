@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cf4obwcitvbwk"]
+
+[ext_resource type="Script" uid="uid://d0g1muu1mngvj" path="res://assets/scenes/debug_dialogManagerTest/a.gd" id="1_tbdg4"]
+[ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/scenes/debug_dialogManagerTest/balloon.tscn" id="2_hl2wj"]
+[ext_resource type="Resource" uid="uid://bht4l5yow3d4w" path="res://assets/scenes/dialog_a2.dialogue" id="3_kcv17"]
+
+[node name="DebugDialogueManagerTest" type="Control" unique_id=276591282]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 496.0
+offset_bottom = 72.0
+script = ExtResource("1_tbdg4")
+
+[node name="ExampleBalloon" parent="." unique_id=38036521 instance=ExtResource("2_hl2wj")]
+dialogue_resource = ExtResource("3_kcv17")
+start_from_cue = ""
+auto_start = true
+will_block_other_input = true
+next_action = &"ui_accept"
+skip_action = &"ui_cancel"

@@ -1,17 +1,16 @@
-[gd_scene format=3 uid="uid://c3lhf4oj51vy6"]
+[gd_scene format=3 uid="uid://c4pcxy8wjqxoh"]
 
-[ext_resource type="Script" uid="uid://vqevqq6025eh" path="res://assets/nodes/chr_bella/chr_bella.gd" id="1_hubry"]
-[ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="2_1iqlj"]
-[ext_resource type="Shape2D" uid="uid://n8b4n1r7ox0s" path="res://assets/nodes/chr_bella/collision_shape.res" id="2_lyk7a"]
-[ext_resource type="Texture2D" uid="uid://7kdhwpxvakid" path="res://assets/images/gui/gui_textbox.png" id="3_1iqlj"]
-[ext_resource type="AudioStream" uid="uid://b8ai8ae3gijm6" path="res://assets/audio/sfxr/tree kick-2.wav" id="4_bry7v"]
-[ext_resource type="Script" uid="uid://cq2ufre2bsamw" path="res://assets/nodes/chr_bella/textbox.gd" id="4_u8ldg"]
-[ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="6_nd36p"]
-[ext_resource type="AudioStream" uid="uid://dd451ykq1mhig" path="res://assets/audio/talk_sounds.tres" id="8_vo6q7"]
-[ext_resource type="Texture2D" uid="uid://bmh0aa6vpspnl" path="res://assets/images/face.png" id="10_2ud4e"]
+[ext_resource type="Script" uid="uid://bkib2e877i508" path="res://assets/nodes/chr_bella/chr_bella.gd" id="1_85iyo"]
+[ext_resource type="Shape2D" uid="uid://baj7pkphrbtv6" path="res://assets/nodes/chr_bella/collision_shape.res" id="2_os1l5"]
+[ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="3_460l1"]
+[ext_resource type="AudioStream" uid="uid://b8ai8ae3gijm6" path="res://assets/audio/sfxr/tree kick-2.wav" id="4_48kbk"]
+[ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/scenes/!_debug/debug_dialogManagerTest/balloon.tscn" id="5_5v7vn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5v7vn"]
+radius = 16.0
 
 [node name="CharacterBella" type="CharacterBody2D" unique_id=1789104968]
-script = ExtResource("1_hubry")
+script = ExtResource("1_85iyo")
 camera_zoom = 2.0
 initial_speed = 300.0
 acceleration = 100.0
@@ -19,13 +18,13 @@ deceleration = 200.0
 max_speed = 700.0
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2139227207]
-shape = ExtResource("2_lyk7a")
+shape = ExtResource("2_os1l5")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1742886674]
 modulate = Color(0.602234, 0.76302, 0.914063, 1)
 texture_filter = 1
 scale = Vector2(2, 2)
-sprite_frames = ExtResource("2_1iqlj")
+sprite_frames = ExtResource("3_460l1")
 animation = &"idle_down"
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1614492719]
@@ -36,106 +35,15 @@ target_position = Vector2(0, 25)
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=45888202]
 
 [node name="WalkSound" type="AudioStreamPlayer2D" parent="." unique_id=1537514777]
-stream = ExtResource("4_bry7v")
+stream = ExtResource("4_48kbk")
 max_distance = 831.0
 attenuation = 1.9318731
 bus = &"sfx"
 
 [node name="Timer" type="Timer" parent="WalkSound" unique_id=1333128067]
 
-[node name="Textbox" type="Control" parent="." unique_id=1357501630]
-editor_description = "DON'T EDIT THE TEXTBOX TEXT MANUALLY!!! It crashes Godot."
-z_index = 5
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -320.0
-offset_top = -240.0
-offset_right = -320.0
-offset_bottom = -240.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(320, 240)
-script = ExtResource("4_u8ldg")
-
-[node name="PatchMargin" type="MarginContainer" parent="Textbox" unique_id=1929414968]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.7
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 620.0
-offset_bottom = 460.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(300, 230)
-
-[node name="Ratio" type="AspectRatioContainer" parent="Textbox/PatchMargin" unique_id=931114942]
-layout_mode = 2
-ratio = 4.0
-alignment_horizontal = 0
-alignment_vertical = 2
-
-[node name="NinePatch" type="NinePatchRect" parent="Textbox/PatchMargin/Ratio" unique_id=590661291]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("3_1iqlj")
-region_rect = Rect2(0, 0, 48, 48)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 16
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-
-[node name="LabelMargin" type="MarginContainer" parent="Textbox" unique_id=513319010]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.7
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 35.0
-offset_top = 35.0
-offset_right = 605.0
-offset_bottom = 450.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Ratio" type="AspectRatioContainer" parent="Textbox/LabelMargin" unique_id=82655585]
-layout_mode = 2
-ratio = 4.3
-alignment_horizontal = 0
-alignment_vertical = 2
-
-[node name="Label" type="RichTextLabel" parent="Textbox/LabelMargin/Ratio" unique_id=2002792489]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 25
-theme_override_font_sizes/bold_font_size = 25
-bbcode_enabled = true
-text = "test"
-fit_content = true
-
-[node name="Arrow" type="Sprite2D" parent="Textbox" unique_id=1053862267]
-modulate = Color(1, 1, 1, 0)
-texture_filter = 1
-position = Vector2(592, 432)
-scale = Vector2(2, 2)
-texture = ExtResource("6_nd36p")
-
-[node name="LetterSound" type="AudioStreamPlayer" parent="Textbox" unique_id=278389856]
-stream = ExtResource("8_vo6q7")
-pitch_scale = 0.41
-bus = &"bgm"
-
-[node name="Timer" type="Timer" parent="Textbox" unique_id=2094042896]
-
-[node name="Sprite2D" type="Sprite2D" parent="Textbox" unique_id=1047794366]
+[node name="ExampleBalloon" parent="." unique_id=38036521 instance=ExtResource("5_5v7vn")]
 visible = false
-position = Vector2(88, 240)
-texture = ExtResource("10_2ud4e")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1189982576]
 visible = false
@@ -147,9 +55,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="ColorRect" unique_id=354670079]
 
-[connection signal="close_textbox" from="." to="Textbox" method="_on_character_bella_close_textbox"]
-[connection signal="entered_area_2" from="." to="Textbox" method="_on_character_bella_entered_area_2"]
-[connection signal="exited_area_2" from="." to="Textbox" method="_on_character_bella_exited_area_2"]
-[connection signal="open_textbox" from="." to="Textbox" method="_on_character_bella_open_textbox"]
-[connection signal="already_closed" from="Textbox" to="." method="_on_textbox_already_closed"]
-[connection signal="stand_still" from="Textbox" to="." method="_on_textbox_stand_still"]
+[node name="Talker" type="Area2D" parent="." unique_id=799162984]
+visibility_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Talker" unique_id=942555777]
+shape = SubResource("CircleShape2D_5v7vn")

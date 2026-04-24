@@ -1,3 +1,4 @@
+## Singleton autoload for most of all variables, flags and functions the game uses.
 extends Node
 
 
@@ -31,6 +32,30 @@ func get_button_prompt(key: String):
 
 
 # Gameplay
+# - Scene stuff
+func handle_dialog(bella, balloon):
+	if bella.can_talk:
+		if not balloon.after_closing:
+			if Input.is_action_just_pressed("ui_accept"):
+				if not balloon.is_running_dialog:
+					bella.npc_start_now()
+					bella.stand_still = true
+		else:
+			bella.stand_still = false
+			balloon.after_closing = false
+			
+func check_bella_position(bella, scene_name: String):
+	var helper = get_node("../" + scene_name + "/PositionHelpers/" + flag_helper)
+	var after_battle = get_node("../" + scene_name + "/PositionHelpers/AfterBattle")
+	
+	after_battle.position = flag_prev_position
+	
+	if flag_helper != "":
+		bella.position = helper.position
+	elif flag_helper == "AfterBattle":
+		bella.position = after_battle.position
+	
+
 # - Bella stats
 var bella_stats: Dictionary = {
 	"hp"  : 20,
@@ -120,20 +145,33 @@ func quick_scene(scene: String, helper: String):
 	pass
 	
 	
-var flag_use_prev_position_in_scene: bool = false	
-	
-var flag_bella_house_appear_in_bed: bool = false
+#region (Flags)
+# General
+## Use previous position in the current scene?
+var flag_use_prev_position_in_scene: bool = false
+## We changed scenes after the battle ended?
+var flag_scene_changed_after_battle: bool = false
+## Will be deprecated soon...
 var flag_position_helper_to_use: String = " "
 
-var flag_scene_changed_after_battle: bool = false
+# Maps
+## Bridge at the Ancient Ruins.
+var flag_cave1_bridge: bool = false
+
+## While true, Bella will appear at the bed of his house. Useful for Continues.
+var flag_bella_house_appear_in_bed: bool = false
+## Bella accepted Ruth fetch quest?
+var flag_vespera_accept_to_search_herbs: bool = false
+#endregion
 
 
-# Scene paths
+#region (Scene Paths)
 var scene_intro_cave = "res://assets/scenes/maps/map_cave1_all/map_cave1_all.tscn"
 var scene_bella_house = "res://assets/scenes/maps/map_bellahouse2/map_bellahouse_2.tscn"
-var scene_vespera_village = "res://assets/scenes/maps/map_vespera_village/map_vespera_village.tscn"
+var scene_vespera = "res://assets/scenes/maps/map_vespera/map_vespera.tscn"
 var scene_outside_vespera = "res://assets/scenes/maps/map_outside_vespera/map_outside_vespera.tscn"
 
 var scene_cave_2 = "res://assets/scenes/maps/map_cave2/map_cave2.tscn"
 
 var battle_test1: String = "res://assets/scenes/battles/btl_test_1/btl_test_1.tscn"
+#endregion

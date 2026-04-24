@@ -154,7 +154,7 @@ func _ready() -> void:
 @onready var camera_prev_offset = $Camera.position
 
 func _process(delta: float) -> void:
-	print("prev scene: " + str(_sgt.flag_prev_scene))
+	#print("prev scene: " + str(_sgt.flag_prev_scene))
 	
 	$UI/DebugLabel.text = "debug stats:\nPS: " + str(bella_stats.hp) \
 		+ "\nPP: " + str(bella_stats.pp) \
@@ -228,7 +228,7 @@ func _process(delta: float) -> void:
 					$UI/VBoxContainer/Button0.grab_focus()
 						
 			if enemy_stats.hp <= 0:
-				print("The check worked!")
+				#print("The check worked!")
 				is_your_turn = false
 				
 				if not player_defeated_lock:
@@ -237,7 +237,7 @@ func _process(delta: float) -> void:
 					won_the_battle()
 			
 			if bella_stats.hp <= 0:
-				print("Bella check")
+				#print("Bella check")
 				is_your_turn = false
 
 				if not player_defeated_lock:
@@ -245,12 +245,12 @@ func _process(delta: float) -> void:
 					lost_the_battle()
 					
 			if win_switch:
-				after_battle()
+				after_winning()
 				
 			if lose_switch:
 				after_losing()
 
-func after_battle():
+func after_winning():
 	_fade.color = Color.BLACK
 	_fade.fade_time = 0.5
 	_fade._in.emit()
@@ -260,8 +260,8 @@ func after_battle():
 	$Timer.start(0.5)
 	await $Timer.timeout
 	
-	#_sgt.flag_scene_changed_after_battle = true
-	_load.change_scene(_sgt.flag_prev_scene)
+	#_sgt.flag_scene_changed_after_winning = true
+	_load.change_scene(_sgt.flag_prev_scene, "AfterBattle")
 	
 func after_losing():
 	_fade.fade_time = 0.5
@@ -276,7 +276,7 @@ func after_losing():
 	$Timer.start(0.75)
 	await $Timer.timeout
 
-	_sgt.flag_scene_changed_after_battle = true
+	_sgt.flag_scene_changed_after_winning = true
 	_sgt.flag_bella_house_appear_in_bed = true
 	_load.change_scene(_sgt.scene_bella_house)
 
@@ -290,10 +290,10 @@ func turn_chain():
 	if turn_order_read < turn_order.size():
 		match turn_order[turn_order_read]:
 			player_initiative:
-				print("1")
+				#print("1")
 				player_turn()
 			enemy_initiative:
-				print("2")
+				#print("2")
 				enemy_turn()
 			
 		print_rich("[color=yellow]-> current_turn: " + str(turn_order[turn_order_read]))
@@ -333,7 +333,7 @@ func decide_turn_order():
 	turn_chain_ready = true
 	
 	# Debug
-	print("initiative: " + str(initiative) + "[n]turn_order:" + str(turn_order))
+	#print("initiative: " + str(initiative) + "[n]turn_order:" + str(turn_order))
 	return initiative
 
 func player_turn():
@@ -592,11 +592,11 @@ func button_action_4():
 	$Timer.start($FleeSound.stream.get_length() / 2)
 	await $Timer.timeout
 	
-	_sgt.flag_scene_changed_after_battle = true
+	_sgt.flag_scene_changed_after_winning = true
 	
 	# travel back to previous scene
 	get_node('/root/auto_fade')._in.emit()
-	_load.change_scene(_sgt.flag_prev_scene)
+	_load.change_scene(_sgt.flag_prev_scene, "AfterBattle")
 	
 func _on_flee_sound_finished() -> void:
 	print("a")

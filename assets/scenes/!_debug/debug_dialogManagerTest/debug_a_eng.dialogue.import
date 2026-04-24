@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://csc77ptbxpdwc"
+path="res://.godot/imported/debug_a_eng.dialogue-1c09b9f0431c3bb32a3bf34a371b43e9.tres"
+
+[deps]
+
+source_file="res://assets/scenes/!_debug/debug_dialogManagerTest/debug_a_eng.dialogue"
+dest_files=["res://.godot/imported/debug_a_eng.dialogue-1c09b9f0431c3bb32a3bf34a371b43e9.tres"]
+
+[params]
+
+defaults=true

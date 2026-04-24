@@ -1,14 +1,19 @@
-[gd_scene format=3 uid="uid://dfjcmyj4pa08c"]
+[gd_scene format=3 uid="uid://0xkf1ifg7aov"]
 
-[ext_resource type="Script" uid="uid://bvlalm6w1hui6" path="res://assets/scenes/maps/map_cave1_all/map_cave_1_all.gd" id="1_c7rph"]
+[ext_resource type="Script" uid="uid://pg3x4qth25r7" path="res://assets/scenes/maps/map_cave1_all/map_cave_1_all.gd" id="1_c7rph"]
 [ext_resource type="PackedScene" uid="uid://m2mqg4lbrufk" path="res://assets/scenes/maps/map_cave1_r1/map_cave1_r1.tscn" id="1_w2pe3"]
 [ext_resource type="PackedScene" uid="uid://c6304yy2i2c86" path="res://assets/scenes/maps/map_cave1_r2/map_cave1_r2.tscn" id="2_c7rph"]
+[ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_rqe04"]
 [ext_resource type="PackedScene" uid="uid://gldfgy6co3qo" path="res://assets/scenes/maps/map_cave1_r3/map_cave1_r3.tscn" id="3_lgact"]
 [ext_resource type="PackedScene" uid="uid://bgfvvdgcsonac" path="res://assets/scenes/maps/map_cave1_r4/map_cave1_r4.tscn" id="4_j7nwu"]
-[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="6_lgact"]
 [ext_resource type="AudioStream" uid="uid://dsyn56ecn220n" path="res://assets/audio/bgm_crypt.ogg" id="7_j7nwu"]
-[ext_resource type="Script" uid="uid://b3xn1v2mxawyv" path="res://assets/scenes/maps/map_cave1_all/npc_test.gd" id="8_6dwa8"]
-[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="9_jmph7"]
+[ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="8_6ruh7"]
+[ext_resource type="Resource" uid="uid://ge548hkmg4x" path="res://assets/nodes/dialogues/dlg_cave1_chest1.dialogue" id="9_5a4c0"]
+[ext_resource type="Resource" uid="uid://doa0a0a576il6" path="res://assets/nodes/dialogues/dlg_cave1_letter1.dialogue" id="10_6n5jw"]
+[ext_resource type="Resource" uid="uid://fg4ju3tts8lk" path="res://assets/nodes/dialogues/dlg_cave1_dirt_room.dialogue" id="11_5pgu6"]
+[ext_resource type="Resource" uid="uid://bs88je7achiul" path="res://assets/nodes/dialogues/dlg_cave1_letter2.dialogue" id="12_oc73u"]
+[ext_resource type="Resource" uid="uid://cpvmc2vb8wxfk" path="res://assets/nodes/dialogues/dlg_cave1_chest2.dialogue" id="13_ejmdk"]
+[ext_resource type="Resource" uid="uid://geklj7c72vk" path="res://assets/nodes/dialogues/dlg_cave1_bridge.dialogue" id="14_d8ikk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7nwu"]
 size = Vector2(48, 128)
@@ -28,22 +33,26 @@ size = Vector2(96, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mblch"]
 size = Vector2(240, 96)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmph7"]
-size = Vector2(30, 30)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spwib"]
+size = Vector2(16, 128)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_imbe8"]
-radius = 35.128338
+[sub_resource type="Gradient" id="Gradient_spwib"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
 
-[node name="MapCave1All" type="Node2D" unique_id=866708146]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3833o"]
+gradient = SubResource("Gradient_spwib")
+
+[node name="MapCave1All2" type="Node2D" unique_id=866708146]
 editor_description = "¡Vamoooooooooooooo! ¡Por fin acabé la textbox!"
 script = ExtResource("1_c7rph")
 metadata/_edit_horizontal_guides_ = [-872.0]
 
-[node name="CharacterBella" parent="." unique_id=77062715 groups=["player"] instance=ExtResource("6_lgact")]
-position = Vector2(14664, -1992)
-deceleration = 15000.0
-normal_speed = 180.0
-max_speed = 300.0
+[node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_rqe04")]
+position = Vector2(11072, -960)
+deceleration = 12000.0
+normal_speed = 200.0
+max_speed = 400.0
 
 [node name="Maps" type="Node2D" parent="." unique_id=1176475494]
 z_index = -1
@@ -122,55 +131,42 @@ autoplay = true
 
 [node name="Timer" type="Timer" parent="." unique_id=249440503]
 
+[node name="BridgeBlock" type="StaticBody2D" parent="." unique_id=680229086]
+position = Vector2(11240, -832)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BridgeBlock" unique_id=760303113]
+shape = SubResource("RectangleShape2D_spwib")
+
+[node name="Sprite2D" type="Sprite2D" parent="BridgeBlock" unique_id=169508576]
+position = Vector2(200, -3.8146973e-06)
+scale = Vector2(6.5, 2.5)
+texture = SubResource("GradientTexture2D_3833o")
+
 [node name="-NPCs-" type="Node" parent="." unique_id=168618074]
 
-[node name="Chest" type="CharacterBody2D" parent="." unique_id=879998284]
-position = Vector2(-749, -747)
-script = ExtResource("8_6dwa8")
-text_to_send = ["El cofre está vacío. Hasta la madera está desgastada..."]
+[node name="Chest" parent="." unique_id=1334509439 instance=ExtResource("8_6ruh7")]
+position = Vector2(-720, -736)
+text_to_send = ExtResource("9_5a4c0")
 
-[node name="Collision" type="CollisionShape2D" parent="Chest" unique_id=1938762785]
-shape = SubResource("RectangleShape2D_jmph7")
+[node name="Letter" parent="." unique_id=536825268 instance=ExtResource("8_6ruh7")]
+position = Vector2(4256, -1776)
+text_to_send = ExtResource("10_6n5jw")
 
-[node name="Area" type="Area2D" parent="Chest" unique_id=2107547294]
+[node name="Dirt" parent="." unique_id=176929994 instance=ExtResource("8_6ruh7")]
+position = Vector2(5088, -896)
+text_to_send = ExtResource("11_5pgu6")
 
-[node name="Collision" type="CollisionShape2D" parent="Chest/Area" unique_id=1904192145]
-shape = SubResource("CircleShape2D_imbe8")
+[node name="Letter2" parent="." unique_id=1865997996 instance=ExtResource("8_6ruh7")]
+position = Vector2(9808, -1608)
+text_to_send = ExtResource("12_oc73u")
 
-[node name="Sprite2D" type="Sprite2D" parent="Chest" unique_id=1616973862]
-texture = ExtResource("9_jmph7")
+[node name="Chest2" parent="." unique_id=90193667 instance=ExtResource("8_6ruh7")]
+position = Vector2(10144, -544)
+text_to_send = ExtResource("13_ejmdk")
 
-[node name="Letter" type="CharacterBody2D" parent="." unique_id=880769502]
-position = Vector2(4256, -1768)
-script = ExtResource("8_6dwa8")
-text_to_send = ["Es un gran letrero en la pared. Hay unos textos escritos en ella:", "\"[i]Quizás, en el próximo ciclo podamos tener una segunda oportunidad.[/i]\"", "\"[i]Con que alguien se interese en nuestra causa bastará.[/i]\""]
-
-[node name="Collision" type="CollisionShape2D" parent="Letter" unique_id=146645861]
-shape = SubResource("RectangleShape2D_jmph7")
-
-[node name="Area" type="Area2D" parent="Letter" unique_id=1629815700]
-
-[node name="Collision" type="CollisionShape2D" parent="Letter/Area" unique_id=520303938]
-shape = SubResource("CircleShape2D_imbe8")
-
-[node name="Sprite2D" type="Sprite2D" parent="Letter" unique_id=1274790547]
-texture = ExtResource("9_jmph7")
-
-[node name="Letter2" type="CharacterBody2D" parent="." unique_id=1198123512]
-position = Vector2(5088, -984)
-script = ExtResource("8_6dwa8")
-text_to_send = ["Aquí hay otro letrero.", "\"[i]Que los ágiles vayan y contengan el orbe.[/i]\"", "Sientes que has oído esa frase en algún otro lado."]
-
-[node name="Collision" type="CollisionShape2D" parent="Letter2" unique_id=503337403]
-shape = SubResource("RectangleShape2D_jmph7")
-
-[node name="Area" type="Area2D" parent="Letter2" unique_id=1241931861]
-
-[node name="Collision" type="CollisionShape2D" parent="Letter2/Area" unique_id=1214681121]
-shape = SubResource("CircleShape2D_imbe8")
-
-[node name="Sprite2D" type="Sprite2D" parent="Letter2" unique_id=2138320825]
-texture = ExtResource("9_jmph7")
+[node name="Bridge" parent="." unique_id=253322313 instance=ExtResource("8_6ruh7")]
+position = Vector2(11208, -904)
+text_to_send = ExtResource("14_d8ikk")
 
 [connection signal="body_entered" from="Maps/MapFirstCaveR1/Warp" to="." method="_on_warp_body_entered"]
 [connection signal="body_entered" from="Maps/MapFirstCaveR2/WarpL" to="." method="_on_warp_l_body_entered"]
@@ -179,18 +175,3 @@ texture = ExtResource("9_jmph7")
 [connection signal="body_entered" from="Maps/MapFirstCaveR3/R3WarpR" to="." method="_on_r_3_warp_r_body_entered"]
 [connection signal="body_entered" from="Maps/MapFirstCaveR4/R4Warp" to="." method="_on_r_4_warp_body_entered"]
 [connection signal="body_entered" from="Maps/MapFirstCaveR4/BellaHouseWarp" to="." method="_on_bella_house_warp_body_entered"]
-[connection signal="entered_area" from="Chest" to="CharacterBella" method="entered_area"]
-[connection signal="exited_area" from="Chest" to="CharacterBella" method="exited_area"]
-[connection signal="start_now" from="Chest" to="CharacterBella" method="npc_start_now"]
-[connection signal="body_entered" from="Chest/Area" to="Chest" method="_on_area_body_entered"]
-[connection signal="body_exited" from="Chest/Area" to="Chest" method="_on_area_body_exited"]
-[connection signal="entered_area" from="Letter" to="CharacterBella" method="entered_area"]
-[connection signal="exited_area" from="Letter" to="CharacterBella" method="exited_area"]
-[connection signal="start_now" from="Letter" to="CharacterBella" method="npc_start_now"]
-[connection signal="body_entered" from="Letter/Area" to="Letter" method="_on_area_body_entered"]
-[connection signal="body_exited" from="Letter/Area" to="Letter" method="_on_area_body_exited"]
-[connection signal="entered_area" from="Letter2" to="CharacterBella" method="entered_area"]
-[connection signal="exited_area" from="Letter2" to="CharacterBella" method="exited_area"]
-[connection signal="start_now" from="Letter2" to="CharacterBella" method="npc_start_now"]
-[connection signal="body_entered" from="Letter2/Area" to="Letter2" method="_on_area_body_entered"]
-[connection signal="body_exited" from="Letter2/Area" to="Letter2" method="_on_area_body_exited"]

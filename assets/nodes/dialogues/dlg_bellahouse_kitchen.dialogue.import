@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://disb714aqmpxx"
+path="res://.godot/imported/dlg_bellahouse_kitchen.dialogue-74629ef441619224480656f90c324fb2.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/dlg_bellahouse_kitchen.dialogue"
+dest_files=["res://.godot/imported/dlg_bellahouse_kitchen.dialogue-74629ef441619224480656f90c324fb2.tres"]
+
+[params]
+
+defaults=true

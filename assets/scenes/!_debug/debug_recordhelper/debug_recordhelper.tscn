@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dvq2ye77aywwk"]
+
+[ext_resource type="Script" uid="uid://dg2ej4o7gd1bp" path="res://assets/scenes/!_debug/debug_recordhelper/debug_recordhelper.gd" id="1_4pmhx"]
+
+[node name="DebugRecordhelper" type="Node2D" unique_id=1685290428]
+script = ExtResource("1_4pmhx")

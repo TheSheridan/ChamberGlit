@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://cj4er6n2hj35l" path="res://assets/nodes/tilesets/tiles_cave1.tres" id="1_k05kt"]
 [ext_resource type="Script" uid="uid://c6vfcbmr4jqij" path="res://assets/scenes/maps/map_cave2/map_cave_2.gd" id="1_vovvx"]
-[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_vovvx"]
+[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella_old/chr_bella.tscn" id="2_vovvx"]
 [ext_resource type="AudioStream" uid="uid://cr3hg6l1lxb28" path="res://assets/audio/bgm_fightover.ogg" id="4_xpi8o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpi8o"]

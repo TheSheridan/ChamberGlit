@@ -1,3 +1,4 @@
+
 # Refactored!
 ## Same script as chr_bell.gd but friction is disabled.
 extends CharacterBody2D
@@ -28,9 +29,9 @@ extends CharacterBody2D
 
 # New stuff
 @export var acceleration: float = 2000
-@export var deceleration: float = 1500
-@export var normal_speed: float = 300
-@export var max_speed: float = 600
+@export var deceleration: float = 15000	
+@export var normal_speed: float = 180
+@export var max_speed: float = 300
 var current_speed: float
 
 var current_velocity = Vector2.ZERO
@@ -69,16 +70,14 @@ var get_input_temp_position: Vector2 = Vector2(0, 0)
 # Textbox
 @export var textbox_scale: float = 0.5
 
-signal open_textbox
-signal close_textbox
-signal let_stuff_after_textbox
-
-signal entered_area_2
-signal exited_area_2
-
 var stand_still: bool = false
+## Takes the same value as "after_closing" in the textbox.
+@export var after_closing: bool = false
 
-@export var text_to_send: Array
+@export var text_to_send: DialogueResource
+
+## Mostly handled by CharacterNPC, not Bella itself.
+@export var can_talk: bool
 
 # Fade
 signal _fade_in
@@ -90,15 +89,14 @@ var fade_tween: Tween
 @export var fade_color: Color = Color.BLACK
 
 
-# Main
 func _ready():
 	# Default animation
 	$Sprite.animation = "idle_down"
 	$Sprite.play()
 	$Sprite.speed_scale = 1
-	print($Sprite.get_playing_speed())
+	#print($Sprite.get_playing_speed())
 	
-	$Textbox.show()
+	#$Textbox.show()
 	
 	speed = initial_speed
 	current_speed = normal_speed
@@ -109,13 +107,15 @@ func _ready():
 	_fade_out.connect(fade_out.bind())
 	
 	_fade.hide()
+	
+	after_closing = $ExampleBalloon.after_closing
 
 var walk_sound_bool: bool = true
 func _process(_delta) -> void:
 	if is_camera_zoom_on:
 		$Camera.zoom = Vector2(camera_zoom, camera_zoom)
 		# TODO: Figure out a way to match the ratio
-		$Textbox.scale = Vector2(textbox_scale, textbox_scale)
+		#$Textbox.scale = Vector2(textbox_scale, textbox_scale)
 	
 	# looked_beyond
 	# if Input.is_action_just_pressed("ui_select"):
@@ -128,7 +128,6 @@ func _process(_delta) -> void:
 	# 	true: look_beyond_once()
 	# 	_: pass
 	
-	# get_facing()
 	if $Ray.target_position.x != 0:
 		axis_x_temp = $Ray.target_position.x
 	if $Ray.target_position.y != 0:
@@ -162,16 +161,16 @@ func _process(_delta) -> void:
 	get_input_temp_position = get_input()
 	position_previous = position
 	
-	# That perky camera offset...	
-	get_facing()
-	
+	# That perky camera offset...
 	var camera_lerp: Vector2 = lerp(
 		$Camera.offset, Vector2(axis_x, axis_y) * 15, 0.05)
-
-	if not stand_still:
+		
+	if not stand_still:	
+		get_facing()
 		$Camera.offset = camera_lerp
+		camera_smoothing = 0 # <- doesn't work T_T
 	
-	$Textbox.position = -(_sgt.window_size / 2) + $Camera.offset
+	#$Textbox.position = -(_sgt.window_size / 2) + $Camera.offset
 	
 	#$Textbox.position = position + $Camera.offset
 	
@@ -206,6 +205,10 @@ func _physics_process(delta) -> void:
 		sprite_speed / (speed / 8),
 		acceleration
 	)
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		#print("Done!")
+		pass
 
 	# Stairs BS
 	# if "stair" in get_tile_name():
@@ -390,29 +393,8 @@ func get_tile_name():
 	else:
 		return ""
 
+# Textbox stuff
 
-func npc_start_now() -> void:
-	$Textbox.text = text_to_send
-	open_textbox.emit()
-	stand_still = true
-
-func _on_textbox_already_closed() -> void:
-	stand_still = false
-	
-	let_stuff_after_textbox.emit()
-
-func _on_textbox_stand_still() -> void:
-	#stand_still = true
-	npc_start_now()
-
-func entered_area() -> void:
-	entered_area_2.emit()
-
-func exited_area() -> void:
-	exited_area_2.emit()
-	
-func test():
-	print("This is a test, nothing to see here...")
 
 # Fade
 func fade_in():
@@ -426,7 +408,7 @@ func fade_in():
 	
 	fade_finished.emit()
 	stand_still = false
-	print("Done!")
+	#print("Done!")
 	
 func fade_out():
 	stand_still = true
@@ -442,4 +424,7 @@ func fade_out():
 	await $ColorRect/Timer.timeout
 	
 	fade_finished.emit()
-	print("Done!")
+	#print("Done!")
+
+func npc_start_now():
+	$ExampleBalloon.start()

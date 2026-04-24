@@ -38,7 +38,21 @@ var responses: Array = []:
 var _previously_focused_item: Control = null
 
 
+# This failed, going to plan B
+@export var default_pos: float = 640
+@export var show_pos: float = 290.5
+@export var anim_time: float = 0.5
+signal anim_tween_finished
+
+# The plan B
+signal started
+signal show_choices
+signal taken_a_choice
+
+
 func _ready() -> void:
+	#position.x = default_pos
+	
 	visibility_changed.connect(func() -> void:
 		if auto_focus_first_item and visible and get_menu_items().size() > 0:
 			var first_item: Control = get_menu_items()[0]
@@ -101,14 +115,30 @@ func configure_focus() -> void:
 		items[0].grab_focus()
 
 
+func anim_responses(state: bool):
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	
+	match state:
+		0:
+			tween.tween_property(self, 'position:x', default_pos, anim_time)
+		1:
+			tween.tween_property(self, 'position:x', show_pos, anim_time)
+	
+	if tween.finished:
+		anim_tween_finished.emit()
+
 #region Internal
 
 
-# Set up the visual side of things.
+# Set up the visual side of things.`
 func _apply_responses() -> void:
 	# Remove any current items
 	for item: Node in get_children():
 		if item == response_template: continue
+		
+		print("Choice selected")
 
 		remove_child(item)
 		item.queue_free()

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://c1qktq1rlatfp"
+path="res://.godot/imported/dlg_vespera_ruth.dialogue-565332b4346b7d1029622572b3d88b20.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/dlg_vespera_ruth.dialogue"
+dest_files=["res://.godot/imported/dlg_vespera_ruth.dialogue-565332b4346b7d1029622572b3d88b20.tres"]
+
+[params]
+
+defaults=true

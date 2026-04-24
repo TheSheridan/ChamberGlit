@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://6ovid1ly8mp8"
+path="res://.godot/imported/dlg_dialogTest2.dialogue-e645b40b0589faf617e00adcd0ea97ae.tres"
+
+[deps]
+
+source_file="res://assets/scenes/!_debug/debug_dialogTest2/dlg_dialogTest2.dialogue"
+dest_files=["res://.godot/imported/dlg_dialogTest2.dialogue-e645b40b0589faf617e00adcd0ea97ae.tres"]
+
+[params]
+
+defaults=true

@@ -16,7 +16,7 @@
 [ext_resource type="StyleBox" uid="uid://idlio55kxtnk" path="res://assets/scenes/battles/battle_hp_progressbar_foreground.tres" id="11_1yd2b"]
 [ext_resource type="StyleBox" uid="uid://d0c83vcwm74bl" path="res://assets/scenes/battles/battle_pp_progressbar_foreground.tres" id="12_icpym"]
 [ext_resource type="StyleBox" uid="uid://dlt2ox6ty6wug" path="res://assets/scenes/battles/battle_enemy_hp_progressbar_foreground.tres" id="13_icpym"]
-[ext_resource type="Script" uid="uid://cq2ufre2bsamw" path="res://assets/nodes/chr_bella/textbox.gd" id="14_mn7f0"]
+[ext_resource type="Script" uid="uid://cq2ufre2bsamw" path="res://assets/nodes/chr_bella_old/textbox.gd" id="14_mn7f0"]
 [ext_resource type="Texture2D" uid="uid://7kdhwpxvakid" path="res://assets/images/gui/gui_textbox.png" id="15_w1r1i"]
 [ext_resource type="AudioStream" uid="uid://b4knyk4e5lta1" path="res://assets/audio/sfxr/selecty.wav" id="16_nh6h8"]
 [ext_resource type="AudioStream" uid="uid://bpi2qkuhi07wo" path="res://assets/audio/sfx_type_1.mp3" id="17_3o7x2"]

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bbf4cd2wl8wd3"]
 
 [ext_resource type="Script" uid="uid://b2vwy1qdf55to" path="res://assets/scenes/maps/map_outside_vespera/map_outside_vespera.gd" id="1_oxupi"]
-[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_enm8j"]
+[ext_resource type="PackedScene" uid="uid://c3lhf4oj51vy6" path="res://assets/nodes/chr_bella_old/chr_bella.tscn" id="2_enm8j"]
 [ext_resource type="TileSet" uid="uid://cj4er6n2hj35l" path="res://assets/nodes/tilesets/tiles_cave1.tres" id="3_enm8j"]
 [ext_resource type="PackedScene" uid="uid://2h62ja0qk3su" path="res://assets/scenes/maps/map_outside_vespera/npc_chaser_slime/npc_chaser_slime.tscn" id="4_bshvv"]
 [ext_resource type="Script" uid="uid://hxki0s86lcu3" path="res://assets/scenes/maps/map_outside_vespera/herbs.gd" id="5_kqrtq"]
@@ -53,8 +53,8 @@ shape = SubResource("RectangleShape2D_enm8j")
 [node name="Cave" type="Marker2D" parent="PositionHelpers" unique_id=152385729]
 position = Vector2(1882, -2384)
 
-[node name="VesperaVillage" type="Marker2D" parent="PositionHelpers" unique_id=851111575]
-position = Vector2(48, 439)
+[node name="Vespera" type="Marker2D" parent="PositionHelpers" unique_id=851111575]
+position = Vector2(48, 400)
 
 [node name="Main" type="TileMapLayer" parent="." unique_id=643976455]
 texture_filter = 1
@@ -62,7 +62,7 @@ tile_map_data = PackedByteArray("AABn/yEAAwAAAAEAAABn/xIAAwAAAAEAAABn/xMAAwAAAAE
 tile_set = ExtResource("3_enm8j")
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_enm8j")]
-position = Vector2(-448, 304)
+position = Vector2(52, 360)
 deceleration = 15000.0
 normal_speed = 180.0
 max_speed = 300.0
@@ -141,6 +141,7 @@ text = "Cueva"
 stream = ExtResource("5_npawb")
 pitch_scale = 1.1
 autoplay = true
+bus = &"bgm"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=589850592]
 modulate = Color(1, 1, 1, 0.34509805)

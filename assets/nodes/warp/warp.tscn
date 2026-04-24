@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cdqb1msh6o2p2"]
+
+[ext_resource type="Script" uid="uid://dr0j8vx5v8mru" path="res://assets/nodes/warp/warp.gd" id="1_sw5sx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xfef"]
+size = Vector2(64, 32)
+
+[node name="Warp" type="Area2D" unique_id=520996465]
+script = ExtResource("1_sw5sx")
+
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=695973070]
+position = Vector2(32, 16)
+shape = SubResource("RectangleShape2D_5xfef")
