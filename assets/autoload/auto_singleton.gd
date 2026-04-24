@@ -162,6 +162,7 @@ var flag_cave1_bridge: bool = false
 var flag_bella_house_appear_in_bed: bool = false
 ## Bella accepted Ruth fetch quest?
 var flag_vespera_accept_to_search_herbs: bool = false
+var flag_vespera_got_herbs: bool = false
 #endregion
 
 

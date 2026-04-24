@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://dhoypglutbnqh"]
 
+[ext_resource type="Script" uid="uid://bbbiput5m7qak" path="res://assets/autoload/sfx.gd" id="1_6wscr"]
 [ext_resource type="AudioStream" uid="uid://d3r2r28kjsit0" path="res://assets/audio/sfx_roll.ogg" id="1_lg2cl"]
 [ext_resource type="AudioStream" uid="uid://c1612pfdpfo6j" path="res://assets/audio/sfx_flipt.ogg" id="2_8kebc"]
 [ext_resource type="AudioStream" uid="uid://bin1a41hfllpb" path="res://assets/audio/type_sound.tres" id="3_2e2he"]
 [ext_resource type="AudioStream" uid="uid://bfphvk1gpqtqp" path="res://assets/audio/sfx_select.wav" id="4_qanh5"]
 [ext_resource type="AudioStream" uid="uid://c23wty2nhph6o" path="res://assets/audio/sfx_noise1.ogg" id="5_yrwnp"]
+[ext_resource type="AudioStream" uid="uid://dcjh5yffeb6uf" path="res://assets/audio/sfx_tip.ogg" id="7_sbr14"]
 [ext_resource type="AudioStream" uid="uid://v6plhxcnq0rd" path="res://assets/audio/sfx_slap.mp3" id="9_xo32x"]
 
 [node name="sfx" type="Node" unique_id=1834564622]
+script = ExtResource("1_6wscr")
 
 [node name="roll" type="AudioStreamPlayer" parent="." unique_id=106525388]
 stream = ExtResource("1_lg2cl")
@@ -26,3 +29,6 @@ stream = ExtResource("5_yrwnp")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=395464269]
 stream = ExtResource("9_xo32x")
+
+[node name="tip" type="AudioStreamPlayer" parent="." unique_id=1061755058]
+stream = ExtResource("7_sbr14")

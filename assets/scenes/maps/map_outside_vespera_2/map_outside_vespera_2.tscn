@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://dr0j8vx5v8mru" path="res://assets/nodes/warp/warp.gd" id="2_wr13x"]
 [ext_resource type="AudioStream" uid="uid://dn0grlldtqqyb" path="res://assets/audio/bgm_drumTest0.ogg" id="2_yy5uj"]
 [ext_resource type="TileSet" uid="uid://cj4er6n2hj35l" path="res://assets/nodes/tilesets/tiles_cave1.tres" id="3_byxt0"]
-[ext_resource type="PackedScene" uid="uid://2h62ja0qk3su" path="res://assets/scenes/maps/map_outside_vespera/npc_chaser_slime/npc_chaser_slime.tscn" id="4_ewunq"]
 [ext_resource type="Script" uid="uid://bx3ltdtqt12p3" path="res://assets/nodes/chr_npc2/character_npc.gd" id="6_ic6kh"]
 [ext_resource type="Resource" uid="uid://bop0pilp2qqoo" path="res://assets/nodes/dialogues/dlg_outside_vespera_bridge.dialogue" id="7_ic6kh"]
 [ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="8_wr13x"]
 [ext_resource type="Resource" uid="uid://pjsvj53itmhc" path="res://assets/nodes/dialogues/dlg_outside_vespera_herbs.dialogue" id="9_3hxid"]
+[ext_resource type="Script" uid="uid://cd3222nx3y3k5" path="res://addons/dialogue_manager/nodes/context/dialogue_state_context.gd" id="10_wr13x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klnd3"]
 size = Vector2(584, 184)
@@ -26,6 +26,7 @@ radius = 231.17526
 
 [node name="MapOutsideVespera2" type="Node2D" unique_id=1568421946]
 script = ExtResource("1_01tfi")
+metadata/_edit_horizontal_guides_ = [-1520.0]
 
 [node name="Warps" type="Node" parent="." unique_id=1251966895]
 
@@ -59,35 +60,6 @@ position = Vector2(1882, -2384)
 [node name="Vespera" type="Marker2D" parent="PositionHelpers" unique_id=1388661728]
 position = Vector2(50, 376)
 
-[node name="DebugStuff" type="Node" parent="." unique_id=1609710703]
-
-[node name="Label" type="Label" parent="DebugStuff" unique_id=1319860502]
-offset_left = -1303.9999
-offset_top = -3112.0
-offset_right = -963.9999
-offset_bottom = -3015.0
-rotation = 0.2617994
-theme_override_font_sizes/font_size = 37
-text = "Insertar medicinas
-para Ruth aquí"
-
-[node name="Label2" type="Label" parent="DebugStuff" unique_id=648932664]
-offset_left = -4472.0
-offset_top = -1920.0002
-offset_right = -4132.0
-offset_bottom = -1833.0002
-rotation = -0.2617994
-theme_override_font_sizes/font_size = 37
-text = "Puente derrumbado"
-
-[node name="Label3" type="Label" parent="DebugStuff" unique_id=1654506013]
-offset_left = 1784.0
-offset_top = -2384.0
-offset_right = 2124.0
-offset_bottom = -2297.0
-theme_override_font_sizes/font_size = 37
-text = "Cueva"
-
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=175598015]
 stream = ExtResource("2_yy5uj")
 pitch_scale = 1.1
@@ -103,9 +75,6 @@ position = Vector2(-1488, -2968)
 deceleration = 12000.0
 normal_speed = 200.0
 max_speed = 400.0
-
-[node name="NpcChaserSlime" parent="." unique_id=1243489654 instance=ExtResource("4_ewunq")]
-position = Vector2(4240, -104)
 
 [node name="Bridge" type="CharacterBody2D" parent="." unique_id=1144639775]
 position = Vector2(-4032, -1976)
@@ -141,3 +110,41 @@ metadata/_custom_type_script = "uid://cqcur1rm7433g"
 position = Vector2(49, 17)
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_3hxid")
+
+[node name="DebugStuff" type="Node" parent="." unique_id=1609710703]
+
+[node name="Label" type="Label" parent="DebugStuff" unique_id=1319860502]
+z_index = 1
+offset_left = -1303.9999
+offset_top = -3112.0
+offset_right = -963.9999
+offset_bottom = -3015.0
+rotation = 0.2617994
+theme_override_font_sizes/font_size = 37
+text = "Insertar medicinas
+para Ruth aquí"
+
+[node name="Label2" type="Label" parent="DebugStuff" unique_id=648932664]
+z_index = 1
+offset_left = -4472.0
+offset_top = -1920.0002
+offset_right = -4132.0
+offset_bottom = -1833.0002
+rotation = -0.2617994
+theme_override_font_sizes/font_size = 37
+text = "Puente derrumbado"
+
+[node name="Label3" type="Label" parent="DebugStuff" unique_id=1654506013]
+z_index = 1
+offset_left = 1784.0
+offset_top = -2384.0
+offset_right = 2124.0
+offset_bottom = -2297.0
+theme_override_font_sizes/font_size = 37
+text = "Cueva"
+
+[node name="Context" type="Node" parent="." unique_id=1550527258 node_paths=PackedStringArray("target")]
+script = ExtResource("10_wr13x")
+alias = "map"
+target = NodePath("..")
+metadata/_custom_type_script = "uid://cd3222nx3y3k5"

@@ -1,8 +1,20 @@
+#set ruth_name = "[color=green]Ruth[/color]"
+
 ~ start
-[color=green]Ruth[/color]: ...Oh, buenos días, Bella. Siento que no podré salir ahora, tengo que hacer varias cosas en la aldea primero.
-- ¿Qué hay de nuevo? => wassup
-- ¿Qué tipo de cosas? => things
-- Vale => END
+if not auto_singleton.flag_vespera_got_herbs:
+	[color=green]Ruth[/color]: ...Oh, buenos días, Bella. Siento que no podré salir ahora, tengo que hacer varias cosas en la aldea primero.
+	- ¿Qué hay de nuevo? => wassup
+	- ¿Qué tipo de cosas? => things
+	- Vale => END
+else:
+	[color=green]Ruth[/color]: Oh, ¿ya las conseguiste?
+	$> sfx.play("tip")
+	Le has dado las hierbas a Ruth.
+	[color=green]Ruth[/color]: ¡Muchas gracias! ......¿y ahora qué hago?
+	$> sfx.play("tip", 0.8)
+	(me dio hueva escribir este árbol de diálogo mátenme)
+	=> END
+	
 
 ~ choices2
 [color=green]Ruth[/color]: ¿Querías decirme algo más?

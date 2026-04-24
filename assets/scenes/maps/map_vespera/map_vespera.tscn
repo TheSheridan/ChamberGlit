@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://b1vnli2fxnenn" path="res://assets/nodes/dialogues/dlg_vespera_npc_test_4.dialogue" id="10_h640h"]
 [ext_resource type="Resource" uid="uid://cwxygn3ps745b" path="res://assets/nodes/dialogues/dlg_vespera_npc_test_5.dialogue" id="11_jv7d0"]
 [ext_resource type="Resource" uid="uid://bmu32ckr8pqdt" path="res://assets/nodes/dialogues/dlg_vespera_npc_test_battle.dialogue" id="12_1pnsv"]
+[ext_resource type="Resource" uid="uid://c1qktq1rlatfp" path="res://assets/nodes/dialogues/dlg_vespera_ruth.dialogue" id="12_h640h"]
 [ext_resource type="Script" uid="uid://cd3222nx3y3k5" path="res://addons/dialogue_manager/nodes/context/dialogue_state_context.gd" id="13_2fdil"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e22qh"]
@@ -61,7 +62,7 @@ tile_map_data = PackedByteArray("AAAAABAAAwAAAAEAAAAAABEAAwAAAAEAAAAAABIAAwAAAAE
 tile_set = ExtResource("2_cwgfc")
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_xupue")]
-position = Vector2(-816, -1432)
+position = Vector2(1408, -240)
 deceleration = 12000.0
 normal_speed = 200.0
 max_speed = 400.0
@@ -93,6 +94,10 @@ text_to_send = ExtResource("10_h640h")
 [node name="NPC 5" parent="." unique_id=377593470 instance=ExtResource("6_krtdk")]
 position = Vector2(1008, 1328)
 text_to_send = ExtResource("11_jv7d0")
+
+[node name="Ruth" parent="." unique_id=837594370 instance=ExtResource("6_krtdk")]
+position = Vector2(928, -624)
+text_to_send = ExtResource("12_h640h")
 
 [node name="NPC Battle" parent="." unique_id=1083206911 instance=ExtResource("6_krtdk")]
 position = Vector2(-704, -1152)
