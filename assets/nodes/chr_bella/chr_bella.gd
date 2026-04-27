@@ -69,6 +69,7 @@ var get_input_temp_position: Vector2 = Vector2(0, 0)
 
 # Textbox
 @export var textbox_scale: float = 0.5
+@export var textbox_fade_duration: float = 0.125
 
 var stand_still: bool = false
 ## Takes the same value as "after_closing" in the textbox.
@@ -427,4 +428,5 @@ func fade_out():
 	#print("Done!")
 
 func npc_start_now():
+	$ExampleBalloon/FadeAnim.play("fade_in")
 	$ExampleBalloon.start()

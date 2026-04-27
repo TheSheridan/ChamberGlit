@@ -55,6 +55,7 @@ var has_choices_closed: bool = false
 
 ## Tween for animations
 var anim_textbox_tween: Tween
+@onready var progress_anim = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control/AnimationPlayer
 
 ## The current line
 var dialogue_line: DialogueLine:
@@ -63,11 +64,16 @@ var dialogue_line: DialogueLine:
 			dialogue_line = value
 			apply_dialogue_line()
 		else:
-			# The dialogue has finished so close the balloon
+			# The dialogue has finished so close the balloon			
+			progress_anim.play("fade_out")
+			$FadeAnim.play("fade_out")
+			await $FadeAnim.animation_finished
+			
 			is_running_dialog = false
 			after_closing = true
 			
 			if owner == null:
+				%ResponsesAnim.play("fade_out")
 				queue_free()
 			else:
 				hide()
@@ -103,6 +109,7 @@ signal dialog
 
 func _ready() -> void:
 	balloon.hide()
+	balloon.modulate.a = 0
 	$ResponsesAnim.play("normal")
 
 	dialog.connect(_on_dialog.bind())
@@ -124,7 +131,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(dialogue_line):
-		progress.visible = not dialogue_label.is_typing and dialogue_line.responses.size() == 0 and not dialogue_line.has_tag("voice")
+		if not dialogue_label.is_typing and dialogue_line.responses.size() == 0 and not dialogue_line.has_tag("voice"):
+			progress_anim.play("fade_in")
+		
 		play_talk_sound()
 		
 		if Input.is_action_pressed("ui_select"):
@@ -159,6 +168,8 @@ func start(with_dialogue_resource: DialogueResource = null, cue: String = "", ex
 	temporary_game_states = [self] + extra_game_states
 	is_waiting_for_input = false
 	
+	progress_anim.play("fade_out")
+	
 	if is_instance_valid(with_dialogue_resource):
 		dialogue_resource = with_dialogue_resource
 	if not cue.is_empty():
@@ -184,7 +195,12 @@ func apply_dialogue_line() -> void:
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line
 
-	responses_menu.hide()
+	if has_choices_closed:
+		$ResponsesAnim.play("fade_out")
+		progress_anim.play("fade_out")
+	else:
+		responses_menu.hide()
+	
 	responses_menu.responses = dialogue_line.responses
 
 	# Show our balloon
@@ -223,15 +239,14 @@ func apply_dialogue_line() -> void:
 	# Text after choice
 	else:
 		#print("4")
+		$ResponsesAnim.play("fade_out")
 		is_waiting_for_input = true
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
 
 
 ## Go to the next line
-func next(next_id: String) -> void:
-#	$ResponsesAnim.play("fade_out")
-	
+func next(next_id: String) -> void:	
 	if has_choices_closed:
 		accept_sound.play()
 		has_choices_closed = false
@@ -317,9 +332,9 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
+	#$ResponsesAnim.play("fade_out")
 	#await $ResponsesAnim.animation_finished
 	next(response.next_id)
-
 
 #endregion
 
@@ -330,5 +345,6 @@ func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -
 	talk_sound.play()
 
 func _on_dialogue_label_finished_typing() -> void:
-	pass
+	progress_anim.play("fade_in")
+	#pass
 	#print("Finished typing!")

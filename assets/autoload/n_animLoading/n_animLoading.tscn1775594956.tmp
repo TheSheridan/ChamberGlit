@@ -5,6 +5,8 @@
 
 [node name="n_animLoading" type="CanvasLayer" unique_id=1811620168]
 script = ExtResource("1_8sgaa")
+spriteColor = null
+bgColor = null
 
 [node name="Control" type="Control" parent="." unique_id=1187097500]
 layout_mode = 3

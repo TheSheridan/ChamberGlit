@@ -3,6 +3,7 @@ extends Control
 
 @onready var _fade = get_node('/root/auto_fade')
 @onready var _sgt = get_node('/root/auto_singleton')
+@onready var _loading = get_node('/root/n_animLoading')
 
 # -+ Main variables +-
 @export var can_show_anim: bool = true
@@ -21,6 +22,7 @@ func change_scene(path: String, helper: String = ""):
 		thread.wait_to_finish()
   
 	if can_show_anim:
+		_loading._in.emit()
 		_fade._in.emit()
 
 	thread = Thread.new()
@@ -35,6 +37,7 @@ func change_scene_threaded_2():
 	var tex = thread.wait_to_finish()
 		
 	if can_show_anim:
+		_loading._out.emit()
 		_fade._out.emit()
 
 	get_tree().change_scene_to_packed(tex)

@@ -40,13 +40,13 @@ func _ready() -> void:
   modulate = Color(modulate, 0)
   
   match orientation:
-    orientation_enum.TOP:
-      orientation_move = -orientation_multiplier
-    orientation_enum.CENTER:
-      orientation_move = 0
-    orientation_enum.DOWN:
-      orientation_move = orientation_multiplier
-      
+	orientation_enum.TOP:
+	  orientation_move = -orientation_multiplier
+	orientation_enum.CENTER:
+	  orientation_move = 0
+	orientation_enum.DOWN:
+	  orientation_move = orientation_multiplier
+	  
   position.y = orientation_move
   
   _fade._out.emit()
@@ -59,41 +59,41 @@ func _physics_process(_delta) -> void:
   show_indicator()
 
   if is_usable:
-    if Input.is_action_just_pressed("ui_accept"):
-      load_dialog()
+	if Input.is_action_just_pressed("ui_accept"):
+	  load_dialog()
 
 func show_indicator():
   if dialog_finished:
-    $ind.visible = true
+	$ind.visible = true
   else:
-    $ind.visible = false
+	$ind.visible = false
 
 var tween_dialog: Tween
 func load_dialog():
   tween_dialog = create_tween()
 
   if dialog_index < dialog.size():
-    $ind.visible = false
-    $text/txt.text = dialog[dialog_index]
-    $text/txt.visible_characters = 0
+	$ind.visible = false
+	$text/txt.text = dialog[dialog_index]
+	$text/txt.visible_characters = 0
 
-    tween_dialog = create_tween()
-    tween_dialog.tween_property(
-      $text/txt, "visible_characters", char_count, duration)
-    tween_dialog.finished.connect(_on_tweenDialog_finished.bind())
+	tween_dialog = create_tween()
+	tween_dialog.tween_property(
+	  $text/txt, "visible_characters", char_count, duration)
+	tween_dialog.finished.connect(_on_tweenDialog_finished.bind())
 
-    dialog_index += 1
+	dialog_index += 1
 
-    if Input.is_action_just_pressed("ui_accept"):
-      $text/txt.visible_characters = char_count
-    return
+	if Input.is_action_just_pressed("ui_accept"):
+	  $text/txt.visible_characters = char_count
+	return
   else:
-    #if anim_exit() != 1:
-    anim_exit()
-    dialog_index = -1
+	#if anim_exit() != 1:
+	anim_exit()
+	dialog_index = -1
 
-    return
-    
+	return
+	
 func _on_tweenDialog_finished():
   dialog_finished = true
   tween_dialog = null
@@ -127,7 +127,7 @@ func anim_exit():
   var tween = create_tween().set_ease(Tween.EASE_IN_OUT) \
   .set_trans(Tween.TRANS_CUBIC)
   tween.tween_property(
-    self, "position:y", position.y - orientation_move, fade_time)
+	self, "position:y", position.y - orientation_move, fade_time)
 
   return 1
 

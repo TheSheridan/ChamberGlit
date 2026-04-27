@@ -5,27 +5,18 @@
 
 [node name="n_animLoading" type="CanvasLayer" unique_id=1811620168]
 script = ExtResource("1_8sgaa")
+spriteColor = null
+bgColor = null
+customPosition = null
 
 [node name="Control" type="Control" parent="." unique_id=1187097500]
 layout_mode = 3
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Margin" type="AspectRatioContainer" parent="Control" unique_id=285774248]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 0
 
 [node name="Sprite" type="Sprite2D" parent="Control/Margin" unique_id=1282385762]
 texture_filter = 1

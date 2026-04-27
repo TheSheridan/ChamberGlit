@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://2h62ja0qk3su"]
+
+[ext_resource type="Script" uid="uid://co270eyw4g1ve" path="res://assets/nodes/npc_chaser_slime/npc_chaser_slime.gd" id="1_4aaa7"]
+[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="1_xbe7w"]
+[ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="2_q13j4"]
+[ext_resource type="AudioStream" uid="uid://p2jv5rqk0c4b" path="res://assets/audio/sfx_car_drift.ogg" id="3_fqpsy"]
+[ext_resource type="AudioStream" uid="uid://birr3vnlbmvjt" path="res://assets/audio/sfx_car_crash.ogg" id="4_7q0yq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4aaa7"]
+size = Vector2(30, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7q0yq"]
+radius = 24.0
+
+[node name="NpcChaserSlime" type="CharacterBody2D" unique_id=1243489654]
+script = ExtResource("1_4aaa7")
+battle = "_sgt.scene_battle_test1"
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1200569489]
+shape = SubResource("RectangleShape2D_4aaa7")
+
+[node name="Area" type="Area2D" parent="." unique_id=1327044310]
+script = ExtResource("2_q13j4")
+metadata/_custom_type_script = "uid://cqcur1rm7433g"
+
+[node name="Collision" type="CollisionShape2D" parent="Area" unique_id=733652416]
+shape = SubResource("CircleShape2D_7q0yq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=28556773]
+texture_filter = 1
+position = Vector2(0, 1.9073486e-06)
+texture = ExtResource("1_xbe7w")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1654401025]
+
+[node name="SoundCarDrift" type="AudioStreamPlayer2D" parent="." unique_id=120473849]
+stream = ExtResource("3_fqpsy")
+max_distance = 300.0
+
+[node name="SoundCarCrash" type="AudioStreamPlayer2D" parent="." unique_id=1470074468]
+stream = ExtResource("4_7q0yq")
+
+[node name="Timer" type="Timer" parent="." unique_id=2125632654]
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

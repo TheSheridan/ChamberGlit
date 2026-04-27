@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf4obwcitvbwk"]
 
 [ext_resource type="Script" uid="uid://d0g1muu1mngvj" path="res://assets/scenes/!_debug/debug_dialogManagerTest/a.gd" id="1_tbdg4"]
-[ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/scenes/!_debug/debug_dialogManagerTest/balloon.tscn" id="2_hl2wj"]
+[ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/nodes/chr_bella/balloon.tscn" id="2_hl2wj"]
 [ext_resource type="Resource" uid="uid://c1qktq1rlatfp" path="res://assets/nodes/dialogues/dlg_vespera_ruth.dialogue" id="3_hl2wj"]
 
 [node name="DebugDialogueManagerTest" type="Control" unique_id=276591282]

@@ -1,6 +1,9 @@
 ## Singleton autoload for most of all variables, flags and functions the game uses.
 extends Node
 
+@onready var _loading = $'/root/n_animLoading'
+@onready var _load = $'/root/auto_load'
+
 
 # Common
 enum _ease {IN, OUT}
@@ -21,10 +24,10 @@ func music_play(node, fade, time):
 			create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC) \
 			.tween_property(node, "volume_db", 0.0, time)
 
-func sfx_play(sfx):
-	var _sfx = get_node('/root/sfx/' + sfx)
-	_sfx.volume_db = settings_sfxVolume
-	_sfx.play()
+func sfx_play(sound):
+	var sfx = get_node('/root/sfx/' + sound)
+	sfx.volume_db = settings_sfxVolume
+	sfx.play()
 
 # Button prompts
 func get_button_prompt(key: String):
@@ -48,6 +51,8 @@ func check_bella_position(bella, scene_name: String):
 	var helper = get_node("../" + scene_name + "/PositionHelpers/" + flag_helper)
 	var after_battle = get_node("../" + scene_name + "/PositionHelpers/AfterBattle")
 	
+	_loading._out.emit()
+	
 	after_battle.position = flag_prev_position
 	
 	if flag_helper != "":
@@ -55,6 +60,30 @@ func check_bella_position(bella, scene_name: String):
 	elif flag_helper == "AfterBattle":
 		bella.position = after_battle.position
 	
+func fade_to_battle(bella, battle_scene):
+	_loading.sprite_color = false
+	bella.stand_still = true
+	
+	quick_prev(scene_outside_vespera, bella.position)
+	sfx_play("battle")
+	
+	create_tween().set_ease(Tween.EASE_OUT) \
+			.set_trans(Tween.TRANS_CUBIC) \
+			.tween_property(bella, "camera_zoom", 1.0, 0.5)
+	
+	# BGM Tribulations
+	
+	# Timer
+	var timer = get_tree().create_timer(1)
+	await timer.timeout
+	
+	bella.fade_color = Color.WHITE
+	bella._fade_in.emit()
+	
+	var timer2 = get_tree().create_timer(bella.fade_duration)
+	await timer2.timeout
+			
+	_load.change_scene(battle_scene)
 
 # - Bella stats
 var bella_stats: Dictionary = {
@@ -163,6 +192,7 @@ var flag_bella_house_appear_in_bed: bool = false
 ## Bella accepted Ruth fetch quest?
 var flag_vespera_accept_to_search_herbs: bool = false
 var flag_vespera_got_herbs: bool = false
+var flag_vespera_heard_about_cave: bool = false
 #endregion
 
 

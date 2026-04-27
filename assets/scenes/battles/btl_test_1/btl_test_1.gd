@@ -5,6 +5,7 @@ extends Node3D
 @onready var _sgt = get_node("/root/auto_singleton")
 @onready var _fade = get_node("/root/auto_fade")
 @onready var _load = get_node("/root/auto_load")
+@onready var _loading = get_node('/root/n_animLoading')
 
 @onready var textbox = $UI/Text
 @onready var textbox_bg = $UI/Color
@@ -120,6 +121,8 @@ func _ready() -> void:
 	_fade._out.emit()
 	
 	#print("fairmath: " + str(_sgt.fairmath(20, 5)))
+
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("bgm"), 0)
 	
 	if $"../auto_fade/Timer".timeout:
 		$BGM.play()
@@ -149,6 +152,9 @@ func _ready() -> void:
 	enemy_stat_viewer_position = $UI/EnemyStatViewer.position
 	
 	do_turn_chain.connect(turn_chain.bind())
+	
+	await _loading.tween.finished
+	_loading.sprite_color = true
 	
 @onready var sphere_rotation_temporal = sphere_rotation
 @onready var camera_prev_offset = $Camera.position

@@ -51,8 +51,8 @@ signal taken_a_choice
 
 
 func _ready() -> void:
-	#position.x = default_pos
-	
+	#visibility_changed.connect(
+	#%ResponsesAnim.animation_finished
 	visibility_changed.connect(func() -> void:
 		if auto_focus_first_item and visible and get_menu_items().size() > 0:
 			var first_item: Control = get_menu_items()[0]
@@ -132,14 +132,16 @@ func anim_responses(state: bool):
 #region Internal
 
 
-# Set up the visual side of things.`
+# Set up the visual side of things.
 func _apply_responses() -> void:
 	# Remove any current items
 	for item: Node in get_children():
 		if item == response_template: continue
 		
+		#%ResponsesAnim.play("fade_out")
+		#await %ResponsesAnim.animation_finished
 		print("Choice selected")
-
+		# Remove if needed
 		remove_child(item)
 		item.queue_free()
 

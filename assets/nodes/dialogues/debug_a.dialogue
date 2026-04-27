@@ -1,0 +1,12 @@
+~ start
+Grapes or oranges?
+- Grapes => grapes
+- Oranges => oranges
+
+~ grapes
+Y e s
+=> END
+
+~ oranges
+Skill issue
+=> END

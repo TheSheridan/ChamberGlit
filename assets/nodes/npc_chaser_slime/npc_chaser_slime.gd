@@ -4,11 +4,15 @@ extends CharacterBody2D
 var state: int
 enum state_enum { QUIET, MOVE, REST }
 
+@export_file var battle: String
 @export var chase_mult: float = 400
 
 @onready var bella = get_parent().get_node("CharacterBella")
+@onready var bgm = get_parent().get_node("BGM")
+
 @onready var _sgt = get_node("/root/auto_singleton")
 @onready var _load = get_node("/root/auto_load")
+@onready var _loading = get_node('/root/n_animLoading')
 
 
 func _ready() -> void:
@@ -31,22 +35,6 @@ func _process(delta: float) -> void:
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		_sgt.quick_prev(_sgt.scene_outside_vespera, bella.position)
-		$SoundBattle.play()
+		create_tween().tween_property(bgm, 'volume_db', -50, 0.5)
 		state = state_enum.QUIET
-		
-		create_tween().set_ease(Tween.EASE_OUT) \
-				.set_trans(Tween.TRANS_CUBIC) \
-				.tween_property(bella, "camera_zoom", 5.0, 0.5)
-				
-		$Timer.start(1)
-		await $Timer.timeout
-		
-		bella.fade_color = Color.WHITE
-		bella._fade_in.emit()
-		
-		$Timer.start(bella.fade_duration)
-		await $Timer.timeout
-				
-		_load.change_scene(_sgt.battle_test1)
-		
+		_sgt.fade_to_battle(bella, _sgt.battle_test1)

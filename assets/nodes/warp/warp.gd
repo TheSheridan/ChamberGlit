@@ -10,10 +10,16 @@ extends Area2D
 @onready var _load = get_node("/root/auto_load")
 @onready var bella = $'../../CharacterBella'
 
+@export var zoom_camera: bool = false
+@export_enum("In", "Out") var zoom_ease: int = false
+var zoom_how_much: float
+var zoom_tween: Tween
+@onready var zoom_time: float = bella.fade_duration
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered.bind())
-	
+	print(warp_scene)
+
 func warp_to_pos():
 	var helper = get_node("../../PositionHelpers/" + warp_helper) 
 	
@@ -32,10 +38,32 @@ func warp_to_scene():
 	await timer.timeout
 	
 	_load.change_scene(warp_scene, warp_helper)
+	
+func zoom():
+	var time: float
+	
+	if zoom_ease:
+		zoom_how_much = 2
+		time = zoom_time * 2
+	else:
+		zoom_how_much = 1
+		time = zoom_time
+	
+	zoom_tween = create_tween()
+	zoom_tween.set_ease(Tween.EASE_IN_OUT)
+	zoom_tween.set_trans(Tween.TRANS_CUBIC)
+
+	zoom_tween.tween_property(bella, 'camera_zoom', zoom_how_much, zoom_time)
+	
+	await zoom_tween.finished
+	zoom_tween = null
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		if warp_scene == "<null>":
-			warp_to_pos()
-		else:
+		if zoom_camera:
+			zoom()
+		
+		if warp_scene != "<null>":
 			warp_to_scene()
+		else:
+			warp_to_pos()

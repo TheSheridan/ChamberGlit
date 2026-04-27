@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://baj7pkphrbtv6" path="res://assets/nodes/chr_bella/collision_shape.res" id="2_os1l5"]
 [ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="3_460l1"]
 [ext_resource type="AudioStream" uid="uid://b8ai8ae3gijm6" path="res://assets/audio/sfxr/tree kick-2.wav" id="4_48kbk"]
-[ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/scenes/!_debug/debug_dialogManagerTest/balloon.tscn" id="5_5v7vn"]
+[ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/nodes/chr_bella/balloon.tscn" id="5_5v7vn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5v7vn"]
 radius = 16.0
