@@ -55,6 +55,7 @@ var has_choices_closed: bool = false
 
 ## Tween for animations
 var anim_textbox_tween: Tween
+@onready var responses_anim = %ResponsesAnim
 @onready var progress_anim = $Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control/AnimationPlayer
 
 ## The current line
@@ -66,14 +67,16 @@ var dialogue_line: DialogueLine:
 		else:
 			# The dialogue has finished so close the balloon			
 			progress_anim.play("fade_out")
+			
 			$FadeAnim.play("fade_out")
-			await $FadeAnim.animation_finished
+			# TODO: Fix this, it causes to not respond when talking again
+			if $FadeAnim.is_playing and $FadeAnim.current_animation == "fade_out":
+				await $FadeAnim.animation_finished
 			
 			is_running_dialog = false
 			after_closing = true
 			
 			if owner == null:
-				%ResponsesAnim.play("fade_out")
 				queue_free()
 			else:
 				hide()
@@ -110,7 +113,7 @@ signal dialog
 func _ready() -> void:
 	balloon.hide()
 	balloon.modulate.a = 0
-	$ResponsesAnim.play("normal")
+	responses_anim.play("normal")
 
 	dialog.connect(_on_dialog.bind())
 	
@@ -196,10 +199,10 @@ func apply_dialogue_line() -> void:
 	dialogue_label.dialogue_line = dialogue_line
 
 	if has_choices_closed:
-		$ResponsesAnim.play("fade_out")
 		progress_anim.play("fade_out")
 	else:
-		responses_menu.hide()
+		close()
+		#responses_menu.hide()
 	
 	responses_menu.responses = dialogue_line.responses
 
@@ -239,7 +242,7 @@ func apply_dialogue_line() -> void:
 	# Text after choice
 	else:
 		#print("4")
-		$ResponsesAnim.play("fade_out")
+		
 		is_waiting_for_input = true
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
@@ -254,6 +257,19 @@ func next(next_id: String) -> void:
 		next_sound.play()
 		
 	dialogue_line = await dialogue_resource.get_next_dialogue_line(next_id, temporary_game_states)
+
+func close():
+	print("Close called!")
+	
+	if not dialogue_line.responses.size() > 0 and not has_choices_closed:
+		responses_anim.play("fade_out")
+	
+	# The rest of the logic is handled in %ResponsesMenu
+	
+	#if responses_anim.is_playing():
+		#await responses_anim.animation_finished
+	#else:
+		#queue_free()
 
 #region animations
 
@@ -332,8 +348,6 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
-	#$ResponsesAnim.play("fade_out")
-	#await $ResponsesAnim.animation_finished
 	next(response.next_id)
 
 #endregion

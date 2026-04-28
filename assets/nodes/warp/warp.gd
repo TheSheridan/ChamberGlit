@@ -2,12 +2,14 @@
 extends Area2D
 
 
+@onready var _load = get_node("/root/auto_load")
+@onready var _loading = $'/root/n_animLoading'
+
 ## Teleport Bella to another scene in the map. If empty, doesn't happen. 
 @export_file var warp_scene = "<null>"
 ## The position helper in which Bella will teleport.
 @export var warp_helper: String
 
-@onready var _load = get_node("/root/auto_load")
 @onready var bella = $'../../CharacterBella'
 
 @export var zoom_camera: bool = false
@@ -65,5 +67,7 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		if warp_scene != "<null>":
 			warp_to_scene()
+			_loading._out.emit()
 		else:
 			warp_to_pos()
+			

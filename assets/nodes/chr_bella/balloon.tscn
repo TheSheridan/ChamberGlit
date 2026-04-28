@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://do6qxjb6uyrwm" path="res://assets/fonts/RG2014F.ttf" id="6_jafhv"]
 [ext_resource type="AudioStream" uid="uid://dbcfuwglqeesa" path="res://assets/audio/sfx_accept.ogg" id="6_yuasx"]
 [ext_resource type="AudioStream" uid="uid://bfphvk1gpqtqp" path="res://assets/audio/sfx_select.wav" id="7_7escu"]
+[ext_resource type="Texture2D" uid="uid://cpdf5vnbtjc6a" path="res://assets/images/gui/gui_textbox_choice.png" id="8_4wwmy"]
 [ext_resource type="AudioStream" uid="uid://bin1a41hfllpb" path="res://assets/audio/type_sound.tres" id="8_6mdsk"]
 [ext_resource type="FontFile" uid="uid://bdetdig8uqrk6" path="res://assets/fonts/Barlow-Medium.ttf" id="8_jafhv"]
 [ext_resource type="AudioStream" uid="uid://xjb533hvdid4" path="res://assets/audio/sfx_choice.ogg" id="8_obir6"]
@@ -180,16 +181,15 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mdsk"]
-bg_color = Color(0.09808152, 0.25125006, 0.38039213, 1)
-border_width_left = 8
-border_width_top = 4
-border_width_bottom = 4
-border_color = Color(0.09803922, 0.2509804, 0.38039216, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tb08f"]
+texture = ExtResource("8_4wwmy")
+texture_margin_left = 16.0
+texture_margin_top = 8.0
+texture_margin_right = 16.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(0, 0, 48, 48)
 
 [sub_resource type="Theme" id="Theme_s3h70"]
 default_font = ExtResource("8_jafhv")
@@ -200,7 +200,7 @@ Button/styles/hover = null
 Button/styles/hover_mirrored = null
 Button/styles/hover_pressed = null
 Button/styles/hover_pressed_mirrored = null
-Button/styles/normal = SubResource("StyleBoxFlat_6mdsk")
+Button/styles/normal = SubResource("StyleBoxTexture_tb08f")
 Button/styles/normal_mirrored = null
 Button/styles/pressed = null
 Button/styles/pressed_mirrored = null
@@ -229,8 +229,8 @@ tracks/0/path = NodePath(".:position:x")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(0.14358725, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.28717458, 1),
 "update": 0,
 "values": [640.0, 269.5]
 }
@@ -262,7 +262,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [269.5]
+"values": [640.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a6ysu"]
@@ -448,7 +448,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -10.5
 offset_top = -240.0
-offset_right = 280.00098
+offset_right = 280.0005
 offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -459,6 +459,7 @@ script = ExtResource("3_72ixx")
 response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu" unique_id=1446810977]
+texture_filter = 1
 layout_mode = 2
 theme = SubResource("Theme_s3h70")
 text = "Response example"

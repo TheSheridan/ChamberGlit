@@ -36,12 +36,14 @@ var spr_shake_alpha_time: int
 @onready var _sgt = get_node('/root/auto_singleton')
 @onready var _fade = get_node('/root/auto_fade')
 @onready var _load = get_node('/root/auto_load')
+@onready var _loading = get_node('/root/n_animLoading')
 
 
 # Main
 func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	_fade._out.emit()
+	_loading._out.emit()
 	$AudioStreamPlayer.playing = true
 	previous_bgm_volume = AudioServer.get_bus_volume_db(1)
 	AudioServer.set_bus_volume_db(1, -6)

@@ -2,6 +2,7 @@
 extends Node3D
 
 
+#region Variables
 @onready var _sgt = get_node("/root/auto_singleton")
 @onready var _fade = get_node("/root/auto_fade")
 @onready var _load = get_node("/root/auto_load")
@@ -114,6 +115,10 @@ var lose_switch: bool = false
 
 @onready var rng = RandomNumberGenerator.new()
 
+@onready var sphere_rotation_temporal = sphere_rotation
+@onready var camera_prev_offset = $Camera.position
+#endregion
+
 
 func _ready() -> void:
 	_fade.show()
@@ -155,24 +160,19 @@ func _ready() -> void:
 	
 	await _loading.tween.finished
 	_loading.sprite_color = true
-	
-@onready var sphere_rotation_temporal = sphere_rotation
-@onready var camera_prev_offset = $Camera.position
 
 func _process(delta: float) -> void:
-	#print("prev scene: " + str(_sgt.flag_prev_scene))
-	
+	# Debug
 	$UI/DebugLabel.text = "debug stats:\nPS: " + str(bella_stats.hp) \
 		+ "\nPP: " + str(bella_stats.pp) \
 		+ "\n\n-enemigo-\nPS: " + str(enemy_stats.hp) \
 		+ "\nPP: " + str(enemy_stats.pp)
 	
-	#print(sphere_rotation)	
-	#smooth_camera()
-	
+	# Rotate BG
 	$BG.rotation_degrees.y += sphere_rotation * delta
 	$BG.rotation_degrees.z += sphere_rotation * delta
 	 
+	# If Bella HP is low, change BG to reflect that
 	if bella_stats.hp > 0:
 		if bella_stats.hp < bella_stats.hp_max / 4:
 			sphere_rotation = sphere_rotation_temporal * 5
@@ -185,10 +185,14 @@ func _process(delta: float) -> void:
 		sphere_rotation = sphere_rotation_temporal
 		bella_stats.hp = 0
 		
+	# Idk about this one
 	if enemy_stats.hp <= 0:
 		enemy_stats.hp = 0
 		
-	# Update stat viewer
+	update_stat_viewer()
+	battle_loop()
+
+func update_stat_viewer():
 	$UI/StatViewer/HPBar.max_value = bella_stats.hp_max
 	
 	$UI/StatViewer/HPBar.value = lerp(int($UI/StatViewer/HPBar.value), bella_stats.hp, 0.1)
@@ -205,7 +209,7 @@ func _process(delta: float) -> void:
 	if not loosen_stat_viewer_position:
 		$UI/StatViewer.position = stat_viewer_position + stat_viewer_offset
 
-	# The eponymous battle game loop
+func battle_loop():
 	if Input.is_action_just_pressed('ui_accept') and not in_a_turn:
 		if turn_chain_ready and not win_switch:
 			if not win_anim_lock:
@@ -266,7 +270,7 @@ func after_winning():
 	$Timer.start(0.5)
 	await $Timer.timeout
 	
-	#_sgt.flag_scene_changed_after_winning = true
+	_sgt.flag_scene_changed_after_battle = true
 	_load.change_scene(_sgt.flag_prev_scene, "AfterBattle")
 	
 func after_losing():
@@ -401,15 +405,19 @@ func won_the_battle():
 	
 	$BGMFightOver.play()
 	create_tween().tween_property($BGMFightOver, 'volume_db', 1, 0.5)
+	
 	anim_enemy_defeated()
+	
 	create_tween().tween_property($UI/VBoxContainer, "modulate:a", 0, 0.5)
 	create_tween().set_ease(Tween.EASE_IN_OUT) \
 			.set_trans(Tween.TRANS_CUBIC) \
 			.tween_property($Camera, "position", Vector3(0, 0.4, 1), 1)
+			
 	await $BattleTimer.timeout
 	
 	win_anim_lock = false
 	win_switch = true
+	
 	bella_stats.exp += enemy_stats.give_exp
 	textbox.text = text_combat.enemy_defeated + '\n' \
 			+ text_combat.gained_exp + '[b]' + str(enemy_stats.give_exp) + '[/b]' \
@@ -602,6 +610,7 @@ func button_action_4():
 	
 	# travel back to previous scene
 	get_node('/root/auto_fade')._in.emit()
+	print_rich("[color=red]This emitted[/color]")
 	_load.change_scene(_sgt.flag_prev_scene, "AfterBattle")
 	
 func _on_flee_sound_finished() -> void:

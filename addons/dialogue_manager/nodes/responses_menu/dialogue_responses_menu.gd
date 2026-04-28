@@ -1,8 +1,10 @@
 @icon("uid://drjfciwitjm83")
 
+
 ## A [Container] for dialogue responses provided by [b]Dialogue Manager[/b].
 class_name DialogueResponsesMenu extends Container
 
+@onready var responses_anim = %ResponsesAnim
 
 ## Emitted when a response is focused.
 signal response_focused(response: Variant)
@@ -114,6 +116,9 @@ func configure_focus() -> void:
 	if auto_focus_first_item:
 		items[0].grab_focus()
 
+## Checks if the choices closed
+func close():
+	print("close() called!")
 
 func anim_responses(state: bool):
 	var tween = create_tween()
@@ -142,8 +147,14 @@ func _apply_responses() -> void:
 		#await %ResponsesAnim.animation_finished
 		print("Choice selected")
 		# Remove if needed
-		remove_child(item)
-		item.queue_free()
+		
+		if responses_anim.is_playing() and responses_anim.current_animation == "fade_out":
+			await responses_anim.animation_finished
+			remove_child(item)
+			item.queue_free()
+		else:
+			remove_child(item)
+			item.queue_free()
 
 	# Add new items
 	if responses.size() > 0:

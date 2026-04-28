@@ -15,5 +15,5 @@ normal_speed = 200.0
 max_speed = 400.0
 
 [node name="CharacterNpc" parent="." unique_id=1334509439 instance=ExtResource("2_focgc")]
-position = Vector2(200, 64)
+position = Vector2(200, 63)
 text_to_send = ExtResource("4_focgc")

@@ -1,16 +1,144 @@
 [gd_scene format=3 uid="uid://2h62ja0qk3su"]
 
 [ext_resource type="Script" uid="uid://co270eyw4g1ve" path="res://assets/nodes/npc_chaser_slime/npc_chaser_slime.gd" id="1_4aaa7"]
-[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="1_xbe7w"]
 [ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="2_q13j4"]
 [ext_resource type="AudioStream" uid="uid://p2jv5rqk0c4b" path="res://assets/audio/sfx_car_drift.ogg" id="3_fqpsy"]
+[ext_resource type="Texture2D" uid="uid://cg6pte1g86xfw" path="res://assets/images/battlers/pimp.png" id="3_q13j4"]
 [ext_resource type="AudioStream" uid="uid://birr3vnlbmvjt" path="res://assets/audio/sfx_car_crash.ogg" id="4_7q0yq"]
+[ext_resource type="AudioStream" uid="uid://c1612pfdpfo6j" path="res://assets/audio/sfx_flipt.ogg" id="6_jwfr5"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="7_p664l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4aaa7"]
 size = Vector2(30, 30)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7q0yq"]
 radius = 24.0
+
+[sub_resource type="Animation" id="Animation_q13j4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InvincibilityGlow:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InvincibilityGlow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jwfr5"]
+resource_name = "noclip"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.30980393), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InvincibilityGlow:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InvincibilityGlow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_p664l"]
+resource_name = "noclip_end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.43527538, 1),
+"update": 0,
+"values": [Color(1.353256, 1.353256, 1.353256, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InvincibilityGlow:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.06666667, 0.46666667),
+"transitions": PackedFloat32Array(1, 0.28717458, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(0.8117647, 0.9867128, 1, 0.5411765), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InvincibilityGlow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(0.116629206, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfe2g"]
+_data = {
+&"RESET": SubResource("Animation_q13j4"),
+&"noclip": SubResource("Animation_jwfr5"),
+&"noclip_end": SubResource("Animation_p664l")
+}
 
 [node name="NpcChaserSlime" type="CharacterBody2D" unique_id=1243489654]
 script = ExtResource("1_4aaa7")
@@ -29,7 +157,7 @@ shape = SubResource("CircleShape2D_7q0yq")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=28556773]
 texture_filter = 1
 position = Vector2(0, 1.9073486e-06)
-texture = ExtResource("1_xbe7w")
+texture = ExtResource("3_q13j4")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1654401025]
 
@@ -40,6 +168,17 @@ max_distance = 300.0
 [node name="SoundCarCrash" type="AudioStreamPlayer2D" parent="." unique_id=1470074468]
 stream = ExtResource("4_7q0yq")
 
+[node name="SoundInvincibility" type="AudioStreamPlayer2D" parent="." unique_id=562834579]
+stream = ExtResource("6_jwfr5")
+volume_db = -2.0
+
 [node name="Timer" type="Timer" parent="." unique_id=2125632654]
+
+[node name="InvincibilityGlow" type="Sprite2D" parent="." unique_id=314954592]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("7_p664l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=514830971]
+libraries/ = SubResource("AnimationLibrary_yfe2g")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

@@ -853,6 +853,7 @@ func _wait_for(actions: PackedStringArray) -> void:
 	var waiter: DMWaiter = DMWaiter.new(actions)
 	add_child(waiter)
 	await waiter.waited
+	# Suspicious
 	waiter.queue_free()
 
 
