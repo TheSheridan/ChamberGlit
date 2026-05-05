@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmln3rv0ltw4f"]
 
-[ext_resource type="Script" uid="uid://8r868mxiiuw" path="res://assets/scenes/!_debug/map_template/map_template.gd" id="1_2q5fx"]
+[ext_resource type="Script" uid="uid://8r868mxiiuw" path="res://assets/scenes/!_debug/debug_map_template/map_template.gd" id="1_2q5fx"]
 [ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="1_a0fhs"]
 [ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="3_yhkni"]
 [ext_resource type="Resource" uid="uid://demmco308oy0x" path="res://assets/nodes/dialogues/debug_a.dialogue" id="4_yhkni"]

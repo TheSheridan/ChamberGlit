@@ -11,7 +11,7 @@ extends CharacterBody2D
 @export var camera_magnitude: float = 3
 
 ## Sets how large is the $Raycast.
-@export var ray_size = 50
+@export var ray_size = 25
 ## Strength of the $Raycast movement.
 @export var ray_strength = 0.5
 
@@ -142,13 +142,26 @@ func _process(_delta) -> void:
 		current_speed = normal_speed
 	
 	var direction_input = get_input()
+	
+	# Lerp camera
 	if direction_input.x < 0 or direction_input.y < 0:
-		#print("Calling lerp_camera_left()")
-		lerp_camera_left()  # Change to left/right based on input direction
+		lerp_camera_left()
 	elif direction_input.x > 0 or direction_input.y > 0:
-		#print("Calling lerp_camera_right()")
 		lerp_camera_right()
 		
+	# Raycast position
+	match direction_input:
+		# Repetitive code... Is there a way to simplify this?
+		Vector2.UP:
+			$Ray.target_position = Vector2.UP * ray_size
+		Vector2.DOWN:
+			$Ray.target_position = Vector2.DOWN * ray_size
+		Vector2.LEFT:
+			$Ray.target_position = Vector2.LEFT * ray_size
+		Vector2.RIGHT:
+			$Ray.target_position = Vector2.RIGHT * ray_size
+
+	# Walk sound		
 	#while direction_input != Vector2.ZERO:
 		#if walk_sound_bool:
 			#$WalkSound.play()
