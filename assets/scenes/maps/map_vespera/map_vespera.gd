@@ -8,6 +8,9 @@ extends Node2D
 @onready var balloon = $CharacterBella/ExampleBalloon
 
 var npc_battle_enter: bool
+var show_sigi_signal: bool = false
+
+var name_ruth: String = "[color=green]Ruth:[/color]"
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0.653, 0.693, 0.714, 1.0))
@@ -15,11 +18,27 @@ func _ready() -> void:
 	
 	print("helper: " + str(_sgt.flag_helper))
 	
+	$Sigi.hide()
+	
 	_sgt.check_bella_position(bella, name)
+	#_sgt.flag_vespera_got_herbs = true # debug ofc
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	_sgt.handle_dialog(bella, balloon)
 
+func ruth_anim(id: String):
+	$Ruth/Anim.play(id)
+	
+var sigi_move_mult: float = 400
+func show_sigi():
+	$Sigi.show()
+	#var move_vector = $Sigi.position.move_toward($CharacterBella.position, delta * sigi_move_mult)
+	#position = lerp(position, move_vector, 0.8)
+	#$Sigi.position = $CharacterBella.position + Vector2(40, 0)
+	$Sigi/Anim.play("come_in")
+
+func fade_audio():
+	create_tween().tween_property($BGM, "volume_db", 0, 0.5)
 
 func _on_npc_battle_finished() -> void:
 	_sgt.quick_prev(_sgt.scene_vespera, bella.position)

@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://pjsvj53itmhc" path="res://assets/nodes/dialogues/dlg_outside_vespera_herbs.dialogue" id="9_ewa2p"]
 [ext_resource type="Script" uid="uid://cd3222nx3y3k5" path="res://addons/dialogue_manager/nodes/context/dialogue_state_context.gd" id="10_dhv7t"]
 [ext_resource type="PackedScene" uid="uid://2h62ja0qk3su" path="res://assets/nodes/npc_chaser_slime/npc_chaser_slime.tscn" id="11_6ing0"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="12_v0s86"]
+[ext_resource type="Texture2D" uid="uid://cdcrhkdbxelnl" path="res://assets/images/particle2.png" id="13_vr5wj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klnd3"]
 size = Vector2(584, 184)
@@ -25,7 +27,27 @@ size = Vector2(64, 63)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hxid"]
 radius = 231.17526
 
+[sub_resource type="Curve" id="Curve_lksyi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.06150794, 1), 0.0, 0.0, 0, 0, Vector2(0.68849206, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_t8q2l"]
+colors = PackedColorArray(1, 1, 1, 1, 0.588542, 0.807129, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_v0s86"]
+offsets = PackedFloat32Array(0.7175141, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.91080004, 0.9636, 0.99, 0.21176471)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vr5wj"]
+gradient = SubResource("Gradient_v0s86")
+width = 640
+height = 480
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="MapOutsideVespera" type="Node2D" unique_id=1568421946]
+editor_description = "NOTE
+Trying to instance the same NpcChaserSlime crashes the battle scene"
 script = ExtResource("1_qkiea")
 metadata/_edit_horizontal_guides_ = [-1520.0]
 
@@ -76,9 +98,8 @@ tile_map_data = PackedByteArray("AABn/yEAAwAAAAEAAABn/xIAAwAAAAEAAABn/xMAAwAAAAE
 tile_set = ExtResource("4_vr5wj")
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("5_lksyi")]
-position = Vector2(-1552, -536)
+position = Vector2(-200, 264)
 deceleration = 12000.0
-normal_speed = 200.0
 max_speed = 400.0
 
 [node name="Bridge" type="CharacterBody2D" parent="." unique_id=1144639775]
@@ -154,7 +175,71 @@ alias = "map"
 target = NodePath("..")
 metadata/_custom_type_script = "uid://cd3222nx3y3k5"
 
+[node name="- Enemies -" type="Node" parent="." unique_id=1054717237]
+
 [node name="NpcChaserSlime" parent="." unique_id=1243489654 instance=ExtResource("11_6ing0")]
 position = Vector2(-1336, -912)
 battle = "uid://daam4wde7n1cd"
 chase_mult = 300.0
+
+[node name="Parallax" type="Parallax2D" parent="." unique_id=1595353882]
+scroll_scale = Vector2(1.5, 1.5)
+
+[node name="Particles" type="Node2D" parent="Parallax" unique_id=231915341]
+position = Vector2(-1040, -1008)
+
+[node name="Snow1" type="CPUParticles2D" parent="Parallax/Particles" unique_id=1811841912]
+modulate = Color(1, 1, 1, 0.30588236)
+position = Vector2(628, -1976)
+amount = 1000
+texture = ExtResource("12_v0s86")
+lifetime = 30.0
+preprocess = 10.0
+emission_shape = 6
+emission_ring_inner_radius = 1.0
+emission_ring_radius = 3000.0
+particle_flag_align_y = true
+direction = Vector2(0, 50)
+spread = 0.0
+gravity = Vector2(0, 50)
+initial_velocity_max = 2.0
+angular_velocity_max = 50.0
+orbit_velocity_max = 0.01
+tangential_accel_max = 2.0
+damping_max = 5.66
+angle_max = 54.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_lksyi")
+color = Color(1, 1, 1, 0.654902)
+color_ramp = SubResource("Gradient_t8q2l")
+
+[node name="Snow2" type="CPUParticles2D" parent="Parallax/Particles" unique_id=247006673]
+modulate = Color(1, 1, 1, 0.69411767)
+position = Vector2(628, -1976)
+amount = 1000
+texture = ExtResource("13_vr5wj")
+lifetime = 30.0
+preprocess = 10.0
+emission_shape = 6
+emission_ring_inner_radius = 1.0
+emission_ring_radius = 3000.0
+particle_flag_align_y = true
+direction = Vector2(0, 50)
+spread = 0.0
+gravity = Vector2(0, 50)
+initial_velocity_max = 2.0
+angular_velocity_max = 50.0
+orbit_velocity_max = 0.01
+tangential_accel_max = 2.0
+damping_max = 5.66
+angle_max = 54.0
+scale_amount_min = 0.25
+scale_amount_curve = SubResource("Curve_lksyi")
+color = Color(1, 1, 1, 0.654902)
+color_ramp = SubResource("Gradient_t8q2l")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1957052541]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=361852829]
+texture = SubResource("GradientTexture2D_vr5wj")
+centered = false

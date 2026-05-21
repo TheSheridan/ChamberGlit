@@ -628,7 +628,6 @@ texture = ExtResource("4_1iqys")
 
 [node name="LetterSound" type="AudioStreamPlayer" parent="UI/Textbox" unique_id=444445861]
 stream = SubResource("AudioStreamRandomizer_214dw")
-bus = &"sfx"
 
 [node name="Timer" type="Timer" parent="UI/Textbox" unique_id=1132981684]
 
@@ -648,23 +647,22 @@ stream = ExtResource("9_l0sy6")
 stream = ExtResource("21_w1r1i")
 volume_db = -20.0
 autoplay = true
-bus = &"sfx2"
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=539622531]
 stream = ExtResource("9_mp1fd")
 volume_db = 5.0
-bus = &"sfx"
+bus = &"sfx_battles"
 
 [node name="FleeSound" type="AudioStreamPlayer" parent="." unique_id=2062945214]
 stream = ExtResource("10_21e6a")
 volume_db = 5.0
-bus = &"sfx"
+bus = &"sfx_battles"
 playback_type = 1
 parameters/looping = false
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=807295607]
 stream = ExtResource("17_wts6y")
-bus = &"sfx"
+bus = &"sfx_battles"
 
 [node name="Timer" type="Timer" parent="." unique_id=1398250243]
 

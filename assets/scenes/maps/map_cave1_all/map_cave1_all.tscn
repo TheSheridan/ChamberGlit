@@ -46,12 +46,12 @@ gradient = SubResource("Gradient_spwib")
 [node name="MapCave1All2" type="Node2D" unique_id=866708146]
 editor_description = "¡Vamoooooooooooooo! ¡Por fin acabé la textbox!"
 script = ExtResource("1_c7rph")
+appear_normally = false
 metadata/_edit_horizontal_guides_ = [-872.0]
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_rqe04")]
-position = Vector2(11072, -960)
+position = Vector2(14680, -1824)
 deceleration = 12000.0
-normal_speed = 200.0
 max_speed = 400.0
 
 [node name="Maps" type="Node2D" parent="." unique_id=1176475494]

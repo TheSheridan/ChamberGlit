@@ -15,7 +15,29 @@ feedback_level_db = -4.18
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
-room_size = 0.16
+room_size = 0.1
+damping = 0.1
+wet = 0.3
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -5.3
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
+resource_name = "Reverb"
+room_size = 0.2
+wet = 0.1
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_g28q7"]
+resource_name = "Delay"
+dry = 0.7
+tap1_level_db = -17.45
+tap1_pan = 0.0
+tap2_active = false
+tap2_level_db = -20.0
+tap2_pan = 0.0
+feedback_active = true
+feedback_delay_ms = 100.0
 
 [resource]
 bus/1/name = &"bgm"
@@ -24,7 +46,7 @@ bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = -0.41491318
 bus/1/send = &"Master"
-bus/2/name = &"sfx"
+bus/2/name = &"sfx_delay"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
@@ -32,11 +54,23 @@ bus/2/volume_db = -0.583786
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectDelay_j3pel")
 bus/2/effect/0/enabled = true
-bus/3/name = &"sfx2"
+bus/3/name = &"sfx_walk"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = 0.0
+bus/3/volume_db = -3.0293906
 bus/3/send = &"Master"
 bus/3/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
 bus/3/effect/0/enabled = true
+bus/4/name = &"sfx_battles"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectReverb_g28q7")
+bus/4/effect/1/enabled = true
+bus/4/effect/2/effect = SubResource("AudioEffectDelay_g28q7")
+bus/4/effect/2/enabled = true

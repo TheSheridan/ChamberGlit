@@ -4,12 +4,15 @@ extends Node2D
 
 @onready var _sgt = $/root/auto_singleton
 @onready var _sfx = $/root/sfx
+@onready var _loading = $"/root/n_animLoading"
 
 @onready var bella = $CharacterBella
 @onready var balloon = $CharacterBella/ExampleBalloon
 
 var big_block_in_hole: bool = false
 var small_block_in_hole: bool = false
+@onready var old_big_block_pos: Vector2 = $BigBlock.position
+@onready var old_small_block_pos: Vector2 = $SmallBlock.position
 var see_label_switch: bool = false
 
 var tween: Tween
@@ -65,6 +68,19 @@ func see_label():
 	bella.stand_still = false
 	see_label_switch = true
 	
+func reset_blocks():
+	_loading._out.emit()
+	big_block_in_hole = false
+	small_block_in_hole = false
+	
+	$BigBlock.position = old_big_block_pos
+	$SmallBlock.position = old_small_block_pos
+	
+	$BigBlock.lock_position = false
+	$SmallBlock.lock_position = false
+	
+	_loading._in.emit()
+	_sfx.play("select")
 
 func _on_big_hole_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("big_block"):

@@ -3,8 +3,16 @@
 [ext_resource type="Script" uid="uid://bkib2e877i508" path="res://assets/nodes/chr_bella/chr_bella.gd" id="1_85iyo"]
 [ext_resource type="Shape2D" uid="uid://baj7pkphrbtv6" path="res://assets/nodes/chr_bella/collision_shape.res" id="2_os1l5"]
 [ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="3_460l1"]
-[ext_resource type="AudioStream" uid="uid://b8ai8ae3gijm6" path="res://assets/audio/sfxr/tree kick-2.wav" id="4_48kbk"]
+[ext_resource type="AudioStream" uid="uid://qxdn1my4mphp" path="res://assets/audio/sfx_snow_walk_1.ogg" id="4_u8ldg"]
 [ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/nodes/chr_bella/balloon.tscn" id="5_5v7vn"]
+[ext_resource type="AudioStream" uid="uid://dr7d257b0k8sh" path="res://assets/audio/sfx_snow_walk_2.ogg" id="5_nd36p"]
+[ext_resource type="AudioStream" uid="uid://sjoir4lqasqo" path="res://assets/audio/sfx_snow_walk_3.ogg" id="6_il3eu"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vo6q7"]
+streams_count = 3
+stream_0/stream = ExtResource("4_u8ldg")
+stream_1/stream = ExtResource("5_nd36p")
+stream_2/stream = ExtResource("6_il3eu")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5v7vn"]
 radius = 16.0
@@ -50,7 +58,6 @@ _data = {
 script = ExtResource("1_85iyo")
 camera_zoom = 2.0
 initial_speed = 300.0
-acceleration = 100.0
 deceleration = 200.0
 max_speed = 700.0
 
@@ -72,10 +79,10 @@ target_position = Vector2(0, 25)
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=45888202]
 
 [node name="WalkSound" type="AudioStreamPlayer2D" parent="." unique_id=1537514777]
-stream = ExtResource("4_48kbk")
+stream = SubResource("AudioStreamRandomizer_vo6q7")
+volume_db = 2.0
 max_distance = 831.0
 attenuation = 1.9318731
-bus = &"sfx"
 
 [node name="Timer" type="Timer" parent="WalkSound" unique_id=1333128067]
 
@@ -100,3 +107,5 @@ shape = SubResource("CircleShape2D_5v7vn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=487481476]
 libraries/ = SubResource("AnimationLibrary_nd36p")
+
+[connection signal="timeout" from="WalkSound/Timer" to="." method="_on_timer_timeout"]

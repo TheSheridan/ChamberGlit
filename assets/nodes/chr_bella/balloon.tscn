@@ -6,13 +6,14 @@
 [ext_resource type="FontFile" uid="uid://dh4cbm4v84cq0" path="res://assets/fonts/Milonga-Regular.ttf" id="2_wpxg3"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/nodes/responses_menu/dialogue_responses_menu.gd" id="3_72ixx"]
 [ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="5_tbtim"]
-[ext_resource type="FontFile" uid="uid://do6qxjb6uyrwm" path="res://assets/fonts/RG2014F.ttf" id="6_jafhv"]
+[ext_resource type="FontFile" uid="uid://lewm3uq6qnb6" path="res://assets/fonts/RG2014D.ttf" id="6_4wwmy"]
 [ext_resource type="AudioStream" uid="uid://dbcfuwglqeesa" path="res://assets/audio/sfx_accept.ogg" id="6_yuasx"]
 [ext_resource type="AudioStream" uid="uid://bfphvk1gpqtqp" path="res://assets/audio/sfx_select.wav" id="7_7escu"]
 [ext_resource type="Texture2D" uid="uid://cpdf5vnbtjc6a" path="res://assets/images/gui/gui_textbox_choice.png" id="8_4wwmy"]
 [ext_resource type="AudioStream" uid="uid://bin1a41hfllpb" path="res://assets/audio/type_sound.tres" id="8_6mdsk"]
 [ext_resource type="FontFile" uid="uid://bdetdig8uqrk6" path="res://assets/fonts/Barlow-Medium.ttf" id="8_jafhv"]
 [ext_resource type="AudioStream" uid="uid://xjb533hvdid4" path="res://assets/audio/sfx_choice.ogg" id="8_obir6"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="10_tb08f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tv4ip"]
 
@@ -172,10 +173,10 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jafhv"]
-bg_color = Color(0.24313726, 0.24705882, 0.3137255, 1)
-border_width_left = 4
+bg_color = Color(0.12319999, 0.12503998, 0.16, 1)
+border_width_left = 10
 border_width_right = 12
-border_color = Color(0.24313726, 0.24705882, 0.3137255, 1)
+border_color = Color(0.105882354, 0.10980392, 0.14117648, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 4
@@ -345,16 +346,14 @@ theme = SubResource("Theme_tbtim")
 [node name="PatchMargin" type="MarginContainer" parent="Balloon" unique_id=1307440636]
 layout_mode = 0
 offset_left = -10.0
-offset_top = 274.0
+offset_top = 344.0
 offset_right = 570.0
 offset_bottom = 454.0
-grow_horizontal = 2
-grow_vertical = 0
 pivot_offset = Vector2(300, 230)
 
 [node name="Ratio" type="AspectRatioContainer" parent="Balloon/PatchMargin" unique_id=1609630576]
 layout_mode = 2
-ratio = 4.0
+ratio = 5.3
 alignment_horizontal = 0
 alignment_vertical = 2
 
@@ -376,7 +375,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -126.0
+offset_top = -88.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -402,7 +401,9 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("2_wpxg3")
 theme_override_font_sizes/normal_font_size = 22
-text = "Dialogue..."
+text = "Line 1
+Line 2
+Line 3"
 
 [node name="Control" type="Control" parent="Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=418507161]
 custom_minimum_size = Vector2(10, 10)
@@ -425,12 +426,12 @@ z_index = -1
 clip_contents = false
 layout_mode = 0
 offset_left = 8.0
-offset_top = 280.0
-offset_right = 262.0
-offset_bottom = 312.0
+offset_top = 320.0
+offset_right = 168.0
+offset_bottom = 352.0
 mouse_filter = 1
-theme_override_fonts/normal_font = ExtResource("6_jafhv")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_fonts/normal_font = ExtResource("6_4wwmy")
+theme_override_font_sizes/normal_font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_jafhv")
 bbcode_enabled = true
 text = "Character"
@@ -447,9 +448,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -10.5
-offset_top = -240.0
-offset_right = 280.0005
-offset_bottom = 56.0
+offset_top = -200.0
+offset_right = 259.5
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
@@ -464,6 +465,18 @@ layout_mode = 2
 theme = SubResource("Theme_s3h70")
 text = "Response example"
 alignment = 0
+
+[node name="MugshotMaybe" type="Sprite2D" parent="Balloon" unique_id=1497422796]
+z_index = -2
+position = Vector2(86.00001, 265.99997)
+scale = Vector2(0.90625006, 0.90625006)
+
+[node name="Shadow" type="Sprite2D" parent="Balloon" unique_id=1058509781]
+self_modulate = Color(0, 0, 0, 0.5294118)
+z_index = -2
+position = Vector2(264, 392)
+scale = Vector2(31.5, 10)
+texture = ExtResource("10_tb08f")
 
 [node name="ResponsesAnim" type="AnimationPlayer" parent="." unique_id=1623847212]
 unique_name_in_owner = true

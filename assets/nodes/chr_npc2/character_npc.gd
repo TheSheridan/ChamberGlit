@@ -9,6 +9,8 @@ signal finished
 @onready var balloon = get_parent().get_node("CharacterBella/ExampleBalloon")
 @onready var action = $Actionable2D
 
+@onready var _loading = $"/root/n_animLoading"
+
 signal entered_area
 signal exited_area
 signal start_now
@@ -50,3 +52,4 @@ func _on_area_body_exited(body: Node2D) -> void:
 func _on_actionable_2d_dialogue_ended() -> void:
 	bella.stand_still = false
 	finished.emit()
+	_loading.sprite_color = false

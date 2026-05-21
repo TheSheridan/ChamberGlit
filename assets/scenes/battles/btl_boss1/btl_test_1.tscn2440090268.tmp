@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://daam4wde7n1cd"]
+
+[ext_resource type="Script" uid="uid://bcswfd67b1hib" path="res://assets/scenes/battles/btl_test_1/btl_test_1.gd" id="1_ff8f6"]
+[ext_resource type="Texture2D" uid="uid://dvmjy8bvvmgd6" path="res://assets/images/logo_cg.png" id="2_1ajyj"]
+[ext_resource type="AudioStream" uid="uid://dhh0xmyph4vge" path="res://assets/audio/bgm_fancybattle.ogg" id="2_guia2"]
+[ext_resource type="FontFile" uid="uid://dh4cbm4v84cq0" path="res://assets/fonts/Milonga-Regular.ttf" id="2_xjlua"]
+[ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="4_1iqys"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ff8f6"]
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_guia2"]
+noise = SubResource("FastNoiseLite_ff8f6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_guia2"]
+albedo_color = Color(0.581943, 0.650496, 0.700521, 1)
+metallic = 1.0
+metallic_texture = SubResource("NoiseTexture2D_guia2")
+
+[node name="BattleTest1" type="Node3D" unique_id=59275966]
+script = ExtResource("1_ff8f6")
+
+[node name="BG" type="CSGSphere3D" parent="." unique_id=243675936]
+flip_faces = true
+radius = 2.0
+radial_segments = 50
+rings = 10
+material = SubResource("StandardMaterial3D_guia2")
+
+[node name="Sprite" type="Sprite3D" parent="." unique_id=918052380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = ExtResource("2_1ajyj")
+
+[node name="Light" type="OmniLight3D" parent="Sprite" unique_id=191046115]
+distance_fade_enabled = true
+omni_range = 0.5
+omni_attenuation = -5.79
+
+[node name="Light" type="DirectionalLight3D" parent="." unique_id=2008563021]
+
+[node name="Camera" type="Camera3D" parent="." unique_id=1936525367]
+
+[node name="UI" type="Control" parent="." unique_id=649050630]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Color" type="ColorRect" parent="UI" unique_id=1978645536]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.458824)
+
+[node name="Text" type="RichTextLabel" parent="UI" unique_id=494026554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -430.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_xjlua")
+bbcode_enabled = true
+text = "Te ha emboscado un X."
+fit_content = true
+
+[node name="Sprite2D" type="Sprite2D" parent="UI" unique_id=7750850]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_1iqys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1682320952]
+layout_mode = 0
+offset_top = 320.0
+offset_right = 42.0
+offset_bottom = 360.0
+
+[node name="Button" type="Button" parent="UI/VBoxContainer" unique_id=1008060932]
+layout_mode = 2
+text = "test1"
+
+[node name="Button2" type="Button" parent="UI/VBoxContainer" unique_id=2098923471]
+layout_mode = 2
+text = "test1"
+
+[node name="Button3" type="Button" parent="UI/VBoxContainer" unique_id=549351557]
+layout_mode = 2
+text = "test1"
+
+[node name="Button4" type="Button" parent="UI/VBoxContainer" unique_id=1500244622]
+layout_mode = 2
+text = "test1"
+
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1660829515]
+stream = ExtResource("2_guia2")
+volume_db = -50.0
+autoplay = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1398250243]

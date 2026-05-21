@@ -28,9 +28,9 @@ extends CharacterBody2D
 @export var sprite_int_speed: float = 1000
 
 # New stuff
-@export var acceleration: float = 2000
-@export var deceleration: float = 15000	
-@export var normal_speed: float = 180
+@export var acceleration: float = 100
+@export var deceleration: float = 120000
+@export var normal_speed: float = 200
 @export var max_speed: float = 300
 var current_speed: float
 
@@ -88,6 +88,10 @@ signal fade_finished
 var fade_tween: Tween
 @export var fade_duration: float = 0.125
 @export var fade_color: Color = Color.BLACK
+@export var not_change_fade_color: bool = false
+
+var walk_sound_switch: bool = false
+@export var walk_sound_time: float = 0.2
 
 
 func _ready():
@@ -111,7 +115,6 @@ func _ready():
 	
 	after_closing = $ExampleBalloon.after_closing
 
-var walk_sound_bool: bool = true
 func _process(_delta) -> void:
 	if is_camera_zoom_on:
 		$Camera.zoom = Vector2(camera_zoom, camera_zoom)
@@ -161,16 +164,12 @@ func _process(_delta) -> void:
 		Vector2.RIGHT:
 			$Ray.target_position = Vector2.RIGHT * ray_size
 
-	# Walk sound		
-	#while direction_input != Vector2.ZERO:
-		#if walk_sound_bool:
-			#$WalkSound.play()
-		#
-		#walk_sound_bool = false
-		#$WalkSound/Timer.start(0.5)
-		#print($WalkSound/Timer.time_left)
-		#await $WalkSound/Timer.timeout
-		#walk_sound_bool = true
+	# Walk sound
+	if direction_input != Vector2.ZERO:
+		if not walk_sound_switch:
+			walk_sound_switch = true
+			$WalkSound.play()
+			$WalkSound/Timer.start(walk_sound_time)
 		
 	get_input_temp_position = get_input()
 	position_previous = position
@@ -443,3 +442,7 @@ func fade_out():
 func npc_start_now():
 	$ExampleBalloon/FadeAnim.play("fade_in")
 	$ExampleBalloon.start()
+
+
+func _on_timer_timeout() -> void:
+	walk_sound_switch = false

@@ -7,20 +7,37 @@ if not auto_singleton.flag_vespera_got_herbs:
 	- ¿Qué tipo de cosas? => things
 	- Vale => END
 else:
-	[color=green]Ruth[/color]: Oh, ¿ya las conseguiste?
-	$> sfx.play("tip")
-	Le has dado las hierbas a Ruth.
-	[color=green]Ruth[/color]: ¡Muchas gracias! ......¿y ahora qué hago?
-	$> sfx.play("tip", 0.8)
-	(me dio hueva escribir este árbol de diálogo mátenme)
-	=> END
-	
+	=> got_herbs
 
 ~ choices2
 [color=green]Ruth[/color]: ¿Querías decirme algo más?
 - ¿Qué hay de nuevo? => wassup
 - ¿Qué tipo de cosas? => things
 - Vale => END
+
+~ got_herbs
+[color=green]Ruth[/color]: Oh, ¿ya las conseguiste?
+$> sfx.play("tip")
+Le has dado las hierbas a Ruth.
+[color=green]Ruth[/color]: ¡Vamos allá! Espérame un momento.
+$> map.ruth_anim("go_inside")
+$> wait(2)
+$> map.ruth_anim("return")
+[color=green]Ruth[/color]: Mis padres... Creo que se han puesto mejor.
+[color=green]Ruth[/color]: Muchísimas gracias, Bella.
+$> map.show_sigi()
+[color=orange]Sigi[/color]: ¡Oigaaaan! ¿Qué hacen?
+[color=green]Ruth[/color]: Ey, hola Sigi. Mis padres están enfermos y Bella me ayudó a buscar unas hierbas medicinales.
+[color=orange]Sigi[/color]: Vaya... ¿Han mejorado?
+[color=green]Ruth[/color]: Si si, se ven recuperados.
+$> map.fade_audio()
+%3 Anciano: Maldita sea, maldita sea, maldita sea.
+%2 Anciano: No puede ser, no puede ser, no puede ser.
+
+# BELLA and SIGI surprise emote
+[color=orange]Sigi[/color]: ¿Eh? ¿Qué le ocurrirá a ese viejo?
+[color=green]Ruth[/color]: Acompañémoslo.
+=> END
 
 ~ wassup
 [color=green]Ruth[/color]: Mmm, adivinaré. Vas a ir a las montañas otra vez, ¿no?

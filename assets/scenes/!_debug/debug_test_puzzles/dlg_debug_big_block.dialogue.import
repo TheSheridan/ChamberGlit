@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://owfpxicoypuc"
+path="res://.godot/imported/dlg_debug_big_block.dialogue-728462f644ef45f25af77cb88977c0af.tres"
+
+[deps]
+
+source_file="res://assets/scenes/!_debug/debug_test_puzzles/dlg_debug_big_block.dialogue"
+dest_files=["res://.godot/imported/dlg_debug_big_block.dialogue-728462f644ef45f25af77cb88977c0af.tres"]
+
+[params]
+
+defaults=true

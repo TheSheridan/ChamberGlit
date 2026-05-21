@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dd4q162tsi0x8"
+path="res://.godot/imported/dlg_puzzle_reset.dialogue-5d0bf611874b69d7de241879d75b474e.tres"
+
+[deps]
+
+source_file="res://assets/scenes/!_debug/debug_test_puzzles/dlg_puzzle_reset.dialogue"
+dest_files=["res://.godot/imported/dlg_puzzle_reset.dialogue-5d0bf611874b69d7de241879d75b474e.tres"]
+
+[params]
+
+defaults=true

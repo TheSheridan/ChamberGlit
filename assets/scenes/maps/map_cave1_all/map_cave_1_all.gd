@@ -7,6 +7,7 @@ extends Node2D
 @onready var _fade = get_node('/root/auto_fade')
 @onready var _sgt = get_node('/root/auto_singleton')
 @onready var _load = get_node('/root/auto_load')
+@onready var _loading = get_node('/root/n_animLoading')
 
 ## DEBUG variable!
 @export var appear_normally: bool = true
@@ -74,6 +75,43 @@ func warp(warp_position: Vector2):
 	$Timer.start(_fade.fade_time)
 	await $Timer.timeout
 
+func door_cutscene():	
+	print("By the way, I haven't finished this cutscene. Enjoy :3")
+	
+	bella.stand_still = true
+	_loading.sprite_color = false
+	
+	var cam_prev_pos: Vector2 = $CharacterBella/Camera.position
+	
+	# Fade BGM
+	create_tween().tween_property($Audio, 'volume_db', -50, 2)
+	
+	# Move camera
+	create_tween() \
+		.set_ease(Tween.EASE_IN_OUT) \
+		.set_trans(Tween.TRANS_CUBIC) \
+		.tween_property($CharacterBella/Camera, "position", cam_prev_pos + Vector2(0, -50), 1)
+		
+	create_tween() \
+		.set_ease(Tween.EASE_IN_OUT) \
+		.set_trans(Tween.TRANS_CUBIC) \
+		.tween_property($CharacterBella, "camera_zoom", 1, 1)
+	
+	# Wait
+	var timer = get_tree().create_timer(1)
+	await timer.timeout
+	
+	_sgt.flag_bella_house_appear_in_bed = true
+	_sgt.flag_bella_house_after_cave1 = true
+	
+	bella.fade_color = Color.WHITE
+	bella._fade_in.emit()
+	
+	var timer3 = get_tree().create_timer(1)
+	await timer3.timeout
+	
+	_load.change_scene(_sgt.scene_bella_house)
+
 # - Warps -
 func _on_warp_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):
@@ -101,8 +139,8 @@ func _on_r_4_warp_body_entered(body: Node2D) -> void:
 
 func _on_bella_house_warp_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):
-		_sgt.flag_bella_house_appear_in_bed = true
-		_load.change_scene(_sgt.scene_bella_house)
+		door_cutscene()
+		print("Bella has passed here.")
 
 func _on_chest_start_now() -> void:
 	balloon.dialogue_resource = $Chest.text_to_send

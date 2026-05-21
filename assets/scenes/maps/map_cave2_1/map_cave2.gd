@@ -11,6 +11,9 @@ extends Node2D
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	bella._fade_out.emit()
+	
+	if not _sgt.flag_vespera_heard_about_cave:
+		$Warps/Dungeon.queue_free()
 
 func _process(_delta: float) -> void:
 	_sgt.handle_dialog(bella, balloon)

@@ -53,7 +53,8 @@ func check_bella_position(bella, scene_name: String):
 	
 	_loading._out.emit()
 	
-	after_battle.position = flag_prev_position
+	if after_battle != null:
+		after_battle.position = flag_prev_position
 	
 	if flag_helper != "":
 		bella.position = helper.position
@@ -189,16 +190,23 @@ var flag_cave1_bridge: bool = false
 
 ## While true, Bella will appear at the bed of his house. Useful for Continues.
 var flag_bella_house_appear_in_bed: bool = false
+## Used with the previous one, but only after the intro cutscene.
+var flag_bella_house_after_cave1: bool = false
 ## Bella accepted Ruth fetch quest?
 var flag_vespera_accept_to_search_herbs: bool = false
 var flag_vespera_got_herbs: bool = false
 var flag_vespera_heard_about_cave: bool = false
+
+var flag_minotaur_beated: bool = false
+var flag_minotaur_was_spared: bool
+## Name given by Bella to the Minotaur.
+var flag_minotaur_custom_name: String
 #endregion
 
 
 #region (Scene Paths)
 var scene_intro_cave = "res://assets/scenes/maps/map_cave1_all/map_cave1_all.tscn"
-var scene_bella_house = "res://assets/scenes/maps/map_bellahouse2/map_bellahouse_2.tscn"
+var scene_bella_house = "res://assets/scenes/maps/map_bellahouse/map_bellahouse.tscn"
 var scene_vespera = "res://assets/scenes/maps/map_vespera/map_vespera.tscn"
 var scene_outside_vespera = "res://assets/scenes/maps/map_outside_vespera/map_outside_vespera.tscn"
 
