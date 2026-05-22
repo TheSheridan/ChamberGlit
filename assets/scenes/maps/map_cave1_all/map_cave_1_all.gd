@@ -116,6 +116,9 @@ func door_cutscene():
 func _on_warp_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):
 		warp(locations[1])
+		
+		if not $Audio.playing:
+			$Audio.play()
 
 func _on_warp_l_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):

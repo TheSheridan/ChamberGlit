@@ -14,5 +14,11 @@ func _ready() -> void:
 	bella._fade_out.emit()
 	_sgt.check_bella_position(bella, name)
 	
+	if _sgt.flag_minotaur_beated:
+		$NpcChaserSlime.queue_free()
+	
+	# Debug
+	#_sgt.flag_minotaur_beated = true
+	
 func _process(_delta: float) -> void:
 	_sgt.handle_dialog(bella, balloon)

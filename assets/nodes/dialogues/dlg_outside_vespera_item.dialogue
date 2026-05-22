@@ -1,0 +1,3 @@
+$> sfx.play("tip")
+Agarras un [wave][img]assets/images/icon_weapon.png[/img][color=CADET_BLUE]bastón urbano[/color][/wave] en el suelo.
+O lo harías si el vago del creador del juego hiciera el sistema de inventario .-.

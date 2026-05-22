@@ -1,0 +1,10 @@
+~ start
+match auto_singleton.flag_minotaur_friends_scene:
+	when 1
+		[color=aquamarine]Blessing[/color]: Hmm, parece que no estuviste mucho tiempo aquí.
+		[color=aquamarine]Blessing[/color]: Bien, prepararé la cena. Espérame en tu habitación o algo.
+		set auto_singleton.flag_minotaur_friends_scene = 2
+	when 2
+		[color=aquamarine]Blessing[/color]: Terminé la cena.
+		(ambas comen)
+		set auto_singleton.flag_minotaur_friends_scene = 3

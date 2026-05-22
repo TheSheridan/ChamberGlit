@@ -13,8 +13,12 @@ extends Node2D
 # TODO: Find out why Bella's fade color changes to black.
 # It's causing a flicker here.
 func _ready() -> void:
+	# Debug:
+	_sgt.flag_minotaur_friends_scene = 1
+	
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	
+	# "Start in bed" stuff
 	if _sgt.flag_bella_house_appear_in_bed:
 		start_in_bed = true
 		
@@ -35,7 +39,14 @@ func _ready() -> void:
 	if start_in_bed:
 		bella.position = $PositionHelpers/Bed.position
 		start_in_bed = false
-		
+	
+	# Coloring Crap (TM)
+	$Mom/Sprite2D.modulate = Color.AQUAMARINE
+	
+	# Post-boss 1 scene
+	if not _sgt.flag_minotaur_friends_scene:
+		$BGM.play()
+	
 	_loading._out.emit()
 	bella._fade_out.emit()
 

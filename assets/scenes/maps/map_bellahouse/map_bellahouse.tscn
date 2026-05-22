@@ -12,6 +12,8 @@
 [ext_resource type="Resource" uid="uid://bbutqyvufwmxd" path="res://assets/nodes/dialogues/dlg_bellahouse_tv.dialogue" id="10_yvhvr"]
 [ext_resource type="Resource" uid="uid://be16k7ay336jp" path="res://assets/nodes/dialogues/dlg_bellahouse_couch.dialogue" id="11_ost5i"]
 [ext_resource type="Resource" uid="uid://disb714aqmpxx" path="res://assets/nodes/dialogues/dlg_bellahouse_kitchen.dialogue" id="12_3uqiu"]
+[ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="13_l1wb4"]
+[ext_resource type="Resource" uid="uid://dsv55xmacxrlt" path="res://assets/nodes/dialogues/dlg_bellahouse_blessing.dialogue" id="14_medoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hd0qo"]
 size = Vector2(127, 63)
@@ -105,12 +107,10 @@ tile_set = ExtResource("3_medoq")
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1769436590]
 stream = ExtResource("4_vvdpw")
 pitch_scale = 0.97
-autoplay = true
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("5_1ijfr")]
 position = Vector2(928, 360)
 deceleration = 12000.0
-normal_speed = 200.0
 max_speed = 400.0
 
 [node name="-NPCs-" type="Node" parent="." unique_id=243269695]
@@ -203,3 +203,7 @@ metadata/_custom_type_script = "uid://cqcur1rm7433g"
 [node name="Collision" type="CollisionShape2D" parent="Kitchen/Actionable2D" unique_id=228322248]
 position = Vector2(16, 1)
 shape = SubResource("RectangleShape2D_fre1j")
+
+[node name="Mom" parent="." unique_id=1334509439 instance=ExtResource("13_l1wb4")]
+position = Vector2(1104, 204)
+text_to_send = ExtResource("14_medoq")

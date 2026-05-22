@@ -46,11 +46,10 @@ gradient = SubResource("Gradient_spwib")
 [node name="MapCave1All2" type="Node2D" unique_id=866708146]
 editor_description = "¡Vamoooooooooooooo! ¡Por fin acabé la textbox!"
 script = ExtResource("1_c7rph")
-appear_normally = false
 metadata/_edit_horizontal_guides_ = [-872.0]
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_rqe04")]
-position = Vector2(14680, -1824)
+position = Vector2(296, -1696)
 deceleration = 12000.0
 max_speed = 400.0
 
@@ -127,7 +126,6 @@ shape = SubResource("RectangleShape2D_mblch")
 stream = ExtResource("7_j7nwu")
 volume_db = -1.0
 pitch_scale = 1.18
-autoplay = true
 
 [node name="Timer" type="Timer" parent="." unique_id=249440503]
 

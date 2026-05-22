@@ -1,13 +1,20 @@
 #set ruth_name = "[color=green]Ruth[/color]"
 
 ~ start
+if auto_singleton.flag_minotaur_beated:
+	=> after_boss1
+
 if not auto_singleton.flag_vespera_got_herbs:
-	[color=green]Ruth[/color]: ...Oh, buenos días, Bella. Siento que no podré salir ahora, tengo que hacer varias cosas en la aldea primero.
-	- ¿Qué hay de nuevo? => wassup
-	- ¿Qué tipo de cosas? => things
-	- Vale => END
+	=> first_talk
 else:
 	=> got_herbs
+
+# First talk
+~ first_talk
+[color=green]Ruth[/color]: ...Oh, buenos días, Bella. Siento que no podré salir ahora, tengo que hacer varias cosas en la aldea primero.
+- ¿Qué hay de nuevo? => wassup
+- ¿Qué tipo de cosas? => things
+- Vale => END
 
 ~ choices2
 [color=green]Ruth[/color]: ¿Querías decirme algo más?
@@ -71,3 +78,11 @@ set auto_singleton.flag_vespera_accept_to_search_herbs = true
 ~ herbs_deny
 [color=green]Ruth[/color]: Entiendo...
 => choices2
+
+# Boss 1
+~ after_boss1
+[color=green]Ruth[/color]: ¿Cuánto habrás demorado? Veo que has estado fuera de la aldea más de lo normal.
+[color=green]Ruth[/color]: Bien, ya hemos acabado.
+[color=green]Ruth[/color]: Ya se hizo tarde y mis padres se preocuparán si demoro mucho.
+[color=green]Ruth[/color]: Nos vemos mañana, Bella.
+set auto_singleton.flag_minotaur_friends_scene = true

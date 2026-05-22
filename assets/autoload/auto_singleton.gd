@@ -197,10 +197,14 @@ var flag_vespera_accept_to_search_herbs: bool = false
 var flag_vespera_got_herbs: bool = false
 var flag_vespera_heard_about_cave: bool = false
 
+# TODO: Replace "minotaur" with "boss1". In all scripts.
+
 var flag_minotaur_beated: bool = false
 var flag_minotaur_was_spared: bool
 ## Name given by Bella to the Minotaur.
 var flag_minotaur_custom_name: String
+
+var flag_minotaur_friends_scene = 0
 #endregion
 
 

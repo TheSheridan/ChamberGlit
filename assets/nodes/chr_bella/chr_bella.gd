@@ -91,7 +91,10 @@ var fade_tween: Tween
 @export var not_change_fade_color: bool = false
 
 var walk_sound_switch: bool = false
-@export var walk_sound_time: float = 0.2
+
+@export var walk_sound_time_normal: float = 0.3
+@export var walk_sound_time_running: float = 0.15
+@onready var walk_sound_time: float = walk_sound_time_normal
 
 
 func _ready():
@@ -137,12 +140,15 @@ func _process(_delta) -> void:
 	if $Ray.target_position.y != 0:
 		axis_y_temp = $Ray.target_position.y
 		
+	# Run
 	if Input.is_action_pressed('ui_cancel'):
 		speed = sprite_int_speed
 		current_speed = lerp(current_speed, max_speed, 0.5)
+		walk_sound_time = walk_sound_time_running
 	if Input.is_action_just_released('ui_cancel'):
 		speed = initial_speed
 		current_speed = normal_speed
+		walk_sound_time = walk_sound_time_normal
 	
 	var direction_input = get_input()
 	

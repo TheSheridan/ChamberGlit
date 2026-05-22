@@ -15,13 +15,20 @@ var name_ruth: String = "[color=green]Ruth:[/color]"
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0.653, 0.693, 0.714, 1.0))
 	bella._fade_out.emit()
+	_sgt.check_bella_position(bella, name)
 	
 	print("helper: " + str(_sgt.flag_helper))
 	
-	$Sigi.hide()
-	
-	_sgt.check_bella_position(bella, name)
-	#_sgt.flag_vespera_got_herbs = true # debug ofc
+	if _sgt.flag_minotaur_beated:
+		#$Ruth.position = Vector2(-841, -1229)
+		$Ruth/Anim.play("post_boss1_move")
+		$Sigi/Anim.play("post_boss1_move")
+	else:
+		$Sigi.hide()
+		
+	# NPC coloring crap bc I'm a sucker for overcomplicating my life
+	$Ruth.modulate = Color.GREEN_YELLOW
+	$Sigi.modulate = Color.ORANGE
 
 func _process(delta: float) -> void:
 	_sgt.handle_dialog(bella, balloon)
