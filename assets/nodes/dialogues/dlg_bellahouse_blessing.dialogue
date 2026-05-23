@@ -8,3 +8,4 @@ match auto_singleton.flag_minotaur_friends_scene:
 		[color=aquamarine]Blessing[/color]: Terminé la cena.
 		(ambas comen)
 		set auto_singleton.flag_minotaur_friends_scene = 3
+		$> map.end()

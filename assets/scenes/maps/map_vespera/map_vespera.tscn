@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://i18mjtxykcdn" path="res://assets/audio/bgm_village.ogg" id="5_f0oth"]
 [ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="6_1pnsv"]
 [ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="6_krtdk"]
+[ext_resource type="Texture2D" uid="uid://dlvovj0468bij" path="res://assets/images/dot.png" id="7_4djgp"]
 [ext_resource type="Resource" uid="uid://b0h3oije3ya3a" path="res://assets/nodes/dialogues/dlg_vespera_npc_test_1.dialogue" id="7_ylmtf"]
 [ext_resource type="Resource" uid="uid://d4grm6xled270" path="res://assets/nodes/dialogues/dlg_vespera_npc_test_2.dialogue" id="8_scgcy"]
 [ext_resource type="Resource" uid="uid://0jgvlrjukjat" path="res://assets/nodes/dialogues/dlg_vespera_npc_test_3.dialogue" id="9_2fdil"]
@@ -301,6 +302,32 @@ tangential_accel_max = 2.0
 damping_max = 5.66
 angle_max = 54.0
 scale_amount_min = 0.25
+scale_amount_curve = SubResource("Curve_jv7d0")
+color = Color(1, 1, 1, 0.654902)
+color_ramp = SubResource("Gradient_1pnsv")
+
+[node name="Snow3" type="CPUParticles2D" parent="Parallax/Particles" unique_id=241204434]
+modulate = Color(1, 1, 1, 0.69411767)
+position = Vector2(628, -1976)
+amount = 1000
+texture = ExtResource("7_4djgp")
+lifetime = 30.0
+preprocess = 10.0
+emission_shape = 6
+emission_ring_inner_radius = 1.0
+emission_ring_radius = 1500.0
+particle_flag_align_y = true
+direction = Vector2(0, 50)
+spread = 0.0
+gravity = Vector2(0, 50)
+initial_velocity_max = 2.0
+angular_velocity_max = 50.0
+orbit_velocity_max = 0.01
+tangential_accel_max = 2.0
+damping_max = 5.66
+angle_max = 54.0
+scale_amount_min = 0.25
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_jv7d0")
 color = Color(1, 1, 1, 0.654902)
 color_ramp = SubResource("Gradient_1pnsv")

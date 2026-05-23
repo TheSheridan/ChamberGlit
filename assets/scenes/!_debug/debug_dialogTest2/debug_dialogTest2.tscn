@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cxebjuhn831y6" path="res://assets/scenes/!_debug/debug_dialogTest2/debug_dialog_test_2.gd" id="1_focgc"]
 [ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="1_hdmuc"]
 [ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="2_focgc"]
-[ext_resource type="Resource" uid="uid://demmco308oy0x" path="res://assets/nodes/dialogues/debug_a.dialogue" id="4_focgc"]
+[ext_resource type="Resource" uid="uid://c1qktq1rlatfp" path="res://assets/nodes/dialogues/dlg_vespera_ruth.dialogue" id="4_focgc"]
 
 [node name="DebugDialogTest2" type="Node2D" unique_id=1893225992]
 script = ExtResource("1_focgc")
@@ -11,7 +11,6 @@ script = ExtResource("1_focgc")
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("1_hdmuc")]
 position = Vector2(200, 96)
 deceleration = 12000.0
-normal_speed = 200.0
 max_speed = 400.0
 
 [node name="CharacterNpc" parent="." unique_id=1334509439 instance=ExtResource("2_focgc")]

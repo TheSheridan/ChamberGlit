@@ -182,7 +182,7 @@ func _process(_delta) -> void:
 	
 	# That perky camera offset...
 	var camera_lerp: Vector2 = lerp(
-		$Camera.offset, Vector2(axis_x, axis_y) * 15, 0.05)
+		$Camera.offset, Vector2(axis_x, axis_y) * 15, 0.025)
 		
 	if not stand_still:	
 		get_facing()

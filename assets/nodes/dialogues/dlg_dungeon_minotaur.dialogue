@@ -15,6 +15,7 @@ else:
 	=> questions
 
 ~ after_battle
+set auto_singleton.flag_minotaur_beated = true
 MINOTAURO: Hazlo... (beat) sé que quieres hacerlo...
 - Absorber => absorb
 - Negarse => deny

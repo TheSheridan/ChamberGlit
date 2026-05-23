@@ -9,7 +9,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	RenderingServer.set_default_clear_color(Color.DARK_OLIVE_GREEN)
+	RenderingServer.set_default_clear_color(Color.STEEL_BLUE)
 	bella._fade_out.emit()
 
 func _process(_delta: float) -> void:

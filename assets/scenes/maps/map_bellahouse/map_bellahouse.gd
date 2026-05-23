@@ -2,6 +2,7 @@ extends Node2D
 
 
 @onready var _sgt = $/root/auto_singleton
+@onready var _load = $/root/auto_load
 @onready var _loading = $/root/n_animLoading
 
 @onready var bella = $CharacterBella
@@ -13,9 +14,6 @@ extends Node2D
 # TODO: Find out why Bella's fade color changes to black.
 # It's causing a flicker here.
 func _ready() -> void:
-	# Debug:
-	_sgt.flag_minotaur_friends_scene = 1
-	
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	
 	# "Start in bed" stuff
@@ -44,11 +42,29 @@ func _ready() -> void:
 	$Mom/Sprite2D.modulate = Color.AQUAMARINE
 	
 	# Post-boss 1 scene
-	if not _sgt.flag_minotaur_friends_scene:
-		$BGM.play()
+	match _sgt.flag_minotaur_friends_scene:
+		1:
+			$BGM.stop()
+			print("is true")
+		_:
+			$Mom.queue_free()
+			print("failed")
 	
 	_loading._out.emit()
 	bella._fade_out.emit()
 
 func _process(_delta: float) -> void:
 	_sgt.handle_dialog(bella, balloon)
+	
+func end():
+	bella._fade_in.emit()
+	$"/root/sfx".play("tip")
+	
+	print("Timer called...")
+	
+	var timer = get_tree().create_timer(1.5)
+	await timer.timeout
+	
+	print("Timeout!")
+	
+	_load.change_scene(_sgt.scene_title)

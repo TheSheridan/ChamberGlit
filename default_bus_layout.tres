@@ -42,7 +42,7 @@ feedback_delay_ms = 100.0
 [resource]
 bus/1/name = &"bgm"
 bus/1/solo = false
-bus/1/mute = false
+bus/1/mute = true
 bus/1/bypass_fx = false
 bus/1/volume_db = -0.41491318
 bus/1/send = &"Master"

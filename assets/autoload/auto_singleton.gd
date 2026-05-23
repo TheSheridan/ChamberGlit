@@ -209,6 +209,8 @@ var flag_minotaur_friends_scene = 0
 
 
 #region (Scene Paths)
+var scene_title = "res://assets/scenes/scn_Title0/scn_Title0.tscn"
+
 var scene_intro_cave = "res://assets/scenes/maps/map_cave1_all/map_cave1_all.tscn"
 var scene_bella_house = "res://assets/scenes/maps/map_bellahouse/map_bellahouse.tscn"
 var scene_vespera = "res://assets/scenes/maps/map_vespera/map_vespera.tscn"
