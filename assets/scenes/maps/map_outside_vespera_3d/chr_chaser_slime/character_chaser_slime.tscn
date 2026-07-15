@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://qxqtv2jyq4s5"]
+
+[ext_resource type="Texture2D" uid="uid://cg6pte1g86xfw" path="res://assets/images/battlers/pimp.png" id="1_6p80x"]
+[ext_resource type="Script" uid="uid://pjehjybljayf" path="res://assets/scenes/maps/map_outside_vespera_3d/chr_chaser_slime/character_chaser_slime.gd" id="1_ciddw"]
+[ext_resource type="AudioStream" uid="uid://p2jv5rqk0c4b" path="res://assets/audio/sfx_car_drift.ogg" id="2_ciddw"]
+[ext_resource type="AudioStream" uid="uid://birr3vnlbmvjt" path="res://assets/audio/sfx_car_crash.ogg" id="3_skhlj"]
+[ext_resource type="AudioStream" uid="uid://c1612pfdpfo6j" path="res://assets/audio/sfx_flipt.ogg" id="4_pvapf"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="5_74bwo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ciddw"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="Animation" id="Animation_7ou3o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InvincibilityGlow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InvincibilityGlow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uktvm"]
+resource_name = "noclip"
+length = 0.43333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.49803922), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vw7e1"]
+resource_name = "noclip_end"
+length = 0.33333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.2),
+"transitions": PackedFloat32Array(0.24148409, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.80784315), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InvincibilityGlow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1.4640856, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.39215687), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InvincibilityGlow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333332),
+"transitions": PackedFloat32Array(0.26794344, 1),
+"update": 0,
+"values": [Vector3(1, 1, 0), Vector3(5, 5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r866f"]
+_data = {
+&"RESET": SubResource("Animation_7ou3o"),
+&"noclip": SubResource("Animation_uktvm"),
+&"noclip_end": SubResource("Animation_vw7e1")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g7b7a"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ciddw"]
+radius = 4.0
+
+[node name="CharacterChaserSlime" type="CharacterBody3D" unique_id=418159750]
+script = ExtResource("1_ciddw")
+
+[node name="InvincibilityGlow" type="Sprite3D" parent="." unique_id=470858828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+sorting_offset = 1.0
+billboard = 1
+texture = ExtResource("5_74bwo")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=524425136]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+sorting_offset = 0.5
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_6p80x")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=1816263304]
+shape = SubResource("BoxShape3D_ciddw")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=358874955]
+
+[node name="SoundCarDrift" type="AudioStreamPlayer3D" parent="." unique_id=1271628457]
+stream = ExtResource("2_ciddw")
+max_distance = 300.0
+
+[node name="SoundCarCrash" type="AudioStreamPlayer3D" parent="." unique_id=2120852093]
+stream = ExtResource("3_skhlj")
+
+[node name="SoundInvincibility" type="AudioStreamPlayer3D" parent="." unique_id=807217892]
+stream = ExtResource("4_pvapf")
+volume_db = -2.0
+
+[node name="Timer" type="Timer" parent="." unique_id=1215953413]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=726493251]
+libraries/ = SubResource("AnimationLibrary_r866f")
+
+[node name="MetArea" type="Area3D" parent="." unique_id=276317311]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MetArea" unique_id=1078748817]
+shape = SubResource("SphereShape3D_g7b7a")
+
+[node name="ChaseArea" type="Area3D" parent="." unique_id=963921814]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChaseArea" unique_id=93745601]
+shape = SubResource("SphereShape3D_ciddw")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="MetArea" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="MetArea" to="." method="_on_area_body_entered"]
+[connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]
+[connection signal="body_exited" from="ChaseArea" to="." method="_on_chase_area_body_exited"]

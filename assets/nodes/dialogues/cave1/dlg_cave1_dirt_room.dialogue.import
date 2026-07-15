@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://fg4ju3tts8lk"
+path="res://.godot/imported/dlg_cave1_dirt_room.dialogue-c9a3478c1b18b2aa74b616a7f56ee63f.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/cave1/dlg_cave1_dirt_room.dialogue"
+dest_files=["res://.godot/imported/dlg_cave1_dirt_room.dialogue-c9a3478c1b18b2aa74b616a7f56ee63f.tres"]
+
+[params]
+
+defaults=true

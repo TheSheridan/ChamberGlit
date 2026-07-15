@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dkiob61iwjh7v"
+path="res://.godot/imported/dlg_vespera_inn_old_man.dialogue-765dae9147370cb440737de1060ce62d.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/vespera/dlg_vespera_inn_old_man.dialogue"
+dest_files=["res://.godot/imported/dlg_vespera_inn_old_man.dialogue-765dae9147370cb440737de1060ce62d.tres"]
+
+[params]
+
+defaults=true

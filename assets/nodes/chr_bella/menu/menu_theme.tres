@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://b2luea2icsskv"]
+
+[ext_resource type="StyleBox" uid="uid://7ab7glv0gpow" path="res://assets/nodes/chr_bella/menu/menu_button_theme.tres" id="1_pk3j3"]
+
+[resource]
+Button/styles/normal = ExtResource("1_pk3j3")

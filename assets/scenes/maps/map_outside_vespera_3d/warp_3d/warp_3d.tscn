@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://q74x0b10mstu"]
+
+[ext_resource type="Script" uid="uid://b82qcl3knq4ob" path="res://assets/scenes/maps/map_outside_vespera_3d/warp_3d/warp_3d.gd" id="1_es22e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kclib"]
+radius = 0.82714844
+
+[node name="VesperaWarp" type="Area3D" unique_id=1175979900]
+script = ExtResource("1_es22e")
+warp_scene = "uid://di33fi5s2xjhw"
+warp_helper = "Exit"
+zoom_camera = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=630836868]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_kclib")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

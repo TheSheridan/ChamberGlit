@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://cpvmc2vb8wxfk"
+path="res://.godot/imported/dlg_cave1_chest2.dialogue-cce8ab875902624b63e49418c4eab235.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/cave1/dlg_cave1_chest2.dialogue"
+dest_files=["res://.godot/imported/dlg_cave1_chest2.dialogue-cce8ab875902624b63e49418c4eab235.tres"]
+
+[params]
+
+defaults=true

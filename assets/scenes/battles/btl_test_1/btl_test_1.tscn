@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dp0eonwrm8o36" path="res://assets/audio/sfxr/attack.wav" id="9_mp1fd"]
 [ext_resource type="AudioStream" uid="uid://d3r2r28kjsit0" path="res://assets/audio/sfx_roll.ogg" id="10_21e6a"]
 [ext_resource type="StyleBox" uid="uid://idlio55kxtnk" path="res://assets/scenes/battles/battle_hp_progressbar_foreground.tres" id="11_1yd2b"]
+[ext_resource type="FontFile" uid="uid://n3ijl1h1fi7p" path="res://assets/fonts/mO'sOul_v1.0.ttf" id="11_3o7x2"]
 [ext_resource type="StyleBox" uid="uid://d0c83vcwm74bl" path="res://assets/scenes/battles/battle_pp_progressbar_foreground.tres" id="12_icpym"]
 [ext_resource type="StyleBox" uid="uid://dlt2ox6ty6wug" path="res://assets/scenes/battles/battle_enemy_hp_progressbar_foreground.tres" id="13_icpym"]
 [ext_resource type="Script" uid="uid://cq2ufre2bsamw" path="res://assets/nodes/chr_bella_old/textbox.gd" id="14_mn7f0"]
@@ -24,6 +25,17 @@
 [ext_resource type="AudioStream" uid="uid://bckmhr56yb2j" path="res://assets/audio/sfxr/piu.wav" id="18_ttlal"]
 [ext_resource type="Texture2D" uid="uid://bmh0aa6vpspnl" path="res://assets/images/face.png" id="19_k10cc"]
 [ext_resource type="AudioStream" uid="uid://cr3hg6l1lxb28" path="res://assets/audio/bgm_fightover.ogg" id="21_w1r1i"]
+
+[sub_resource type="Gradient" id="Gradient_nh6h8"]
+offsets = PackedFloat32Array(0, 0.43103448, 0.90229887)
+colors = PackedColorArray(0.09461975, 0.102163196, 0.10546875, 0.85882354, 0.097899996, 0.10616834, 0.11, 0.85882354, 0.097899996, 0.105966665, 0.11, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3o7x2"]
+gradient = SubResource("Gradient_nh6h8")
+width = 640
+height = 60
+fill_from = Vector2(0, 0.5225225)
+fill_to = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1yd2b"]
 font = ExtResource("2_xjlua")
@@ -286,8 +298,15 @@ _data = {
 &"player_defeated": SubResource("Animation_7yqxa")
 }
 
+[sub_resource type="Gradient" id="Gradient_w1r1i"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.59389424, 0.6888021, 0.4062856, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nh6h8"]
+gradient = SubResource("Gradient_w1r1i")
+
 [node name="BattleTest1" type="Node3D" unique_id=59275966 groups=["battle_buttons"]]
-editor_description = "BUG: For some reason, when starting the game normally, it crashes in the battle scene."
+editor_description = "I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS I HATE THIS"
 script = ExtResource("1_ff8f6")
 sphere_rotation = 10
 enemy_stats = {
@@ -340,28 +359,48 @@ modulate = Color(1, 1, 1, 0.45490196)
 render_priority = -1
 texture = ExtResource("5_fdrwm")
 
-[node name="UI" type="Control" parent="." unique_id=649050630]
+[node name="UI" type="Control" parent="." unique_id=276024256]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Color" type="ColorRect" parent="UI" unique_id=1978645536]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0, 0, 0.458824)
-
-[node name="Text" type="RichTextLabel" parent="UI" unique_id=494026554]
+[node name="BG" type="MarginContainer" parent="UI" unique_id=966368347]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -430.0
 grow_horizontal = 2
-grow_vertical = 2
+
+[node name="Sprite" type="Sprite2D" parent="UI/BG" unique_id=1562174247]
+texture = SubResource("GradientTexture2D_3o7x2")
+centered = false
+
+[node name="NextMarker" type="Sprite2D" parent="UI" unique_id=7750850]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_1iqys")
+
+[node name="BattleLog" type="MarginContainer" parent="UI" unique_id=1238973329]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.1
+offset_bottom = 19.0
+grow_horizontal = 2
+
+[node name="Textbox" type="RichTextLabel" parent="UI/BattleLog" unique_id=494026554]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_fonts/normal_font = ExtResource("2_xjlua")
 theme_override_fonts/bold_font = ExtResource("7_t3246")
 theme_override_fonts/mono_font = ExtResource("8_7yqxa")
@@ -372,26 +411,23 @@ bbcode_enabled = true
 text = "Te ha emboscado un X"
 fit_content = true
 
-[node name="Sprite2D" type="Sprite2D" parent="UI" unique_id=7750850]
-texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("4_1iqys")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1200951067]
-layout_mode = 0
-offset_left = 420.0
-offset_top = 62.0
-offset_right = 620.0
-offset_bottom = 460.0
+[node name="ActionBox" type="VBoxContainer" parent="UI" unique_id=1200951067]
+custom_minimum_size = Vector2(180, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.98
+anchor_right = 0.98
+anchor_bottom = 0.4
+offset_left = -200.0
+offset_top = 43.0
+offset_right = -20.0
+offset_bottom = 287.0
+grow_horizontal = 0
+grow_vertical = 2
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=53812961]
-visible = false
 layout_mode = 0
-offset_left = 40.0
-offset_top = 140.0
-offset_right = 410.0
-offset_bottom = 440.0
 
 [node name="ColorRect" type="ColorRect" parent="UI/MarginContainer" unique_id=938642136]
 layout_mode = 2
@@ -407,28 +443,46 @@ vertical_alignment = 2
 [node name="DebugLabel" type="Label" parent="UI" unique_id=2101858092]
 visible = false
 layout_mode = 0
-offset_top = 50.0
-offset_right = 100.0
-offset_bottom = 150.0
 theme_override_fonts/font = ExtResource("7_t3246")
 
-[node name="Fade" type="ColorRect" parent="UI" unique_id=1246826791]
+[node name="Fade" type="MarginContainer" parent="UI" unique_id=1815489328]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 480.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="UI/Fade" unique_id=1202076803]
+layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="StatViewer" type="PanelContainer" parent="UI" unique_id=1199748142]
-clip_contents = true
-custom_minimum_size = Vector2(60, 40)
+[node name="PlayerStatContainer" type="FlowContainer" parent="UI" unique_id=928926672]
 layout_mode = 1
-offset_left = 20.0
-offset_top = 394.0
-offset_right = 165.0
-offset_bottom = 468.0
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 275.0
+grow_vertical = 2
+alignment = 2
+vertical = true
 
-[node name="Name" type="Label" parent="UI/StatViewer" unique_id=1780268668]
+[node name="Affliction" type="RichTextLabel" parent="UI/PlayerStatContainer" unique_id=1250117891]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_3o7x2")
+bbcode_enabled = true
+text = "[img]res://assets/images/icon_battle_item.png[/img][wave amp=3]Vergüenza"
+horizontal_alignment = 1
+
+[node name="StatViewer" type="PanelContainer" parent="UI/PlayerStatContainer" unique_id=1199748142]
+clip_contents = true
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Name" type="Label" parent="UI/PlayerStatContainer/StatViewer" unique_id=1780268668]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -437,7 +491,7 @@ theme_override_font_sizes/font_size = 20
 text = "Bella"
 label_settings = SubResource("LabelSettings_1yd2b")
 
-[node name="HP" type="Label" parent="UI/StatViewer" unique_id=1454126781]
+[node name="HP" type="Label" parent="UI/PlayerStatContainer/StatViewer" unique_id=1454126781]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -446,7 +500,7 @@ theme_override_font_sizes/font_size = 12
 text = "PS"
 horizontal_alignment = 1
 
-[node name="HPValue" type="RichTextLabel" parent="UI/StatViewer" unique_id=1134617233]
+[node name="HPValue" type="RichTextLabel" parent="UI/PlayerStatContainer/StatViewer" unique_id=1134617233]
 z_index = 1
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
@@ -457,7 +511,7 @@ bbcode_enabled = true
 text = "PS"
 horizontal_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="UI/StatViewer" unique_id=886805972]
+[node name="HPBar" type="ProgressBar" parent="UI/PlayerStatContainer/StatViewer" unique_id=886805972]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -467,7 +521,7 @@ value = 50.0
 allow_greater = true
 show_percentage = false
 
-[node name="PP" type="Label" parent="UI/StatViewer" unique_id=1234626422]
+[node name="PP" type="Label" parent="UI/PlayerStatContainer/StatViewer" unique_id=1234626422]
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -477,7 +531,7 @@ theme_override_font_sizes/font_size = 12
 text = "PP"
 horizontal_alignment = 1
 
-[node name="PPBar" type="ProgressBar" parent="UI/StatViewer" unique_id=1554776859]
+[node name="PPBar" type="ProgressBar" parent="UI/PlayerStatContainer/StatViewer" unique_id=1554776859]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -487,7 +541,7 @@ value = 50.0
 allow_greater = true
 show_percentage = false
 
-[node name="PPValue" type="RichTextLabel" parent="UI/StatViewer" unique_id=1891701738]
+[node name="PPValue" type="RichTextLabel" parent="UI/PlayerStatContainer/StatViewer" unique_id=1891701738]
 z_index = 1
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
@@ -498,19 +552,30 @@ bbcode_enabled = true
 text = "PS"
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/StatViewer" unique_id=1698805283]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/PlayerStatContainer/StatViewer" unique_id=1698805283]
 libraries/ = SubResource("AnimationLibrary_wts6y")
 
-[node name="EnemyStatViewer" type="PanelContainer" parent="UI" unique_id=573817658]
-clip_contents = true
-custom_minimum_size = Vector2(60, 10)
-layout_mode = 0
-offset_left = 475.0
+[node name="EnemyStatContainer" type="FlowContainer" parent="UI" unique_id=47726140]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
 offset_top = 60.0
-offset_right = 620.0
-offset_bottom = 110.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+grow_vertical = 2
+vertical = true
 
-[node name="Name" type="Label" parent="UI/EnemyStatViewer" unique_id=138588632]
+[node name="EnemyStatViewer" type="PanelContainer" parent="UI/EnemyStatContainer" unique_id=573817658]
+clip_contents = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="UI/EnemyStatContainer/EnemyStatViewer" unique_id=138588632]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -518,7 +583,7 @@ theme_override_fonts/font = ExtResource("2_xjlua")
 theme_override_font_sizes/font_size = 20
 text = "Bola de nieve"
 
-[node name="HP" type="Label" parent="UI/EnemyStatViewer" unique_id=304596607]
+[node name="HP" type="Label" parent="UI/EnemyStatContainer/EnemyStatViewer" unique_id=304596607]
 custom_minimum_size = Vector2(50, 20)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -528,7 +593,7 @@ theme_override_font_sizes/font_size = 12
 text = "PS"
 horizontal_alignment = 1
 
-[node name="HPValue" type="RichTextLabel" parent="UI/EnemyStatViewer" unique_id=1786368527]
+[node name="HPValue" type="RichTextLabel" parent="UI/EnemyStatContainer/EnemyStatViewer" unique_id=1786368527]
 z_index = 1
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
@@ -539,7 +604,7 @@ bbcode_enabled = true
 text = "PS"
 horizontal_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="UI/EnemyStatViewer" unique_id=1483076474]
+[node name="HPBar" type="ProgressBar" parent="UI/EnemyStatContainer/EnemyStatViewer" unique_id=1483076474]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -549,16 +614,19 @@ value = 50.0
 allow_greater = true
 show_percentage = false
 
+[node name="Affliction" type="RichTextLabel" parent="UI/EnemyStatContainer" unique_id=99443875]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_3o7x2")
+bbcode_enabled = true
+text = "[img]res://assets/images/icon_battle_item.png[/img][wave amp=3]Vergüenza"
+horizontal_alignment = 1
+
 [node name="Textbox" type="Control" parent="UI" unique_id=734780073]
 editor_description = "DON'T EDIT THE TEXTBOX TEXT MANUALLY!!! It crashes Godot."
+visible = false
 z_index = 5
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(320, 240)
+anchors_preset = 0
 script = ExtResource("14_mn7f0")
 
 [node name="PatchMargin" type="MarginContainer" parent="UI/Textbox" unique_id=512343231]
@@ -671,3 +739,11 @@ bus = &"sfx_battles"
 [node name="SmoothTimer" type="Timer" parent="." unique_id=1259395216]
 
 [node name="BattleTimer" type="Timer" parent="." unique_id=1491833705]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=440251304]
+visible = false
+modulate = Color(1, 1, 1, 0.4392157)
+z_index = -10
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_nh6h8")
+centered = false

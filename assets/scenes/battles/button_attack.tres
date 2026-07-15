@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cl16732u3sfpf"]
+
+[ext_resource type="Texture2D" uid="uid://uj6g24qbilpc" path="res://assets/images/gui/gui_battle_attack.png" id="1_uthic"]
+
+[resource]
+texture = ExtResource("1_uthic")
+texture_margin_left = 16.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

@@ -1,0 +1,26 @@
+# TODO: Find translation for "jerarca" to English, then rename this dialogue file.
+~ start
+Jerarca: Hola, señorita. ¿Le han hechizado?
+- Desencantar => disenchant
+- Hablar sobre magia => magic
+- Salir => END
+
+~ more
+Jerarca: ¿Necesitas algo más?
+- Desencantar => disenchant
+- Hablar sobre magia => magic
+- Salir => END
+
+~ disenchant
+Jerarca: Mmm, estás sana. No necesitas que te exorcise.[p]Vuelve cuando algún animal te hechize.
+(TEST: Si te encantan...)
+$> sfx.play("tip")
+Jerarca: ¡Listo! Ya no estás encantada.
+=> more
+
+~ magic
+Jerarca: Nuestro sistema de magia puede ser confuso a veces, pero es muy fácil de dominar.
+Jerarca: Los más útiles son los ofensivos y de recuperar. Uno te quita, otro te da.
+Jerarca: La mejor manera de aprenderlos es irlos usando sobre la marcha.
+Jerarca: Verás la jerarquía de magias seleccionando en el Menú. ¡Dales una probada!
+=> more

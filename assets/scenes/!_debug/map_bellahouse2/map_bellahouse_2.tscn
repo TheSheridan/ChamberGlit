@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="4_b43oe"]
 [ext_resource type="Script" uid="uid://bx3ltdtqt12p3" path="res://assets/nodes/chr_npc2/character_npc.gd" id="5_08mxc"]
 [ext_resource type="AudioStream" uid="uid://cyy052iybh8mk" path="res://assets/audio/bgm_myplace.mp3" id="5_kadvy"]
-[ext_resource type="Resource" uid="uid://ia3862emc4in" path="res://assets/nodes/dialogues/dlg_bellahouse_pc.dialogue" id="6_drg2j"]
+[ext_resource type="Resource" uid="uid://ia3862emc4in" path="res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_pc.dialogue" id="6_drg2j"]
 [ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="7_b43oe"]
-[ext_resource type="Resource" uid="uid://mo60yijh5jve" path="res://assets/nodes/dialogues/dlg_bellahouse_bed.dialogue" id="8_drg2j"]
-[ext_resource type="Resource" uid="uid://bbutqyvufwmxd" path="res://assets/nodes/dialogues/dlg_bellahouse_tv.dialogue" id="8_k5ss1"]
-[ext_resource type="Resource" uid="uid://be16k7ay336jp" path="res://assets/nodes/dialogues/dlg_bellahouse_couch.dialogue" id="9_drg2j"]
+[ext_resource type="Resource" uid="uid://mo60yijh5jve" path="res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_bed.dialogue" id="8_drg2j"]
+[ext_resource type="Resource" uid="uid://bbutqyvufwmxd" path="res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_tv.dialogue" id="8_k5ss1"]
+[ext_resource type="Resource" uid="uid://be16k7ay336jp" path="res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_couch.dialogue" id="9_drg2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ca6tt"]
 size = Vector2(64, 24)

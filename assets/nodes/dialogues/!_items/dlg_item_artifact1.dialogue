@@ -1,0 +1,9 @@
+~ start
+if not auto_singleton.flag_artifact_ball:
+	$> bgm.play_music("bgm_chamber")
+	$> sfx.play("start")
+	[p][center]¡Recuperas el [b][wave][color=deep_sky_blue]Artefacto Bola[/color][/wave][/b]![/center][p][center][font_size=16]Podrás atravesar pasillos pequeños al usarlo.
+	set auto_singleton.flag_artifact_ball = true
+	=> END
+else:
+	(Ya que tienes la memoria del Artefacto, presiento que desaparecerá pronto.)

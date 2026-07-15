@@ -1,19 +1,22 @@
 [gd_scene format=3 uid="uid://0xkf1ifg7aov"]
 
 [ext_resource type="Script" uid="uid://pg3x4qth25r7" path="res://assets/scenes/maps/map_cave1_all/map_cave_1_all.gd" id="1_c7rph"]
-[ext_resource type="PackedScene" uid="uid://m2mqg4lbrufk" path="res://assets/scenes/maps/map_cave1_r1/map_cave1_r1.tscn" id="1_w2pe3"]
-[ext_resource type="PackedScene" uid="uid://c6304yy2i2c86" path="res://assets/scenes/maps/map_cave1_r2/map_cave1_r2.tscn" id="2_c7rph"]
+[ext_resource type="PackedScene" uid="uid://m2mqg4lbrufk" path="res://assets/scenes/maps/map_cave1_all/map_cave1_r1/map_cave1_r1.tscn" id="1_w2pe3"]
+[ext_resource type="PackedScene" uid="uid://c6304yy2i2c86" path="res://assets/scenes/maps/map_cave1_all/map_cave1_r2/map_cave1_r2.tscn" id="2_c7rph"]
 [ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_rqe04"]
-[ext_resource type="PackedScene" uid="uid://gldfgy6co3qo" path="res://assets/scenes/maps/map_cave1_r3/map_cave1_r3.tscn" id="3_lgact"]
-[ext_resource type="PackedScene" uid="uid://bgfvvdgcsonac" path="res://assets/scenes/maps/map_cave1_r4/map_cave1_r4.tscn" id="4_j7nwu"]
+[ext_resource type="PackedScene" uid="uid://gldfgy6co3qo" path="res://assets/scenes/maps/map_cave1_all/map_cave1_r3/map_cave1_r3.tscn" id="3_lgact"]
+[ext_resource type="PackedScene" uid="uid://bgfvvdgcsonac" path="res://assets/scenes/maps/map_cave1_all/map_cave1_r4/map_cave1_r4.tscn" id="4_j7nwu"]
 [ext_resource type="AudioStream" uid="uid://dsyn56ecn220n" path="res://assets/audio/bgm_crypt.ogg" id="7_j7nwu"]
 [ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="8_6ruh7"]
-[ext_resource type="Resource" uid="uid://ge548hkmg4x" path="res://assets/nodes/dialogues/dlg_cave1_chest1.dialogue" id="9_5a4c0"]
-[ext_resource type="Resource" uid="uid://doa0a0a576il6" path="res://assets/nodes/dialogues/dlg_cave1_letter1.dialogue" id="10_6n5jw"]
-[ext_resource type="Resource" uid="uid://fg4ju3tts8lk" path="res://assets/nodes/dialogues/dlg_cave1_dirt_room.dialogue" id="11_5pgu6"]
-[ext_resource type="Resource" uid="uid://bs88je7achiul" path="res://assets/nodes/dialogues/dlg_cave1_letter2.dialogue" id="12_oc73u"]
-[ext_resource type="Resource" uid="uid://cpvmc2vb8wxfk" path="res://assets/nodes/dialogues/dlg_cave1_chest2.dialogue" id="13_ejmdk"]
-[ext_resource type="Resource" uid="uid://geklj7c72vk" path="res://assets/nodes/dialogues/dlg_cave1_bridge.dialogue" id="14_d8ikk"]
+[ext_resource type="Resource" uid="uid://ge548hkmg4x" path="res://assets/nodes/dialogues/cave1/dlg_cave1_chest1.dialogue" id="9_5a4c0"]
+[ext_resource type="Resource" uid="uid://cyi05r5y4jbd2" path="res://assets/nodes/dialogues/!_items/dlg_outside_vespera_item.dialogue" id="10_5pgu6"]
+[ext_resource type="Resource" uid="uid://doa0a0a576il6" path="res://assets/nodes/dialogues/cave1/dlg_cave1_letter1.dialogue" id="10_6n5jw"]
+[ext_resource type="Resource" uid="uid://fg4ju3tts8lk" path="res://assets/nodes/dialogues/cave1/dlg_cave1_dirt_room.dialogue" id="11_5pgu6"]
+[ext_resource type="Resource" uid="uid://bs88je7achiul" path="res://assets/nodes/dialogues/cave1/dlg_cave1_letter2.dialogue" id="12_oc73u"]
+[ext_resource type="Resource" uid="uid://elma75ei6uik" path="res://assets/nodes/dialogues/!_items/dlg_item_artifact1.dialogue" id="13_5a4c0"]
+[ext_resource type="Resource" uid="uid://cpvmc2vb8wxfk" path="res://assets/nodes/dialogues/cave1/dlg_cave1_chest2.dialogue" id="13_ejmdk"]
+[ext_resource type="Resource" uid="uid://geklj7c72vk" path="res://assets/nodes/dialogues/cave1/dlg_cave1_bridge.dialogue" id="14_d8ikk"]
+[ext_resource type="PackedScene" uid="uid://caafwx2advjsd" path="res://assets/scenes/maps/map_cave1_all/mmap_cave1_r1.tscn" id="15_6ruh7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7nwu"]
 size = Vector2(48, 128)
@@ -49,7 +52,7 @@ script = ExtResource("1_c7rph")
 metadata/_edit_horizontal_guides_ = [-872.0]
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_rqe04")]
-position = Vector2(296, -1696)
+position = Vector2(10544, -1488)
 deceleration = 12000.0
 max_speed = 400.0
 
@@ -146,6 +149,10 @@ texture = SubResource("GradientTexture2D_3833o")
 position = Vector2(-720, -736)
 text_to_send = ExtResource("9_5a4c0")
 
+[node name="HiddenItem" parent="." unique_id=1829788840 instance=ExtResource("8_6ruh7")]
+position = Vector2(10144, -1768)
+text_to_send = ExtResource("10_5pgu6")
+
 [node name="Letter" parent="." unique_id=536825268 instance=ExtResource("8_6ruh7")]
 position = Vector2(4256, -1776)
 text_to_send = ExtResource("10_6n5jw")
@@ -158,13 +165,32 @@ text_to_send = ExtResource("11_5pgu6")
 position = Vector2(9808, -1608)
 text_to_send = ExtResource("12_oc73u")
 
+[node name="BallArtifact" parent="." unique_id=1596158135 instance=ExtResource("8_6ruh7")]
+position = Vector2(10416, -1472)
+text_to_send = ExtResource("13_5a4c0")
+
 [node name="Chest2" parent="." unique_id=90193667 instance=ExtResource("8_6ruh7")]
-position = Vector2(10144, -544)
+position = Vector2(10149, -518)
 text_to_send = ExtResource("13_ejmdk")
 
 [node name="Bridge" parent="." unique_id=253322313 instance=ExtResource("8_6ruh7")]
 position = Vector2(11208, -904)
 text_to_send = ExtResource("14_d8ikk")
+
+[node name="MinimapTest" type="CanvasLayer" parent="." unique_id=234973001]
+visible = false
+
+[node name="Control" type="Control" parent="MinimapTest" unique_id=163773315]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="1" parent="MinimapTest/Control" unique_id=1255739533 instance=ExtResource("15_6ruh7")]
+position = Vector2(24, 96)
+scale = Vector2(0.8, 0.8)
 
 [connection signal="body_entered" from="Maps/MapFirstCaveR1/Warp" to="." method="_on_warp_body_entered"]
 [connection signal="body_entered" from="Maps/MapFirstCaveR2/WarpL" to="." method="_on_warp_l_body_entered"]

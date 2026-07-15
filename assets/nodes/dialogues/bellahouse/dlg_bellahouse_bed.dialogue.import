@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://mo60yijh5jve"
+path="res://.godot/imported/dlg_bellahouse_bed.dialogue-597cbf2b534512a90826de3093743228.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_bed.dialogue"
+dest_files=["res://.godot/imported/dlg_bellahouse_bed.dialogue-597cbf2b534512a90826de3093743228.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://eos4r0b8xaxs"]
+
+[ext_resource type="Texture2D" uid="uid://c4fyg63ntvams" path="res://assets/scenes/battles/btl_test_1/battle_bg_texture.tres" id="1_kgmuo"]
+
+[resource]
+albedo_texture = ExtResource("1_kgmuo")
+metallic_specular = 0.0
+clearcoat = 0.0
+texture_filter = 1

@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://ctcyy3bnbus8a"]
+
+[ext_resource type="Texture2D" uid="uid://be3wlypxg3v7t" path="res://assets/images/gui/gui_battle_talk.png" id="1_0eikp"]
+
+[resource]
+texture = ExtResource("1_0eikp")
+texture_margin_left = 16.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

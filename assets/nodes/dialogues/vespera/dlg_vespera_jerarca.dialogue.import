@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bs1ipxrt61nxb"
+path="res://.godot/imported/dlg_vespera_jerarca.dialogue-8b0f6cb4cffb7b7f82634f6d91ba2be4.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/vespera/dlg_vespera_jerarca.dialogue"
+dest_files=["res://.godot/imported/dlg_vespera_jerarca.dialogue-8b0f6cb4cffb7b7f82634f6d91ba2be4.tres"]
+
+[params]
+
+defaults=true

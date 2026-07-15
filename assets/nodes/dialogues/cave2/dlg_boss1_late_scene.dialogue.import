@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bbxhi1avtyosv"
+path="res://.godot/imported/dlg_boss1_late_scene.dialogue-13f161f9ed4f73c267f17f80408a1520.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/cave2/dlg_boss1_late_scene.dialogue"
+dest_files=["res://.godot/imported/dlg_boss1_late_scene.dialogue-13f161f9ed4f73c267f17f80408a1520.tres"]
+
+[params]
+
+defaults=true

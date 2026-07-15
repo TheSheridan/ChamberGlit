@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://4dr4dp2cw7yc"]
+
+[ext_resource type="Script" uid="uid://dbsawk2sbybqb" path="res://assets/autoload/save_and_load/save_and_load.gd" id="1_8oaob"]
+[ext_resource type="FontFile" uid="uid://ddxl7ysr8qscc" path="res://assets/fonts/nokiafc22.ttf" id="2_dqeng"]
+[ext_resource type="AudioStream" uid="uid://bvbwlrnye16gv" path="res://assets/audio/bgm_debugrealm.ogg" id="2_fyveo"]
+[ext_resource type="AudioStream" uid="uid://c1612pfdpfo6j" path="res://assets/audio/sfx_flipt.ogg" id="3_dqeng"]
+
+[node name="SaveAndLoad" type="Control" unique_id=230723968]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8oaob")
+
+[node name="Label" type="Label" parent="." unique_id=1747765110]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dqeng")
+theme_override_font_sizes/font_size = 8
+text = "This is a test :3"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2007333576]
+stream = ExtResource("2_fyveo")
+bus = &"bgm"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1664956039]
+stream = ExtResource("3_dqeng")
+bus = &"sfx_battles"
+playback_type = 1

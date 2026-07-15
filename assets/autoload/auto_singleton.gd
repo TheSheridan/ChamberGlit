@@ -3,12 +3,14 @@ extends Node
 
 @onready var _loading = $'/root/n_animLoading'
 @onready var _load = $'/root/auto_load'
+@onready var _save = $'/root/SaveAndLoad'
 
 
 # Common
 enum _ease {IN, OUT}
 
-var window_size = Vector2(
+## The size of the game window. It's also updated in _process().
+@onready var window_size = Vector2(
 	ProjectSettings.get_setting('display/window/size/viewport_width'),
 	ProjectSettings.get_setting('display/window/size/viewport_height'),
 )
@@ -37,15 +39,16 @@ func get_button_prompt(key: String):
 # Gameplay
 # - Scene stuff
 func handle_dialog(bella, balloon):
-	if bella.can_talk:
-		if not balloon.after_closing:
-			if Input.is_action_just_pressed("ui_accept"):
-				if not balloon.is_running_dialog:
-					bella.npc_start_now()
-					bella.stand_still = true
-		else:
-			bella.stand_still = false
-			balloon.after_closing = false
+	if not _save.is_loading:
+		if bella.can_talk:
+			if not balloon.after_closing:
+				if Input.is_action_just_pressed("ui_accept"):
+					if not balloon.is_running_dialog:
+						bella.npc_start_now()
+						bella.stand_still = true
+			else:
+				bella.stand_still = false
+				balloon.after_closing = false
 			
 func check_bella_position(bella, scene_name: String):
 	var helper = get_node("../" + scene_name + "/PositionHelpers/" + flag_helper)
@@ -60,12 +63,31 @@ func check_bella_position(bella, scene_name: String):
 		bella.position = helper.position
 	elif flag_helper == "AfterBattle":
 		bella.position = after_battle.position
+		
+## Same as check_bella_position(), but Vector2s converted to Vector3.
+func check_bella_position_3d(bella, scene_name: String):
+	var helper = get_node("../" + scene_name + "/PositionHelpers/" + flag_helper)
+	var after_battle = get_node("../" + scene_name + "/PositionHelpers/AfterBattle")
 	
-func fade_to_battle(bella, battle_scene):
+	_loading._out.emit()
+	
+	if after_battle != null:
+		after_battle.position = Vector3(flag_prev_position.x, flag_prev_position.y, 0)
+	
+	if flag_helper != "":
+		bella.position = Vector3(helper.position.x, helper.position.y, 0)
+	elif flag_helper == "AfterBattle":
+		bella.position = Vector3(after_battle.position.x, after_battle.position.y, 0)
+	
+func fade_to_battle(bella, battle_scene, is_3d: bool = false):
 	_loading.sprite_color = false
 	bella.stand_still = true
 	
-	quick_prev(scene_outside_vespera, bella.position)
+	if is_3d:
+		quick_prev(scene_outside_vespera, Vector2(bella.position.x, bella.position.y))
+	else:
+		quick_prev(scene_outside_vespera, bella.position)
+	
 	sfx_play("battle")
 	
 	create_tween().set_ease(Tween.EASE_OUT) \
@@ -121,13 +143,6 @@ func set_bella_stats():
 	bella_stats.agility = 10
 	bella_stats.wisdom = 6
 	bella_stats.power = 8
-	
-	
-	
-
-func _ready():
-	pass
-	#set_bella_stats()
 
 
 # Settings
@@ -184,6 +199,9 @@ var flag_scene_changed_after_battle: bool = false
 ## Will be deprecated soon...
 var flag_position_helper_to_use: String = " "
 
+# Artifacts
+var flag_artifact_ball: bool = false
+
 # Maps
 ## Bridge at the Ancient Ruins.
 var flag_cave1_bridge: bool = false
@@ -196,6 +214,8 @@ var flag_bella_house_after_cave1: bool = false
 var flag_vespera_accept_to_search_herbs: bool = false
 var flag_vespera_got_herbs: bool = false
 var flag_vespera_heard_about_cave: bool = false
+
+var flag_vespera_got_npc3_item: int = 0
 
 # TODO: Replace "minotaur" with "boss1". In all scripts.
 
@@ -214,9 +234,20 @@ var scene_title = "res://assets/scenes/scn_Title0/scn_Title0.tscn"
 var scene_intro_cave = "res://assets/scenes/maps/map_cave1_all/map_cave1_all.tscn"
 var scene_bella_house = "res://assets/scenes/maps/map_bellahouse/map_bellahouse.tscn"
 var scene_vespera = "res://assets/scenes/maps/map_vespera/map_vespera.tscn"
-var scene_outside_vespera = "res://assets/scenes/maps/map_outside_vespera/map_outside_vespera.tscn"
+var scene_outside_vespera = "res://assets/scenes/maps/map_outside_vespera_3d/map_outside_vespera_3d.tscn"
 
 var scene_cave_2 = "res://assets/scenes/maps/map_cave2/map_cave2.tscn"
 
 var battle_test1: String = "res://assets/scenes/battles/btl_test_1/btl_test_1.tscn"
 #endregion
+
+
+# _process() stuff
+func _ready() -> void:
+	Input.emulate_mouse_from_touch = true
+
+func _process(delta) -> void:
+	window_size = Vector2(
+		ProjectSettings.get_setting("display/window/size/viewport_width"),
+		ProjectSettings.get_setting("display/window/size/viewport_height")
+	)

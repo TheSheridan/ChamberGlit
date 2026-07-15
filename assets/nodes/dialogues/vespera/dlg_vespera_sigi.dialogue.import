@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dujml1imugshf"
+path="res://.godot/imported/dlg_vespera_sigi.dialogue-4c8c29cb2ec382a4b847376dbe0b9d09.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/vespera/dlg_vespera_sigi.dialogue"
+dest_files=["res://.godot/imported/dlg_vespera_sigi.dialogue-4c8c29cb2ec382a4b847376dbe0b9d09.tres"]
+
+[params]
+
+defaults=true

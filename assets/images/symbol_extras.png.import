@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhlgp5757cofn"
-path.s3tc="res://.godot/imported/symbol_extras.png-edee720f41cf0e263be6ec8d03d6b377.s3tc.ctex"
+path.etc2="res://.godot/imported/symbol_extras.png-edee720f41cf0e263be6ec8d03d6b377.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/images/symbol_extras.png"
-dest_files=["res://.godot/imported/symbol_extras.png-edee720f41cf0e263be6ec8d03d6b377.s3tc.ctex"]
+dest_files=["res://.godot/imported/symbol_extras.png-edee720f41cf0e263be6ec8d03d6b377.etc2.ctex"]
 
 [params]
 

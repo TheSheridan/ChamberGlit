@@ -1,0 +1,16 @@
+[gd_resource type="NoiseTexture2D" format=3 uid="uid://bpvbjqqphtfnd"]
+
+[sub_resource type="Gradient" id="Gradient_a7p57"]
+colors = PackedColorArray(0.18319303, 0.2212465, 0.2284314, 1, 0.88039213, 0.9352711, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ff8f6"]
+domain_warp_enabled = true
+
+[resource]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ff8f6")
+color_ramp = SubResource("Gradient_a7p57")
+seamless = true
+in_3d_space = true
+normalize = false
+seamless_blend_skirt = 1.0

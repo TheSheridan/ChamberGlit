@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var _sgt = $/root/auto_singleton
 @onready var _load = $/root/auto_load
+@onready var _save = $"/root/SaveAndLoad"
 
 @onready var bella = $CharacterBella
 @onready var balloon = $CharacterBella/ExampleBalloon
@@ -11,11 +12,9 @@ var npc_battle_enter: bool
 var show_sigi_signal: bool = false
 
 var name_ruth: String = "[color=green]Ruth:[/color]"
+var talked_to_npc3: bool = false
 
 func _ready() -> void:
-	# Debug
-	_sgt.flag_minotaur_beated = true
-	
 	RenderingServer.set_default_clear_color(Color(0.653, 0.693, 0.714, 1.0))
 	bella._fade_out.emit()
 	_sgt.check_bella_position(bella, name)
@@ -34,7 +33,25 @@ func _ready() -> void:
 	$Sigi.modulate = Color.ORANGE
 
 func _process(delta: float) -> void:
-	_sgt.handle_dialog(bella, balloon)
+	if bella != null:
+		_sgt.handle_dialog(bella, balloon)
+	
+	# Debug
+	#if Input.is_action_just_pressed("ui_accept"):
+		#_save.save_game()
+		#print("Game saved")
+		#
+	#if Input.is_action_just_pressed("ui_select"):
+		#bella._fade_in.emit()
+		#await bella.fade_finished
+		#_save.load_game()
+		#print("Game loaded")
+	
+	#if $SavePosition != null:
+		#$SavePosition.position = bella.position
+	#else:
+		#print_rich("[color=red]$SavePosition is null :([/color]")
+		## If it's null, can save the position well!
 
 func ruth_anim(id: String):
 	$Ruth/Anim.play(id)

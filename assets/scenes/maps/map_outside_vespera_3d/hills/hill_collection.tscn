@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dg2m7dbquuv8e"]
+
+[ext_resource type="PackedScene" uid="uid://gqbstsn14rfd" path="res://assets/scenes/maps/map_outside_vespera_3d/hills/hill.tscn" id="1_slp3t"]
+
+[node name="HillCollection2" type="Node3D" unique_id=1215797129]
+
+[node name="Hill" parent="." unique_id=186942827 instance=ExtResource("1_slp3t")]
+
+[node name="Hill2" parent="." unique_id=1345731302 instance=ExtResource("1_slp3t")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.7179127, 0.5423908, 0)

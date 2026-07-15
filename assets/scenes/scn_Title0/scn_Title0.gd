@@ -177,7 +177,7 @@ func _process(delta):
 	anim_shake_sprite(delta)
 
 # Press Start
-	if Input.is_anything_pressed() and press_start_switch == false:
+	if Input.is_anything_pressed() or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and press_start_switch == false:
 		create_tween().set_ease(Tween.EASE_IN) \
 			.set_trans(Tween.TRANS_CUBIC) \
 			.tween_property($Camera2D, 'zoom', Vector2(8,8), 0.5)

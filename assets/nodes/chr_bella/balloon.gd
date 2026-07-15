@@ -37,6 +37,8 @@ extends CanvasLayer
 ## (CG) Sound player for individual letters.
 @onready var talk_sound = $TalkSound
 
+@onready var touchpad = $"/root/Touchpad"
+
 ## Temporary game states
 var temporary_game_states: Array = []
 
@@ -67,8 +69,9 @@ var dialogue_line: DialogueLine:
 		else:
 			# The dialogue has finished so close the balloon			
 			progress_anim.play("fade_out")
-			
 			$FadeAnim.play("fade_out")
+			touchpad._in.emit()
+			
 			# TODO: Fix this, it causes to not respond when talking again
 			if $FadeAnim.is_playing and $FadeAnim.current_animation == "fade_out":
 				await $FadeAnim.animation_finished
@@ -103,6 +106,7 @@ var mutation_cooldown: Timer = Timer.new()
 
 # My stuff
 signal dialog
+signal far_of_npc
 
 @export var is_running_dialog: bool = false
 @export var after_closing: bool = false
@@ -130,6 +134,9 @@ func _ready() -> void:
 		if not is_instance_valid(dialogue_resource):
 			assert(false, DMConstants.get_error_message(DMConstants.ERR_MISSING_RESOURCE_FOR_AUTOSTART))
 		start()
+		
+	# Doesn't work.
+	#far_of_npc.connect(close.bind())
 
 
 func _process(_delta: float) -> void:
@@ -143,6 +150,13 @@ func _process(_delta: float) -> void:
 			dialogue_label.seconds_per_step = text_speed_double
 		if Input.is_action_just_released("ui_select"):
 			dialogue_label.seconds_per_step = text_speed_normal
+	
+	if is_running_dialog:
+		if dialogue_resource == null:
+			far_of_npc.emit()
+		
+		if far_of_npc:
+			close()
 
 
 func play_talk_sound():
@@ -171,8 +185,10 @@ func start(with_dialogue_resource: DialogueResource = null, cue: String = "", ex
 	temporary_game_states = [self] + extra_game_states
 	is_waiting_for_input = false
 	
+	responses_menu.modulate.a = 0
 	progress_anim.play("fade_out")
-	
+	touchpad._out.emit()
+
 	if is_instance_valid(with_dialogue_resource):
 		dialogue_resource = with_dialogue_resource
 	if not cue.is_empty():
@@ -255,12 +271,16 @@ func next(next_id: String) -> void:
 		has_choices_closed = false
 	else:
 		next_sound.play()
-		
-	dialogue_line = await dialogue_resource.get_next_dialogue_line(next_id, temporary_game_states)
-
-func close():
-	print("Close called!")
 	
+	# DANGER: This is a bug mine, place a chech here!!!!
+	# It returns null when Bella gets far of the NPC is talking to.
+	if not dialogue_resource == null:
+		dialogue_line = await dialogue_resource.get_next_dialogue_line(next_id, temporary_game_states)
+	else:
+		far_of_npc.emit()
+		close()
+
+func close():	
 	if not dialogue_line.responses.size() > 0 and not has_choices_closed:
 		responses_anim.play("fade_out")
 	

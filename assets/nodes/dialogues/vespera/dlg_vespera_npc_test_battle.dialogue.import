@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bmu32ckr8pqdt"
+path="res://.godot/imported/dlg_vespera_npc_test_battle.dialogue-8943456b0688135d99db1dfcab5f8acc.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/vespera/dlg_vespera_npc_test_battle.dialogue"
+dest_files=["res://.godot/imported/dlg_vespera_npc_test_battle.dialogue-8943456b0688135d99db1dfcab5f8acc.tres"]
+
+[params]
+
+defaults=true

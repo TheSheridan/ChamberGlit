@@ -1,0 +1,7 @@
+~ start
+if not auto_singleton.flag_vespera_got_herbs:
+	$> sfx.play("tip")
+	¡Extraes las hierbas medicinales![p]Deberías llevárselas a Ruth.
+	set auto_singleton.flag_vespera_got_herbs = true
+else:
+	Ya las tienes, solo falta dárselas a Ruth.

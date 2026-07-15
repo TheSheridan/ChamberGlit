@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dsv55xmacxrlt"
+path="res://.godot/imported/dlg_bellahouse_blessing.dialogue-88280dd15c961d89f07d89a9f08b3546.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_blessing.dialogue"
+dest_files=["res://.godot/imported/dlg_bellahouse_blessing.dialogue-88280dd15c961d89f07d89a9f08b3546.tres"]
+
+[params]
+
+defaults=true

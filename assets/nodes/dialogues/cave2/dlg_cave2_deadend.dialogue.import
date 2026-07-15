@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://boux5pv0ytfoh"
+path="res://.godot/imported/dlg_cave2_deadend.dialogue-68e3cee453146acc786a0108042cb644.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/cave2/dlg_cave2_deadend.dialogue"
+dest_files=["res://.godot/imported/dlg_cave2_deadend.dialogue-68e3cee453146acc786a0108042cb644.tres"]
+
+[params]
+
+defaults=true

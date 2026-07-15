@@ -1,0 +1,7 @@
+
+if not auto_singleton.flag_vespera_heard_about_cave:
+	Fin del trayecto. Será mejor que retroceda.
+#else:
+	#Qué raro que los aldeanos digan que oyen ruidos cerca de aquí cuando está vacía.
+	#TODO -- Extender este diálogo
+

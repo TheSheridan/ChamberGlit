@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://dr0j8vx5v8mru" path="res://assets/nodes/warp/warp.gd" id="2_c4qsd"]
 [ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_o3tu1"]
 [ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="3_q50eb"]
-[ext_resource type="Resource" uid="uid://dkiob61iwjh7v" path="res://assets/nodes/dialogues/dlg_vespera_inn_old_man.dialogue" id="4_ouvp3"]
+[ext_resource type="Resource" uid="uid://dkiob61iwjh7v" path="res://assets/nodes/dialogues/vespera/dlg_vespera_inn_old_man.dialogue" id="4_ouvp3"]
 [ext_resource type="Script" uid="uid://cd3222nx3y3k5" path="res://addons/dialogue_manager/nodes/context/dialogue_state_context.gd" id="6_4m0k5"]
-[ext_resource type="Resource" uid="uid://b0h3oije3ya3a" path="res://assets/nodes/dialogues/dlg_vespera_npc_test_1.dialogue" id="7_4m0k5"]
+[ext_resource type="Resource" uid="uid://b0h3oije3ya3a" path="res://assets/nodes/dialogues/vespera/dlg_vespera_npc_test_1.dialogue" id="7_4m0k5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wi7vq"]
 size = Vector2(64, 32)

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://elma75ei6uik"
+path="res://.godot/imported/dlg_item_artifact1.dialogue-bb42cb146456c79e238b928c23c80f18.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/!_items/dlg_item_artifact1.dialogue"
+dest_files=["res://.godot/imported/dlg_item_artifact1.dialogue-bb42cb146456c79e238b928c23c80f18.tres"]
+
+[params]
+
+defaults=true

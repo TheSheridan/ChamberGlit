@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://50w0aexfcv20"
-path.s3tc="res://.godot/imported/spr-bellie-up.png-89186fb84a4a1cea2165469da12a7941.s3tc.ctex"
+path.etc2="res://.godot/imported/spr-bellie-up.png-89186fb84a4a1cea2165469da12a7941.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/images/sheets/spr_Bellie/spr-bellie-up.png"
-dest_files=["res://.godot/imported/spr-bellie-up.png-89186fb84a4a1cea2165469da12a7941.s3tc.ctex"]
+dest_files=["res://.godot/imported/spr-bellie-up.png-89186fb84a4a1cea2165469da12a7941.etc2.ctex"]
 
 [params]
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bs88je7achiul"
+path="res://.godot/imported/dlg_cave1_letter2.dialogue-93c51596752ec6383fd7a72df24ebb3c.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/cave1/dlg_cave1_letter2.dialogue"
+dest_files=["res://.godot/imported/dlg_cave1_letter2.dialogue-93c51596752ec6383fd7a72df24ebb3c.tres"]
+
+[params]
+
+defaults=true

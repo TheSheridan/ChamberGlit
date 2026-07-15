@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bop0pilp2qqoo"
+path="res://.godot/imported/dlg_outside_vespera_bridge.dialogue-dbe82c310ebc559b36a4d54cca327a60.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/outside_vespera/dlg_outside_vespera_bridge.dialogue"
+dest_files=["res://.godot/imported/dlg_outside_vespera_bridge.dialogue-dbe82c310ebc559b36a4d54cca327a60.tres"]
+
+[params]
+
+defaults=true

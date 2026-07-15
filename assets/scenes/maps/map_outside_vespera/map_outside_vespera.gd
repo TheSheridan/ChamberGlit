@@ -22,3 +22,16 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	_sgt.handle_dialog(bella, balloon)
+	
+	# Move shader
+	var input = bella.get_input()
+	var worldmap_shader = $Worldmap.material
+	var mode7_transform = worldmap_shader.get_shader_parameter("TRANSFORM")
+	
+	#print(mode7_transform.w[0])
+	#
+	#match input:
+		#Vector2.LEFT:
+			##mode7_transform.w[0] += 1.0
+			#worldmap_shader.set_shader_parameter("TRANSFORM", Transform2D(
+			#))

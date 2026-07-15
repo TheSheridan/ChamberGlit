@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://4dr4dp2cw7yc"]
+
+[ext_resource type="Script" uid="uid://dbsawk2sbybqb" path="res://assets/autoload/save_and_load/save_and_load.gd" id="1_8oaob"]
+
+[node name="SaveAndLoad" type="Control" unique_id=1424291604]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8oaob")
+
+[node name="Label" type="Label" parent="." unique_id=351044167]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is a test :3"

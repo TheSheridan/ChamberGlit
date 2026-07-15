@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://draqarunjpayt"]
+
+[ext_resource type="Script" uid="uid://q4ngbta84hs0" path="res://assets/scenes/maps/map_outside_vespera_3d/chr_bella_3d/character_bella_3d.gd" id="1_2umxi"]
+[ext_resource type="Texture2D" uid="uid://cdcrhkdbxelnl" path="res://assets/images/particle2.png" id="2_2umxi"]
+[ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="3_7nyoc"]
+[ext_resource type="AudioStream" uid="uid://qxdn1my4mphp" path="res://assets/audio/sfx_snow_walk_1.ogg" id="4_gwq4t"]
+[ext_resource type="AudioStream" uid="uid://dr7d257b0k8sh" path="res://assets/audio/sfx_snow_walk_2.ogg" id="5_scwwq"]
+[ext_resource type="AudioStream" uid="uid://sjoir4lqasqo" path="res://assets/audio/sfx_snow_walk_3.ogg" id="6_stsgv"]
+[ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/nodes/chr_bella/balloon.tscn" id="7_bos0e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ai8mr"]
+margin = 2.0
+radius = 0.103479445
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vxv7l"]
+streams_count = 3
+stream_0/stream = ExtResource("4_gwq4t")
+stream_1/stream = ExtResource("5_scwwq")
+stream_2/stream = ExtResource("6_stsgv")
+
+[sub_resource type="Animation" id="Animation_v1dfx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position.z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_dc1xm"]
+resource_name = "cam_whoosh"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.93333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3, 4), Vector3(0, -3, 5), Vector3(0, -3, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_trc7h"]
+_data = {
+&"RESET": SubResource("Animation_v1dfx"),
+&"cam_whoosh": SubResource("Animation_dc1xm")
+}
+
+[node name="CharacterBella3D" type="CharacterBody3D" unique_id=1590137180]
+script = ExtResource("1_2umxi")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=748614218]
+transform = Transform3D(1, 0, 0, 0, 0.819152, -0.5735764, 0, 0.5735764, 0.819152, 0, -3, 4)
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1187624542]
+
+[node name="MinimapMarker" type="Sprite3D" parent="." unique_id=110954415]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -0.061873436, 0.06962395, 0)
+sorting_offset = 10.0
+texture_filter = 0
+texture = ExtResource("2_2umxi")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="." unique_id=1455528396]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+sorting_offset = 0.5
+billboard = 1
+texture_filter = 0
+sprite_frames = ExtResource("3_7nyoc")
+animation = &"idle_down"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1795655966]
+shape = SubResource("SphereShape3D_ai8mr")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="WalkSound" type="AudioStreamPlayer3D" parent="." unique_id=1503339475]
+stream = SubResource("AudioStreamRandomizer_vxv7l")
+volume_db = 2.0
+max_distance = 831.0
+bus = &"sfx_walk"
+
+[node name="Timer" type="Timer" parent="WalkSound" unique_id=762872603]
+
+[node name="ExampleBalloon" parent="." unique_id=38036521 instance=ExtResource("7_bos0e")]
+
+[node name="Fade" type="Control" parent="." unique_id=248455571]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="MarginContainer" parent="Fade" unique_id=168703839]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Fade/Container" unique_id=1338912054]
+layout_mode = 2
+
+[node name="BGTimer" type="Timer" parent="Fade" unique_id=1991198539]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=305936178]
+libraries/ = SubResource("AnimationLibrary_trc7h")
+
+[connection signal="timeout" from="WalkSound/Timer" to="." method="_on_timer_timeout"]

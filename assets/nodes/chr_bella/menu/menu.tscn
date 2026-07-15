@@ -1,0 +1,346 @@
+[gd_scene format=3 uid="uid://888wcnxg8fb2"]
+
+[ext_resource type="Theme" uid="uid://b2luea2icsskv" path="res://assets/nodes/chr_bella/menu/menu_theme.tres" id="1_hx3n4"]
+[ext_resource type="Texture2D" uid="uid://d1v4w0x6gk1ev" path="res://assets/images/gui/gui_mainMenu.png" id="1_jmhpo"]
+[ext_resource type="FontFile" uid="uid://dh4cbm4v84cq0" path="res://assets/fonts/Milonga-Regular.ttf" id="3_qgm5b"]
+[ext_resource type="Texture2D" uid="uid://cxifxi7dg0wmd" path="res://assets/images/icon_item.png" id="3_xmal0"]
+[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="4_38okv"]
+[ext_resource type="FontFile" uid="uid://dyou6f4jcjgp8" path="res://assets/fonts/vcr.ttf" id="4_fybhf"]
+[ext_resource type="FontFile" uid="uid://ddxl7ysr8qscc" path="res://assets/fonts/nokiafc22.ttf" id="5_0xpal"]
+[ext_resource type="Texture2D" uid="uid://c87ftvd2pakaf" path="res://assets/images/icon_weapon.png" id="5_gwu26"]
+[ext_resource type="Texture2D" uid="uid://cj1pgs2f7frs3" path="res://assets/images/loading_white.png" id="6_etvu1"]
+[ext_resource type="StyleBox" uid="uid://idlio55kxtnk" path="res://assets/scenes/battles/battle_hp_progressbar_foreground.tres" id="6_xlqoh"]
+[ext_resource type="Texture2D" uid="uid://exjhmpjgd7dq" path="res://assets/images/symbol_gear.png" id="7_abnl8"]
+[ext_resource type="StyleBox" uid="uid://d0c83vcwm74bl" path="res://assets/scenes/battles/battle_pp_progressbar_foreground.tres" id="7_sqruj"]
+[ext_resource type="Texture2D" uid="uid://cnkc78a7jwlti" path="res://assets/images/symbol_exit.png" id="8_5wvm3"]
+
+[sub_resource type="Gradient" id="Gradient_0xpal"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xlqoh"]
+gradient = SubResource("Gradient_0xpal")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqruj"]
+texture = SubResource("GradientTexture2D_xlqoh")
+texture_margin_left = 8.0
+texture_margin_top = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="Theme" id="Theme_1ymu6"]
+Label/styles/normal = SubResource("StyleBoxTexture_sqruj")
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ymu6"]
+font = ExtResource("3_qgm5b")
+font_size = 20
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_outline_0/size = 5
+stacked_outline_0/color = Color(0.10463667, 0.31719267, 0.43921566, 1)
+stacked_shadow_0/offset = Vector2(0, 0)
+stacked_shadow_0/color = Color(1, 1, 1, 0.08627451)
+stacked_shadow_0/outline_size = 10
+
+[sub_resource type="Animation" id="Animation_wts6y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:enemy_stat_viewer_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_icpym"]
+resource_name = "shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333334, 0.3),
+"transitions": PackedFloat32Array(0.17075533, 0.535887, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.353, 0.19111542, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:stat_viewer_offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 0.14358737, 0.20306301, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t846y"]
+_data = {
+&"RESET": SubResource("Animation_wts6y"),
+&"shake": SubResource("Animation_icpym")
+}
+
+[node name="Menu" type="Control" unique_id=601167454]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hx3n4")
+
+[node name="FlowContainer2" type="FlowContainer" parent="." unique_id=2098343429]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="FlowContainer2" unique_id=253558753]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+ratio = 1.4
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="FlowContainer2/AspectRatioContainer" unique_id=388003410]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="BoxContainer" parent="FlowContainer2/AspectRatioContainer/MarginContainer" unique_id=1450188327]
+z_index = 1
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+localize_numeral_system = false
+alignment = 1
+vertical = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer" unique_id=1501733914]
+modulate = Color(1, 1, 1, 0.30588236)
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_jmhpo")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer" unique_id=114378018]
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1174140633]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+button_mask = 0
+text = "Items"
+icon = ExtResource("3_xmal0")
+expand_icon = true
+
+[node name="Button" type="Button" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=775828303]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "Estado"
+icon = ExtResource("6_etvu1")
+expand_icon = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer" unique_id=722248445]
+layout_mode = 2
+
+[node name="Button6" type="Button" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=188866791]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "Equipo"
+icon = ExtResource("5_gwu26")
+expand_icon = true
+
+[node name="Button5" type="Button" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=402050670]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "Magias"
+icon = ExtResource("4_38okv")
+expand_icon = true
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer" unique_id=603808458]
+modulate = Color(1, 1, 1, 0.30588236)
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_jmhpo")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer" unique_id=357288370]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1453258956]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "Opciones"
+icon = ExtResource("7_abnl8")
+expand_icon = true
+
+[node name="Button2" type="Button" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=974297983]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "Salir"
+icon = ExtResource("8_5wvm3")
+expand_icon = true
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="FlowContainer2/AspectRatioContainer/MarginContainer/VBoxContainer" unique_id=1091319417]
+modulate = Color(1, 1, 1, 0.30588236)
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_jmhpo")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="FlowContainer" type="FlowContainer" parent="." unique_id=1642247438]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+last_wrap_alignment = 2
+reverse_fill = true
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="FlowContainer" unique_id=1230110380]
+custom_minimum_size = Vector2(156, 105)
+layout_mode = 2
+stretch_mode = 3
+alignment_horizontal = 2
+alignment_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FlowContainer/AspectRatioContainer2" unique_id=685674069]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="FlowContainer/AspectRatioContainer2/VBoxContainer" unique_id=1555864578]
+layout_mode = 2
+theme = SubResource("Theme_1ymu6")
+theme_override_fonts/font = ExtResource("5_0xpal")
+theme_override_font_sizes/font_size = 12
+text = "$0"
+
+[node name="StatViewer" type="PanelContainer" parent="FlowContainer/AspectRatioContainer2/VBoxContainer" unique_id=488914935]
+clip_contents = true
+custom_minimum_size = Vector2(60, 70)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="FlowContainer/AspectRatioContainer2/VBoxContainer/StatViewer" unique_id=2072832193]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_qgm5b")
+theme_override_font_sizes/font_size = 20
+text = "Bella"
+label_settings = SubResource("LabelSettings_1ymu6")
+
+[node name="HP" type="Label" parent="FlowContainer/AspectRatioContainer2/VBoxContainer/StatViewer" unique_id=1093610109]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("4_fybhf")
+theme_override_font_sizes/font_size = 12
+text = "PS"
+horizontal_alignment = 1
+
+[node name="HPValue" type="RichTextLabel" parent="FlowContainer/AspectRatioContainer2/VBoxContainer/StatViewer" unique_id=898851245]
+z_index = 1
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("5_0xpal")
+bbcode_enabled = true
+text = "PS"
+horizontal_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="FlowContainer/AspectRatioContainer2/VBoxContainer/StatViewer" unique_id=49989718]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/fill = ExtResource("6_xlqoh")
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="PP" type="Label" parent="FlowContainer/AspectRatioContainer2/VBoxContainer/StatViewer" unique_id=1973542194]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_fybhf")
+theme_override_font_sizes/font_size = 12
+text = "PP"
+horizontal_alignment = 1
+
+[node name="PPBar" type="ProgressBar" parent="FlowContainer/AspectRatioContainer2/VBoxContainer/StatViewer" unique_id=1708681598]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/fill = ExtResource("7_sqruj")
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="PPValue" type="RichTextLabel" parent="FlowContainer/AspectRatioContainer2/VBoxContainer/StatViewer" unique_id=804095676]
+z_index = 1
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("5_0xpal")
+bbcode_enabled = true
+text = "PS"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlowContainer/AspectRatioContainer2/VBoxContainer/StatViewer" unique_id=185274723]
+libraries/ = SubResource("AnimationLibrary_t846y")

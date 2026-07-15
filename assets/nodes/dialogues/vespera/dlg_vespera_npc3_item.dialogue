@@ -1,0 +1,10 @@
+~ start
+match auto_singleton.flag_vespera_got_npc3_item:
+	when 0:
+		$> sfx.play("tip")
+		Encuentras la pulserita.
+		set auto_singleton.flag_vespera_got_npc3_item = 1
+		=> END
+	when >= 1:
+		# TODO: Acortar línea
+		Solo queda el hueco arrastrado cuando recogiste lo aue había aquí.

@@ -39,41 +39,119 @@ domain_warp_fractal_lacunarity = 5.938
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kvkon"]
 noise = SubResource("FastNoiseLite_n1uuo")
 
-[node name="LogoScene" type="Node2D" unique_id=2044173022]
-script = ExtResource("1_oe8u2")
+[sub_resource type="Animation" id="Animation_kvkon"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1874899781]
-texture_filter = 1
-position = Vector2(0, 1)
-scale = Vector2(16, 16)
-texture = ExtResource("2_tcghc")
+[sub_resource type="Animation" id="Animation_ncmp1"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 0.19957483),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_lidel"]
+resource_name = "dissapear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 0.19957483),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5i7a8"]
+_data = {
+&"RESET": SubResource("Animation_kvkon"),
+&"appear": SubResource("Animation_ncmp1"),
+&"dissapear": SubResource("Animation_lidel")
+}
+
+[node name="LogoScene" type="Control" unique_id=367731807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oe8u2")
 
 [node name="Audio" type="AudioStreamPlayer" parent="." unique_id=351681754]
 stream = SubResource("AudioStreamRandomizer_oe8u2")
 autoplay = true
-bus = &"sfx"
+bus = &"sfx_delay"
 playback_type = 2
-
-[node name="Container" type="AspectRatioContainer" parent="." unique_id=1983154884]
-offset_right = 637.0
-offset_bottom = 479.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-ratio = 2.0
-
-[node name="Text" type="RichTextLabel" parent="Container" unique_id=760610066]
-custom_minimum_size = Vector2(200, 80)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("4_tcghc")
-bbcode_enabled = true
-text = "[font_size=20]4lg0rythm presenta"
-horizontal_alignment = 1
-vertical_alignment = 2
 
 [node name="BG" type="Sprite2D" parent="." unique_id=774178655]
 modulate = Color(1, 1, 1, 0.05882353)
 scale = Vector2(2, 2)
 texture = SubResource("NoiseTexture2D_kvkon")
 centered = false
+
+[node name="Timer" type="Timer" parent="." unique_id=330124361]
+one_shot = true
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=161181273]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite" type="Sprite2D" parent="CenterContainer" unique_id=1874899781]
+texture_filter = 1
+scale = Vector2(16, 16)
+texture = ExtResource("2_tcghc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer/Sprite" unique_id=2025916341]
+libraries/ = SubResource("AnimationLibrary_5i7a8")
+
+[node name="Container" type="MarginContainer" parent="." unique_id=1535055640]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Text" type="RichTextLabel" parent="Container" unique_id=760610066]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_fonts/normal_font = ExtResource("4_tcghc")
+bbcode_enabled = true
+text = "[center][font_size=20]4lg0rythm presenta"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

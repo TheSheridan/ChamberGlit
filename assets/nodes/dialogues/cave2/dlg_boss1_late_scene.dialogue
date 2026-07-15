@@ -1,0 +1,21 @@
+~ start
+if not map.heard_boss1:
+	=> plan
+else:
+	=> afterword
+
+~ plan
+[color=violet]Cuerno[/color]: Sí que ha pasado el tiempo, ¿eh?
+[color=violet]Cuerno[/color]: Desde que acabé criogenizado cientos de años atrás, nunca habría creído que un par de aldeanos acabarían sanándome.
+[color=violet]Cuerno[/color]: Estos cacharros que me dieron no son la gran cosa, pero si logro encontrar la forma de encantarlos...
+[color=violet]Cuerno[/color]: Si, ya lo creo, ¡la que ella se espera...!
+# pausa
+[color=violet]Cuerno[/color]: Dudo que vuelva a trabajar en lo que hacía para cuando recupere mis recuerdos.
+[color=violet]Cuerno[/color]: Esta nueva vida apesta.
+set map.heard_boss1 = true
+=> END
+
+~ afterword
+[color=violet]Cuerno[/color]: Debería dejar de delirar tanto. No querría saber qué pasaría si me oyen.
+[color=violet]Cuerno[/color]: Oh Diosa, bríndame suerte en mi partida.
+=> END

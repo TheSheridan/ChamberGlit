@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c6hewjsu7aonk"]
+
+[ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="1_7mfk1"]
+[ext_resource type="Script" uid="uid://cyqdjh4rg12w1" path="res://assets/scenes/maps/map_outside_vespera_3d/chr_npc_3d/character_npc_3d.gd" id="1_c066g"]
+[ext_resource type="Script" uid="uid://c5mlp6r4mts0r" path="res://addons/dialogue_manager/nodes/actionable/actionable_3d.gd" id="3_xhhij"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t7cvv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhhij"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="CharacterNpc3d" type="CharacterBody3D" unique_id=133657046]
+script = ExtResource("1_c066g")
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1971192883]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1336949947]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+sorting_offset = 0.5
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_7mfk1")
+
+[node name="Actionable3D" type="Area3D" parent="." unique_id=328639701]
+script = ExtResource("3_xhhij")
+metadata/_custom_type_script = "uid://c5mlp6r4mts0r"
+
+[node name="Collision" type="CollisionShape3D" parent="Actionable3D" unique_id=719112972]
+shape = SubResource("SphereShape3D_t7cvv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=345198070]
+shape = SubResource("BoxShape3D_xhhij")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[connection signal="body_entered" from="Actionable3D" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="Actionable3D" to="." method="_on_area_body_exited"]
+[connection signal="dialogue_ended" from="Actionable3D" to="." method="_on_actionable_3d_dialogue_ended"]

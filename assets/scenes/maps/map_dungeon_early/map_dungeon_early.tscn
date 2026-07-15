@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dr0j8vx5v8mru" path="res://assets/nodes/warp/warp.gd" id="2_64e2b"]
 [ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_ypf14"]
 [ext_resource type="Script" uid="uid://bx3ltdtqt12p3" path="res://assets/nodes/chr_npc2/character_npc.gd" id="4_hthp6"]
-[ext_resource type="Resource" uid="uid://72iw1nfbl2sk" path="res://assets/nodes/dialogues/dlg_dungeon_minotaur.dialogue" id="5_64e2b"]
+[ext_resource type="Resource" uid="uid://72iw1nfbl2sk" path="res://assets/nodes/dialogues/cave2/dlg_dungeon_minotaur.dialogue" id="5_64e2b"]
 [ext_resource type="Texture2D" uid="uid://ekfg1qdyhn8v" path="res://assets/images/symbol_play.png" id="5_q1epe"]
 [ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="6_urym7"]
 [ext_resource type="Script" uid="uid://cd3222nx3y3k5" path="res://addons/dialogue_manager/nodes/context/dialogue_state_context.gd" id="8_urym7"]

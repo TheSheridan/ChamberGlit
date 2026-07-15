@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://g1q3ax7p320n" path="res://assets/scenes/!_debug/debug_dialogManagerTest/chest.gd" id="2_lbnwq"]
 [ext_resource type="Texture2D" uid="uid://dhlgp5757cofn" path="res://assets/images/symbol_extras.png" id="3_4jl42"]
 [ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="3_oy02t"]
-[ext_resource type="Resource" uid="uid://c1qktq1rlatfp" path="res://assets/nodes/dialogues/dlg_vespera_ruth.dialogue" id="4_sq8i4"]
-[ext_resource type="Resource" uid="uid://bop0pilp2qqoo" path="res://assets/nodes/dialogues/dlg_outside_vespera_bridge.dialogue" id="5_oy02t"]
+[ext_resource type="Resource" uid="uid://c1qktq1rlatfp" path="res://assets/nodes/dialogues/vespera/dlg_vespera_ruth.dialogue" id="4_sq8i4"]
+[ext_resource type="Resource" uid="uid://bop0pilp2qqoo" path="res://assets/nodes/dialogues/outside_vespera/dlg_outside_vespera_bridge.dialogue" id="5_oy02t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oy02t"]
 size = Vector2(30, 30)

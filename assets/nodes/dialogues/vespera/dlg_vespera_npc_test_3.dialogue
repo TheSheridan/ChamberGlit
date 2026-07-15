@@ -1,0 +1,26 @@
+~ start
+match auto_singleton.flag_vespera_got_npc3_item:
+	when 0:
+		if not map.talked_to_npc3:
+			¿Quieres ayudarme a buscar un objeto, linda? Te daré una sorpresa si lo haces.
+			$> map.talked_to_npc3 = true
+			=> END
+		else:
+			Lo compré hace unos días. ¿Adónde habrá caído?
+			=> END
+	when 1: 
+		=> found_item
+	when 2:
+		=> praise
+
+~ found_item
+¡Bien, la has encontrado?
+¿Sabes...? Creo que le quedaría mejor a usted. ¿Gustas en probarla?
+Ignora que esté cubierto de polvo, jeje.
+$> sfx.play("tip")
+Te quedas la pulserita.
+=> END
+
+~ praise
+Lo sabía, te queda de maravilla.
+=> END

@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgq2w0hhahgig"
-path.s3tc="res://.godot/imported/bella_battler.png-6b569c5f6f136a0b5f211059cf793f5b.s3tc.ctex"
+path.etc2="res://.godot/imported/bella_battler.png-6b569c5f6f136a0b5f211059cf793f5b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/images/battlers/bella_battler.png"
-dest_files=["res://.godot/imported/bella_battler.png-6b569c5f6f136a0b5f211059cf793f5b.s3tc.ctex"]
+dest_files=["res://.godot/imported/bella_battler.png-6b569c5f6f136a0b5f211059cf793f5b.etc2.ctex"]
 
 [params]
 

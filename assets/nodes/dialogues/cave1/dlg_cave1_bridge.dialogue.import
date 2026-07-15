@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://geklj7c72vk"
+path="res://.godot/imported/dlg_cave1_bridge.dialogue-ca3166766a8338bb6515fbda9ba90794.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/cave1/dlg_cave1_bridge.dialogue"
+dest_files=["res://.godot/imported/dlg_cave1_bridge.dialogue-ca3166766a8338bb6515fbda9ba90794.tres"]
+
+[params]
+
+defaults=true

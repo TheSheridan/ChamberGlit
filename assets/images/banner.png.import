@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpls4abfcjx6y"
-path.s3tc="res://.godot/imported/banner.png-ed390d77c41d4652e3caf5fe35a1aec7.s3tc.ctex"
+path.etc2="res://.godot/imported/banner.png-ed390d77c41d4652e3caf5fe35a1aec7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/images/banner.png"
-dest_files=["res://.godot/imported/banner.png-ed390d77c41d4652e3caf5fe35a1aec7.s3tc.ctex"]
+dest_files=["res://.godot/imported/banner.png-ed390d77c41d4652e3caf5fe35a1aec7.etc2.ctex"]
 
 [params]
 

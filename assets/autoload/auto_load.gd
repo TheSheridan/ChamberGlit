@@ -41,3 +41,5 @@ func change_scene_threaded_2():
 		_fade._out.emit()
 
 	get_tree().change_scene_to_packed(tex)
+	
+	Color("5f9ea0ff")

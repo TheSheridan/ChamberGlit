@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://72iw1nfbl2sk"
+path="res://.godot/imported/dlg_dungeon_minotaur.dialogue-0c4692b3bd527891fce7e378fcfd90a0.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/cave2/dlg_dungeon_minotaur.dialogue"
+dest_files=["res://.godot/imported/dlg_dungeon_minotaur.dialogue-0c4692b3bd527891fce7e378fcfd90a0.tres"]
+
+[params]
+
+defaults=true

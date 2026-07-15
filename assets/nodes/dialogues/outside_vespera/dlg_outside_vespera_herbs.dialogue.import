@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://pjsvj53itmhc"
+path="res://.godot/imported/dlg_outside_vespera_herbs.dialogue-787b9f6ba67617672db84042891c00cd.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/outside_vespera/dlg_outside_vespera_herbs.dialogue"
+dest_files=["res://.godot/imported/dlg_outside_vespera_herbs.dialogue-787b9f6ba67617672db84042891c00cd.tres"]
+
+[params]
+
+defaults=true

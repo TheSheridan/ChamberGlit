@@ -25,13 +25,21 @@ func _ready() -> void:
 	action.body_exited.connect(_on_area_body_exited.bind())
 
 func _process(_delta) -> void:
-	if bella.can_talk:
-		bella.text_to_send = text_to_send
-		
-		if Input.is_action_just_pressed("ui_accept"):
-			start_now.emit()
+	if bella != null:
+		if bella.can_talk:
+			bella.text_to_send = text_to_send
 			
-	#move_pattern()
+			if Input.is_action_just_pressed("ui_accept"):
+				start_now.emit()
+			
+		#move_pattern()
+	else:
+		print_rich("[color=red]Bella exited the tree, and now is null![/color]")
+		bella = get_parent().get_node("CharacterBella2")
+		print(bella)
+		bella._fade_out.emit()
+		#if bella.fade_finished:
+			#bella.name = "CharacterBella"
 
 func _on_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

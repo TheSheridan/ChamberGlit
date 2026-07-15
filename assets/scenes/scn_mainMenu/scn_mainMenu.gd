@@ -42,6 +42,7 @@ var anim_cursor_fade_time = 0.125
 @onready var _fade = get_node('/root/auto_fade')
 @onready var _load = get_node('/root/auto_load')
 @onready var _loading = get_node('/root/n_animLoading')
+@onready var _touchpad = $"/root/Touchpad"
 
 @onready var button_vbox = $Margin/Ratio/ButtonVBox
 
@@ -71,6 +72,8 @@ func _ready():
 	RenderingServer.set_default_clear_color(Color(0.1416015625, 0.14938354492188, 0.15625))
 	_fade._out.emit()
 	_loading._out.emit()
+	
+	_touchpad._in.emit()
 	
 	$Camera2D.position = _sgt.window_size / 2
 	  

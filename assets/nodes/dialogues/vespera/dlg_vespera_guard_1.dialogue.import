@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://mym2bpjjdh6s"
+path="res://.godot/imported/dlg_vespera_guard_1.dialogue-d12d05195f8b8d4d07a3b456e0cb723a.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/vespera/dlg_vespera_guard_1.dialogue"
+dest_files=["res://.godot/imported/dlg_vespera_guard_1.dialogue-d12d05195f8b8d4d07a3b456e0cb723a.tres"]
+
+[params]
+
+defaults=true

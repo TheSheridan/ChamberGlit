@@ -8,6 +8,7 @@ extends Node2D
 @onready var _sgt = get_node('/root/auto_singleton')
 @onready var _load = get_node('/root/auto_load')
 @onready var _loading = get_node('/root/n_animLoading')
+@onready var _bgm = $"/root/bgm"
 
 ## DEBUG variable!
 @export var appear_normally: bool = true
@@ -119,6 +120,7 @@ func _on_warp_body_entered(body: Node2D) -> void:
 		
 		if not $Audio.playing:
 			$Audio.play()
+		#_bgm.play_music("bgm_chamber")
 
 func _on_warp_l_body_entered(body: Node2D) -> void:
 	if body.is_in_group('player'):

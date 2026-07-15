@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://ia3862emc4in"
+path="res://.godot/imported/dlg_bellahouse_pc.dialogue-c578f53a0b386c770e7eb161b531c414.tres"
+
+[deps]
+
+source_file="res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_pc.dialogue"
+dest_files=["res://.godot/imported/dlg_bellahouse_pc.dialogue-c578f53a0b386c770e7eb161b531c414.tres"]
+
+[params]
+
+defaults=true

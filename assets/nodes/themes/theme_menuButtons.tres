@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://blr41jq603y74"]
+[gd_resource type="Theme" format=3 uid="uid://blr41jq603y74"]
 
 [ext_resource type="StyleBox" uid="uid://b08ol2vv4bte2" path="res://assets/nodes/themes/theme_menuButtons_style.tres" id="1_c16py"]
 

@@ -16,12 +16,12 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="ChamberGlit (alpha 0.04)"
 run/main_scene="uid://hdvf8c4nneqt"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=60
+config/icon="res://icon.svg"
 boot_splash/show_image=false
 boot_splash/stretch_mode=0
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
 
 [audio]
 
@@ -36,16 +36,25 @@ sfx="*res://assets/autoload/sfx.tscn"
 auto_load="*res://assets/autoload/auto_load.gd"
 auto_fade="*uid://b4uadobc2g8lr"
 DialogueManager="*uid://c3rodes2l3gxb"
+SaveAndLoad="*uid://4dr4dp2cw7yc"
+Touchpad="*uid://dwrppcmv5aenw"
+MetSys="*uid://c01ibpvrp2wsd"
+bgm="*uid://dh0ww2qgcmnsb"
 
 [dialogue_manager]
 
 runtime/balloon_path="res://assets/scenes/!_debug/debug_dialogManagerTest/anotherBalloon/balloon.tscn"
+editor/wrap_long_lines=true
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/size/sharp_corners=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/dpi/allow_hidpi=false
+window/handheld/orientation=6
 
 [dotnet]
 
@@ -57,7 +66,12 @@ movie_writer/movie_file="C:/Archivos de Leo/Juegos/Game engines/Godot/Proyectos/
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/virtual_joystick_DX/plugin.cfg")
+
+[global_group]
+
+player=""
+persist=""
 
 [gui]
 
@@ -112,6 +126,16 @@ cg_screen_mode={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194335,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+cg_quick_save={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194336,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+cg_quick_load={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194340,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [input_devices]
 
@@ -123,7 +147,7 @@ locale/translation_remaps={
 "res://assets/langs/lang.csv": PackedStringArray("res://assets/langs/lang.en.translation:en", "res://assets/langs/lang.es.translation:en")
 }
 locale/translations=PackedStringArray("res://assets/langs/lang.en.translation", "res://assets/langs/lang.es.translation")
-locale/translations_pot_files=PackedStringArray("res://assets/scenes/dialog_a2.dialogue", "res://assets/nodes/dialogues/dlg_cave1_chest1.dialogue", "res://assets/nodes/dialogues/dlg_cave1_letter1.dialogue", "res://assets/nodes/dialogues/dlg_cave1_chest2.dialogue", "res://assets/nodes/dialogues/dlg_cave1_dirt_room.dialogue", "res://assets/nodes/dialogues/dlg_cave1_letter2.dialogue", "res://assets/nodes/dialogues/dlg_outside_vespera_bridge.dialogue", "res://assets/nodes/dialogues/dlg_vespera_ruth.dialogue", "res://assets/nodes/dialogues/dlg_cave1_bridge.dialogue", "res://assets/nodes/dialogues/dlg_bellahouse_pc.dialogue", "res://assets/nodes/dialogues/dlg_bellahouse_tv.dialogue", "res://assets/nodes/dialogues/dlg_bellahouse_couch.dialogue", "res://assets/nodes/dialogues/dlg_bellahouse_kitchen.dialogue", "res://assets/nodes/dialogues/dlg_bellahouse_bed.dialogue", "res://assets/scenes/!_debug/debug_dialogManagerTest/debug_a_eng.dialogue", "res://assets/scenes/!_debug/debug_dialogTest2/dlg_dialogTest2.dialogue", "res://assets/nodes/dialogues/dlg_vespera_npc_test_1.dialogue", "res://assets/nodes/dialogues/dlg_vespera_npc_test_2.dialogue", "res://assets/nodes/dialogues/dlg_vespera_npc_test_3.dialogue", "res://assets/nodes/dialogues/dlg_vespera_npc_test_4.dialogue", "res://assets/nodes/dialogues/dlg_vespera_npc_test_5.dialogue", "res://assets/nodes/dialogues/dlg_vespera_npc_test_battle.dialogue", "res://assets/nodes/dialogues/dlg_outside_vespera_herbs.dialogue", "res://assets/nodes/dialogues/debug_a.dialogue", "res://assets/nodes/dialogues/dlg_cave2_deadend.dialogue", "res://assets/scenes/!_debug/debug_test_puzzles/dlg_debug_big_block.dialogue", "res://assets/scenes/!_debug/debug_test_puzzles/dlg_puzzle_reset.dialogue", "res://assets/nodes/dialogues/dlg_vespera_inn_old_man.dialogue", "res://assets/nodes/dialogues/dlg_dungeon_minotaur.dialogue", "res://assets/nodes/dialogues/dlg_outside_vespera_item.dialogue", "res://assets/nodes/dialogues/dlg_vespera_sigi.dialogue", "res://assets/nodes/dialogues/dlg_bellahouse_blessing.dialogue")
+locale/translations_pot_files=PackedStringArray("res://assets/scenes/dialog_a2.dialogue", "res://assets/scenes/!_debug/debug_dialogManagerTest/debug_a_eng.dialogue", "res://assets/scenes/!_debug/debug_dialogTest2/dlg_dialogTest2.dialogue", "res://assets/nodes/dialogues/debug_a.dialogue", "res://assets/scenes/!_debug/debug_test_puzzles/dlg_debug_big_block.dialogue", "res://assets/scenes/!_debug/debug_test_puzzles/dlg_puzzle_reset.dialogue", "res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_tv.dialogue", "res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_pc.dialogue", "res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_kitchen.dialogue", "res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_couch.dialogue", "res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_blessing.dialogue", "res://assets/nodes/dialogues/bellahouse/dlg_bellahouse_bed.dialogue", "res://assets/nodes/dialogues/cave1/dlg_cave1_letter2.dialogue", "res://assets/nodes/dialogues/cave1/dlg_cave1_letter1.dialogue", "res://assets/nodes/dialogues/cave1/dlg_cave1_dirt_room.dialogue", "res://assets/nodes/dialogues/cave1/dlg_cave1_chest2.dialogue", "res://assets/nodes/dialogues/cave1/dlg_cave1_chest1.dialogue", "res://assets/nodes/dialogues/cave1/dlg_cave1_bridge.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_sigi.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_ruth.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_npc_test_battle.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_npc_test_5.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_npc_test_4.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_npc_test_3.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_npc_test_2.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_npc_test_1.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_npc3_item.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_jerarca.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_inn_old_man.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_guard_2.dialogue", "res://assets/nodes/dialogues/vespera/dlg_vespera_guard_1.dialogue", "res://assets/nodes/dialogues/outside_vespera/dlg_outside_vespera_herbs.dialogue", "res://assets/nodes/dialogues/outside_vespera/dlg_outside_vespera_bridge.dialogue", "res://assets/nodes/dialogues/cave2/dlg_dungeon_minotaur.dialogue", "res://assets/nodes/dialogues/cave2/dlg_cave2_deadend.dialogue", "res://assets/nodes/dialogues/cave2/dlg_boss1_late_scene.dialogue", "res://assets/nodes/dialogues/!_items/dlg_outside_vespera_item.dialogue", "res://assets/nodes/dialogues/!_items/dlg_item_artifact1.dialogue")
 
 [rendering]
 

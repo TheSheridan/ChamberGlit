@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dr0j8vx5v8mru" path="res://assets/nodes/warp/warp.gd" id="2_uu3q0"]
 [ext_resource type="AudioStream" uid="uid://cr3hg6l1lxb28" path="res://assets/audio/bgm_fightover.ogg" id="3_uu3q0"]
 [ext_resource type="Script" uid="uid://bx3ltdtqt12p3" path="res://assets/nodes/chr_npc2/character_npc.gd" id="6_488vi"]
-[ext_resource type="Resource" uid="uid://boux5pv0ytfoh" path="res://assets/nodes/dialogues/dlg_cave2_deadend.dialogue" id="7_488vi"]
+[ext_resource type="Resource" uid="uid://boux5pv0ytfoh" path="res://assets/nodes/dialogues/cave2/dlg_cave2_deadend.dialogue" id="7_488vi"]
 [ext_resource type="Script" uid="uid://cqcur1rm7433g" path="res://addons/dialogue_manager/nodes/actionable/actionable_2d.gd" id="8_dj7cr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5adh"]
@@ -40,7 +40,7 @@ script = ExtResource("1_rff5b")
 position = Vector2(192, 385)
 monitorable = false
 script = ExtResource("2_uu3q0")
-warp_scene = "uid://58u7h1664bpg"
+warp_scene = "uid://cyyogsxxk76qb"
 warp_helper = "Cave"
 zoom_camera = true
 

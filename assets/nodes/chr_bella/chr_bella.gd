@@ -42,6 +42,7 @@ var current_velocity = Vector2.ZERO
 @onready var _sgt = get_node("/root/auto_singleton")
 @onready var _fade = get_node('/root/auto_fade')
 @onready var _load = get_node('/root/auto_load')
+@onready var _touchpad = $"/root/Touchpad"
 
 var speed: float = initial_speed
 var directed_velocity = Vector2.ZERO
@@ -117,6 +118,8 @@ func _ready():
 	_fade.hide()
 	
 	after_closing = $ExampleBalloon.after_closing
+	
+	print("position: ", position)
 
 func _process(_delta) -> void:
 	if is_camera_zoom_on:
@@ -135,6 +138,7 @@ func _process(_delta) -> void:
 	# 	true: look_beyond_once()
 	# 	_: pass
 	
+	# This literally does nothing >:(
 	if $Ray.target_position.x != 0:
 		axis_x_temp = $Ray.target_position.x
 	if $Ray.target_position.y != 0:
@@ -194,6 +198,8 @@ func _process(_delta) -> void:
 	#$Textbox.position = position + $Camera.offset
 	
 	$ColorRect.color = fade_color
+	
+	#
 
 func _physics_process(delta) -> void:
 	var input = get_input()
@@ -228,6 +234,8 @@ func _physics_process(delta) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		#print("Done!")
 		pass
+		
+	stop_at_walls()
 
 	# Stairs BS
 	# if "stair" in get_tile_name():
@@ -397,6 +405,12 @@ func _on_tween2_finished():
 			tween_lerp_b.finished.disconnect(_on_tween2_finished)
 			#print("Tween 2 disconnected.")
 
+func stop_at_walls():
+	print($Ray.get_collider())
+	
+	if $Ray.get_collider() == CollisionObject2D:
+		print("Bella is facing a collision...")
+
 # Tilemap
 func get_tile_name():
 	var search_position = global_position
@@ -452,3 +466,18 @@ func npc_start_now():
 
 func _on_timer_timeout() -> void:
 	walk_sound_switch = false
+
+func save():
+	var save_dict = {
+		"filename": get_scene_file_path(),
+		"parent": get_parent().get_path(),
+		"name": name,
+		"scene": get_parent().get_scene_file_path(),
+		
+		"pos_x": round(position.x),
+		"pos_y": round(position.y),
+		
+		"stats": _sgt.bella_stats,
+	}
+	return save_dict
+	

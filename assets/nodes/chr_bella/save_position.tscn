@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d38yky4q30c6a"]
+
+[ext_resource type="Script" uid="uid://82q2f03oskhg" path="res://assets/nodes/chr_bella/save_position.gd" id="1_cts4g"]
+[ext_resource type="Texture2D" uid="uid://cvhct6133jv7t" path="res://assets/images/logo_arWhite.png" id="2_cts4g"]
+
+[node name="SavePosition" type="Marker2D" unique_id=968371827 groups=["persist"]]
+script = ExtResource("1_cts4g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1538484186]
+z_index = 10
+texture_filter = 1
+texture = ExtResource("2_cts4g")

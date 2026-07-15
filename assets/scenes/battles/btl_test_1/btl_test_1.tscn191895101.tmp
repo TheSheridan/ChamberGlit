@@ -1,0 +1,694 @@
+[gd_scene format=3 uid="uid://daam4wde7n1cd"]
+
+[ext_resource type="Script" uid="uid://bcswfd67b1hib" path="res://assets/scenes/battles/btl_test_1/btl_test_1.gd" id="1_ff8f6"]
+[ext_resource type="Texture2D" uid="uid://cg6pte1g86xfw" path="res://assets/images/battlers/pimp.png" id="2_kge0n"]
+[ext_resource type="Material" uid="uid://bl43k54mnxxp4" path="res://assets/scenes/battles/btl_test_1/battle_bg_snow.tres" id="2_l0sy6"]
+[ext_resource type="FontFile" uid="uid://dh4cbm4v84cq0" path="res://assets/fonts/Milonga-Regular.ttf" id="2_xjlua"]
+[ext_resource type="Texture2D" uid="uid://cgq2w0hhahgig" path="res://assets/images/battlers/bella_battler.png" id="3_tqt3h"]
+[ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="4_1iqys"]
+[ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="5_fdrwm"]
+[ext_resource type="FontFile" uid="uid://bdetdig8uqrk6" path="res://assets/fonts/Barlow-Medium.ttf" id="5_kge0n"]
+[ext_resource type="FontFile" uid="uid://ddxl7ysr8qscc" path="res://assets/fonts/nokiafc22.ttf" id="7_t3246"]
+[ext_resource type="FontFile" uid="uid://dyou6f4jcjgp8" path="res://assets/fonts/vcr.ttf" id="8_7yqxa"]
+[ext_resource type="AudioStream" uid="uid://dhh0xmyph4vge" path="res://assets/audio/bgm_fancybattle.ogg" id="9_l0sy6"]
+[ext_resource type="AudioStream" uid="uid://dp0eonwrm8o36" path="res://assets/audio/sfxr/attack.wav" id="9_mp1fd"]
+[ext_resource type="AudioStream" uid="uid://d3r2r28kjsit0" path="res://assets/audio/sfx_roll.ogg" id="10_21e6a"]
+[ext_resource type="StyleBox" uid="uid://idlio55kxtnk" path="res://assets/scenes/battles/battle_hp_progressbar_foreground.tres" id="11_1yd2b"]
+[ext_resource type="StyleBox" uid="uid://d0c83vcwm74bl" path="res://assets/scenes/battles/battle_pp_progressbar_foreground.tres" id="12_icpym"]
+[ext_resource type="StyleBox" uid="uid://dlt2ox6ty6wug" path="res://assets/scenes/battles/battle_enemy_hp_progressbar_foreground.tres" id="13_icpym"]
+[ext_resource type="Script" uid="uid://cq2ufre2bsamw" path="res://assets/nodes/chr_bella_old/textbox.gd" id="14_mn7f0"]
+[ext_resource type="Texture2D" uid="uid://7kdhwpxvakid" path="res://assets/images/gui/gui_textbox.png" id="15_w1r1i"]
+[ext_resource type="AudioStream" uid="uid://b4knyk4e5lta1" path="res://assets/audio/sfxr/selecty.wav" id="16_nh6h8"]
+[ext_resource type="AudioStream" uid="uid://bpi2qkuhi07wo" path="res://assets/audio/sfx_type_1.mp3" id="17_3o7x2"]
+[ext_resource type="AudioStream" uid="uid://bj5x73fw1bx48" path="res://assets/audio/sfxr/Non.wav" id="17_wts6y"]
+[ext_resource type="AudioStream" uid="uid://bckmhr56yb2j" path="res://assets/audio/sfxr/piu.wav" id="18_ttlal"]
+[ext_resource type="Texture2D" uid="uid://bmh0aa6vpspnl" path="res://assets/images/face.png" id="19_k10cc"]
+[ext_resource type="AudioStream" uid="uid://cr3hg6l1lxb28" path="res://assets/audio/bgm_fightover.ogg" id="21_w1r1i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1yd2b"]
+font = ExtResource("2_xjlua")
+font_size = 20
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_outline_0/size = 5
+stacked_outline_0/color = Color(0.10463667, 0.31719267, 0.43921566, 1)
+stacked_shadow_0/offset = Vector2(0, 0)
+stacked_shadow_0/color = Color(1, 1, 1, 0.08627451)
+stacked_shadow_0/outline_size = 10
+
+[sub_resource type="Animation" id="Animation_wts6y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:enemy_stat_viewer_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_icpym"]
+resource_name = "shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333334, 0.3),
+"transitions": PackedFloat32Array(0.17075533, 0.535887, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.353, 0.19111542, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:stat_viewer_offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 0.14358737, 0.20306301, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wts6y"]
+_data = {
+&"RESET": SubResource("Animation_wts6y"),
+&"shake": SubResource("Animation_icpym")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_214dw"]
+streams_count = 3
+stream_0/stream = ExtResource("16_nh6h8")
+stream_1/stream = ExtResource("17_3o7x2")
+stream_1/weight = 0.9
+stream_2/stream = ExtResource("18_ttlal")
+stream_2/weight = 0.8
+
+[sub_resource type="Animation" id="Animation_t3246"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.2, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Camera:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0034906585, 0, 0)]
+}
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Battler")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Battler:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mp1fd"]
+resource_name = "attack"
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"new_marker",
+"time": 0.21199997
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"new_marker_2",
+"time": 0.76199996
+}]
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.2, 0, 0.06666667, 1, 0, -0.1, -0.8, 0.43333334, 1, 0, -0.2, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.16666667, 0.23333333, 0.33333334, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 0.2588161, 1, 1.4142138, 1),
+"update": 0,
+"values": [Vector3(0.0034906585, 0, 0), Vector3(0, 0, 0), Vector3(0.034906585, 0.017453292, 0), Vector3(-0.008726646, -0.017453292, 0), Vector3(0.008726646, 0.0017453292, 0.0017453292), Vector3(0.008726646, 0, 0)]
+}
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Battler")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, -0.8, 0.06666667, 1, -0.05, 0.05, -0.9, 0.23333333, 1, 0.05, 0.05, -0.9, 0.33333334, 1, 0.05, -0.05, -0.9, 0.43333334, 1, 0, 0, -0.8)
+
+[sub_resource type="Animation" id="Animation_l0sy6"]
+resource_name = "enemy_attack"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Battler")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.8, 0.16666667, 1, 0, 0, -0.4, 0.23333332, 1, 0, 0.2, 0, 0.5, 1, 0, 0, -0.8)
+
+[sub_resource type="Animation" id="Animation_fdrwm"]
+resource_name = "enemy_defeated"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Battler:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Battler")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.8, 0.2, 1, 0, 0.05, -1, 0.8, 1, 0, 1, -5)
+
+[sub_resource type="Animation" id="Animation_21e6a"]
+resource_name = "flee"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0.06666667, 1, 0, -0.2, 0, 0.93333334, 1, 0, -0.2, 1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7yqxa"]
+resource_name = "player_defeated"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.03333333, 0.43333334, 0.76666665),
+"transitions": PackedFloat32Array(1, 3.732128, 0.0769465),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.43633232), Vector3(0, 0, 1.5707964)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_21e6a"]
+_data = {
+&"RESET": SubResource("Animation_t3246"),
+&"attack": SubResource("Animation_mp1fd"),
+&"enemy_attack": SubResource("Animation_l0sy6"),
+&"enemy_defeated": SubResource("Animation_fdrwm"),
+&"flee": SubResource("Animation_21e6a"),
+&"player_defeated": SubResource("Animation_7yqxa")
+}
+
+[sub_resource type="Gradient" id="Gradient_w1r1i"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.59389424, 0.6888021, 0.4062856, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nh6h8"]
+gradient = SubResource("Gradient_w1r1i")
+
+[node name="BattleTest1" type="Node3D" unique_id=59275966 groups=["battle_buttons"]]
+editor_description = "BUG: For some reason, when starting the game normally, it crashes in the battle scene."
+script = ExtResource("1_ff8f6")
+custom_volume_db = null
+sphere_rotation = 10
+textbox_displacement = null
+stat_viewer_offset = null
+text_combat = null
+bella_stats = null
+enemy_stats = {
+"agility": 10,
+"defense": 5,
+"give_exp": 5,
+"hp": 10,
+"hp_max": 10,
+"power": 9,
+"pp": 0,
+"pp_max": 0,
+"strength": 5,
+"wisdom": 3
+}
+turn_delay = null
+
+[node name="BG" type="CSGSphere3D" parent="." unique_id=243675936]
+flip_faces = true
+radius = 100.0
+radial_segments = 100
+rings = 10
+material = ExtResource("2_l0sy6")
+
+[node name="Light" type="DirectionalLight3D" parent="." unique_id=1825365481]
+
+[node name="Camera" type="Camera3D" parent="." unique_id=761934858]
+transform = Transform3D(1, 0, 0, 0, 0.9999939, -0.0034906515, 0, 0.0034906515, 0.9999939, 0, 0, 0.5)
+
+[node name="Battler" type="Sprite3D" parent="." unique_id=918052380]
+sorting_offset = -0.1
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = ExtResource("2_kge0n")
+
+[node name="Light" type="OmniLight3D" parent="Battler" unique_id=191046115]
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 0.5
+
+[node name="Player" type="Sprite3D" parent="." unique_id=398398478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+sorting_offset = 1.0
+texture_filter = 0
+texture = ExtResource("3_tqt3h")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=199484961]
+transform = Transform3D(100, 0, 0, 0, -4.371139e-06, -100, 0, 100, -4.371139e-06, 0, -0.5, 0)
+visible = false
+modulate = Color(1, 1, 1, 0.45490196)
+render_priority = -1
+texture = ExtResource("5_fdrwm")
+
+[node name="UI" type="Control" parent="." unique_id=276024256]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleLog" type="MarginContainer" parent="UI" unique_id=890960849]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Textbox" type="RichTextLabel" parent="UI/BattleLog" unique_id=494026554]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(640, 40)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("2_xjlua")
+theme_override_fonts/bold_font = ExtResource("7_t3246")
+theme_override_fonts/mono_font = ExtResource("8_7yqxa")
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/mono_font_size = 13
+bbcode_enabled = true
+text = "Te ha emboscado un X"
+fit_content = true
+
+[node name="BG" type="ColorRect" parent="UI/BattleLog" unique_id=1978645536]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 0
+color = Color(0, 0, 0, 0.458824)
+
+[node name="NextMarker" type="Sprite2D" parent="UI/BattleLog" unique_id=7750850]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_1iqys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1200951067]
+custom_minimum_size = Vector2(200, 480)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -240.0
+offset_bottom = 240.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=53812961]
+layout_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="UI/MarginContainer" unique_id=938642136]
+layout_mode = 2
+color = Color(0.13223135, 0.16942249, 0.20521736, 0.5176471)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/MarginContainer" unique_id=1798129661]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_kge0n")
+bbcode_enabled = true
+text = "El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja."
+vertical_alignment = 2
+
+[node name="DebugLabel" type="Label" parent="UI" unique_id=2101858092]
+visible = false
+layout_mode = 0
+theme_override_fonts/font = ExtResource("7_t3246")
+
+[node name="Fade" type="ColorRect" parent="UI" unique_id=1246826791]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 80.0
+offset_right = 560.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="StatViewer" type="PanelContainer" parent="UI" unique_id=1199748142]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 0
+offset_left = 80.0
+offset_right = 560.0
+offset_bottom = 480.0
+
+[node name="Name" type="Label" parent="UI/StatViewer" unique_id=1780268668]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_xjlua")
+theme_override_font_sizes/font_size = 20
+text = "Bella"
+label_settings = SubResource("LabelSettings_1yd2b")
+
+[node name="HP" type="Label" parent="UI/StatViewer" unique_id=1454126781]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("8_7yqxa")
+theme_override_font_sizes/font_size = 12
+text = "PS"
+horizontal_alignment = 1
+
+[node name="HPValue" type="RichTextLabel" parent="UI/StatViewer" unique_id=1134617233]
+z_index = 1
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("7_t3246")
+bbcode_enabled = true
+text = "PS"
+horizontal_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="UI/StatViewer" unique_id=886805972]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/fill = ExtResource("11_1yd2b")
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="PP" type="Label" parent="UI/StatViewer" unique_id=1234626422]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("8_7yqxa")
+theme_override_font_sizes/font_size = 12
+text = "PP"
+horizontal_alignment = 1
+
+[node name="PPBar" type="ProgressBar" parent="UI/StatViewer" unique_id=1554776859]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/fill = ExtResource("12_icpym")
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="PPValue" type="RichTextLabel" parent="UI/StatViewer" unique_id=1891701738]
+z_index = 1
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("7_t3246")
+bbcode_enabled = true
+text = "PS"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/StatViewer" unique_id=1698805283]
+libraries/ = SubResource("AnimationLibrary_wts6y")
+
+[node name="EnemyStatViewer" type="PanelContainer" parent="UI" unique_id=573817658]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(60, 10)
+layout_mode = 0
+offset_left = 80.0
+offset_right = 560.0
+offset_bottom = 480.0
+
+[node name="Name" type="Label" parent="UI/EnemyStatViewer" unique_id=138588632]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_xjlua")
+theme_override_font_sizes/font_size = 20
+text = "Bola de nieve"
+
+[node name="HP" type="Label" parent="UI/EnemyStatViewer" unique_id=304596607]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("8_7yqxa")
+theme_override_font_sizes/font_size = 12
+text = "PS"
+horizontal_alignment = 1
+
+[node name="HPValue" type="RichTextLabel" parent="UI/EnemyStatViewer" unique_id=1786368527]
+z_index = 1
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("7_t3246")
+bbcode_enabled = true
+text = "PS"
+horizontal_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="UI/EnemyStatViewer" unique_id=1483076474]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/fill = ExtResource("13_icpym")
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="Textbox" type="Control" parent="UI" unique_id=734780073]
+editor_description = "DON'T EDIT THE TEXTBOX TEXT MANUALLY!!! It crashes Godot."
+visible = false
+z_index = 5
+anchors_preset = 0
+script = ExtResource("14_mn7f0")
+
+[node name="PatchMargin" type="MarginContainer" parent="UI/Textbox" unique_id=512343231]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -336.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(300, 230)
+
+[node name="Ratio" type="AspectRatioContainer" parent="UI/Textbox/PatchMargin" unique_id=1854527809]
+layout_mode = 2
+ratio = 4.0
+alignment_horizontal = 0
+alignment_vertical = 2
+
+[node name="NinePatch" type="NinePatchRect" parent="UI/Textbox/PatchMargin/Ratio" unique_id=671136542]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("15_w1r1i")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="LabelMargin" type="MarginContainer" parent="UI/Textbox" unique_id=1385244296]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -316.0
+offset_right = -30.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Ratio" type="AspectRatioContainer" parent="UI/Textbox/LabelMargin" unique_id=1362003042]
+layout_mode = 2
+ratio = 4.3
+alignment_horizontal = 0
+alignment_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="UI/Textbox/LabelMargin/Ratio" unique_id=573820453]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "Fuck."
+fit_content = true
+
+[node name="Arrow" type="Sprite2D" parent="UI/Textbox" unique_id=1315934360]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(592, 432)
+scale = Vector2(2, 2)
+texture = ExtResource("4_1iqys")
+
+[node name="LetterSound" type="AudioStreamPlayer" parent="UI/Textbox" unique_id=444445861]
+stream = SubResource("AudioStreamRandomizer_214dw")
+
+[node name="Timer" type="Timer" parent="UI/Textbox" unique_id=1132981684]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Textbox" unique_id=1177591623]
+visible = false
+position = Vector2(88, 240)
+texture = ExtResource("19_k10cc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1651705430]
+root_node = NodePath("../Player")
+libraries/ = SubResource("AnimationLibrary_21e6a")
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1660829515]
+stream = ExtResource("9_l0sy6")
+
+[node name="BGMFightOver" type="AudioStreamPlayer" parent="." unique_id=1608582632]
+stream = ExtResource("21_w1r1i")
+volume_db = -20.0
+autoplay = true
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=539622531]
+stream = ExtResource("9_mp1fd")
+volume_db = 5.0
+bus = &"sfx_battles"
+
+[node name="FleeSound" type="AudioStreamPlayer" parent="." unique_id=2062945214]
+stream = ExtResource("10_21e6a")
+volume_db = 5.0
+bus = &"sfx_battles"
+playback_type = 1
+parameters/looping = false
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=807295607]
+stream = ExtResource("17_wts6y")
+bus = &"sfx_battles"
+
+[node name="Timer" type="Timer" parent="." unique_id=1398250243]
+
+[node name="TurnTimer" type="Timer" parent="." unique_id=720688388]
+
+[node name="SmoothTimer" type="Timer" parent="." unique_id=1259395216]
+
+[node name="BattleTimer" type="Timer" parent="." unique_id=1491833705]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=440251304]
+modulate = Color(1, 1, 1, 0.4392157)
+z_index = -10
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_nh6h8")
+centered = false

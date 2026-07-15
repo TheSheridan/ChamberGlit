@@ -1,22 +1,18 @@
-# TODO: Implement a turn chain.
+# TODO list:
+# - Implement a turn chain.
+# - Put the StatViewer animations in their Containers
 extends Node3D
 
 
 #region Variables
-@onready var _sgt = get_node("/root/auto_singleton")
-@onready var _fade = get_node("/root/auto_fade")
-@onready var _load = get_node("/root/auto_load")
-@onready var _loading = get_node('/root/n_animLoading')
-
-@onready var textbox = $UI/Text
-@onready var textbox_bg = $UI/Color
-
 @export var custom_volume_db: float = -2
 
 @export var sphere_rotation = 50
 var sphere_rotation_in_defeat = 0.1
 
 @export var textbox_displacement = 5
+
+var battle_marker_size
 
 var is_your_turn: bool = false
 signal do_turn_chain
@@ -25,7 +21,7 @@ var turn_order_read: int = 0
 
 var stat_viewer_position: Vector2
 var stat_viewer_move_speed: float = 0.25
-@export var stat_viewer_offset: Vector2
+@export var stat_viewer_offset = Vector2(20, 20)
 var loosen_stat_viewer_position: bool = false
 
 var enemy_stat_viewer_position: Vector2
@@ -117,6 +113,33 @@ var lose_switch: bool = false
 
 @onready var sphere_rotation_temporal = sphere_rotation
 @onready var camera_prev_offset = $Camera.position
+
+@onready var _sgt = get_node("/root/auto_singleton")
+@onready var _fade = get_node("/root/auto_fade")
+@onready var _load = get_node("/root/auto_load")
+@onready var _loading = get_node('/root/n_animLoading')
+
+@onready var textbox = %Textbox
+@onready var textbox_bg = $UI/BG/Sprite
+@onready var BattleMarker = $UI/NextMarker
+@onready var ActionBox = $UI/ActionBox
+
+@onready var PlayerStatViewer = $UI/PlayerStatContainer/StatViewer
+@onready var EnemyStatViewer = $UI/EnemyStatContainer/EnemyStatViewer
+
+@onready var PlayerStatContainer = $UI/PlayerStatContainer
+@onready var EnemyStatContainer = $UI/EnemyStatContainer
+
+@onready var PlayerHPBar = $UI/PlayerStatContainer/StatViewer/HPBar
+@onready var PlayerHPValue = $UI/PlayerStatContainer/StatViewer/HPValue
+@onready var PlayerPPBar = $UI/PlayerStatContainer/StatViewer/PPBar
+@onready var PlayerPPValue = $UI/PlayerStatContainer/StatViewer/PPValue
+
+@onready var EnemyHPBar = $UI/EnemyStatContainer/EnemyStatViewer/HPBar
+@onready var EnemyHPValue = $UI/EnemyStatContainer/EnemyStatViewer/HPValue
+
+@onready var player_stat_viewer_prev_pos = PlayerStatViewer.position
+
 #endregion
 
 
@@ -139,27 +162,24 @@ func _ready() -> void:
 	textbox.position += Vector2(textbox_displacement, textbox_displacement)
 	textbox.text = text_combat.start
 	#textbox.text = text_combat.enemy_defeated
-
-	textbox_bg.size = textbox.size
-	
-	var sprite_size = $UI/Sprite2D.texture.get_size()
-	$UI/Sprite2D.position = $UI/Text.size - (sprite_size * 2)
-	$UI/Sprite2D.offset = sprite_size / 2
 	
 	$Player.billboard = true
 	$Player.modulate = Color($Player.modulate, 0)
 	
-	$UI/VBoxContainer.modulate.a = 0
+	ActionBox.modulate.a = 0
 	
 	$Battler.position = Vector3(0, 0, -0.8)	
+	 
+	#enemy_stat_viewer_offset.y += $UI/BattleLog.size.y
 	
-	stat_viewer_position = $UI/StatViewer.position
-	enemy_stat_viewer_position = $UI/EnemyStatViewer.position
+	#stat_viewer_position = $UI/PlayerStatContainer.position + stat_viewer_offset
+	#enemy_stat_viewer_position = $UI/EnemyStatContainer.position + enemy_stat_viewer_offset
 	
 	do_turn_chain.connect(turn_chain.bind())
 	
-	await _loading.tween.finished
+	_loading._out.emit()
 	_loading.sprite_color = true
+	
 
 func _process(delta: float) -> void:
 	# Debug
@@ -167,6 +187,14 @@ func _process(delta: float) -> void:
 		+ "\nPP: " + str(bella_stats.pp) \
 		+ "\n\n-enemigo-\nPS: " + str(enemy_stats.hp) \
 		+ "\nPP: " + str(enemy_stats.pp)
+		
+	# TextboxBG & NextMarker position
+	textbox_bg.texture.width = $UI/BG.size.x
+	textbox_bg.texture.height = $UI/BG.size.y
+	
+	battle_marker_size = BattleMarker.texture.get_size()
+	BattleMarker.position = $UI/BG.size - (battle_marker_size * 2) - Vector2(0, 20)
+	BattleMarker.offset = battle_marker_size / 2
 	
 	# Rotate BG
 	$BG.rotation_degrees.y += sphere_rotation * delta
@@ -193,21 +221,25 @@ func _process(delta: float) -> void:
 	battle_loop()
 
 func update_stat_viewer():
-	$UI/StatViewer/HPBar.max_value = bella_stats.hp_max
+	PlayerHPBar.max_value = bella_stats.hp_max
 	
-	$UI/StatViewer/HPBar.value = lerp(int($UI/StatViewer/HPBar.value), bella_stats.hp, 0.1)
-	$UI/StatViewer/HPValue.text = str(bella_stats.hp) + "[font_size=8]/" + str(bella_stats.hp_max)
+	PlayerHPBar.value = lerp(int(PlayerHPBar.value), bella_stats.hp, 0.1)
+	PlayerHPValue.text = str(bella_stats.hp) + "[font_size=8]/" + str(bella_stats.hp_max)
 	
-	$UI/StatViewer/PPBar.max_value = bella_stats.pp_max
-	$UI/StatViewer/PPBar.value = bella_stats.pp
-	$UI/StatViewer/PPValue.text = str(bella_stats.pp) + "[font_size=8]/" + str(bella_stats.pp_max)
+	PlayerPPBar.max_value = bella_stats.pp_max
+	PlayerPPBar.value = bella_stats.pp
+	PlayerPPValue.text = str(bella_stats.pp) + "[font_size=8]/" + str(bella_stats.pp_max)
 	
-	$UI/EnemyStatViewer/HPBar.value = lerp(int($UI/EnemyStatViewer/HPBar.value), enemy_stats.hp, 0.1)
-	$UI/EnemyStatViewer/HPBar.max_value = enemy_stats.hp_max
-	$UI/EnemyStatViewer/HPValue.text = str(enemy_stats.hp) + "[font_size=8]/" + str(enemy_stats.hp_max)
+	EnemyHPBar.value = lerp(int(EnemyHPBar.value), enemy_stats.hp, 0.1)
+	EnemyHPBar.max_value = enemy_stats.hp_max
+	EnemyHPValue.text = str(enemy_stats.hp) + "[font_size=8]/" + str(enemy_stats.hp_max)
 	
 	if not loosen_stat_viewer_position:
-		$UI/StatViewer.position = stat_viewer_position + stat_viewer_offset
+		PlayerStatContainer.position.x = stat_viewer_offset.x
+		PlayerStatContainer.size.y = _sgt.window_size.y - stat_viewer_offset.y
+		
+		EnemyStatContainer.position.x = _sgt.window_size.x - EnemyStatContainer.size.y - enemy_stat_viewer_offset.x
+		EnemyStatContainer.size.y = _sgt.window_size.y
 
 func battle_loop():
 	if Input.is_action_just_pressed('ui_accept') and not in_a_turn:
@@ -235,7 +267,7 @@ func battle_loop():
 					
 					add_first_menu()
 					anim_buttons_show(1)
-					$UI/VBoxContainer/Button0.grab_focus()
+					$UI/ActionBox/Button0.grab_focus()
 						
 			if enemy_stats.hp <= 0:
 				#print("The check worked!")
@@ -243,7 +275,7 @@ func battle_loop():
 				
 				if not player_defeated_lock:
 					anim_stat_viewer_hide(0)
-					create_tween().tween_property($UI/EnemyStatViewer, "modulate:a", 0, 0.25)
+					create_tween().tween_property($UI/EnemyStatContainer/EnemyStatViewer, "modulate:a", 0, 0.25)
 					won_the_battle()
 			
 			if bella_stats.hp <= 0:
@@ -251,7 +283,7 @@ func battle_loop():
 				is_your_turn = false
 
 				if not player_defeated_lock:
-					create_tween().tween_property($UI/EnemyStatViewer, "modulate:a", 0, 0.25)
+					create_tween().tween_property($UI/EnemyStatContainer/EnemyStatViewer, "modulate:a", 0, 0.25)
 					lost_the_battle()
 					
 			if win_switch:
@@ -315,7 +347,7 @@ func turn_chain():
 		_finish_chain()
 		
 	if turn_order_read == 0:
-		$UI/VBoxContainer/Button0.release_focus()
+		$UI/ActionBox/Button0.release_focus()
 
 func _finish_chain():
 	turn_chain_ready = false
@@ -323,8 +355,8 @@ func _finish_chain():
 	turn_order.clear()
 	delete_buttons()
 	
-	if $UI/VBoxContainer.has_node("Button0"):
-		$UI/VBoxContainer/Button0.release_focus()
+	if ActionBox.has_node("Button0"):
+		$UI/ActionBox/Button0.release_focus()
 
 func decide_turn_order():
 	# Prepare the turn order
@@ -385,7 +417,7 @@ func enemy_turn():
 	anim_buttons_show(0)
 	anim_move_camera_for_battle()
 	$AnimationPlayer.play("enemy_attack")
-	$UI/StatViewer/AnimationPlayer.play("shake")
+	$UI/PlayerStatContainer/StatViewer/AnimationPlayer.play("shake")
 	
 	#$AnimationPlayer.play("enemy_attack")
 	$HurtSound.play()
@@ -408,7 +440,7 @@ func won_the_battle():
 	
 	anim_enemy_defeated()
 	
-	create_tween().tween_property($UI/VBoxContainer, "modulate:a", 0, 0.5)
+	create_tween().tween_property(ActionBox, "modulate:a", 0, 0.5)
 	create_tween().set_ease(Tween.EASE_IN_OUT) \
 			.set_trans(Tween.TRANS_CUBIC) \
 			.tween_property($Camera, "position", Vector3(0, 0.4, 1), 1)
@@ -458,13 +490,13 @@ func anim_enemy_defeated():
 	$BattleTimer.start(1.1)
 
 func anim_arrow():
-	$UI/Sprite2D.position.x -= anim_arrow_move
+	BattleMarker.position.x -= anim_arrow_move
 	
 	anim_arrow_tween = create_tween()
 	anim_arrow_tween.set_ease(Tween.EASE_OUT)
 	anim_arrow_tween.set_trans(Tween.TRANS_CUBIC)
 	anim_arrow_tween.tween_property(
-		$UI/Sprite2D, "position:x", $UI/Sprite2D.position.x + anim_arrow_move, 0.5)
+		BattleMarker, "position:x", BattleMarker.position.x + anim_arrow_move, 0.5)
 
 func move_camera_after_wait():
 	var tween = create_tween()
@@ -497,7 +529,7 @@ func anim_buttons_show(alpha: float):
 	create_tween().set_ease(Tween.EASE_IN_OUT) \
 			.set_trans(Tween.TRANS_CUBIC) \
 			.tween_property(
-				$UI/VBoxContainer, "modulate:a", alpha, 0.1)
+				ActionBox, "modulate:a", alpha, 0.1)
 
 func anim_move_camera_out():
 	create_tween().set_ease(Tween.EASE_OUT) \
@@ -517,19 +549,19 @@ func anim_move_camera_for_battle():
 				.set_trans(Tween.TRANS_CUBIC) \
 				.tween_property($Camera, "position", Vector3(0, 0.15, 1.0), 0.5)
 		
-func anim_stat_viewer_show(value: float = 1.0, which_one: Node = $UI/StatViewer):
+func anim_stat_viewer_show(value: float = 1.0, which_one: Node = $UI/PlayerStatContainer):
 	loosen_stat_viewer_position = false
 	create_tween().tween_property(which_one, "modulate:a", value, stat_viewer_move_speed)
 	var tween = create_tween() \
 			.set_ease(Tween.EASE_OUT) \
 			.set_trans(Tween.TRANS_CUBIC) \
 			.tween_property(which_one, "position:x", stat_viewer_position.x, stat_viewer_move_speed)
-	await tween.finished
+	await tween.finished	
 	loosen_stat_viewer_position = true
-	$UI/StatViewer/AnimationPlayer.stop()
+	$UI/PlayerStatContainer/StatViewer/AnimationPlayer.stop()
 
 # ...yes, has almost the same code as the one at the top ._.
-func anim_stat_viewer_hide(value: float = 0.5, which_one: Node = $UI/StatViewer):
+func anim_stat_viewer_hide(value: float = 0.5, which_one: Node = $UI/PlayerStatContainer):
 	loosen_stat_viewer_position = false
 	create_tween().tween_property(which_one, "modulate:a", value, stat_viewer_move_speed)
 	var tween = create_tween() \
@@ -538,27 +570,47 @@ func anim_stat_viewer_hide(value: float = 0.5, which_one: Node = $UI/StatViewer)
 			.tween_property(which_one, "position:x", stat_viewer_position.x - 50, stat_viewer_move_speed)
 	await tween.finished
 	loosen_stat_viewer_position = true
-	$UI/StatViewer/AnimationPlayer.stop()
+	$UI/PlayerStatContainer/StatViewer/AnimationPlayer.stop()
 			
 func add_button(text: String, number: int, function: Callable):
 	var font_milonga = load("res://assets/fonts/Milonga-Regular.ttf")
-	#var font_long = load("res://assets/fonts/RG2014F.ttf")
+	var icon: Array = [
+		load("res://assets/images/icon_battle_attack.png"),
+		load("res://assets/images/icon_battle_talk.png"),
+		load("res://assets/images/icon_battle_magic.png"),
+		load("res://assets/images/icon_battle_item.png"),
+		load("res://assets/images/icon_battle_run.png"),
+	]
+	var style: Array = [
+		load("res://assets/scenes/battles/button_attack.tres"),
+		load("res://assets/scenes/battles/button_magic.tres"),
+		load("res://assets/scenes/battles/button_talk.tres"),
+		load("res://assets/scenes/battles/button_item.tres"),
+		load("res://assets/scenes/battles/button_run.tres"),
+	]
 	
 	var button = Button.new()
 	button.text = text
+	button.icon = icon[number]
+	button.expand_icon = true
+	button.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	button.add_theme_font_override("font", font_milonga)
-	button.add_theme_font_size_override("font_size", 30)
+	button.add_theme_font_size_override("font_size", 20)
+	
+	button.add_theme_stylebox_override("normal", style[number])
+	button.add_theme_stylebox_override("pressed", style[number])
+	
 	button.add_to_group("battle_buttons")
 	button.pressed.connect(function)
 	
 	button.name = "Button" + str(number)
 	
-	$UI/VBoxContainer.add_child(button)
+	ActionBox.add_child(button)
 	
 func delete_buttons():
 	for i in text_action_buttons_1.size():
 		if get_tree().get_nodes_in_group("battle_buttons") and not win_anim_lock:
-			get_node("UI/VBoxContainer/Button" + str(i)).queue_free()
+			get_node("UI/ActionBox/Button" + str(i)).queue_free()
 
 func add_first_menu():
 	for i in text_action_buttons_1.size():
