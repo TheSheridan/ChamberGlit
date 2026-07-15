@@ -1,4 +1,5 @@
 ![ChamberGlit logo](assets/images/banner.png)
+
 This is a WIP RPG in development using Godot 4.
 
 Addons used:
