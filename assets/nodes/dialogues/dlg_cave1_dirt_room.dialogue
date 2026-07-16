@@ -1,4 +1,0 @@
-Esta sala está llena de escombros... Espera, ves un objeto entre la tierra.
-$> sfx.play("tip")
-# TODO: Change Weapon icon to a new Accesories icon
-¡Consigues una [wave][img]assets/images/icon_weapon.png[/img][color=CADET_BLUE]pulsera ligera[/color][/wave]!
