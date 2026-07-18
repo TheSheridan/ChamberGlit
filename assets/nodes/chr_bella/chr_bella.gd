@@ -34,6 +34,11 @@ extends CharacterBody2D
 @export var max_speed: float = 300
 var current_speed: float
 
+var stair_speed: float
+@export var stair_speed_normal: float = 300
+@export var stair_speed_max: float = 450
+
+
 var current_velocity = Vector2.ZERO
 
 @export var tile_map: TileMapLayer
@@ -109,6 +114,7 @@ func _ready():
 	
 	speed = initial_speed
 	current_speed = normal_speed
+	stair_speed = stair_speed_normal
 	
 	$ColorRect.show()
 	
@@ -148,10 +154,12 @@ func _process(_delta) -> void:
 	if Input.is_action_pressed('ui_cancel'):
 		speed = sprite_int_speed
 		current_speed = lerp(current_speed, max_speed, 0.5)
+		stair_speed = stair_speed_max
 		walk_sound_time = walk_sound_time_running
 	if Input.is_action_just_released('ui_cancel'):
 		speed = initial_speed
 		current_speed = normal_speed
+		stair_speed = stair_speed_normal
 		walk_sound_time = walk_sound_time_normal
 	
 	var direction_input = get_input()
@@ -224,6 +232,8 @@ func _physics_process(delta) -> void:
 	camera_position = lerp($Camera.position, camera_position, camera_smoothing)
 	$Camera.position = camera_position
 
+	sprite()
+
 	# Animation speed
 	$Sprite.speed_scale = lerp(
 		$Sprite.speed_scale,
@@ -236,13 +246,7 @@ func _physics_process(delta) -> void:
 		pass
 		
 	stop_at_walls()
-
-	# Stairs BS
-	# if "stair" in get_tile_name():
-	# 	if direction.x > 0:
-	# 		velocity.x += speed / 2
-	# 	elif direction.x < 0:
-	# 		velocity.y -= speed / 2
+	stairs(delta)
 
 func get_input() -> Vector2:
 	var input = Vector2.ZERO
@@ -405,18 +409,36 @@ func _on_tween2_finished():
 			tween_lerp_b.finished.disconnect(_on_tween2_finished)
 			#print("Tween 2 disconnected.")
 
+func sprite():
+	if Input.is_action_pressed("ui_down"):
+		$SpriteNew.play("walk_down")
+	if Input.is_action_just_released("ui_down"):
+		$SpriteNew.play("idle_down")
+
 func stop_at_walls():
 	print($Ray.get_collider())
 	
 	if $Ray.get_collider() == CollisionObject2D:
 		print("Bella is facing a collision...")
 
+func stairs(delta):
+	if "stair_up" in get_tile_name():
+		if Input.is_action_pressed("ui_left"):
+			position.y += stair_speed * delta
+		if Input.is_action_pressed("ui_right"):
+			position.y -= stair_speed * delta
+			
+	if "stair_down" in get_tile_name():
+		if Input.is_action_pressed("ui_left"):
+			position.y -= stair_speed * delta
+		if Input.is_action_pressed("ui_right"):
+			position.y += stair_speed * delta
+
 # Tilemap
 func get_tile_name():
-	var search_position = global_position
+	var search_position = position
 	var player_offset = Vector2(0, 10)
-	search_position += player_offset
-	
+	search_position += player_offset	
 	var tile_pos = tile_map.local_to_map(search_position)
 	var tile_data = tile_map.get_cell_tile_data(tile_pos)
 

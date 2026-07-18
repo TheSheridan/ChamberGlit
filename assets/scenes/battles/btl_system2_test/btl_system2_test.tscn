@@ -9,12 +9,12 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gyc6d"]
 material = ExtResource("4_655l0")
-size = Vector2(1, 1)
+size = Vector2(6, 6)
 
 [sub_resource type="MeshLibrary" id="MeshLibrary_g7b7a"]
 item/0/name = "Cell"
 item/0/mesh = SubResource("PlaneMesh_gyc6d")
-item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_transform = Transform3D(0.167, 0, 0, 0, 1, 0, 0, 0, 0.167, 0, 0, 0)
 item/0/mesh_cast_shadow = 0
 item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -34,10 +34,10 @@ material = ExtResource("1_4nrgb")
 [node name="Light" type="DirectionalLight3D" parent="." unique_id=1025237267]
 
 [node name="Camera" type="Camera3D" parent="." unique_id=925025962]
-transform = Transform3D(1, 0, 0, 0, 0.9999939, -0.0034906515, 0, 0.0034906515, 0.9999939, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 0.31886727, 0.9477994, 0, -0.9477994, 0.31886727, 0, 3.8019996, 0.80426204)
 
 [node name="Battler" type="Sprite3D" parent="." unique_id=1095694084]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -1)
 sorting_offset = -0.1
 billboard = 1
 shaded = true
@@ -45,9 +45,13 @@ texture_filter = 0
 texture = ExtResource("2_t5spb")
 
 [node name="Light" type="OmniLight3D" parent="Battler" unique_id=386266644]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.298, 0)
 shadow_enabled = true
 distance_fade_enabled = true
-omni_range = 0.5
+omni_range = 0.081168614
+
+[node name="Marker3D" type="Marker3D" parent="Battler" unique_id=1811490642]
+gizmo_extents = 0.2
 
 [node name="Player" type="Sprite3D" parent="." unique_id=1790002710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
@@ -55,7 +59,13 @@ sorting_offset = 1.0
 texture_filter = 0
 texture = ExtResource("3_655l0")
 
+[node name="Light" type="OmniLight3D" parent="Player" unique_id=1087223821]
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 0.5
+
 [node name="GridMap" type="GridMap" parent="." unique_id=518690966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 mesh_library = SubResource("MeshLibrary_g7b7a")
 cell_size = Vector3(0.1, 0.1, 0.1)
 cell_scale = 0.1

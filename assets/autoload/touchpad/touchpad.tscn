@@ -60,6 +60,7 @@ _data = {
 
 [node name="Touchpad" type="CanvasLayer" unique_id=1829652551]
 layer = 10
+visible = false
 script = ExtResource("1_gg1ix")
 
 [node name="CanvasLayer" type="Control" parent="." unique_id=444884375]

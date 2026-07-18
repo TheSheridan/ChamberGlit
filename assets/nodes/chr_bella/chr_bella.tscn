@@ -4,9 +4,42 @@
 [ext_resource type="Shape2D" uid="uid://baj7pkphrbtv6" path="res://assets/nodes/chr_bella/collision_shape.res" id="2_os1l5"]
 [ext_resource type="SpriteFrames" uid="uid://c2apugt8d6g0q" path="res://assets/images/sheets/spr_Bellie/chr_Bellie_spr.tres" id="3_460l1"]
 [ext_resource type="AudioStream" uid="uid://qxdn1my4mphp" path="res://assets/audio/sfx_snow_walk_1.ogg" id="4_u8ldg"]
+[ext_resource type="Texture2D" uid="uid://dpovsumh4diqp" path="res://assets/images/sheets/spr_Bella/chr_bella_down2.png" id="5_3wfr0"]
 [ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/nodes/chr_bella/balloon.tscn" id="5_5v7vn"]
 [ext_resource type="AudioStream" uid="uid://dr7d257b0k8sh" path="res://assets/audio/sfx_snow_walk_2.ogg" id="5_nd36p"]
+[ext_resource type="Texture2D" uid="uid://cqwa45t3y3k1g" path="res://assets/images/sheets/spr_Bella/chr_bella_down3.png" id="6_fumeb"]
 [ext_resource type="AudioStream" uid="uid://sjoir4lqasqo" path="res://assets/audio/sfx_snow_walk_3.ogg" id="6_il3eu"]
+[ext_resource type="Texture2D" uid="uid://ci0c8pr8gmmdr" path="res://assets/images/sheets/spr_Bella/chr_bella_down4.png" id="7_n36hu"]
+[ext_resource type="Texture2D" uid="uid://dw6sot63vnqtv" path="res://assets/images/sheets/spr_Bella/chr_bella_down.png" id="8_il3eu"]
+[ext_resource type="Texture2D" uid="uid://s4lcrn7somml" path="res://assets/images/sheets/spr_Bella/chr_bella_down1.png" id="8_xehym"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8w0r3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_il3eu")
+}],
+"loop": 1,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3wfr0")
+}, {
+"duration": 0.7,
+"texture": ExtResource("6_fumeb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n36hu")
+}, {
+"duration": 0.7,
+"texture": ExtResource("8_xehym")
+}],
+"loop": 1,
+"name": &"walk_down",
+"speed": 5.0
+}]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vo6q7"]
 streams_count = 3
@@ -65,11 +98,19 @@ max_speed = 700.0
 shape = ExtResource("2_os1l5")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1742886674]
+visible = false
 modulate = Color(0.602234, 0.76302, 0.914063, 1)
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_460l1")
 animation = &"idle_down"
+
+[node name="SpriteNew" type="AnimatedSprite2D" parent="." unique_id=1188265991]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_8w0r3")
+animation = &"idle_down"
+frame_progress = 0.3238378
+speed_scale = 1.5
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1614492719]
 

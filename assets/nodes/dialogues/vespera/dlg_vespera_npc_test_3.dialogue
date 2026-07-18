@@ -2,7 +2,7 @@
 match auto_singleton.flag_vespera_got_npc3_item:
 	when 0:
 		if not map.talked_to_npc3:
-			¿Quieres ayudarme a buscar un objeto, linda? Te daré una sorpresa si lo haces.
+			¿Quieres ayudarme a buscar un objeto, nena? Te daré una sorpresa si lo haces.
 			$> map.talked_to_npc3 = true
 			=> END
 		else:

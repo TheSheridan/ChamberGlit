@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://tb4owsxsnuu2"]
 
-[ext_resource type="Texture2D" uid="uid://byjddrsjp370f" path="res://assets/images/cursor_9rect.png" id="1_xmbfl"]
+[ext_resource type="Texture2D" uid="uid://dbh64qm1d3ctg" path="res://assets/images/battlers/btl_tile.png" id="1_xmbfl"]
 
 [resource]
 transparency = 1
