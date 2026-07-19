@@ -6,3 +6,5 @@
 script = ExtResource("1_55o3r")
 
 [node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1838935392]
+
+[node name="Background" type="AudioStreamPlayer" parent="." unique_id=1510140712]

@@ -412,9 +412,19 @@ func _on_tween2_finished():
 			#print("Tween 2 disconnected.")
 
 func sprite():
-	if Input.is_action_pressed("ui_down"):
+	#if Input.is_action_pressed("ui_down"):
+		#$SpriteNew.play("walk_down")
+	#if Input.is_action_just_released("ui_down"):
+		#$SpriteNew.play("idle_down")
+	
+	var d_pad_pressed = Input.is_action_pressed("ui_up") \
+	or  Input.is_action_pressed("ui_down") \
+	or  Input.is_action_pressed("ui_left") \
+	or  Input.is_action_pressed("ui_right")
+	
+	if d_pad_pressed:
 		$SpriteNew.play("walk_down")
-	if Input.is_action_just_released("ui_down"):
+	else:
 		$SpriteNew.play("idle_down")
 
 func stop_at_walls():

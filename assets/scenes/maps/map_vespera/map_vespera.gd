@@ -4,6 +4,7 @@ extends Node2D
 @onready var _sgt = $/root/auto_singleton
 @onready var _load = $/root/auto_load
 @onready var _save = $"/root/SaveAndLoad"
+@onready var _bgm = $"/root/bgm"
 
 @onready var bella = $CharacterBella
 @onready var balloon = $CharacterBella/ExampleBalloon
@@ -31,6 +32,8 @@ func _ready() -> void:
 	# NPC coloring crap bc I'm a sucker for overcomplicating my life
 	$Ruth.modulate = Color.GREEN_YELLOW
 	$Sigi.modulate = Color.ORANGE
+	
+	_bgm.play_music("bgm_village.ogg")
 
 func _process(delta: float) -> void:
 	if bella != null:

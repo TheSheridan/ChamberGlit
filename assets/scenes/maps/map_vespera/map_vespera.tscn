@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://dr0j8vx5v8mru" path="res://assets/nodes/warp/warp.gd" id="2_f0oth"]
 [ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="2_xupue"]
 [ext_resource type="Texture2D" uid="uid://cdcrhkdbxelnl" path="res://assets/images/particle2.png" id="3_jv7d0"]
-[ext_resource type="AudioStream" uid="uid://i18mjtxykcdn" path="res://assets/audio/bgm_village.ogg" id="5_f0oth"]
 [ext_resource type="PackedScene" uid="uid://d38yky4q30c6a" path="res://assets/nodes/chr_bella/save_position.tscn" id="5_hro4s"]
 [ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="6_1pnsv"]
 [ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="6_krtdk"]
@@ -336,12 +335,6 @@ scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_jv7d0")
 color = Color(1, 1, 1, 0.654902)
 color_ramp = SubResource("Gradient_1pnsv")
-
-[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1276753901]
-stream = ExtResource("5_f0oth")
-pitch_scale = 1.05
-autoplay = true
-bus = &"bgm"
 
 [node name="NPCs" type="Node" parent="." unique_id=4296087]
 

@@ -4,6 +4,7 @@ extends Area2D
 
 @onready var _load = get_node("/root/auto_load")
 @onready var _loading = $'/root/n_animLoading'
+@onready var _bgm = $"/root/bgm"
 
 ## Teleport Bella to another scene in the map. If empty, doesn't happen. 
 @export_file var warp_scene = "<null>"
@@ -18,9 +19,15 @@ var zoom_how_much: float
 var zoom_tween: Tween
 @onready var zoom_time: float = bella.fade_duration
 
+## Fades the BGM, Captain Obvious. Turn it off if you need to play it for more than one scene
+## (Turned off, needs more work)
+var fade_bgm: bool = false
+
+signal warp_finished
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered.bind())
-	print(warp_scene)
+	warp_finished.connect(_on_warp_finished.bind())
 
 func warp_to_pos():
 	var helper = get_node("../../PositionHelpers/" + warp_helper) 
@@ -32,6 +39,7 @@ func warp_to_pos():
 	
 	bella.position = helper.position
 	bella.fade_out()
+	warp_finished.emit()
 	
 func warp_to_scene():
 	bella.fade_in()
@@ -40,6 +48,7 @@ func warp_to_scene():
 	await timer.timeout
 	
 	_load.change_scene(warp_scene, warp_helper)
+	warp_finished.emit()
 	
 func zoom():
 	var time: float
@@ -62,6 +71,9 @@ func zoom():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		if fade_bgm:
+			_bgm.fade_out()
+		
 		if zoom_camera:
 			zoom()
 		
@@ -71,3 +83,7 @@ func _on_body_entered(body: Node2D) -> void:
 		else:
 			warp_to_pos()
 			
+
+func _on_warp_finished():
+	if fade_bgm:
+		_bgm.fade_in()

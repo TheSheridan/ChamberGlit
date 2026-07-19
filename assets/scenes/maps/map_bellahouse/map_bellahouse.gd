@@ -3,7 +3,8 @@ extends Node2D
 
 @onready var _sgt = $/root/auto_singleton
 @onready var _load = $/root/auto_load
-@onready var _loading = $/root/n_animLoading
+@onready var _loading = $"/root/n_animLoading"
+@onready var _bgm = $"/root/bgm"
 
 @onready var bella = $CharacterBella
 @onready var balloon = $CharacterBella/ExampleBalloon
@@ -52,6 +53,8 @@ func _ready() -> void:
 	
 	_loading._out.emit()
 	bella._fade_out.emit()
+	
+	_bgm.play_music("bgm_myplace.mp3")
 
 func _process(_delta: float) -> void:
 	_sgt.handle_dialog(bella, balloon)

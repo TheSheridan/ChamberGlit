@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var _load = get_node('/root/auto_load')
 @onready var _sgt = get_node('/root/auto_singleton')
+@onready var _bgm = $"/root/bgm"
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.DARK_GRAY)
@@ -14,6 +15,9 @@ func _ready() -> void:
 		match _sgt.flag_helper:
 			"Entrance":
 				$CharacterBella.position = $PositionHelpers/Entrance.position
+	
+	_bgm.play_music("bgm_cave.ogg")
+	_bgm.play_bg("bgm_fightover.ogg")
 		
 
 
