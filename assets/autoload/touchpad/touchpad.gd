@@ -6,6 +6,11 @@ signal _out
 
 @export var transparency: float = 1.0
 
+func _ready() -> void:
+	if OS.get_name() == "Android":
+		show()
+	else:
+		hide()
 
 func _process(_delta: float) -> void:
 	$CanvasLayer.modulate.a = transparency

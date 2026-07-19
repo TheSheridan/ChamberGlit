@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dwx000xsjc038" path="res://assets/autoload/bgm.gd" id="1_55o3r"]
 
-[node name="Bgm" type="AudioStreamPlayer" unique_id=51407973]
-bus = &"bgm"
+[node name="Bgm" type="Node" unique_id=370257687]
 script = ExtResource("1_55o3r")
+
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1838935392]

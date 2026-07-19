@@ -1,4 +1,4 @@
-extends AudioStreamPlayer
+extends Node
 
 signal fade_finished
 
@@ -10,27 +10,27 @@ func _ready() -> void:
 func play_music(track: String, pitch: float = 1.0, volume: float = 0.0):
 	var stream_file: AudioStream = load("res://assets/audio/" + track)
 	
-	stream = stream_file
-	print(stream)
+	$Audio.stream = stream_file
+	print($Audio.stream)
 	#pitch_scale = pitch
 	#volume_db = volume
-	playing = true
+	$Audio.playing = true
 
 func pause():
-	playing = false
+	$Audio.playing = false
 
 func resume():
-	playing = true
+	$Audio.playing = true
 
 func stop_music():
-	stop()
+	$Audio.stop()
 
 func fade_in(time: float = 0.25, volume: float = 0):
 	var tween = create_tween()
-	tween.tween_property(self, "volume_db", volume, time)
+	tween.tween_property($Audio, "volume_db", volume, time)
 	if tween.finished: fade_finished.emit()
 
 func fade_out(time: float = 0.25):
 	var tween = create_tween()
-	tween.tween_property(self, "volume_db", -50, time)
+	tween.tween_property($Audio, "volume_db", -50, time)
 	if tween.finished: fade_finished.emit()

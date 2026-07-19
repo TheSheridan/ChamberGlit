@@ -1,9 +1,17 @@
 extends Node2D
 
 
-@onready var _fade = get_node('/root/auto_fade')
+@onready var _sgt = $"/root/auto_singleton"
+@onready var _bgm = $"/root/bgm"
+
+@onready var bella = $CharacterBella
+@onready var balloon = $CharacterBella/ExampleBalloon
 
 
 func _ready():
-  RenderingServer.set_default_clear_color(Color.BLACK)
-  _fade._out.emit()
+	bella._fade_out.emit()
+	_sgt.check_bella_position(bella, name)
+	_bgm.play_music("bgm_crypt.ogg")
+
+func _process(_delta: float) -> void:
+	_sgt.handle_dialog(bella, balloon)

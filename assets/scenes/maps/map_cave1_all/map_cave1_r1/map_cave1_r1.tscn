@@ -1,11 +1,18 @@
 [gd_scene format=4 uid="uid://m2mqg4lbrufk"]
 
 [ext_resource type="Script" uid="uid://cd1inj0gwf3k7" path="res://assets/scenes/maps/map_cave1_all/map_cave1_r1/map_cave_1_r_1.gd" id="1_ejj1c"]
+[ext_resource type="Script" uid="uid://dr0j8vx5v8mru" path="res://assets/nodes/warp/warp.gd" id="2_3jm42"]
 [ext_resource type="TileSet" uid="uid://cj4er6n2hj35l" path="res://assets/nodes/tilesets/tiles_cave1.tres" id="2_wy1ja"]
 [ext_resource type="FontFile" uid="uid://dh4cbm4v84cq0" path="res://assets/fonts/Milonga-Regular.ttf" id="4_ny1qo"]
 [ext_resource type="Texture2D" uid="uid://c2lgkbg1rxaei" path="res://assets/images/glow.png" id="5_7kd3v"]
 [ext_resource type="AudioStream" uid="uid://dsyn56ecn220n" path="res://assets/audio/bgm_crypt.ogg" id="5_ny1qo"]
 [ext_resource type="Script" uid="uid://capbool0dhamh" path="res://assets/scenes/maps/map_cave1_all/map_cave1_r1/ball_route.gd" id="6_rtbrh"]
+[ext_resource type="PackedScene" uid="uid://c4n222408aweu" path="res://assets/nodes/chr_npc2/CharacterNPC.tscn" id="7_dpdrr"]
+[ext_resource type="Resource" uid="uid://ge548hkmg4x" path="res://assets/nodes/dialogues/cave1/dlg_cave1_chest1.dialogue" id="8_kfl7i"]
+[ext_resource type="PackedScene" uid="uid://c4pcxy8wjqxoh" path="res://assets/nodes/chr_bella/chr_bella.tscn" id="9_kfl7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyc6d"]
+size = Vector2(64, 126)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7b7a"]
 size = Vector2(72, 29)
@@ -66,6 +73,26 @@ _data = {
 script = ExtResource("1_ejj1c")
 metadata/_edit_horizontal_guides_ = [-893.0]
 
+[node name="Warps" type="Node" parent="." unique_id=569733195]
+
+[node name="Room2" type="Area2D" parent="Warps" unique_id=953099791]
+position = Vector2(208, -1872)
+script = ExtResource("2_3jm42")
+warp_scene = "uid://c6304yy2i2c86"
+warp_helper = "ToRoom1"
+
+[node name="Shape" type="CollisionShape2D" parent="Warps/Room2" unique_id=1862510973]
+position = Vector2(32, 65)
+shape = SubResource("RectangleShape2D_gyc6d")
+
+[node name="PositionHelpers" type="Node" parent="." unique_id=2145526595]
+
+[node name="AfterBattle" type="Marker2D" parent="PositionHelpers" unique_id=1823642857]
+position = Vector2(144, -1808)
+
+[node name="ToRoom2" type="Marker2D" parent="PositionHelpers" unique_id=626245188]
+position = Vector2(144, -1808)
+
 [node name="MainCollision" type="StaticBody2D" parent="." unique_id=1715527387]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MainCollision" unique_id=889264568]
@@ -123,12 +150,11 @@ position = Vector2(164, 110)
 scale = Vector2(64, 64)
 texture = ExtResource("5_7kd3v")
 
-[node name="Node" type="Node" parent="." unique_id=569733195]
-
 [node name="BallRoute" type="Node2D" parent="." unique_id=1806938504]
 script = ExtResource("6_rtbrh")
 
 [node name="Blocks" type="StaticBody2D" parent="BallRoute" unique_id=1811120920]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallRoute/Blocks" unique_id=270659318]
 position = Vector2(-921, -725)
@@ -153,6 +179,17 @@ polygon = PackedVector2Array(8, 208, 8, -32, -24, -32, -24, 272, 776, 272, 776, 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BallRoute" unique_id=523410426]
 editor_description = "modulat"
 libraries/ = SubResource("AnimationLibrary_kfl7i")
+
+[node name="Chest" parent="." unique_id=1334509439 instance=ExtResource("7_dpdrr")]
+position = Vector2(-912, -848)
+text_to_send = ExtResource("8_kfl7i")
+
+[node name="CharacterBella" parent="." unique_id=1789104968 node_paths=PackedStringArray("tile_map") groups=["player"] instance=ExtResource("9_kfl7i")]
+position = Vector2(152, 104)
+deceleration = 12000.0
+max_speed = 400.0
+stair_speed_max = 500.0
+tile_map = NodePath("../Main")
 
 [connection signal="body_entered" from="BallRoute/Area2D" to="BallRoute" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="BallRoute/Area2D" to="BallRoute" method="_on_area_2d_body_exited"]

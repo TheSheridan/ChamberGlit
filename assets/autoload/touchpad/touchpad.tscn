@@ -60,7 +60,6 @@ _data = {
 
 [node name="Touchpad" type="CanvasLayer" unique_id=1829652551]
 layer = 10
-visible = false
 script = ExtResource("1_gg1ix")
 
 [node name="CanvasLayer" type="Control" parent="." unique_id=444884375]
@@ -133,12 +132,13 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -304.0
-offset_right = 208.0
-offset_bottom = -104.0
+offset_left = 55.0
+offset_top = -251.0
+offset_right = 255.0
+offset_bottom = -51.0
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(100, 100)
 mouse_filter = 2
 script = ExtResource("3_rxdp5")
 controller_style = 1

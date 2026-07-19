@@ -52,7 +52,7 @@ script = ExtResource("1_c7rph")
 metadata/_edit_horizontal_guides_ = [-872.0]
 
 [node name="CharacterBella" parent="." unique_id=1789104968 groups=["player"] instance=ExtResource("2_rqe04")]
-position = Vector2(243, 230)
+position = Vector2(10544, -1488)
 deceleration = 12000.0
 max_speed = 400.0
 

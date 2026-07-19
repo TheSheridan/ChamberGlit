@@ -59,7 +59,7 @@ func check_bella_position(bella, scene_name: String):
 	if after_battle != null:
 		after_battle.position = flag_prev_position
 	
-	if flag_helper != "":
+	if flag_helper != "" or null:
 		bella.position = helper.position
 	elif flag_helper == "AfterBattle":
 		bella.position = after_battle.position

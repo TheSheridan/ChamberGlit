@@ -246,7 +246,9 @@ func _physics_process(delta) -> void:
 		pass
 		
 	stop_at_walls()
-	stairs(delta)
+	
+	if tile_map != null:
+		stairs(delta)
 
 func get_input() -> Vector2:
 	var input = Vector2.ZERO
@@ -432,6 +434,12 @@ func stairs(delta):
 		if Input.is_action_pressed("ui_left"):
 			position.y -= stair_speed * delta
 		if Input.is_action_pressed("ui_right"):
+			position.y += stair_speed * delta
+	
+	if "stair_front" in get_tile_name():
+		if Input.is_action_pressed("ui_up"):
+			position.y -= stair_speed * delta
+		if Input.is_action_pressed("ui_down"):
 			position.y += stair_speed * delta
 
 # Tilemap
