@@ -71,7 +71,9 @@ var anim_cursor_fade_time = 0.125
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color(0.1416015625, 0.14938354492188, 0.15625))
+	
 	_bgm.play_music("bgm_biselbrillante.ogg")
+	_bgm.fade_in()
 	
 	_fade._out.emit()
 	_loading._out.emit()
@@ -295,7 +297,7 @@ func _process(_delta):
 				await $SceneChangeTimer.timeout
 				
 				_load.change_scene(scene_to_change)
-				_sgt.music_play($Audio, _sgt._ease.IN, 0.25)
+				_bgm.fade_out(1)
 
 			menu.LOAD_GAME:
 				anim_buttonSlide(load_game_button, load_game_button_timer)

@@ -12,6 +12,7 @@ func _ready():
 	bella._fade_out.emit()
 	_sgt.check_bella_position(bella, name)
 	_bgm.play_music("bgm_crypt.ogg")
+	_bgm.volume_db_music_fade = 0
 
 func _process(_delta: float) -> void:
 	_sgt.handle_dialog(bella, balloon)

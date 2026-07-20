@@ -125,6 +125,8 @@ func _ready():
 	
 	after_closing = $ExampleBalloon.after_closing
 	
+	$SpriteNew.animation = "idle_down"
+	
 	print("position: ", position)
 
 func _process(_delta) -> void:

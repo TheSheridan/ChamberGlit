@@ -71,10 +71,12 @@ polygon = PackedVector2Array(128, 64, 512, 64, 512, 384, 257.63635, 384, 256, 44
 [node name="ToF1" parent="Warps" unique_id=520996465 instance=ExtResource("2_l1wb4")]
 position = Vector2(128, 64)
 warp_helper = "F1"
+fade_bgm = false
 
 [node name="ToF2" parent="Warps" unique_id=306803146 instance=ExtResource("2_l1wb4")]
 position = Vector2(1152, 64)
 warp_helper = "F2"
+fade_bgm = false
 
 [node name="Exit" parent="Warps" unique_id=715607295 instance=ExtResource("2_l1wb4")]
 position = Vector2(896, 400)

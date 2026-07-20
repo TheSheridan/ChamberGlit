@@ -24,6 +24,7 @@ warp_scene = "uid://gldfgy6co3qo"
 warp_helper = "ToRoom4"
 zoom_camera = true
 zoom_ease = 1
+fade_bgm = false
 
 [node name="Shape" type="CollisionShape2D" parent="Warps/Room2" unique_id=817552291]
 position = Vector2(64, 32)

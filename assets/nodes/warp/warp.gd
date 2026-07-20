@@ -20,8 +20,7 @@ var zoom_tween: Tween
 @onready var zoom_time: float = bella.fade_duration
 
 ## Fades the BGM, Captain Obvious. Turn it off if you need to play it for more than one scene
-## (Turned off, needs more work)
-var fade_bgm: bool = false
+@export var fade_bgm: bool = true
 
 signal warp_finished
 
@@ -85,5 +84,4 @@ func _on_body_entered(body: Node2D) -> void:
 			
 
 func _on_warp_finished():
-	if fade_bgm:
-		_bgm.fade_in()
+	pass

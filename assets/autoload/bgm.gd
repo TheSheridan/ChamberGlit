@@ -8,6 +8,8 @@ var volume_db_music_fade: float
 @export var volume_db_bg: float = 0
 var volume_db_bg_fade: float
 
+@export var fade_time = 0.25
+
 var is_fading_music: bool = false
 var is_fading_bg: bool = false
 
@@ -37,6 +39,7 @@ func play_music(track: String, pitch: float = 1.0, volume: float = 0.0):
 	# Why it doesn't work...
 	pitch_music = pitch
 	volume_db_music = volume
+	volume_db_music_fade = 0
 
 func play_bg(track: String, pitch: float = 1.0, volume: float = 0.0):
 	var stream_file: AudioStream = load("res://assets/audio/" + track)
@@ -49,6 +52,7 @@ func play_bg(track: String, pitch: float = 1.0, volume: float = 0.0):
 		
 	pitch_bg = pitch
 	volume_db_bg = volume
+	volume_db_bg_fade = 0
 
 func pause_music():
 	$Audio.playing = false
@@ -68,22 +72,26 @@ func resume_bg():
 func stop_bg():
 	$Background.stop()
 
-func fade_in(time: float = 0.25, volume: float = 0):
+func fade_in(time: float = fade_time, volume: float = 0):
+	volume_db_music_fade = -50
 	var tween = create_tween()
 	tween.tween_property(self, "volume_db_music_fade", volume, time)
 	if tween.finished: fade_finished.emit()
 
-func fade_out(time: float = 0.25):
+func fade_out(time: float = fade_time):
+	volume_db_music_fade = 0
 	var tween = create_tween()
 	tween.tween_property(self, "volume_db_music_fade", -50, time)
 	if tween.finished: fade_finished.emit()
 	
-func fade_in_bg(time: float = 0.25, volume: float = 0):
+func fade_in_bg(time: float = fade_time, volume: float = 0):
+	volume_db_bg_fade = -50
 	var tween = create_tween()
 	tween.tween_property(self, "volume_db_bg_fade", volume, time)
 	if tween.finished: fade_finished.emit()
 
-func fade_out_bg(time: float = 0.25):
+func fade_out_bg(time: float = fade_time):
+	volume_db_bg_fade = 0
 	var tween = create_tween()
 	tween.tween_property(self, "volume_db_bg_fade", -50, time)
 	if tween.finished: fade_finished.emit()

@@ -25,6 +25,7 @@ position = Vector2(32, 128)
 script = ExtResource("2_u3yey")
 warp_scene = "uid://m2mqg4lbrufk"
 warp_helper = "ToRoom2"
+fade_bgm = false
 
 [node name="Shape" type="CollisionShape2D" parent="Warps/Room1" unique_id=1795648103]
 position = Vector2(32, 65)
@@ -35,6 +36,7 @@ position = Vector2(1648, 736)
 script = ExtResource("2_u3yey")
 warp_scene = "uid://gldfgy6co3qo"
 warp_helper = "ToRoom2"
+fade_bgm = false
 
 [node name="Shape" type="CollisionShape2D" parent="Warps/Room3" unique_id=914584755]
 position = Vector2(12, 88)

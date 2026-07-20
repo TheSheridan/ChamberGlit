@@ -53,6 +53,7 @@ position = Vector2(2080, -64)
 monitorable = false
 script = ExtResource("2_uu3q0")
 warp_helper = "OtherOut"
+fade_bgm = false
 
 [node name="Shape" type="CollisionShape2D" parent="Warps/OtherIn" unique_id=1948674551]
 position = Vector2(96, 24)
@@ -63,6 +64,7 @@ position = Vector2(4576, 144)
 monitorable = false
 script = ExtResource("2_uu3q0")
 warp_helper = "OtherIn"
+fade_bgm = false
 
 [node name="Shape" type="CollisionShape2D" parent="Warps/OtherOut" unique_id=240575504]
 position = Vector2(96, 24)

@@ -25,6 +25,7 @@ position = Vector2(320, 416)
 script = ExtResource("2_c4qsd")
 warp_scene = "uid://di33fi5s2xjhw"
 warp_helper = "Inn"
+fade_bgm = false
 
 [node name="Shape" type="CollisionShape2D" parent="Warps/Vespera" unique_id=1735738681]
 position = Vector2(32, 16)

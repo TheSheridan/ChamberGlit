@@ -222,6 +222,7 @@ position = Vector2(-1104, -1040)
 script = ExtResource("2_f0oth")
 warp_scene = "uid://c0gx1720w5xdb"
 warp_helper = "Exit"
+fade_bgm = false
 
 [node name="Shape" type="CollisionShape2D" parent="Warps/Inn" unique_id=120472661]
 position = Vector2(16, 8)

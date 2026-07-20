@@ -153,10 +153,7 @@ func _ready() -> void:
 
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("bgm"), 0)
 	
-	if $"../auto_fade/Timer".timeout:
-		_bgm.play_music("bgm_fancybattle.ogg", 1, -25)
-	
-	_bgm.fade_in()
+	_bgm.play_music("bgm_fancybattle.ogg")
 
 	textbox.position += Vector2(textbox_displacement, textbox_displacement)
 	textbox.text = text_combat.start
@@ -434,7 +431,7 @@ func won_the_battle():
 	textbox.text = ""
 	
 	
-	_bgm.play_bg("bgm_fightover.ogg", 1, -50)
+	_bgm.play_bg("bgm_fightover.ogg")
 	_bgm.fade_in_bg()
 	
 	anim_enemy_defeated()
