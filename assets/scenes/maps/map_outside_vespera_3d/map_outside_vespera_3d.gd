@@ -9,6 +9,8 @@ extends Node3D
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	_sgt.check_bella_position_3d($CharacterBella3D, name)
+	
+	_bgm.stop_music()
 	_bgm.play_bg("bgm_fightover.ogg")
 	
 func _process(delta: float) -> void:

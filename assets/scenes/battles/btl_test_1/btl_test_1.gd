@@ -118,6 +118,7 @@ var lose_switch: bool = false
 @onready var _fade = get_node("/root/auto_fade")
 @onready var _load = get_node("/root/auto_load")
 @onready var _loading = get_node('/root/n_animLoading')
+@onready var _bgm = $"/root/bgm"
 
 @onready var textbox = %Textbox
 @onready var textbox_bg = $UI/BG/Sprite
@@ -153,11 +154,9 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("bgm"), 0)
 	
 	if $"../auto_fade/Timer".timeout:
-		$BGM.play()
+		_bgm.play_music("bgm_fancybattle.ogg", 1, -25)
 	
-	$BGM.volume_db = -25
-	if custom_volume_db != 0:
-		create_tween().tween_property($BGM, 'volume_db', custom_volume_db, 0.5)
+	_bgm.fade_in()
 
 	textbox.position += Vector2(textbox_displacement, textbox_displacement)
 	textbox.text = text_combat.start
@@ -297,7 +296,7 @@ func after_winning():
 	_fade.fade_time = 0.5
 	_fade._in.emit()
 	
-	$BGMFightOver.stop()
+	_bgm.fade_out_bg()
 	
 	$Timer.start(0.5)
 	await $Timer.timeout
@@ -313,7 +312,7 @@ func after_losing():
 	create_tween() \
 		.set_trans(Tween.TRANS_CUBIC) \
 		.tween_property($Camera, 'v_offset', 0.5, _fade.fade_time * 2)
-	create_tween().tween_property($BGM, 'volume_db', -50, _fade.fade_time)
+	_bgm.fade_out(_fade.fade_time)
 	
 	$Timer.start(0.75)
 	await $Timer.timeout
@@ -435,8 +434,8 @@ func won_the_battle():
 	textbox.text = ""
 	
 	
-	$BGMFightOver.play()
-	create_tween().tween_property($BGMFightOver, 'volume_db', 1, 0.5)
+	_bgm.play_bg("bgm_fightover.ogg", 1, -50)
+	_bgm.fade_in_bg()
 	
 	anim_enemy_defeated()
 	
@@ -464,7 +463,7 @@ func anim_player_defeated():
 	create_tween().tween_property(
 		$Battler/Light, "color", Color.BLACK, 0.2)
 	create_tween().tween_property(
-		$BGM, "pitch_scale", 0.50, 1)
+		_bgm, "pitch_music", 0.50, 1)
 	create_tween().tween_property(
 		self, "sphere_rotation", 0.1, 1)
 	
@@ -484,7 +483,7 @@ func anim_enemy_defeated():
 	delete_buttons()
 	
 	$AnimationPlayer.play("enemy_defeated")
-	create_tween().tween_property($BGM, "volume_db", -50, 1)
+	_bgm.fade_out()
 	create_tween().tween_property($Camera, "offset_y", 1, 1)
 	
 	$BattleTimer.start(1.1)
@@ -653,7 +652,7 @@ func button_action_4():
 			.set_trans(Tween.TRANS_CUBIC) \
 			.tween_property($UI/Fade, "modulate", Color($UI/Fade.modulate, 1), 0.5)
 			
-	create_tween().tween_property($BGM, "volume_db", -50, 0.5)
+	_bgm.fade_out()
 	
 	$Timer.start($FleeSound.stream.get_length() / 2)
 	await $Timer.timeout

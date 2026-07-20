@@ -7,11 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://dpovsumh4diqp" path="res://assets/images/sheets/spr_Bella/chr_bella_down2.png" id="5_3wfr0"]
 [ext_resource type="PackedScene" uid="uid://bcpicqysq62od" path="res://assets/nodes/chr_bella/balloon.tscn" id="5_5v7vn"]
 [ext_resource type="AudioStream" uid="uid://dr7d257b0k8sh" path="res://assets/audio/sfx_snow_walk_2.ogg" id="5_nd36p"]
+[ext_resource type="Texture2D" uid="uid://bmclnrr6xpb4e" path="res://assets/images/sheets/spr_Bella/chr_bella_up1.png" id="5_si3tp"]
 [ext_resource type="Texture2D" uid="uid://cqwa45t3y3k1g" path="res://assets/images/sheets/spr_Bella/chr_bella_down3.png" id="6_fumeb"]
 [ext_resource type="AudioStream" uid="uid://sjoir4lqasqo" path="res://assets/audio/sfx_snow_walk_3.ogg" id="6_il3eu"]
 [ext_resource type="Texture2D" uid="uid://ci0c8pr8gmmdr" path="res://assets/images/sheets/spr_Bella/chr_bella_down4.png" id="7_n36hu"]
 [ext_resource type="Texture2D" uid="uid://dw6sot63vnqtv" path="res://assets/images/sheets/spr_Bella/chr_bella_down.png" id="8_il3eu"]
 [ext_resource type="Texture2D" uid="uid://s4lcrn7somml" path="res://assets/images/sheets/spr_Bella/chr_bella_down1.png" id="8_xehym"]
+[ext_resource type="Texture2D" uid="uid://dfy1hsjpn25is" path="res://assets/images/sheets/spr_Bella/chr_bella_up2.png" id="10_4jg51"]
+[ext_resource type="Texture2D" uid="uid://cg1iebu76djsm" path="res://assets/images/sheets/spr_Bella/chr_bella_up3.png" id="11_ngm17"]
+[ext_resource type="Texture2D" uid="uid://dmndxujnbdvu8" path="res://assets/images/sheets/spr_Bella/chr_bella_up4.png" id="12_007fw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w0r3"]
+size = Vector2(16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8w0r3"]
 animations = [{
@@ -21,6 +28,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_si3tp")
+}],
+"loop": 1,
+"name": &"idle_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -38,6 +53,23 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_4jg51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ngm17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_007fw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_si3tp")
+}],
+"loop": 1,
+"name": &"walk_up",
 "speed": 5.0
 }]
 
@@ -94,8 +126,13 @@ initial_speed = 300.0
 deceleration = 200.0
 max_speed = 700.0
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=2139227207]
+[node name="BallCollision" type="CollisionShape2D" parent="." unique_id=2139227207]
 shape = ExtResource("2_os1l5")
+disabled = true
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=153195562]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_8w0r3")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1742886674]
 visible = false
@@ -108,8 +145,9 @@ animation = &"idle_down"
 [node name="SpriteNew" type="AnimatedSprite2D" parent="." unique_id=1188265991]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_8w0r3")
-animation = &"idle_down"
-frame_progress = 0.3238378
+animation = &"walk_up"
+frame = 3
+frame_progress = 0.4986226
 speed_scale = 1.5
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1614492719]
@@ -124,6 +162,7 @@ stream = SubResource("AudioStreamRandomizer_vo6q7")
 volume_db = 2.0
 max_distance = 831.0
 attenuation = 1.9318731
+bus = &"sfx_walk"
 
 [node name="Timer" type="Timer" parent="WalkSound" unique_id=1333128067]
 

@@ -33,6 +33,7 @@ func _ready() -> void:
 	$Ruth.modulate = Color.GREEN_YELLOW
 	$Sigi.modulate = Color.ORANGE
 	
+	_bgm.stop_bg()
 	_bgm.play_music("bgm_village.ogg")
 
 func _process(delta: float) -> void:

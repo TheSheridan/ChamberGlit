@@ -10,6 +10,7 @@ var text_run_string: String = \
 @export var rng_size: float = 2
 
 @onready var _sgt = $"/root/auto_singleton"
+@onready var _bgm = $"/root/bgm"
 
 @onready var bella = $CharacterBella
 @onready var balloon = $CharacterBella/ExampleBalloon
@@ -23,6 +24,7 @@ func _ready():
 	
 	print(scene_file_path)
 	_sgt.check_bella_position(bella, name)
+	_bgm.stop_music()
 
 
 func _process(_delta) -> void:

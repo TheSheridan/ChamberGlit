@@ -24,6 +24,7 @@ var going_back: bool
 @onready var _sgt = $"/root/auto_singleton"
 @onready var _load = $"/root/auto_load"
 @onready var _loading = $"/root/n_animLoading"
+@onready var _bgm = $"/root/bgm"
 
 
 func _ready() -> void:
@@ -70,7 +71,8 @@ func invincibility_after_battle():
 
 func _on_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and state != state_enum.REST:
-		create_tween().tween_property(bgm, 'volume_db', -50, 0.5)
+		_bgm.fade_out()
+		_bgm.fade_out_bg()
 		bella_anim.play("cam_woosh")
 		state = state_enum.QUIET
 		_sgt.fade_to_battle(bella, battle, true)

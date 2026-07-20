@@ -412,20 +412,33 @@ func _on_tween2_finished():
 			#print("Tween 2 disconnected.")
 
 func sprite():
-	#if Input.is_action_pressed("ui_down"):
-		#$SpriteNew.play("walk_down")
-	#if Input.is_action_just_released("ui_down"):
-		#$SpriteNew.play("idle_down")
+	var d_pad_pressed = Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right")
+	var d_pad_released = Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right")
 	
-	var d_pad_pressed = Input.is_action_pressed("ui_up") \
-	or  Input.is_action_pressed("ui_down") \
-	or  Input.is_action_pressed("ui_left") \
-	or  Input.is_action_pressed("ui_right")
+	if Input.is_action_pressed("ui_up"):
+		$SpriteNew.play("walk_up")
+	if Input.is_action_just_released("ui_up"):
+		$SpriteNew.play("idle_up")
 	
-	if d_pad_pressed:
+	if Input.is_action_pressed("ui_down"):
 		$SpriteNew.play("walk_down")
-	else:
+	if Input.is_action_just_released("ui_down"):
 		$SpriteNew.play("idle_down")
+		
+	# I didn't made the left/right sprites yet, so enjoy up/down walking for now!
+	if d_pad_pressed:
+		match $SpriteNew.animation:
+			"idle_up":
+				$SpriteNew.play("walk_up")
+			"idle_down":
+				$SpriteNew.play("walk_down")
+				
+	if d_pad_released:
+		match $SpriteNew.animation:
+			"walk_up":
+				$SpriteNew.play("idle_up")
+			"walk_down":
+				$SpriteNew.play("idle_down")
 
 func stop_at_walls():
 	print($Ray.get_collider())

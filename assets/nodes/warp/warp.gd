@@ -57,8 +57,8 @@ func zoom():
 		zoom_how_much = 2
 		time = zoom_time * 2
 	else:
-		zoom_how_much = 1
-		time = zoom_time
+		zoom_how_much = 0.5
+		time = zoom_time * 2
 	
 	zoom_tween = create_tween()
 	zoom_tween.set_ease(Tween.EASE_IN_OUT)

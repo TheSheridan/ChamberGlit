@@ -37,6 +37,7 @@ var spr_shake_alpha_time: int
 @onready var _fade = get_node('/root/auto_fade')
 @onready var _load = get_node('/root/auto_load')
 @onready var _loading = get_node('/root/n_animLoading')
+@onready var _bgm = $"/root/bgm"
 
 
 # Main
@@ -44,9 +45,7 @@ func _ready():
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	_fade._out.emit()
 	_loading._out.emit()
-	$AudioStreamPlayer.playing = true
-	previous_bgm_volume = AudioServer.get_bus_volume_db(1)
-	AudioServer.set_bus_volume_db(1, -6)
+	_bgm.play_music("bgm_chamber.mp3")
 
   # Particle positions
 	$Particles/Snow1.position = -Vector2(10, 10)
@@ -186,7 +185,7 @@ func _process(delta):
 		.set_trans(Tween.TRANS_CUBIC) \
 		.tween_property(self, 'modulate', Color(modulate, 0), 0.25)
 
-		create_tween().tween_property($AudioStreamPlayer, 'volume_db', -50, 1)
+		_bgm.fade_out(0.75)
 
 		press_start_switch = true
 	

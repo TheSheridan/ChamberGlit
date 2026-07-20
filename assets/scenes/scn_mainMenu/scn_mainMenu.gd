@@ -43,6 +43,7 @@ var anim_cursor_fade_time = 0.125
 @onready var _load = get_node('/root/auto_load')
 @onready var _loading = get_node('/root/n_animLoading')
 @onready var _touchpad = $"/root/Touchpad"
+@onready var _bgm = $"/root/bgm"
 
 @onready var button_vbox = $Margin/Ratio/ButtonVBox
 
@@ -70,6 +71,8 @@ var anim_cursor_fade_time = 0.125
 
 func _ready():
 	RenderingServer.set_default_clear_color(Color(0.1416015625, 0.14938354492188, 0.15625))
+	_bgm.play_music("bgm_biselbrillante.ogg")
+	
 	_fade._out.emit()
 	_loading._out.emit()
 	
@@ -127,11 +130,7 @@ func _ready():
 
 	description_text.text = menu_description_text[menu_actual_option]
 
-	# Audio
-	$Audio.volume_db = -40.0
-	$Audio.play()
-	_sgt.music_play($Audio, slide.OUT, 0.5)
-  
+	
 	other_text_pos_temp = Vector2(0, 332)
 
 	# Decoration
