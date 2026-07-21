@@ -9,6 +9,7 @@ var sprite_light = load("res://assets/images/loading_white.png")
 
 signal _in
 signal _out
+signal finished
 
 @onready var _sgt = $"/root/auto_singleton"
 
@@ -49,6 +50,7 @@ func anim_fadeIn():
 	)
 	
 	await tween.finished
+	finished.emit()
 	if is_instance_valid(tween):
 		tween.kill()
 
@@ -62,6 +64,7 @@ func anim_fadeOut():
 	)
 	
 	await tween.finished
+	finished.emit()
 	if is_instance_valid(tween):
 		tween.kill()
 

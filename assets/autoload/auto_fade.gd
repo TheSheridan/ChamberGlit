@@ -12,6 +12,7 @@ enum color_enum {LIGHT, DARK}
 
 signal _in
 signal _out
+signal finished
 
 
 func _ready() -> void:	
@@ -26,9 +27,11 @@ func _process(_delta: float) -> void:
 	$BG.color = color
 
 func anim_fade_in():
-	#print("Fade in")
-	create_tween().tween_property(self, "modulate:a", 1, fade_time)
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 1, fade_time)
+	if tween.finished: finished.emit()
   
 func anim_fade_out():
-	#print("Fade out")
-	create_tween().tween_property(self, "modulate:a", 0, fade_time)
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 0, fade_time)
+	if tween.finished: finished.emit()

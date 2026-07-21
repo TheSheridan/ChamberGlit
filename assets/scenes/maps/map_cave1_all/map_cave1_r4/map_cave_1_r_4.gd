@@ -23,7 +23,6 @@ func door_cutscene():
 	print("By the way, I haven't finished this cutscene. Enjoy :3")
 	
 	bella.stand_still = true
-	_loading.sprite_color = false
 	
 	var cam_prev_pos: Vector2 = $CharacterBella/Camera.position
 	
@@ -54,6 +53,7 @@ func door_cutscene():
 	var timer3 = get_tree().create_timer(1)
 	await timer3.timeout
 	
+	_loading.sprite_color = 0
 	_load.change_scene(_sgt.scene_bella_house)
 
 func _on_gate_cutscene_body_entered(body: Node2D) -> void:

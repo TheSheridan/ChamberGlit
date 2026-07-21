@@ -21,6 +21,7 @@ var zoom_tween: Tween
 
 ## Fades the BGM, Captain Obvious. Turn it off if you need to play it for more than one scene
 @export var fade_bgm: bool = true
+@export_enum("Dark", "Light") var loading_color = 1
 
 signal warp_finished
 
@@ -70,6 +71,8 @@ func zoom():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		_loading.sprite_color = loading_color
+		
 		if fade_bgm:
 			_bgm.fade_out()
 		
