@@ -141,6 +141,7 @@ var lose_switch: bool = false
 
 @onready var player_stat_viewer_prev_pos = PlayerStatViewer.position
 
+@export var stats: Stats
 #endregion
 
 

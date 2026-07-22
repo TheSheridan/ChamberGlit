@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bcswfd67b1hib" path="res://assets/scenes/battles/btl_test_1/btl_test_1.gd" id="1_ff8f6"]
 [ext_resource type="Texture2D" uid="uid://cg6pte1g86xfw" path="res://assets/images/battlers/pimp.png" id="2_kge0n"]
 [ext_resource type="Material" uid="uid://bl43k54mnxxp4" path="res://assets/scenes/battles/btl_test_1/battle_bg_snow.tres" id="2_l0sy6"]
+[ext_resource type="Script" uid="uid://ditjqg01o3ibo" path="res://assets/scenes/battles/btl_test_1/Stats.gd" id="2_w1r1i"]
 [ext_resource type="FontFile" uid="uid://dh4cbm4v84cq0" path="res://assets/fonts/Milonga-Regular.ttf" id="2_xjlua"]
 [ext_resource type="Texture2D" uid="uid://cgq2w0hhahgig" path="res://assets/images/battlers/bella_battler.png" id="3_tqt3h"]
 [ext_resource type="Texture2D" uid="uid://eaxui5u78qy8" path="res://assets/images/cursor_menu.png" id="4_1iqys"]
@@ -23,6 +24,20 @@
 [ext_resource type="AudioStream" uid="uid://bj5x73fw1bx48" path="res://assets/audio/sfxr/Non.wav" id="17_wts6y"]
 [ext_resource type="AudioStream" uid="uid://bckmhr56yb2j" path="res://assets/audio/sfxr/piu.wav" id="18_ttlal"]
 [ext_resource type="Texture2D" uid="uid://bmh0aa6vpspnl" path="res://assets/images/face.png" id="19_k10cc"]
+
+[sub_resource type="Curve" id="Curve_gyc6d"]
+_data = [Vector2(0, 0), 0.0, 2.6200016, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_g7b7a"]
+script = ExtResource("2_w1r1i")
+hp = 20
+hp_max = 20
+mp = 40
+mp_max = 40
+level = 1
+xp_curve = SubResource("Curve_gyc6d")
+metadata/_custom_type_script = "uid://ditjqg01o3ibo"
 
 [sub_resource type="Gradient" id="Gradient_nh6h8"]
 offsets = PackedFloat32Array(0, 0.43103448, 0.90229887)
@@ -319,6 +334,7 @@ enemy_stats = {
 "strength": 5,
 "wisdom": 3
 }
+stats = SubResource("Resource_g7b7a")
 
 [node name="BG" type="CSGSphere3D" parent="." unique_id=243675936]
 flip_faces = true
